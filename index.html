@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candy Varela — Alentá con sabor ⭐⭐⭐🇦🇷</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --celeste: #75AADB;
+    --azul: #1a3a6e;
+    --azul-dark: #0d2147;
+    --blanco: #ffffff;
+    --amarillo: #f5c518;
+    --rosa: #e91e8c;
+    --rosa-light: #fce4f3;
+    --gris-bg: #f8f5ff;
+    --gris-card: #fff;
+    --text: #1a1a2e;
+    --text-muted: #666;
+    --green: #22c55e;
+    --shadow: 0 4px 20px rgba(26,58,110,0.10);
+    --radius: 18px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--gris-bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* TOP BAR */
+  .top-bar {
+    background: var(--azul-dark);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 24px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .top-bar a { color: #fff; text-decoration: none; }
+  .top-bar .tb-center {
+    flex: 1;
+    text-align: center;
+    color: var(--amarillo);
+    letter-spacing: 0.02em;
+  }
+  .top-bar .tb-right { color: var(--celeste); }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--azul-dark) 0%, var(--azul) 100%);
+    padding: 14px 24px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .logo {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+  }
+  .logo span { color: var(--amarillo); }
+
+  .search-bar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.13);
+    border: 1.5px solid rgba(255,255,255,0.22);
+    border-radius: 50px;
+    padding: 8px 16px;
+    gap: 8px;
+    backdrop-filter: blur(6px);
+  }
+  .search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 0.9rem;
+    width: 100%;
+    font-family: 'Nunito', sans-serif;
+  }
+  .search-bar input::placeholder { color: rgba(255,255,255,0.55); }
+  .search-bar .icon { color: rgba(255,255,255,0.7); font-size: 1rem; }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-cuenta {
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: #fff;
+    padding: 7px 14px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    transition: background 0.2s;
+  }
+  .btn-cuenta:hover { background: rgba(255,255,255,0.22); }
+
+  .btn-carrito {
+    background: var(--rosa);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 3px 12px rgba(233,30,140,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+  }
+  .btn-carrito:hover { transform: translateY(-1px); box-shadow: 0 5px 18px rgba(233,30,140,0.45); }
+  .carrito-count {
+    background: #fff;
+    color: var(--rosa);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.72rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* NAV */
+  nav {
+    background: rgba(255,255,255,0.97);
+    border-bottom: 2px solid rgba(117,170,219,0.2);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 10px;
+    gap: 2px;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-inner a {
+    color: var(--azul);
+    text-decoration: none;
+    font-size: 0.83rem;
+    font-weight: 700;
+    padding: 11px 13px;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: background 0.18s, color 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-inner a:hover { background: var(--rosa-light); color: var(--rosa); }
+  .nav-inner a.active { color: var(--rosa); }
+  .nav-inner a.ofertas {
+    color: var(--rosa);
+    background: var(--rosa-light);
+    border-radius: 50px;
+    padding: 7px 14px;
+  }
+  .nav-inner a.reels {
+    color: #fff;
+    background: linear-gradient(135deg, #e91e8c, #ff6b35);
+    border-radius: 50px;
+    padding: 7px 14px;
+    box-shadow: 0 2px 10px rgba(233,30,140,0.3);
+  }
+
+  /* HERO SLIDER */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .slides-container {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide {
+    min-width: 100%;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide-1 {
+    background: linear-gradient(135deg, #0d2147 0%, #1a3a6e 40%, #75aadb 100%);
+  }
+  .slide-2 {
+    background: linear-gradient(135deg, #1a1a2e 0%, #6d0f5a 50%, #e91e8c 100%);
+  }
+  .slide-3 {
+    background: linear-gradient(135deg, #0f4c10 0%, #1a7a1e 50%, #22c55e 100%);
+  }
+  .slide-bg-emoji {
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.07;
+    right: -20px;
+    bottom: -30px;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .slide-content {
+    max-width: 1200px;
+    width: 100%;
+    padding: 50px 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 0 auto;
+  }
+  .slide-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .slide-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .slide-title .highlight { color: var(--amarillo); }
+  .slide-desc {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 28px;
+    max-width: 440px;
+    font-weight: 600;
+  }
+  .slide-emoji-large {
+    font-size: 120px;
+    line-height: 1;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .btn-slide {
+    display: inline-block;
+    background: var(--amarillo);
+    color: var(--azul-dark);
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(245,197,24,0.5);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-slide:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(245,197,24,0.65); }
+  .slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: #fff;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    z-index: 10;
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .slide-arrow:hover { background: rgba(255,255,255,0.35); }
+  .slide-arrow.prev { left: 18px; }
+  .slide-arrow.next { right: 18px; }
+  .slide-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 7px;
+    z-index: 10;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.45);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .dot.active { background: #fff; transform: scale(1.3); }
+
+  /* BENEFICIOS */
+  .beneficios {
+    background: #fff;
+    border-bottom: 2px solid rgba(117,170,219,0.15);
+  }
+  .beneficios-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    divide: 1px;
+  }
+  .beneficio-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 22px;
+    border-right: 1px solid rgba(0,0,0,0.06);
+  }
+  .beneficio-item:last-child { border-right: none; }
+  .beneficio-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--rosa-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .beneficio-text strong {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--azul-dark);
+  }
+  .beneficio-text span {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  /* MAIN CONTENT */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 36px 20px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+  }
+  .section-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--azul-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-link {
+    color: var(--rosa);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s;
+  }
+  .section-link:hover { gap: 8px; }
+
+  /* CATEGORIAS */
+  .categorias-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .categoria-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: var(--azul-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid transparent;
+  }
+  .categoria-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(26,58,110,0.15);
+    border-color: var(--rosa);
+  }
+  .cat-emoji { font-size: 1.9rem; line-height: 1; }
+  .cat-name { font-size: 0.72rem; font-weight: 800; line-height: 1.2; }
+
+  /* DESTACADOS BANNER */
+  .destacados-banner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+  .banner-card {
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 200px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+  }
+  .banner-card-1 {
+    background: linear-gradient(135deg, var(--azul-dark), var(--azul));
+  }
+  .banner-card-2 {
+    background: linear-gradient(135deg, #6d0f5a, #e91e8c);
+  }
+  .banner-bg-emoji {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 100px;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  .banner-badge-small {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 50px;
+    width: fit-content;
+    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .banner-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .banner-title .amarillo { color: var(--amarillo); }
+  .banner-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 7px 16px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    width: fit-content;
+    transition: background 0.2s;
+  }
+  .banner-cta:hover { background: rgba(255,255,255,0.3); }
+
+  /* PRODUCTOS */
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+  .producto-card {
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.22s, box-shadow 0.22s;
+    position: relative;
+    border: 2px solid transparent;
+  }
+  .producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(26,58,110,0.15);
+    border-color: rgba(233,30,140,0.2);
+  }
+  .producto-img {
+    background: linear-gradient(135deg, #f8f5ff, #fce4f3);
+    height: 165px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+  }
+  .producto-badges {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .badge {
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 50px;
+    line-height: 1;
+  }
+  .badge-off { background: var(--rosa); color: #fff; }
+  .badge-envio { background: var(--green); color: #fff; }
+  .badge-nuevo { background: var(--azul); color: #fff; }
+
+  .producto-body { padding: 14px; }
+  .producto-cat {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--rosa);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .producto-name {
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: var(--azul-dark);
+    line-height: 1.3;
+    margin-bottom: 8px;
+    min-height: 36px;
+  }
+  .producto-precios {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .precio-actual {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--azul-dark);
+  }
+  .precio-original {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+  .precio-transferencia {
+    font-size: 0.73rem;
+    color: var(--green);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .producto-btns {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+  }
+  .btn-agregar {
+    background: var(--rosa);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.83rem;
+    padding: 9px 14px;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.15s;
+  }
+  .btn-agregar:hover { background: #d4167e; transform: scale(1.02); }
+  .btn-ver {
+    background: var(--gris-bg);
+    color: var(--azul);
+    border: none;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.83rem;
+    padding: 9px 14px;
+    cursor: pointer;
+    transition: background 0.18s;
+  }
+  .btn-ver:hover { background: #ede9ff; }
+
+  /* REELS */
+  .reels-section { margin-bottom: 40px; }
+  .reels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .reel-card {
+    background: var(--azul-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 9/16;
+    max-height: 280px;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: var(--shadow);
+  }
+  .reel-card:hover { transform: scale(1.03); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+  .reel-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    opacity: 0.25;
+  }
+  .reel-card-1 { background: linear-gradient(160deg, #1a1a2e, #e91e8c80); }
+  .reel-card-2 { background: linear-gradient(160deg, #1a1a2e, #75aadb80); }
+  .reel-card-3 { background: linear-gradient(160deg, #1a1a2e, #f5c51880); }
+  .reel-card-4 { background: linear-gradient(160deg, #1a1a2e, #22c55e80); }
+  .reel-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255,255,255,0.35);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+  }
+  .reel-card:hover .reel-play { background: rgba(255,255,255,0.35); }
+  .reel-info {
+    position: relative;
+    z-index: 2;
+    padding: 14px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  }
+  .reel-views {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .reel-desc {
+    font-size: 0.8rem;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .reels-handle {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .btn-instagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #e91e8c, #ff6b35);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    width: fit-content;
+    margin: 18px auto 0;
+    box-shadow: 0 4px 18px rgba(233,30,140,0.35);
+    transition: transform 0.15s;
+  }
+  .btn-instagram:hover { transform: translateY(-2px); }
+
+  /* NEWSLETTER */
+  .newsletter {
+    background: linear-gradient(135deg, var(--azul-dark) 0%, var(--azul) 100%);
+    border-radius: 24px;
+    padding: 44px 40px;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .newsletter::before {
+    content: '🇦🇷⭐💌';
+    position: absolute;
+    font-size: 90px;
+    opacity: 0.06;
+    right: -20px;
+    top: -20px;
+  }
+  .newsletter-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .newsletter-desc {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .newsletter-input {
+    flex: 1;
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 50px;
+    padding: 12px 20px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    outline: none;
+  }
+  .newsletter-input::placeholder { color: rgba(255,255,255,0.5); }
+  .btn-newsletter {
+    background: var(--amarillo);
+    color: var(--azul-dark);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: transform 0.15s;
+    white-space: nowrap;
+  }
+  .btn-newsletter:hover { transform: scale(1.04); }
+
+  /* FOOTER */
+  footer {
+    background: var(--azul-dark);
+    color: rgba(255,255,255,0.75);
+    padding: 44px 24px 22px;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 36px;
+    margin-bottom: 32px;
+  }
+  .footer-brand .logo { margin-bottom: 12px; display: inline-flex; }
+  .footer-brand p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 16px;
+  }
+  .footer-socials { display: flex; gap: 10px; }
+  .social-btn {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .social-btn:hover { background: rgba(255,255,255,0.2); }
+  .footer-col h5 {
+    color: #fff;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 8px; }
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: color 0.18s;
+  }
+  .footer-col ul li a:hover { color: var(--amarillo); }
+  .footer-col .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 18px;
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 600;
+  }
+
+  /* CHAT BOT */
+  .chat-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+  }
+  .chat-bubble {
+    background: var(--azul-dark);
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: transform 0.2s;
+    min-width: 220px;
+    position: relative;
+  }
+  .chat-bubble:hover { transform: translateY(-3px); }
+  .chat-close {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    background: var(--text-muted);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    cursor: pointer;
+    font-weight: 900;
+  }
+  .chat-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--rosa), #ff6b35);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .chat-online-dot {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    width: 11px;
+    height: 11px;
+    background: var(--green);
+    border-radius: 50%;
+    border: 2px solid var(--azul-dark);
+  }
+  .chat-text strong { display: block; color: #fff; font-size: 0.85rem; font-weight: 800; }
+  .chat-text span { color: rgba(255,255,255,0.55); font-size: 0.73rem; font-weight: 600; }
+
+  /* CARRITO FLOTANTE */
+  .carrito-flotante {
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    margin-top: 10px;
+    border: 2px solid rgba(233,30,140,0.15);
+    min-width: 220px;
+  }
+  .carrito-info strong { display: block; color: var(--azul-dark); font-size: 0.85rem; font-weight: 800; }
+  .carrito-info span { color: var(--text-muted); font-size: 0.75rem; font-weight: 600; }
+  .btn-enviar {
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: background 0.18s;
+  }
+  .btn-enviar:hover { background: #16a34a; }
+
+  @media (max-width: 900px) {
+    .beneficios-inner { grid-template-columns: repeat(2, 1fr); }
+    .categorias-grid { grid-template-columns: repeat(4, 1fr); }
+    .productos-grid { grid-template-columns: repeat(2, 1fr); }
+    .reels-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .destacados-banner { grid-template-columns: 1fr; }
+    .slide-title { font-size: 2rem; }
+    .slide-emoji-large { font-size: 80px; }
+  }
+  @media (max-width: 600px) {
+    .top-bar .tb-left, .top-bar .tb-right { display: none; }
+    .header-inner { gap: 10px; }
+    .logo { font-size: 1.3rem; }
+    .beneficios-inner { grid-template-columns: repeat(2, 1fr); }
+    .categorias-grid { grid-template-columns: repeat(4, 1fr); }
+    .productos-grid { grid-template-columns: repeat(2, 1fr); }
+    .reels-grid { grid-template-columns: repeat(2, 1fr); }
+    .slide-content { flex-direction: column; text-align: center; padding: 32px 20px; }
+    .slide-desc { max-width: 100%; }
+    .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+    .newsletter { padding: 28px 20px; }
+    .newsletter-form { flex-direction: column; }
+    .chat-widget { bottom: 16px; right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="https://wa.me/541176750220" class="tb-left">📱 WhatsApp: +54 9 11 0000-0000</a>
+  <div class="tb-center">🇦🇷 ¡Vamos Argentina! Golosinas para alentar ⭐⭐⭐</div>
+  <div class="tb-right">🚚 Envío gratis en compras desde $15.000</div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">🇦🇷 Candy <span>Varela</span> ⭐⭐⭐</a>
+    <div class="search-bar">
+      <span class="icon">🔍</span>
+      <input type="text" placeholder="Buscar golosinas, chocolates, combos...">
+    </div>
+    <div class="header-actions">
+      <a href="#" class="btn-cuenta">👤 Mi cuenta</a>
+      <a href="https://wa.me/541176750220" class="btn-carrito">🛒 Carrito <div class="carrito-count">0</div></a>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#destacados" class="ofertas">🔥 Ofertas</a>
+    <a href="#categorias">Golosinas</a>
+    <a href="#categorias">Chocolates</a>
+    <a href="#categorias">Alfajores</a>
+    <a href="#categorias">Gomitas</a>
+    <a href="#categorias">Bebidas</a>
+    <a href="#categorias">Snacks</a>
+    <a href="#categorias">Candy Bar</a>
+    <a href="#categorias">Combos</a>
+    <a href="#reels" class="reels">📸 Reels</a>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="hero" id="destacados">
+  <div class="slides-container" id="slidesContainer">
+    <!-- Slide 1 -->
+    <div class="slide slide-1">
+      <div class="slide-bg-emoji">🇦🇷</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">🇦🇷 Edición Mundial · ¡Vamos Argentina!</div>
+          <h1 class="slide-title">Alentá con sabor <span class="highlight">⭐⭐⭐</span></h1>
+          <p class="slide-desc">Armá tu combo para ver el partido. ¡Las mejores golosinas para gritar los goles!</p>
+          <a href="#destacados" class="btn-slide">Ver el combo mundialista</a>
+        </div>
+        <div class="slide-emoji-large">🍭⚽🎉</div>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide slide-2">
+      <div class="slide-bg-emoji">⚽</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">📺 Día de partido</div>
+          <h1 class="slide-title">Combo <span class="highlight">Hinchada</span></h1>
+          <p class="slide-desc">Snacks, golosinas y bebidas para alentar con todos. ¡Pedilo y lo llevamos!</p>
+          <a href="https://wa.me/541176750220" class="btn-slide">Pedir mi combo</a>
+        </div>
+        <div class="slide-emoji-large">🧉🍿</div>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide slide-3">
+      <div class="slide-bg-emoji">🚚</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">🚚 Delivery propio</div>
+          <h1 class="slide-title">Envío gratis <span class="highlight">desde $15.000</span></h1>
+          <p class="slide-desc">Llegamos antes del pitazo inicial. ¡Recibí tu pedido en el día!</p>
+          <a href="#destacados" class="btn-slide">Aprovechar ahora</a>
+        </div>
+        <div class="slide-emoji-large">🏆🛍️</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-arrow prev" onclick="changeSlide(-1)">‹</div>
+  <div class="slide-arrow next" onclick="changeSlide(1)">›</div>
+  <div class="slide-dots">
+    <div class="dot active" onclick="goSlide(0)"></div>
+    <div class="dot" onclick="goSlide(1)"></div>
+    <div class="dot" onclick="goSlide(2)"></div>
+  </div>
+</div>
+
+<!-- BENEFICIOS -->
+<div class="beneficios">
+  <div class="beneficios-inner">
+    <div class="beneficio-item">
+      <div class="beneficio-icon">🚚</div>
+      <div class="beneficio-text">
+        <strong>Llega antes del partido</strong>
+        <span>Envío gratis desde $15.000</span>
+      </div>
+    </div>
+    <div class="beneficio-item">
+      <div class="beneficio-icon">💳</div>
+      <div class="beneficio-text">
+        <strong>5% OFF</strong>
+        <span>Pagando por transferencia</span>
+      </div>
+    </div>
+    <div class="beneficio-item">
+      <div class="beneficio-icon">⚽</div>
+      <div class="beneficio-text">
+        <strong>Combos Mundial</strong>
+        <span>Listos para la hinchada</span>
+      </div>
+    </div>
+    <div class="beneficio-item">
+      <div class="beneficio-icon">🛍️</div>
+      <div class="beneficio-text">
+        <strong>Mayor y menor</strong>
+        <span>Comprá la cantidad que quieras</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- CATEGORÍAS -->
+  <div id="categorias">
+    <div class="section-header">
+      <h2 class="section-title">Categorías</h2>
+      <a href="#" class="section-link">Ver todo →</a>
+    </div>
+    <div class="categorias-grid">
+      <a href="#" class="categoria-card"><div class="cat-emoji">🍬</div><div class="cat-name">Golosinas</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🍫</div><div class="cat-name">Chocolates</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🧁</div><div class="cat-name">Alfajores</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🐻</div><div class="cat-name">Gomitas</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🥤</div><div class="cat-name">Bebidas</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🍿</div><div class="cat-name">Snacks</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🍭</div><div class="cat-name">Candy Bar</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🎁</div><div class="cat-name">Combos</div></a>
+    </div>
+  </div>
+
+  <!-- DESTACADOS BANNER -->
+  <div class="destacados-banner">
+    <a href="#" class="banner-card banner-card-1">
+      <div class="banner-bg-emoji">⚽🇦🇷</div>
+      <div class="banner-badge-small">⚽ Combo Mundial</div>
+      <h3 class="banner-title">Combo Día de Partido</h3>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Snacks + bebidas + golosinas para alentar con la barra</p>
+      <div class="banner-cta">Ver combo →</div>
+    </a>
+    <a href="https://wa.me/541176750220" class="banner-card banner-card-2">
+      <div class="banner-bg-emoji">🏆🎉</div>
+      <div class="banner-badge-small">🏆 Pack Mundialista</div>
+      <h3 class="banner-title">Festejá los goles <span class="amarillo">🇦🇷</span></h3>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Armá tu pack mundialista y gritá cada gol con sabor</p>
+      <div class="banner-cta">Armar mi pack →</div>
+    </a>
+  </div>
+
+  <!-- PRODUCTOS MÁS VENDIDOS -->
+  <div class="section-header">
+    <h2 class="section-title">Más vendidos 🔥</h2>
+    <a href="#" class="section-link">Ver todos →</a>
+  </div>
+  <div class="productos-grid">
+
+    <div class="producto-card">
+      <div class="producto-img">
+        🍭
+        <div class="producto-badges">
+          <span class="badge badge-off">15% OFF</span>
+          <span class="badge badge-envio">Envío gratis</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🍬 Golosinas</div>
+        <div class="producto-name">Chupa Chups x50 unidades</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$8.500</span>
+          <span class="precio-original">$10.000</span>
+        </div>
+        <div class="precio-transferencia">$8.075 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img">
+        🍫
+        <div class="producto-badges">
+          <span class="badge badge-nuevo">Nuevo</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🍫 Chocolates</div>
+        <div class="producto-name">Tableta Milka 150g — Surtido</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$1.800</span>
+        </div>
+        <div class="precio-transferencia">$1.710 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img">
+        🧁
+        <div class="producto-badges">
+          <span class="badge badge-envio">Envío gratis</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🧁 Alfajores</div>
+        <div class="producto-name">Caja Alfajores Havanna x12</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$13.200</span>
+          <span class="precio-original">$15.000</span>
+        </div>
+        <div class="precio-transferencia">$12.540 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img">
+        🐻
+        <div class="producto-badges">
+          <span class="badge badge-off">20% OFF</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🐻 Gomitas</div>
+        <div class="producto-name">Mogul Ositos Gomita 1kg</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$6.400</span>
+          <span class="precio-original">$8.000</span>
+        </div>
+        <div class="precio-transferencia">$6.080 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img">
+        🥤
+        <div class="producto-badges">
+          <span class="badge badge-envio">Envío gratis</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🥤 Bebidas</div>
+        <div class="producto-name">Coca-Cola 2.25L x6 (pack)</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$10.500</span>
+        </div>
+        <div class="precio-transferencia">$9.975 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img" style="background:linear-gradient(135deg,#1a1a2e,#00b140);">
+        🥤
+        <div class="producto-badges">
+          <span class="badge badge-nuevo">Nuevo</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🥤 Bebidas</div>
+        <div class="producto-name">Monster Brasil / Chile 500ml</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$7.000</span>
+        </div>
+        <div class="precio-transferencia">$6.650 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img" style="background:linear-gradient(135deg,#0d2147,#00b140);">
+        🥫
+        <div class="producto-badges">
+          <span class="badge badge-nuevo">Importado</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🥤 Bebidas</div>
+        <div class="producto-name">Monster Europeos 500ml</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$15.000</span>
+        </div>
+        <div class="precio-transferencia">$14.250 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img" style="background:linear-gradient(135deg,#1a1a2e,#e91e8c55);">
+        ⚡
+        <div class="producto-badges">
+          <span class="badge badge-nuevo">Nuevo</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🥤 Bebidas</div>
+        <div class="producto-name">Energizante Personajes 500ml</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$7.000</span>
+        </div>
+        <div class="precio-transferencia">$6.650 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img">
+        🍿
+        <div class="producto-badges">
+          <span class="badge badge-nuevo">Nuevo</span>
+          <span class="badge badge-off">10% OFF</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🍿 Snacks</div>
+        <div class="producto-name">Combo Picadeo Salado</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$4.500</span>
+          <span class="precio-original">$5.000</span>
+        </div>
+        <div class="precio-transferencia">$4.275 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img" style="background:linear-gradient(135deg,#fff8e1,#ffe082);">
+        🥔
+        <div class="producto-badges">
+          <span class="badge badge-nuevo">Importadas</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🌍 Varios</div>
+        <div class="producto-name">Pringles Brasil / Asiáticas</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$8.000</span>
+        </div>
+        <div class="precio-transferencia">$7.600 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img" style="background:linear-gradient(135deg,#fce4f3,#e91e8c33);">
+        🍭
+        <div class="producto-badges">
+          <span class="badge badge-envio">Envío gratis</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🍭 Candy Bar</div>
+        <div class="producto-name">Kit Candy Bar 30 personas</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$28.000</span>
+        </div>
+        <div class="precio-transferencia">$26.600 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img" style="background:linear-gradient(135deg,#e8f5e9,#a5d6a7);">
+        🎁
+        <div class="producto-badges">
+          <span class="badge badge-off">25% OFF</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🎁 Combos</div>
+        <div class="producto-name">Canastita Sorpresa Premium</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$3.750</span>
+          <span class="precio-original">$5.000</span>
+        </div>
+        <div class="precio-transferencia">$3.562 con transferencia</div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card">
+      <div class="producto-img" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">
+        🐻
+        <div class="producto-badges">
+          <span class="badge badge-nuevo">Emprendedor</span>
+          <span class="badge badge-envio">Envío gratis</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🎁 Combos</div>
+        <div class="producto-name">Combo Emprendedor Gomitas I</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$50.000</span>
+        </div>
+        <div class="precio-transferencia" style="line-height:1.4">
+          6 bolsas × 500g — Mogul o Fini<br>$47.500 con transferencia
+        </div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card" style="border:2px solid var(--amarillo);">
+      <div class="producto-img" style="background:linear-gradient(135deg,#fff8e1,#ffcc02);">
+        🏆
+        <div class="producto-badges">
+          <span class="badge badge-nuevo">Emprendedor</span>
+          <span class="badge badge-envio">Envío gratis</span>
+        </div>
+      </div>
+      <div class="producto-body">
+        <div class="producto-cat">🎁 Combos</div>
+        <div class="producto-name">Combo Emprendedor Gomitas II</div>
+        <div class="producto-precios">
+          <span class="precio-actual">$100.000</span>
+        </div>
+        <div class="precio-transferencia" style="line-height:1.4">
+          12 bolsas × 500g + 3 bolsas × 1kg<br>$95.000 con transferencia
+        </div>
+        <div class="producto-btns">
+          <button class="btn-agregar">Agregar</button>
+          <button class="btn-ver">Ver</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- REELS -->
+  <div class="reels-section" id="reels">
+    <div class="section-header">
+      <h2 class="section-title">📸 Nuestros Reels destacados</h2>
+    </div>
+    <p class="reels-handle">@candyvarela.ok</p>
+    <div class="reels-grid">
+      <a href="https://instagram.com/candyvarela.ok" class="reel-card reel-card-1">
+        <div class="reel-bg">🍬</div>
+        <div class="reel-play">▶</div>
+        <div class="reel-info">
+          <div class="reel-views">▶ 12.4k reproducciones</div>
+          <div class="reel-desc">Llegó mercadería nueva 🎉</div>
+        </div>
+      </a>
+      <a href="https://instagram.com/candyvarela.ok" class="reel-card reel-card-2">
+        <div class="reel-bg">🍫</div>
+        <div class="reel-play">▶</div>
+        <div class="reel-info">
+          <div class="reel-views">▶ 8.9k reproducciones</div>
+          <div class="reel-desc">Armando un Candy Bar 🧁</div>
+        </div>
+      </a>
+      <a href="https://instagram.com/candyvarela.ok" class="reel-card reel-card-3">
+        <div class="reel-bg">🚚</div>
+        <div class="reel-play">▶</div>
+        <div class="reel-info">
+          <div class="reel-views">▶ 15.1k reproducciones</div>
+          <div class="reel-desc">Un día de delivery 💛</div>
+        </div>
+      </a>
+      <a href="https://instagram.com/candyvarela.ok" class="reel-card reel-card-4">
+        <div class="reel-bg">🎁</div>
+        <div class="reel-play">▶</div>
+        <div class="reel-info">
+          <div class="reel-views">▶ 6.7k reproducciones</div>
+          <div class="reel-desc">Combos para fiestas 🥳</div>
+        </div>
+      </a>
+    </div>
+    <a href="https://instagram.com/candyvarela.ok" class="btn-instagram">📷 Seguinos en Instagram</a>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <h3 class="newsletter-title">¡Sumate a la hinchada dulce! 🇦🇷💌</h3>
+    <p class="newsletter-desc">Recibí los combos mundialistas y ofertas antes que nadie</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="Tu email...">
+      <button class="btn-newsletter">Suscribirme</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">🇦🇷 Candy <span style="color:var(--amarillo)">Varela</span> ⭐⭐⭐</a>
+      <p>Tu kiosco de confianza. Golosinas, chocolates y combos para alentar a la Selección. Venta por mayor y menor. Buenos Aires, Argentina.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/candyvarela.ok" class="social-btn">📷</a>
+        <a href="https://wa.me/541176750220" class="social-btn">📱</a>
+        <a href="#" class="social-btn">📘</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Categorías</h5>
+      <ul>
+        <li><a href="#">Golosinas</a></li>
+        <li><a href="#">Chocolates</a></li>
+        <li><a href="#">Alfajores</a></li>
+        <li><a href="#">Candy Bar</a></li>
+        <li><a href="#">Combos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Ayuda</h5>
+      <ul>
+        <li><a href="#">Cómo comprar</a></li>
+        <li><a href="#">Medios de pago</a></li>
+        <li><a href="#">Envíos</a></li>
+        <li><a href="#">Preguntas frecuentes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <div class="contact-item">📱 +54 9 11 0000-0000</div>
+      <div class="contact-item">✉️ hola@candyvarela.com</div>
+      <div class="contact-item">📍 Buenos Aires, Argentina</div>
+      <div class="contact-item">🕗 Todos los días 8 a 22 hs</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 Candy Varela · Alentá con sabor 🇦🇷⭐⭐⭐ · Todos los derechos reservados
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget" id="chatWidget">
+  <div class="carrito-flotante" id="carritoFlotante" style="display:none;">
+    <div class="carrito-info">
+      <span id="carritoResumen">🛒 0 productos · <strong>$0</strong></span>
+    </div>
+    <button class="btn-enviar" id="btnEnviarPedido">📲 Finalizar por WhatsApp</button>
+  </div>
+  <div class="chat-bubble" onclick="toggleChat()">
+    <div class="chat-close" onclick="event.stopPropagation();document.getElementById('chatWidget').style.display='none'">✕</div>
+    <div class="chat-icon">🍬<div class="chat-online-dot"></div></div>
+    <div class="chat-text">
+      <strong>Candy · Asistente</strong>
+      <span id="chatStatus">En línea · te ayuda a comprar</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const WA_NUMBER = '541176750220';
+
+  // Slider
+  let currentSlide = 0;
+  const total = 3;
+  const container = document.getElementById('slidesContainer');
+  const dots = document.querySelectorAll('.dot');
+
+  function updateSlider() {
+    container.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+  }
+  function changeSlide(dir) {
+    currentSlide = (currentSlide + dir + total) % total;
+    updateSlider();
+  }
+  function goSlide(i) {
+    currentSlide = i;
+    updateSlider();
+  }
+  setInterval(() => changeSlide(1), 4500);
+
+  // Carrito
+  let cartCount = 0;
+  let cartTotal = 0;
+  let cartItems = {};
+
+  const productData = [
+    { name: 'Chupa Chups x50 unidades',      price: 8500  },
+    { name: 'Tableta Milka 150g — Surtido',   price: 1800  },
+    { name: 'Caja Alfajores Havanna x12',     price: 13200 },
+    { name: 'Mogul Ositos Gomita 1kg',        price: 6400  },
+    { name: 'Coca-Cola 2.25L x6 (pack)',      price: 10500 },
+    { name: 'Combo Picadeo Salado',           price: 4500  },
+    { name: 'Kit Candy Bar 30 personas',      price: 28000 },
+    { name: 'Canastita Sorpresa Premium',     price: 3750  },
+  ];
+
+  function updateCartUI() {
+    document.querySelector('.carrito-count').textContent = cartCount;
+    document.getElementById('carritoResumen').innerHTML =
+      `🛒 ${cartCount} producto${cartCount !== 1 ? 's' : ''} · <strong>$${cartTotal.toLocaleString('es-AR')}</strong>`;
+    document.getElementById('carritoFlotante').style.display = cartCount > 0 ? 'flex' : 'none';
+    document.getElementById('chatStatus').textContent = cartCount > 0
+      ? `${cartCount} producto${cartCount !== 1 ? 's' : ''} en el carrito`
+      : 'En línea · te ayuda a comprar';
+  }
+
+  document.querySelectorAll('.btn-agregar').forEach((btn, i) => {
+    btn.addEventListener('click', function() {
+      const prod = productData[i];
+      cartCount++;
+      cartTotal += prod.price;
+      cartItems[prod.name] = (cartItems[prod.name] || 0) + 1;
+      updateCartUI();
+      btn.textContent = '✓ Agregado';
+      btn.style.background = '#22c55e';
+      setTimeout(() => { btn.textContent = 'Agregar'; btn.style.background = ''; }, 1400);
+    });
+  });
+
+  // Enviar pedido por WhatsApp
+  document.getElementById('btnEnviarPedido').addEventListener('click', function() {
+    if (cartCount === 0) return;
+
+    let detalle = '🛒 *Hola! Quiero hacer el siguiente pedido:*\n\n';
+    for (const [nombre, cantidad] of Object.entries(cartItems)) {
+      const prod = productData.find(p => p.name === nombre);
+      const subtotal = prod ? prod.price * cantidad : 0;
+      detalle += `▪ ${nombre} x${cantidad} — $${subtotal.toLocaleString('es-AR')}\n`;
+    }
+    detalle += `\n💰 *Total: $${cartTotal.toLocaleString('es-AR')}*`;
+    detalle += '\n\n¿Cómo puedo abonar y coordinar el envío?';
+
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(detalle)}`;
+    window.open(url, '_blank');
+  });
+
+  function toggleChat() {
+    const fl = document.getElementById('carritoFlotante');
+    if (cartCount > 0) fl.style.display = fl.style.display === 'none' ? 'flex' : 'none';
+  }
+</script>
+</body>
+</html>
