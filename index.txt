@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candy Varela — Alentá con sabor ⭐⭐⭐🇦🇷</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  function abrirCatSnacks() { document.getElementById('modalSnacks').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCatSnacks() { document.getElementById('modalSnacks').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalSnacks').addEventListener('click', function(e){ if(e.target===this) cerrarCatSnacks(); });
+
+  function abrirCatBebidas() { document.getElementById('modalBebidas').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCatBebidas() { document.getElementById('modalBebidas').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalBebidas').addEventListener('click', function(e){ if(e.target===this) cerrarCatBebidas(); });
+
+  function abrirCatGomitas() { document.getElementById('modalGomitas').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCatGomitas() { document.getElementById('modalGomitas').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalGomitas').addEventListener('click', function(e){ if(e.target===this) cerrarCatGomitas(); });
+
+  function abrirCatAlfajores() { document.getElementById('modalAlfajores').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCatAlfajores() { document.getElementById('modalAlfajores').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalAlfajores').addEventListener('click', function(e){ if(e.target===this) cerrarCatAlfajores(); });
+
+  function abrirCatChocolates() { document.getElementById('modalChocolates').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCatChocolates() { document.getElementById('modalChocolates').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalChocolates').addEventListener('click', function(e){ if(e.target===this) cerrarCatChocolates(); });
+
+  function abrirCategoria() { document.getElementById('modalGolosinas').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCategoria() { document.getElementById('modalGolosinas').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalGolosinas').addEventListener('click', function(e){ if(e.target===this) cerrarCategoria(); });
+
+  function agregarModal(btn, nombre, precio) {
+    cartCount++; cartTotal += precio;
+    cartItems[nombre] = (cartItems[nombre] || 0) + 1;
+    updateCartUI();
+    btn.textContent = '✓ Listo'; btn.classList.add('agregado');
+    setTimeout(() => { btn.textContent = '+ Agregar'; btn.classList.remove('agregado'); }, 1400);
+  }
+
+  :root {
+    --celeste: #75AADB; --azul: #1a3a6e; --azul-dark: #0d2147;
+    --amarillo: #f5c518; --rosa: #e91e8c; --rosa-light: #fce4f3;
+    --gris-bg: #f8f5ff; --text: #1a1a2e; --text-muted: #666;
+    --green: #22c55e; --shadow: 0 4px 20px rgba(26,58,110,0.10); --radius: 18px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Nunito',sans-serif; background:var(--gris-bg); color:var(--text); overflow-x:hidden; }
+
+  /* TOP BAR ANIMADA */
+  .top-bar { background:var(--azul-dark); color:#fff; font-size:0.78rem; font-weight:600; padding:7px 0; overflow:hidden; white-space:nowrap; }
+  .top-bar-track { display:inline-flex; animation:marquee 28s linear infinite; }
+  .top-bar-track:hover { animation-play-state:paused; }
+  .top-bar-item { display:inline-flex; align-items:center; gap:6px; padding:0 40px; }
+  .top-bar-item a { color:var(--amarillo); text-decoration:none; }
+  .top-bar-item.celeste { color:var(--celeste); }
+  .top-bar-sep { color:rgba(255,255,255,0.3); padding:0 4px; }
+  @keyframes marquee { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+
+  /* HEADER */
+  header { background:linear-gradient(135deg,var(--azul-dark),var(--azul)); padding:14px 24px 10px; position:sticky; top:0; z-index:100; box-shadow:0 4px 18px rgba(0,0,0,0.18); }
+  .header-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:18px; }
+  .logo { font-family:'Baloo 2',cursive; font-size:1.65rem; font-weight:800; color:#fff; text-decoration:none; display:flex; align-items:center; gap:6px; white-space:nowrap; }
+  .logo span { color:var(--amarillo); }
+  .search-bar { flex:1; display:flex; align-items:center; background:rgba(255,255,255,0.13); border:1.5px solid rgba(255,255,255,0.22); border-radius:50px; padding:8px 16px; gap:8px; }
+  .search-bar input { background:transparent; border:none; outline:none; color:#fff; font-size:0.9rem; width:100%; font-family:'Nunito',sans-serif; }
+  .search-bar input::placeholder { color:rgba(255,255,255,0.55); }
+  .header-actions { display:flex; align-items:center; gap:10px; }
+  .btn-cuenta { background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.25); color:#fff; padding:7px 14px; border-radius:50px; font-size:0.82rem; font-weight:700; cursor:pointer; text-decoration:none; transition:background 0.2s; }
+  .btn-carrito { background:var(--rosa); color:#fff; padding:8px 18px; border-radius:50px; font-size:0.88rem; font-weight:800; cursor:pointer; text-decoration:none; display:flex; align-items:center; gap:6px; box-shadow:0 3px 12px rgba(233,30,140,0.35); transition:transform 0.15s; white-space:nowrap; }
+  .carrito-count { background:#fff; color:var(--rosa); border-radius:50%; width:20px; height:20px; font-size:0.72rem; font-weight:900; display:flex; align-items:center; justify-content:center; }
+
+  /* NAV */
+  nav { background:rgba(255,255,255,0.97); border-bottom:2px solid rgba(117,170,219,0.2); box-shadow:0 2px 10px rgba(0,0,0,0.05); }
+  .nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; overflow-x:auto; scrollbar-width:none; padding:0 10px; gap:2px; }
+  .nav-inner::-webkit-scrollbar { display:none; }
+  .nav-inner a { color:var(--azul); text-decoration:none; font-size:0.83rem; font-weight:700; padding:11px 13px; border-radius:8px; white-space:nowrap; transition:background 0.18s,color 0.18s; }
+  .nav-inner a:hover { background:var(--rosa-light); color:var(--rosa); }
+  .nav-inner a.ofertas { color:var(--rosa); background:var(--rosa-light); border-radius:50px; padding:7px 14px; }
+  .nav-inner a.reels { color:#fff; background:linear-gradient(135deg,#e91e8c,#ff6b35); border-radius:50px; padding:7px 14px; }
+
+  /* HERO SLIDER */
+  .hero { position:relative; overflow:hidden; }
+  .slides-container { display:flex; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); }
+  .slide { min-width:100%; min-height:420px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+  .slide-1 { background:linear-gradient(135deg,#0d2147 0%,#1a3a6e 40%,#75aadb 100%); }
+  .slide-2 { background:linear-gradient(135deg,#1a1a2e 0%,#6d0f5a 50%,#e91e8c 100%); }
+  .slide-3 { background:linear-gradient(135deg,#0f4c10 0%,#1a7a1e 50%,#22c55e 100%); }
+  .slide-bg-emoji { position:absolute; font-size:180px; opacity:0.07; right:-20px; bottom:-30px; pointer-events:none; }
+  .slide-content { max-width:1200px; width:100%; padding:50px 40px; display:flex; align-items:center; gap:40px; margin:0 auto; }
+  .slide-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); color:#fff; font-size:0.78rem; font-weight:700; padding:5px 14px; border-radius:50px; margin-bottom:14px; text-transform:uppercase; letter-spacing:0.05em; }
+  .slide-title { font-family:'Baloo 2',cursive; font-size:2.8rem; font-weight:800; color:#fff; line-height:1.1; margin-bottom:14px; text-shadow:0 2px 20px rgba(0,0,0,0.3); }
+  .slide-title .highlight { color:var(--amarillo); }
+  .slide-desc { color:rgba(255,255,255,0.85); font-size:1.05rem; line-height:1.5; margin-bottom:28px; max-width:440px; font-weight:600; }
+  .slide-emoji-large { font-size:120px; line-height:1; filter:drop-shadow(0 8px 24px rgba(0,0,0,0.3)); animation:float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-12px); } }
+  .btn-slide { display:inline-block; background:var(--amarillo); color:var(--azul-dark); font-family:'Baloo 2',cursive; font-weight:800; font-size:1rem; padding:12px 30px; border-radius:50px; text-decoration:none; box-shadow:0 4px 20px rgba(245,197,24,0.5); transition:transform 0.15s; }
+  .btn-slide:hover { transform:translateY(-2px); }
+  .slide-arrow { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.2); border:1.5px solid rgba(255,255,255,0.3); color:#fff; width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem; z-index:10; user-select:none; }
+  .slide-arrow.prev { left:18px; } .slide-arrow.next { right:18px; }
+  .slide-dots { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:7px; z-index:10; }
+  .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.45); cursor:pointer; transition:background 0.2s,transform 0.2s; }
+  .dot.active { background:#fff; transform:scale(1.3); }
+
+  /* BENEFICIOS */
+  .beneficios { background:#fff; border-bottom:2px solid rgba(117,170,219,0.15); }
+  .beneficios-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); }
+  .beneficio-item { display:flex; align-items:center; gap:14px; padding:20px 22px; border-right:1px solid rgba(0,0,0,0.06); }
+  .beneficio-item:last-child { border-right:none; }
+  .beneficio-icon { width:44px; height:44px; border-radius:12px; background:var(--rosa-light); display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+  .beneficio-text strong { display:block; font-size:0.88rem; font-weight:800; color:var(--azul-dark); }
+  .beneficio-text span { font-size:0.78rem; color:var(--text-muted); font-weight:600; }
+
+  /* MAIN */
+  main { max-width:1200px; margin:0 auto; padding:36px 20px; }
+  .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
+  .section-title { font-family:'Baloo 2',cursive; font-size:1.5rem; font-weight:800; color:var(--azul-dark); display:flex; align-items:center; gap:8px; }
+  .section-link { color:var(--rosa); text-decoration:none; font-size:0.88rem; font-weight:700; }
+
+  /* CATEGORÍAS */
+  .categorias-grid { display:grid; grid-template-columns:repeat(8,1fr); gap:12px; margin-bottom:40px; }
+  .categoria-card { background:#fff; border-radius:16px; padding:18px 10px; text-align:center; cursor:pointer; transition:transform 0.2s,box-shadow 0.2s; box-shadow:var(--shadow); text-decoration:none; color:var(--azul-dark); display:flex; flex-direction:column; align-items:center; gap:8px; border:2px solid transparent; }
+  .categoria-card:hover { transform:translateY(-4px); box-shadow:0 8px 28px rgba(26,58,110,0.15); border-color:var(--rosa); }
+  .cat-emoji { font-size:1.9rem; line-height:1; }
+  .cat-name { font-size:0.72rem; font-weight:800; line-height:1.2; }
+
+  /* BANNERS */
+  .destacados-banner { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:40px; }
+  .banner-card { border-radius:20px; padding:28px; display:flex; flex-direction:column; justify-content:flex-end; min-height:200px; position:relative; overflow:hidden; text-decoration:none; }
+  .banner-card-1 { background:linear-gradient(135deg,var(--azul-dark),var(--azul)); }
+  .banner-card-2 { background:linear-gradient(135deg,#6d0f5a,#e91e8c); }
+  .banner-bg-emoji { position:absolute; top:-10px; right:-10px; font-size:100px; opacity:0.15; pointer-events:none; }
+  .banner-badge-small { background:rgba(255,255,255,0.2); color:#fff; font-size:0.7rem; font-weight:800; padding:3px 10px; border-radius:50px; width:fit-content; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em; }
+  .banner-title { font-family:'Baloo 2',cursive; font-size:1.45rem; font-weight:800; color:#fff; line-height:1.2; margin-bottom:10px; }
+  .banner-title .amarillo { color:var(--amarillo); }
+  .banner-cta { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.2); color:#fff; font-size:0.82rem; font-weight:800; padding:7px 16px; border-radius:50px; border:1.5px solid rgba(255,255,255,0.3); width:fit-content; }
+
+  /* TESTIMONIOS */
+  .testimonios-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-bottom:40px; }
+  .testimonio-card { background:#fff; border-radius:18px; padding:22px; box-shadow:var(--shadow); position:relative; }
+  .testimonio-estrellas { font-size:1.1rem; color:var(--amarillo); margin-bottom:10px; }
+  .testimonio-texto { font-size:0.9rem; color:var(--text); font-weight:600; line-height:1.6; margin-bottom:16px; font-style:italic; }
+  .testimonio-autor { display:flex; align-items:center; gap:10px; }
+  .testimonio-avatar { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:0.95rem; flex-shrink:0; }
+  .testimonio-nombre { font-size:0.85rem; color:var(--azul-dark); font-weight:800; display:block; }
+  .testimonio-tag { font-size:0.72rem; color:var(--text-muted); font-weight:600; }
+
+  /* REELS */
+  .reels-section { margin-bottom:40px; }
+  .reels-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:500px; margin:0 auto; }
+  .reel-card { background:var(--azul-dark); border-radius:20px; overflow:hidden; aspect-ratio:9/16; max-height:320px; position:relative; cursor:pointer; text-decoration:none; transition:transform 0.2s,box-shadow 0.2s; display:flex; flex-direction:column; justify-content:flex-end; box-shadow:var(--shadow); }
+  .reel-card:hover { transform:scale(1.03); box-shadow:0 12px 30px rgba(0,0,0,0.2); }
+  .reel-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:70px; opacity:0.25; }
+  .reel-card-1 { background:linear-gradient(160deg,#1a1a2e,#e91e8c80); }
+  .reel-card-2 { background:linear-gradient(160deg,#1a1a2e,#75aadb80); }
+  .reel-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; background:rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.35); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem; }
+  .reel-info { position:relative; z-index:2; padding:14px; background:linear-gradient(transparent,rgba(0,0,0,0.7)); }
+  .reel-views { font-size:0.7rem; color:rgba(255,255,255,0.7); font-weight:600; margin-bottom:3px; }
+  .reel-desc { font-size:0.9rem; color:#fff; font-weight:800; line-height:1.3; }
+  .reels-handle { text-align:center; font-size:0.82rem; color:var(--text-muted); font-weight:700; margin-bottom:16px; }
+  .btn-instagram { display:flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,#e91e8c,#ff6b35); color:#fff; font-weight:800; font-size:0.9rem; padding:12px 30px; border-radius:50px; text-decoration:none; width:fit-content; margin:18px auto 0; box-shadow:0 4px 18px rgba(233,30,140,0.35); transition:transform 0.15s; }
+  .btn-instagram:hover { transform:translateY(-2px); }
+
+  /* NEWSLETTER */
+  .newsletter { background:linear-gradient(135deg,var(--azul-dark),var(--azul)); border-radius:24px; padding:44px 40px; text-align:center; margin-bottom:40px; position:relative; overflow:hidden; }
+  .newsletter-title { font-family:'Baloo 2',cursive; font-size:1.7rem; font-weight:800; color:#fff; margin-bottom:8px; }
+  .newsletter-desc { color:rgba(255,255,255,0.75); font-size:0.95rem; font-weight:600; margin-bottom:22px; }
+  .newsletter-form { display:flex; gap:10px; max-width:440px; margin:0 auto; }
+  .newsletter-input { flex:1; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.25); border-radius:50px; padding:12px 20px; color:#fff; font-size:0.9rem; font-family:'Nunito',sans-serif; font-weight:600; outline:none; }
+  .newsletter-input::placeholder { color:rgba(255,255,255,0.5); }
+  .btn-newsletter { background:var(--amarillo); color:var(--azul-dark); border:none; border-radius:50px; font-family:'Baloo 2',cursive; font-weight:800; font-size:0.95rem; padding:12px 24px; cursor:pointer; white-space:nowrap; }
+
+  /* FOOTER */
+  footer { background:var(--azul-dark); color:rgba(255,255,255,0.75); padding:44px 24px 22px; }
+  .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1.2fr; gap:36px; margin-bottom:32px; }
+  .footer-brand p { font-size:0.82rem; line-height:1.6; color:rgba(255,255,255,0.6); margin-bottom:16px; }
+  .footer-socials { display:flex; gap:10px; }
+  .social-btn { width:38px; height:38px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; text-decoration:none; transition:background 0.2s; }
+  .social-btn:hover { background:rgba(255,255,255,0.2); }
+  .footer-col h5 { color:#fff; font-family:'Baloo 2',cursive; font-weight:800; font-size:0.95rem; margin-bottom:14px; }
+  .footer-col ul { list-style:none; }
+  .footer-col ul li { margin-bottom:8px; }
+  .footer-col ul li a { color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.18s; }
+  .footer-col ul li a:hover { color:var(--amarillo); }
+  .footer-col .contact-item { display:flex; align-items:flex-start; gap:8px; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.6); margin-bottom:8px; line-height:1.4; }
+  .footer-bottom { max-width:1200px; margin:0 auto; border-top:1px solid rgba(255,255,255,0.1); padding-top:18px; text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.4); font-weight:600; }
+
+  /* CHAT WIDGET */
+  .chat-widget { position:fixed; bottom:24px; right:24px; z-index:999; }
+  .jugador-container { position:absolute; bottom:100%; right:10px; width:80px; height:110px; pointer-events:none; }
+  .carrito-flotante { background:#fff; border-radius:14px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; box-shadow:var(--shadow); margin-top:10px; border:2px solid rgba(233,30,140,0.15); min-width:220px; }
+  .chat-bubble { background:var(--azul-dark); border:2px solid rgba(255,255,255,0.15); border-radius:18px; padding:12px 18px; display:flex; align-items:center; gap:10px; box-shadow:0 8px 30px rgba(0,0,0,0.25); cursor:pointer; transition:transform 0.2s; min-width:220px; position:relative; }
+  .chat-bubble:hover { transform:translateY(-3px); }
+  .chat-close { position:absolute; top:-8px; right:-8px; width:22px; height:22px; background:var(--text-muted); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.65rem; cursor:pointer; font-weight:900; }
+  .chat-icon { width:42px; height:42px; background:linear-gradient(135deg,var(--rosa),#ff6b35); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; position:relative; }
+  .chat-online-dot { position:absolute; bottom:1px; right:1px; width:11px; height:11px; background:var(--green); border-radius:50%; border:2px solid var(--azul-dark); }
+  .chat-text strong { display:block; color:#fff; font-size:0.85rem; font-weight:800; }
+  .chat-text span { color:rgba(255,255,255,0.55); font-size:0.73rem; font-weight:600; }
+  .btn-enviar { background:var(--green); color:#fff; border:none; border-radius:10px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:8px 14px; cursor:pointer; }
+
+  @media (max-width:900px) {
+    .beneficios-inner,.categorias-grid { grid-template-columns:repeat(4,1fr); }
+    .productos-grid,.testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr 1fr; }
+    .slide-title { font-size:2rem; }
+    .slide-emoji-large { font-size:80px; }
+  }
+  @media (max-width:600px) {
+    .header-inner { gap:10px; }
+    .logo { font-size:1.3rem; }
+    .categorias-grid { grid-template-columns:repeat(4,1fr); }
+    .testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr; }
+    .slide-content { flex-direction:column; text-align:center; padding:32px 20px; }
+    .newsletter { padding:28px 20px; }
+    .newsletter-form { flex-direction:column; }
+    .reels-grid { grid-template-columns:1fr 1fr; max-width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-track">
+    <span class="top-bar-item">📱 WhatsApp: <a href="https://wa.me/541176750220">11 7675-0220</a></span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🇦🇷 ¡Vamos Argentina! Golosinas para alentar ⭐⭐⭐</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item celeste">🚚 Envío gratis en compras desde $100.000</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🕗 Lunes a sábados de 9 a 20 hs</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🍬 Venta por mayor y menor</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">📱 WhatsApp: <a href="https://wa.me/541176750220">11 7675-0220</a></span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🇦🇷 ¡Vamos Argentina! Golosinas para alentar ⭐⭐⭐</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item celeste">🚚 Envío gratis en compras desde $100.000</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🕗 Lunes a sábados de 9 a 20 hs</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🍬 Venta por mayor y menor</span>
+    <span class="top-bar-sep">·</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">🇦🇷 Candy <span>Varela</span> ⭐⭐⭐</a>
+    <div class="search-bar">
+      <span>🔍</span>
+      <input type="text" placeholder="Buscar golosinas, chocolates, combos...">
+    </div>
+    <div class="header-actions">
+      <a href="#" class="btn-cuenta">👤 Mi cuenta</a>
+      <a href="https://wa.me/541176750220" class="btn-carrito">🛒 Carrito <div class="carrito-count">0</div></a>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#destacados" class="ofertas">🔥 Ofertas</a>
+    <a href="#categorias">Golosinas</a>
+    <a href="#categorias">Chocolates</a>
+    <a href="#categorias">Alfajores</a>
+    <a href="#categorias">Gomitas</a>
+    <a href="#categorias">Bebidas</a>
+    <a href="#categorias">Snacks</a>
+    <a href="#categorias">Candy Bar</a>
+    <a href="#categorias">Combos</a>
+    <a href="#reels" class="reels">📸 Reels</a>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="hero" id="destacados">
+  <div class="slides-container" id="slidesContainer">
+    <div class="slide slide-1">
+      <div class="slide-bg-emoji">🇦🇷</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">🇦🇷 Edición Mundial · ¡Vamos Argentina!</div>
+          <h1 class="slide-title">Alentá con sabor <span class="highlight">⭐⭐⭐</span></h1>
+          <p class="slide-desc">Armá tu combo para ver el partido. ¡Las mejores golosinas para gritar los goles!</p>
+          <a href="#combos-partido" class="btn-slide">Ver combos</a>
+        </div>
+        <div class="slide-emoji-large">🍭⚽🎉</div>
+      </div>
+    </div>
+    <div class="slide slide-2">
+      <div class="slide-bg-emoji">🍿</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">🔥 Combo 1 · El Clásico</div>
+          <h1 class="slide-title">Pringles + Coca + <span class="highlight">Gomitas</span></h1>
+          <p class="slide-desc">Pringles a elección + Coca Cola grande + Gomitas. ¡El combo ideal para el partido!</p>
+          <a href="https://wa.me/541176750220" class="btn-slide" style="background:#fff;color:#1a3a6e;">Pedir por $10.000 →</a>
+        </div>
+        <div class="slide-emoji-large">🍿🥤🐻</div>
+      </div>
+    </div>
+    <div class="slide slide-3">
+      <div class="slide-bg-emoji">🥔</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">💛 Combo 2 · El Económico</div>
+          <h1 class="slide-title">Lays + Coca + <span class="highlight">Gomitas</span></h1>
+          <p class="slide-desc">Lays a elección + Coca Cola grande + Gomitas. ¡Rico, completo y al mejor precio!</p>
+          <a href="https://wa.me/541176750220" class="btn-slide" style="background:#fff;color:#1a3a6e;">Pedir por $8.000 →</a>
+        </div>
+        <div class="slide-emoji-large">🥔🥤🐻</div>
+      </div>
+    </div>
+    <div class="slide" style="background:linear-gradient(135deg,#4a0030,#8b1a5e,#e91e8c);">
+      <div class="slide-bg-emoji">🧁</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">👑 Combo 3 · El Premium</div>
+          <h1 class="slide-title">Pringles + Coca + <span class="highlight">2 Alfajores</span></h1>
+          <p class="slide-desc">Pringles a elección + Coca Cola grande + 2 alfajores triples a elección. ¡El combo de los campeones!</p>
+          <a href="https://wa.me/541176750220" class="btn-slide">Pedir por $15.000 →</a>
+        </div>
+        <div class="slide-emoji-large">🍿🥤🧁</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-arrow prev" onclick="changeSlide(-1)">‹</div>
+  <div class="slide-arrow next" onclick="changeSlide(1)">›</div>
+  <div class="slide-dots">
+    <div class="dot active" onclick="goSlide(0)"></div>
+    <div class="dot" onclick="goSlide(1)"></div>
+    <div class="dot" onclick="goSlide(2)"></div>
+    <div class="dot" onclick="goSlide(3)"></div>
+  </div>
+</div>
+
+<!-- BENEFICIOS -->
+<div class="beneficios">
+  <div class="beneficios-inner">
+    <div class="beneficio-item">
+      <div class="beneficio-icon">🚚</div>
+      <div class="beneficio-text"><strong>Envío gratis</strong><span>En compras desde $100.000</span></div>
+    </div>
+    <div class="beneficio-item">
+      <div class="beneficio-icon">⚽</div>
+      <div class="beneficio-text"><strong>Combos Mundial</strong><span>Listos para la hinchada</span></div>
+    </div>
+    <div class="beneficio-item">
+      <div class="beneficio-icon">🎁</div>
+      <div class="beneficio-text"><strong>Combos exclusivos</strong><span>Para emprendedores y revendedores</span></div>
+    </div>
+    <div class="beneficio-item">
+      <div class="beneficio-icon">🛍️</div>
+      <div class="beneficio-text"><strong>Mayor y menor</strong><span>Comprá la cantidad que quieras</span></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- CATEGORÍAS -->
+  <div id="categorias">
+    <div class="section-header">
+      <h2 class="section-title">Categorías</h2>
+      <a href="#" class="section-link">Ver todo →</a>
+    </div>
+    <div class="categorias-grid">
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCategoria()"><div class="cat-emoji">🍬</div><div class="cat-name">Golosinas</div></a>
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatChocolates()"><div class="cat-emoji">🍫</div><div class="cat-name">Chocolates</div></a>
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatAlfajores()"><div class="cat-emoji">🍩</div><div class="cat-name">Alfajores</div></a>
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatGomitas()"><div class="cat-emoji" style="filter:hue-rotate(300deg)">🐻</div><div class="cat-name">Gomitas</div></a>
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatBebidas()"><div class="cat-emoji">🥫</div><div class="cat-name">Bebidas</div></a>
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatSnacks()"><div class="cat-emoji">🍿</div><div class="cat-name">Snacks</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🍭</div><div class="cat-name">Candy Bar</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🎁</div><div class="cat-name">Regalos</div></a>
+    </div>
+  </div>
+
+  <!-- BANNERS -->
+  <div class="destacados-banner">
+    <a href="#" class="banner-card banner-card-1">
+      <div class="banner-bg-emoji">⚽🇦🇷</div>
+      <div class="banner-badge-small">⚽ Combo Mundial</div>
+      <h3 class="banner-title">Combo Día de Partido</h3>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Snacks + bebidas + golosinas para alentar con la barra</p>
+      <div class="banner-cta">Ver combo →</div>
+    </a>
+    <a href="https://wa.me/541176750220" class="banner-card banner-card-2">
+      <div class="banner-bg-emoji">🏆🎉</div>
+      <div class="banner-badge-small">🏆 Pack Mundialista</div>
+      <h3 class="banner-title">Festejá los goles <span class="amarillo">🇦🇷</span></h3>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Armá tu pack mundialista y gritá cada gol con sabor</p>
+      <div class="banner-cta">Armar mi pack →</div>
+    </a>
+  </div>
+
+  <!-- TESTIMONIOS -->
+  <div class="section-header">
+    <h2 class="section-title">💬 Lo que dicen nuestros clientes</h2>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonio-card" style="border-left:4px solid var(--rosa);">
+      <div class="testimonio-estrellas">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-texto">"El lugar que necesitábamos, todo muy limpio y buena atención."</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar" style="background:linear-gradient(135deg,var(--rosa),#ff6b35);">M</div>
+        <div><span class="testimonio-nombre">María</span><span class="testimonio-tag">Cliente verificada ✓</span></div>
+      </div>
+    </div>
+    <div class="testimonio-card" style="border-left:4px solid var(--celeste);">
+      <div class="testimonio-estrellas">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-texto">"Una buena opción y precios muy buenos. ¡Éxitos chicos!"</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar" style="background:linear-gradient(135deg,var(--azul),var(--celeste));">M</div>
+        <div><span class="testimonio-nombre">Matías</span><span class="testimonio-tag">Cliente verificado ✓</span></div>
+      </div>
+    </div>
+    <div class="testimonio-card" style="border-left:4px solid var(--amarillo);">
+      <div class="testimonio-estrellas">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-texto">"Mi momento favorito del día es cuando paso a buscar gomitas sueltas de regreso a casa."</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar" style="background:linear-gradient(135deg,#22c55e,#16a34a);">O</div>
+        <div><span class="testimonio-nombre">Ori</span><span class="testimonio-tag">Cliente verificada ✓</span></div>
+      </div>
+    </div>
+    <div class="testimonio-card" style="border-left:4px solid var(--green);">
+      <div class="testimonio-estrellas">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-texto">"Muy amables y pude pagar con mi tarjeta de débito sin problemas y no me cobraron recargo."</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar" style="background:linear-gradient(135deg,#f5c518,#ff6b35);">B</div>
+        <div><span class="testimonio-nombre">Bety</span><span class="testimonio-tag">Cliente verificada ✓</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REELS -->
+  <div class="reels-section" id="reels">
+    <div class="section-header">
+      <h2 class="section-title">📸 Nuestros Reels destacados</h2>
+    </div>
+    <p class="reels-handle">@candyvarela.ok</p>
+    <div class="reels-grid">
+      <a href="https://www.instagram.com/reel/DZTIV3VvmLx/" target="_blank" class="reel-card reel-card-1">
+        <div class="reel-bg">🏪</div>
+        <div class="reel-play">▶</div>
+        <div class="reel-info">
+          <div class="reel-views">📍 @candyvarela.ok</div>
+          <div class="reel-desc">NUESTRO LOCAL</div>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/reel/DWrSb1IEWPR/" target="_blank" class="reel-card reel-card-2">
+        <div class="reel-bg">📍</div>
+        <div class="reel-play">▶</div>
+        <div class="reel-info">
+          <div class="reel-views">📍 @candyvarela.ok</div>
+          <div class="reel-desc">COMO LLEGAR</div>
+        </div>
+      </a>
+    </div>
+    <a href="https://instagram.com/candyvarela.ok" target="_blank" class="btn-instagram">📷 Seguinos en Instagram</a>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <h3 class="newsletter-title">¡Sumate a la hinchada dulce! 🇦🇷💌</h3>
+    <p class="newsletter-desc">Recibí los combos mundialistas y ofertas antes que nadie</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="Tu email...">
+      <button class="btn-newsletter">Suscribirme</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="margin-bottom:12px;display:inline-flex;">🇦🇷 Candy <span style="color:var(--amarillo)">Varela</span> ⭐⭐⭐</a>
+      <p>Tu kiosco de confianza. Golosinas, chocolates y combos. Venta por mayor y menor. Florencio Varela, Buenos Aires.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/candyvarela.ok" class="social-btn">📷</a>
+        <a href="https://wa.me/541176750220" class="social-btn">📱</a>
+        <a href="#" class="social-btn">📘</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Categorías</h5>
+      <ul>
+        <li><a href="#">Golosinas</a></li>
+        <li><a href="#">Chocolates</a></li>
+        <li><a href="#">Alfajores</a></li>
+        <li><a href="#">Candy Bar</a></li>
+        <li><a href="#">Combos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Ayuda</h5>
+      <ul>
+        <li><a href="#">Cómo comprar</a></li>
+        <li><a href="#">Medios de pago</a></li>
+        <li><a href="#">Envíos</a></li>
+        <li><a href="#">Preguntas frecuentes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <div class="contact-item">📱 11 7675-0220</div>
+      <div class="contact-item">✉️ candyvarelaok@gmail.com</div>
+      <div class="contact-item">📍 Florencio Varela, Buenos Aires</div>
+      <div class="contact-item">🕗 Lunes a sábados de 7 a 20 hs</div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Candy Varela · Alentá con sabor 🇦🇷⭐⭐⭐ · Todos los derechos reservados</div>
+</footer>
+
+<!-- MODAL SNACKS -->
+<div class="modal-overlay" id="modalSnacks">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#7b3f00,#e65c00);">
+      <h2>🍿 Snacks</h2>
+      <button class="modal-close" onclick="cerrarCatSnacks()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🥔 Papas</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Lays 77g</div>
+            <div class="modal-producto-variantes">A elección — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Lays 77g',3500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Lays 40g</div>
+            <div class="modal-producto-variantes">A elección — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Lays 40g',2500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Pringles</div>
+            <div class="modal-producto-variantes">A elección — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$5.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Pringles',5500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🌽 Nachos & Cheetos</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Doritos 40g</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Doritos 40g',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Doritos 77g</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$5.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Doritos 77g',5000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cheetos 43g</div>
+            <div class="modal-producto-variantes">A elección — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cheetos 43g',2500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🧂 Otros</div>
+      <div class="modal-productos">
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Saladix Nuevas 🆕</div>
+            <div class="modal-producto-variantes">Nuevos sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Saladix Nuevas',3000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL BEBIDAS -->
+<div class="modal-overlay" id="modalBebidas">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#0d2147,#00b140);">
+      <h2>🥫 Bebidas</h2>
+      <button class="modal-close" onclick="cerrarCatBebidas()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">⚡ Energizantes</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Monster Argentina</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Monster Argentina',3500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Monster Brasil / Chile</div>
+            <div class="modal-producto-variantes">Importado</div>
+          </div>
+          <div class="modal-producto-precio">$7.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Monster Brasil / Chile',7000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--amarillo);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Monster Europeo</div>
+            <div class="modal-producto-variantes">Importado Europa</div>
+          </div>
+          <div class="modal-producto-precio" style="color:var(--rosa);">$15.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Monster Europeo',15000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Energizantes Colección</div>
+            <div class="modal-producto-variantes">Personajes · varios</div>
+          </div>
+          <div class="modal-producto-precio">$7.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Energizantes Colección',7000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🌍 Importadas</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Dr Pepper</div>
+            <div class="modal-producto-variantes">Importada USA</div>
+          </div>
+          <div class="modal-producto-precio">$7.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Dr Pepper',7000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Prime Logan Paul</div>
+            <div class="modal-producto-variantes">Hidratante · varios sabores</div>
+          </div>
+          <div class="modal-producto-precio" style="color:var(--rosa);">$15.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Prime Logan Paul',15000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Fanta Brasil</div>
+            <div class="modal-producto-variantes">Sabor tropical</div>
+          </div>
+          <div class="modal-producto-precio">$4.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Fanta Brasil',4000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Fanta Asiática</div>
+            <div class="modal-producto-variantes">Sabores asiáticos</div>
+          </div>
+          <div class="modal-producto-precio">$7.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Fanta Asiática',7000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Guaraná Antarctica</div>
+            <div class="modal-producto-variantes">Importada Brasil</div>
+          </div>
+          <div class="modal-producto-precio">$4.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Guaraná Antarctica',4000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🥤 Coca-Cola</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Coca Cola 2.25L</div>
+            <div class="modal-producto-variantes">Familiar</div>
+          </div>
+          <div class="modal-producto-precio">$4.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Coca Cola 2.25L',4500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Coca Cola 1L</div>
+            <div class="modal-producto-variantes">Mediana</div>
+          </div>
+          <div class="modal-producto-precio">$3.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Coca Cola 1L',3500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Coca Cola 600ml</div>
+            <div class="modal-producto-variantes">Personal</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Coca Cola 600ml',2000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🍊 Jugos & Agua</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cepita 1L</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cepita 1L',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Placer Chica</div>
+            <div class="modal-producto-variantes">Jugo</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Placer Chica',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Placer Grande</div>
+            <div class="modal-producto-variantes">Jugo</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Placer Grande',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Agua Cimes Chica</div>
+            <div class="modal-producto-variantes">Sin gas</div>
+          </div>
+          <div class="modal-producto-precio">$600</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Agua Cimes Chica',600)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Agua Cimes Grande</div>
+            <div class="modal-producto-variantes">Sin gas</div>
+          </div>
+          <div class="modal-producto-precio">$1.200</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Agua Cimes Grande',1200)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Villavicencio Sport 750ml</div>
+            <div class="modal-producto-variantes">Con gas</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Villavicencio Sport 750ml',2000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL GOMITAS -->
+<div class="modal-overlay" id="modalGomitas">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#6d0f5a,#e91e8c);">
+      <h2>🐻 Gomitas</h2>
+      <button class="modal-close" onclick="cerrarCatGomitas()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">⚖️ Gomitas Sueltas a elección</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">100 gramos</div>
+            <div class="modal-producto-variantes">A elección del cliente</div>
+          </div>
+          <div class="modal-producto-precio">$1.800</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas sueltas 100g',1800)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">200 gramos</div>
+            <div class="modal-producto-variantes">A elección del cliente</div>
+          </div>
+          <div class="modal-producto-precio">$3.600</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas sueltas 200g',3600)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">300 gramos</div>
+            <div class="modal-producto-variantes">A elección del cliente</div>
+          </div>
+          <div class="modal-producto-precio">$5.400</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas sueltas 300g',5400)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">🔥 PROMO 500 gramos</div>
+            <div class="modal-producto-variantes">A elección del cliente</div>
+          </div>
+          <div class="modal-producto-precio" style="color:var(--rosa);">$8.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'PROMO Gomitas sueltas 500g',8500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">📦 Bolsas cerradas</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bolsa cerrada 500g</div>
+            <div class="modal-producto-variantes">Mogul o Fini — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$8.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bolsa gomitas cerrada 500g',8500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--amarillo);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bolsa cerrada 1kg</div>
+            <div class="modal-producto-variantes">Mogul o Fini — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio" style="color:var(--azul-dark);">$12.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bolsa gomitas cerrada 1kg',12000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ALFAJORES -->
+<div class="modal-overlay" id="modalAlfajores">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>🍩 Alfajores</h2>
+      <button class="modal-close" onclick="cerrarCatAlfajores()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🐟 Clásicos</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Pescado Raúl</div>
+            <div class="modal-producto-variantes">Clásico</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Pescado Raúl',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Guaymallén Clasicona</div>
+            <div class="modal-producto-variantes">Triple de chocolate</div>
+          </div>
+          <div class="modal-producto-precio">$400</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Guaymallén Clasicona',400)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Guaymallén Oro y Platino</div>
+            <div class="modal-producto-variantes">Premium</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Guaymallén Oro y Platino',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Jorgito Clásico</div>
+            <div class="modal-producto-variantes">Dulce de leche</div>
+          </div>
+          <div class="modal-producto-precio">$1.200</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Jorgito Clásico',1200)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Fulbito</div>
+            <div class="modal-producto-variantes">Clásico</div>
+          </div>
+          <div class="modal-producto-precio">$400</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Fulbito',400)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🌿 Rasta</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Rasta Clásico</div>
+            <div class="modal-producto-variantes">Dulce de leche</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Rasta Clásico',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Rasta Trico</div>
+            <div class="modal-producto-variantes">Triple chocolate</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Rasta Trico',2500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">⚓ Capitán del Espacio</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Capitán Triple</div>
+            <div class="modal-producto-variantes">Triple de chocolate</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Capitán Triple',2500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Capitán Simple</div>
+            <div class="modal-producto-variantes">Clásico</div>
+          </div>
+          <div class="modal-producto-precio">$1.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Capitán Simple',1500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">✨ Especiales & Premium</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Maixanas Dubai</div>
+            <div class="modal-producto-variantes">Edición especial</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Maixanas Dubai',2500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Fantoche Red Velvet</div>
+            <div class="modal-producto-variantes">Edición especial</div>
+          </div>
+          <div class="modal-producto-precio">$1.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Fantoche Red Velvet',1500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Fantoche Elixir Blanco</div>
+            <div class="modal-producto-variantes">Chocolate blanco</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Fantoche Elixir Blanco',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Milka Super Dulce de Leche</div>
+            <div class="modal-producto-variantes">Con chocolate Milka</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Milka Super Dulce de Leche',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Alfachurro</div>
+            <div class="modal-producto-variantes">Sabor churro</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Alfachurro',2500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🏋️ Barrigón</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Barrigón Brownie</div>
+            <div class="modal-producto-variantes">Sabor brownie</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Barrigón Brownie',2500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Barrigón Campeón Triplazo</div>
+            <div class="modal-producto-variantes">Triple relleno</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Barrigón Campeón Triplazo',2500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Barrigón Crema</div>
+            <div class="modal-producto-variantes">Relleno de crema</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Barrigón Crema',2500)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CHOCOLATES -->
+<div class="modal-overlay" id="modalChocolates">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>🍫 Chocolates</h2>
+      <button class="modal-close" onclick="cerrarCatChocolates()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🌍 Milka Importado</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Milka Importado 300g</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$24.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Milka Importado 300g',24000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Milka Importado 100g</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$9.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Milka Importado 100g',9500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Milka Aireado Mediano</div>
+            <div class="modal-producto-variantes">Chocolate con aire</div>
+          </div>
+          <div class="modal-producto-precio">$4.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Milka Aireado Mediano',4000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">⚡ Shot & Cadbury</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Shot 90g</div>
+            <div class="modal-producto-variantes">Chocolate relleno</div>
+          </div>
+          <div class="modal-producto-precio">$5.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Shot 90g',5000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Shot 35g</div>
+            <div class="modal-producto-variantes">Chocolate relleno</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Shot 35g',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cadbury Frutilla 82g</div>
+            <div class="modal-producto-variantes">Con frutilla</div>
+          </div>
+          <div class="modal-producto-precio">$5.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cadbury Frutilla 82g',5000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cadbury Almendras 82g</div>
+            <div class="modal-producto-variantes">Con almendras</div>
+          </div>
+          <div class="modal-producto-precio">$5.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cadbury Almendras 82g',5000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cadbury 3 Sueños</div>
+            <div class="modal-producto-variantes">Triple relleno</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cadbury 3 Sueños',3000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🏆 Block & Felfort</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Tabletón Felfort</div>
+            <div class="modal-producto-variantes">Chocolate con maní</div>
+          </div>
+          <div class="modal-producto-precio">$10.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Tabletón Felfort',10000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cofler Dubai</div>
+            <div class="modal-producto-variantes">Edición especial</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cofler Dubai',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Block Gold Nuevo</div>
+            <div class="modal-producto-variantes">Nuevo sabor</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Block Gold Nuevo',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Block 300g</div>
+            <div class="modal-producto-variantes">Chocolate con leche</div>
+          </div>
+          <div class="modal-producto-precio">$14.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Block 300g',14000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Blockazo 1kg</div>
+            <div class="modal-producto-variantes">Tamaño familiar</div>
+          </div>
+          <div class="modal-producto-precio">$30.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Blockazo 1kg',30000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Block Miti Miti</div>
+            <div class="modal-producto-variantes">Mitad negro · mitad leche</div>
+          </div>
+          <div class="modal-producto-precio">$8.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Block Miti Miti',8000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🥚 Kinder</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Huevo Kinder Tradicional</div>
+            <div class="modal-producto-variantes">Con sorpresa adentro</div>
+          </div>
+          <div class="modal-producto-precio">$3.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Huevo Kinder Tradicional',3500)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL GOLOSINAS -->
+<div class="modal-overlay" id="modalGolosinas">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>🍬 Golosinas</h2>
+      <button class="modal-close" onclick="cerrarCategoria()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🍫 Obleas & Chocolates</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Obleas Arcor</div>
+            <div class="modal-producto-variantes">Block · Avellanas · Bonobon</div>
+          </div>
+          <div class="modal-producto-precio">$1.600</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Obleas Arcor',1600)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bonobon</div>
+            <div class="modal-producto-variantes">Pistacho · Supreme · Tradicional</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bonobon',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bombones con Licor Felfort</div>
+            <div class="modal-producto-variantes">Surtidos</div>
+          </div>
+          <div class="modal-producto-precio">$1.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bombones con Licor Felfort',1500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Marroc</div>
+            <div class="modal-producto-variantes">Tradicional · Cric</div>
+          </div>
+          <div class="modal-producto-precio">$1.200</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Marroc',1200)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🍃 Chicles & Pastillas</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Beldent</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Beldent',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Topline Seven</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Topline Seven',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Pastillas DRF</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Pastillas DRF',500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bulldog Confites</div>
+            <div class="modal-producto-variantes">Surtidos</div>
+          </div>
+          <div class="modal-producto-precio">$500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bulldog Confites',500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">👅 Lengüetazos & Chupetines</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Lengüetazo</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Lengüetazo',500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Chupetín / Paleta chica</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$300</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Chupetín / Paleta chica',300)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Chupetín / Paleta grande</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Chupetín / Paleta grande',500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🐻 Gomitas Mogul</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Gomitas Mogul Moritas</div>
+            <div class="modal-producto-variantes">Bolsa individual</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas Mogul Moritas',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Gomitas Mogul Ácidas Extreme</div>
+            <div class="modal-producto-variantes">Bolsa individual</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas Mogul Ácidas Extreme',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Gomitas Mogul Ositos</div>
+            <div class="modal-producto-variantes">Bolsa individual</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas Mogul Ositos',1000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CHAT WIDGET CON JUGADOR -->
+<div class="chat-widget" id="chatWidget">
+  <div class="jugador-container">
+    <svg viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg" width="80" height="110">
+      <ellipse cx="40" cy="107" rx="14" ry="3" fill="rgba(0,0,0,0.12)"/>
+      <rect x="36" y="72" width="7" height="20" rx="3" fill="#1a3a6e"/>
+      <rect x="35" y="88" width="9" height="6" rx="2" fill="#333"/>
+      <rect x="44" y="72" width="7" height="20" rx="3" fill="#1a3a6e"/>
+      <rect x="43" y="88" width="9" height="6" rx="2" fill="#333"/>
+      <rect x="28" y="45" width="24" height="28" rx="5" fill="#75AADB"/>
+      <rect x="35" y="45" width="5" height="28" fill="#fff" opacity="0.55"/>
+      <rect x="42" y="45" width="3" height="28" fill="#fff" opacity="0.35"/>
+      <text x="40" y="63" text-anchor="middle" font-size="8" font-weight="900" fill="#0d2147" font-family="Arial">10</text>
+      <rect x="20" y="47" width="9" height="6" rx="3" fill="#75AADB" transform="rotate(80 25 50)"/>
+      <rect x="51" y="47" width="9" height="6" rx="3" fill="#75AADB" transform="rotate(-70 55 50)"/>
+      <circle cx="62" cy="58" r="9" fill="#fff" stroke="#222" stroke-width="1"/>
+      <polygon points="62,50 66,53 66,59 62,62 58,59 58,53" fill="#111" opacity="0.85"/>
+      <polygon points="62,62 65,65 62,68 59,65" fill="#111" opacity="0.6"/>
+      <polygon points="53,55 56,52 58,55 56,58" fill="#111" opacity="0.5"/>
+      <polygon points="69,54 71,57 69,60 67,57" fill="#111" opacity="0.5"/>
+      <rect x="36" y="38" width="8" height="9" rx="3" fill="#f5c89a"/>
+      <ellipse cx="40" cy="28" rx="13" ry="14" fill="#f5c89a"/>
+      <ellipse cx="40" cy="17" rx="13" ry="7" fill="#3d2000"/>
+      <ellipse cx="29" cy="22" rx="5" ry="8" fill="#3d2000"/>
+      <ellipse cx="51" cy="22" rx="4" ry="6" fill="#3d2000"/>
+      <circle cx="35" cy="28" r="2.5" fill="#fff"/><circle cx="45" cy="28" r="2.5" fill="#fff"/>
+      <circle cx="36" cy="28" r="1.2" fill="#2d1000"/><circle cx="46" cy="28" r="1.2" fill="#2d1000"/>
+      <path d="M36 34 Q40 38 44 34" stroke="#c0704a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <text x="40" y="9" text-anchor="middle" font-size="8">⭐⭐⭐</text>
+    </svg>
+  </div>
+  <div class="carrito-flotante" id="carritoFlotante" style="display:none;">
+    <div><span id="carritoResumen">🛒 0 productos · <strong>$0</strong></span></div>
+    <button class="btn-enviar" id="btnEnviarPedido">📲 Finalizar por WhatsApp</button>
+  </div>
+  <div class="chat-bubble" onclick="toggleChat()">
+    <div class="chat-close" onclick="event.stopPropagation();document.getElementById('chatWidget').style.display='none'">✕</div>
+    <div class="chat-icon">🍬<div class="chat-online-dot"></div></div>
+    <div class="chat-text">
+      <strong>Candy · Asistente</strong>
+      <span id="chatStatus">En línea · te ayuda a comprar</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const WA_NUMBER = '541176750220';
+  let currentSlide = 0, total = 4;
+  const container = document.getElementById('slidesContainer');
+  const dots = document.querySelectorAll('.dot');
+  function updateSlider() {
+    container.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((d,i) => d.classList.toggle('active', i === currentSlide));
+  }
+  function changeSlide(dir) { currentSlide = (currentSlide + dir + total) % total; updateSlider(); }
+  function goSlide(i) { currentSlide = i; updateSlider(); }
+  setInterval(() => changeSlide(1), 4500);
+
+  let cartCount = 0, cartTotal = 0, cartItems = {};
+  function updateCartUI() {
+    document.querySelector('.carrito-count').textContent = cartCount;
+    document.getElementById('carritoResumen').innerHTML = `🛒 ${cartCount} producto${cartCount!==1?'s':''} · <strong>$${cartTotal.toLocaleString('es-AR')}</strong>`;
+    document.getElementById('carritoFlotante').style.display = cartCount > 0 ? 'flex' : 'none';
+    document.getElementById('chatStatus').textContent = cartCount > 0 ? `${cartCount} producto${cartCount!==1?'s':''} en el carrito` : 'En línea · te ayuda a comprar';
+  }
+  document.getElementById('btnEnviarPedido').addEventListener('click', function() {
+    if (cartCount === 0) return;
+    let detalle = '🛒 *Hola! Quiero hacer el siguiente pedido:*\n\n';
+    for (const [nombre, cantidad] of Object.entries(cartItems)) {
+      detalle += `▪ ${nombre} x${cantidad}\n`;
+    }
+    detalle += `\n💰 *Total: $${cartTotal.toLocaleString('es-AR')}*\n\n¿Cómo puedo abonar y coordinar el envío?`;
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(detalle)}`, '_blank');
+  });
+  function toggleChat() {
+    const fl = document.getElementById('carritoFlotante');
+    if (cartCount > 0) fl.style.display = fl.style.display === 'none' ? 'flex' : 'none';
+  }
+</script>
+</body>
+</html>
