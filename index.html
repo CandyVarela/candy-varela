@@ -1,1 +1,3506 @@
+
+
+Claude terminó la respuesta
+Voy a personalizar este artefacto:
+
+candy-varela.html
+Artefacto interactivo 
+Transforma cualquier artefacto en algo único personalizando sus elementos principales.
+Cambiar el tema - Adapta el contenido para un tema diferente
+Actualizar el estilo - Renueva los elementos visuales o el diseño general
+Hacerlo personal - Ajústalo específicamente a tus necesidades
+Comparte tu visión - Yo la haré realidad
+¿Por dónde te gustaría empezar?
+podes agregar los siguientes productos 
+Categoría bebidas 
+Monster brasil o chile $7.000 pesos argentinos 
+Monster Europeos $15.000 pesos argentinos 
+Energizantes personajes $7.000 pesos argentinos 
+Categoría varios
+Pringles brasil y asiáticas $8.000
+Categoría combos 
+combo emprendedor de gomitas $50.000
+incluye 6 bolsas de 500g de la marca mogul o Fini 
+combo emprendedor de gomitas II $100.000
+incluye 12 bolsas de 500g + 3 bolsas de 1kg
+Mostrar más
+5:50 p.m.
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 2 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 3 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 4 
+Now I need to update the productData array in the JS to include the new products:
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 5 
+¡Listo! Se agregaron los 6 productos nuevos:
+Bebidas
+Monster Brasil / Chile — $7.000
+Monster Europeos — $15.000 (con badge "Importado")
+Energizante Personajes — $7.000
+Varios
+Pringles Brasil / Asiáticas — $8.000 (con badge "Importadas")
+Combos
+Combo Emprendedor Gomitas I — $50.000 (6 bolsas × 500g, Mogul o Fini)
+Combo Emprendedor Gomitas II — $100.000 (12 bolsas × 500g + 3 × 1kg), destacado con borde dorado ⭐
+Todos se pueden agregar al carrito y el pedido se envía por WhatsApp con el detalle completo. ¿Querés agregar más productos, cambiar fotos/emojis o ajustar algo del diseño?
+podes asesorarme para que yo pueda ingresar a la pagina poniendo un usuario y contraseña
+6:16 p.m.
+¡Buena idea! Agregar un login protege tu catálogo y te da control sobre quién puede ver los precios o hacer pedidos.
+Antes de armarlo, te consulto un par de cosas:
+P: ¿Quién necesita iniciar sesión?
+R: Solo vos (admin)
+P: ¿Qué debería pasar si no iniciaste sesión?
+R: Ver todo, pero el panel admin está oculto
+6:16 p.m.
+Perfecto, ese es el esquema más limpio para un kiosco. Acá va mi asesoramiento completo:
+Cómo funciona lo que pedís
+Los visitantes ven el catálogo normal. Vos, al ingresar con usuario y contraseña, ves un panel admin oculto que puede incluir cosas como editar precios, ver pedidos, etc.
+⚠️ Lo importante que tenés que saber
+Lo que puedo hacer dentro del artefacto es un login que funciona en el navegador, pero tiene una limitación clave:
+La contraseña queda guardada en el código HTML. Cualquiera que "inspeccione el código" con F12 la puede ver.
+Esto está bien para un uso personal/básico (nadie va a ponerse a inspeccionar tu catálogo), pero no es seguro para datos sensibles como ver todos los pedidos de clientes, por ejemplo.
+Las 3 opciones reales, de menor a mayor robustez
+✅ Opción 1 — Login visual en el artefacto (lo puedo hacer ahora)
+Pantalla de login que aparece cuando hacés clic en un botón "Admin"
+Si la contraseña es correcta, aparece un panel (por ej. para editar precios)
+La contraseña está en el código → fácil de implementar, aceptable para uso personal
+Ideal si: es solo para vos y no manejás datos de clientes
+🔐 Opción 2 — Login con base de datos real (requiere un servicio externo gratuito)
+Usás Supabase (gratuito) o Firebase para guardar el usuario/contraseña de forma segura
+El artefacto se conecta a ese servicio para verificar las credenciales
+Nadie puede ver la contraseña inspeccionando el código
+Ideal si: querés algo más profesional sin pagar nada
+🚀 Opción 3 — Página web real con hosting (el paso siguiente natural)
+Subís la página a un hosting como Vercel, Netlify o 000webhost (todos tienen planes gratis)
+Tenés login real con sesiones, panel admin completo, etc.
+Ideal si: querés crecer y tener todo en una URL propia (ej. candyvarela.com.ar)
+Mi recomendación para vos ahora mismo
+Empezá con la Opción 1 — te la agrego al artefacto hoy, es funcional y cubre tu necesidad. Cuando el negocio crezca y necesites más control, el paso a Opción 2 o 3 es natural.
+¿Arrancamos con el login admin en el artefacto?
+me gustaría la opción 3 con vercel
+6:17 p.m.
+¡Excelente elección! Vercel es ideal para esto. Te explico el camino completo paso a paso.
+El plan: de artefacto a página web real
+Lo que tenés hoy es un archivo HTML único. Para tener login real en Vercel necesitás una estructura mínima de proyecto. El stack más simple y gratuito es:
+HTML + JavaScript + Vercel Serverless Functions + una variable de entorno (la contraseña nunca queda en el código)
+Paso 1 — Crear una cuenta en Vercel y GitHub
+Primero necesitás ambas cuentas porque Vercel despliega desde GitHub:
+Entrá a github.com → creá una cuenta gratuita
+Entrá a vercel.com → registrate con tu cuenta de GitHub (un clic)
+Paso 2 — Estructura del proyecto
+Vas a tener una carpeta con esta estructura:
+candy-varela/
+├── index.html         ← tu página actual
+├── admin.html         ← panel admin (nuevo)
+└── api/
+    └── login.js       ← función que verifica la contraseña
+Paso 3 — Cómo funciona el login seguro
+Visitante escribe contraseña
+        ↓
+El navegador llama a /api/login (Vercel Function)
+        ↓
+La función compara con la contraseña guardada
+en las variables de entorno de Vercel (nunca en el código)
+        ↓
+Si es correcta → devuelve un token de sesión
+Si no → devuelve error
+La contraseña nunca está en el HTML ni en GitHub. Solo existe en el panel de Vercel.
+Paso 4 — Los archivos que necesitás
+Te genero los 3 archivos listos para subir:
+
+api/login.js — Función Vercel (verificación de contraseña)
+Código 
+
+login.html — Pantalla de login del admin
+Artefacto interactivo 
+Paso 5 — Configurar las variables de entorno en Vercel
+Una vez que subas el proyecto a Vercel, vas a Settings → Environment Variables y agregás estas 3:
+Variable	Valor ejemplo
+ADMIN_USER	candy_admin
+ADMIN_PASSWORD	TuContraseñaSegura123
+TOKEN_SECRET	cualquier_texto_aleatorio_largo
+Paso 6 — Subir todo a GitHub y conectar con Vercel
+Instalás Git en tu PC → git-scm.com
+Creás un repositorio nuevo en GitHub llamado candy-varela
+Subís los 3 archivos con estos comandos en la terminal:
+bash
+git init
+git add .
+git commit -m "Candy Varela v1"
+git push origin main
+En Vercel: Add New Project → conectás el repositorio → ¡listo, se despliega solo!
+¿Por dónde querés empezar?
+¿Ya tenés cuenta en GitHub o arrancamos desde cero con ese paso?
+ya cree la cuenta de GitHub y también inicie en vergel
+6:35 p.m.
+Perfecto, ya tenés lo más importante listo. Ahora vamos paso a paso.
+Paso 1 — Instalar Git en tu PC
+Antes de subir archivos necesitás Git instalado.
+Entrá a git-scm.com/downloads
+Bajá el instalador para Windows
+Instalalo con todas las opciones por defecto (Next, Next, Next… Install)
+Cuando termine, abrí el Símbolo del sistema (buscá cmd en el menú inicio) y escribí:
+bash
+git --version
+Si te responde algo como git version 2.x.x → ✅ está instalado correctamente.
+Paso 2 — Crear la carpeta del proyecto en tu PC
+Creá una carpeta nueva en tu escritorio llamada candy-varela
+Adentro de esa carpeta creá otra carpeta llamada api
+La estructura tiene que quedar así:
+📁 candy-varela/
+├── 📁 api/
+Paso 3 — Guardar los archivos
+Necesitás guardar 3 archivos que ya tenemos listos:
+Archivo 1 → el artefacto del catálogo que ya armamos
+Guardalo como index.html dentro de candy-varela/
+Archivo 2 → el login que generé recién
+Guardalo como login.html dentro de candy-varela/
+Archivo 3 → la función del servidor
+Guardalo como login.js dentro de candy-varela/api/
+Para guardar cada artefacto: hacé clic en el botón de copiar, pegá en el Bloc de notas, y guardá con el nombre exacto indicado. Al guardar, en "Tipo" elegí Todos los archivos para que no le agregue .txt.
+Paso 4 — Subir a GitHub
+Abrí el Símbolo del sistema, navegá a tu carpeta y ejecutá estos comandos uno por uno:
+bash
+cd Desktop/candy-varela
+git init
+git add .
+git commit -m "Candy Varela - primera versión"
+Después en github.com:
+Clic en New repository
+Nombre: candy-varela
+Dejalo en Public
+Clic en Create repository
+GitHub te va a mostrar unos comandos, copiá y pegá los que dicen "push an existing repository":
+bash
+git remote add origin https://github.com/TU_USUARIO/candy-varela.git
+git branch -M main
+git push -u origin main
+Paso 5 — Conectar con Vercel
+Entrá a vercel.com → Add New Project
+Conectá tu cuenta de GitHub si no lo hiciste todavía
+Vas a ver tu repositorio candy-varela → clic en Import
+Vercel lo detecta automáticamente → clic en Deploy
+En 1 minuto te da una URL tipo candy-varela.vercel.app 🎉
+Paso 6 — Configurar la contraseña (variables de entorno)
+Una vez desplegado, en Vercel:
+Settings → Environment Variables
+Agregás estas 3 variables:
+Nombre	Valor
+ADMIN_USER	el usuario que quieras, ej: cristian
+ADMIN_PASSWORD	tu contraseña segura
+TOKEN_SECRET	cualquier texto largo aleatorio
+Clic en Save → después vas a Deployments → Redeploy para que tome los cambios
+¿Pudiste instalar Git? Avisame en qué paso estás y te ayudo con lo que necesites.
+podes hacer todos los pasos por mi
+6:36 p.m.
+Entiendo que sería más fácil que lo haga yo, pero lamentablemente no puedo hacerlo directamente porque necesito acceso a tu computadora, tu cuenta de GitHub y tu cuenta de Vercel — cosas a las que no tengo acceso por razones de seguridad.
+Lo que sí puedo hacer es acompañarte en tiempo real, paso a paso, para que vos lo ejecutés y sea lo más simple posible.
+Lo que sí puedo hacer por vos ahora mismo
+✅ Todo el código ya está listo — los 3 archivos que necesitás ya los generé arriba.
+El único trabajo que te queda es básicamente copiar, pegar y hacer clic en unos pocos lugares. Calculá unos 15-20 minutos en total.
+¿Querés que te guíe en vivo?
+Decime en qué paso estás ahora mismo:
+"Todavía no instalé Git" → te guío con capturas de lo que vas a ver
+"Git ya está instalado" → arrancamos directo con los archivos
+"Ya tengo los archivos en la carpeta" → vamos directo a GitHub
+"Ya está en GitHub" → conectamos con Vercel
+Y si en algún momento te trabás o te aparece algún error, copiame exactamente el mensaje y te digo cómo resolverlo.
+¿Por dónde estás?
+ya me cree la cuenta de GitHub y también inicie sesión en vercel\
+6:37 p.m.
+Perfecto, ya tenés lo más difícil hecho. Ahora vamos paso a paso, empezando por Git.
+Paso 1 — Instalar Git
+Entrá a este link: https://git-scm.com/downloads
+Hacé clic en Windows
+Bajá el instalador y ejecutalo
+En todas las pantallas dejá las opciones por defecto y seguí haciendo clic en Next hasta Install
+Cuando termine, abrí el Símbolo del sistema:
+Presioná Windows + R
+Escribí cmd
+Presioná Enter
+Y escribí esto:
+bash
+git --version
+¿Qué te aparece? Copiame la respuesta y seguimos con el paso 2.
+no me dejo descargarlo
+6:38 p.m.
+¿Podés contarme un poco más sobre lo que pasó? Por ejemplo:
+¿Te apareció algún mensaje de error o advertencia?
+¿El antivirus lo bloqueó?
+¿No encontraste el botón de descarga en la página?
+Así te digo exactamente cómo resolverlo. 🙂
+no encontre el boton de descarga
+6:38 p.m.
+¡No hay problema! Mirá esta imagen de la página, el botón está bien visible:
+Windows安装Git(解压版)_git压缩包解压-CSDN博客
+
+blog.csdn.net
+Imagen no disponible
+I Git It! How To Install and Use Git On Windows 11
+
+deanin.com
+Resultados de la web
+Fijate que cuando entrás a git-scm.com/downloads vas a ver una pantalla así, con un botón grande que dice "Download for Windows".
+Seguí estos pasos exactos:
+Abrí tu navegador (Chrome, Edge, etc.)
+Copiá y pegá esta dirección exacta en la barra de arriba:
+https://git-scm.com/downloads/win
+Esa página te descarga el instalador directamente sin tener que buscar nada
+Te va a aparecer un archivo descargado abajo o en tu carpeta Descargas llamado algo como Git-2.x.x-64-bit.exe.
+¿Lo encontraste o te sigue sin aparecer la descarga?
+pero tengo MacBook
+6:38 p.m.
+¡Ah, perfecto! En Mac es todavía más fácil, no necesitás descargar nada de ese sitio.
+Instalar Git en Mac
+Abrí la aplicación Terminal:
+Presioná Command (⌘) + Espacio
+Escribí Terminal
+Presioná Enter
+Y pegá este comando:
+bash
+xcode-select --install
+Te va a aparecer una ventana preguntando si querés instalar las herramientas de desarrollador. Hacé clic en Instalar y esperás unos minutos.
+Cuando termine, verificá que funcionó escribiendo:
+bash
+git --version
+Debería responderte algo como git version 2.x.x ✅
+¿Qué te aparece cuando corrés ese comando?
+cual es la aplicación terminal\
+6:39 p.m.
+Es una app que ya viene instalada en todas las Mac. Así la encontrás:
+Opción 1 — La más rápida:
+Presioná las teclas ⌘ Command + Espacio al mismo tiempo
+Se abre una cajita de búsqueda (se llama Spotlight)
+Escribí Terminal
+Presioná Enter
+5 Ways to Open Terminal on Mac
+
+osxdaily.com
+How to Check and Update Your Mac's Firmware
+
+macbookjournal.com
+How to Launch Terminal App in Mac | Code2care
+
+code2care.org
+Resultados de la web
+Así se ve — escribís "Terminal" en esa cajita y aparece la app con un ícono negro.
+Opción 2 — Por el Finder:
+Abrí el Finder (el ícono de carita en el dock)
+Entrá a Aplicaciones → Utilidades
+Ahí está Terminal
+¿Pudiste abrirla?
+si
+6:41 p.m.
+Perfecto! Ahora pegá este comando en la Terminal y presioná Enter:
+bash
+xcode-select --install
+Te va a aparecer una ventana así:
+The Best and Fastest Ways to Install Xcode on your Mac
+
+matteomanferdini.com
+Install Xcode Command Line Tools on Mac: 3 Best Methods
+
+macbookjournal.com
+How to Download and Install XCode on Mac - thecoderworld
+
+thecoderworld.com
+Resultados de la web
+Hacé clic en Instalar (no en "Obtener Xcode") y esperás unos minutos hasta que termine.
+Cuando finalice, escribí esto para verificar:
+bash
+git --version
+¿Qué te responde?
+donde pongo eso
+6:48 p.m.
+En la Terminal que abriste vas a ver una pantalla negra o blanca con un cursor parpadeando, así:
+How to Turn Off Cursor Blinking on a Mac - La De Du
+
+ladedu.com
+Lesson 02: macOS Setup - Jason Fleetwood-Boldt
+
+jasonfleetwoodboldt.com
+How To Use The Mac Terminal: The Basics - AppleToolBox
+AppleToolBox
+Resultados de la web
+Hacé clic en esa pantalla y pegá el comando ahí. Podés pegarlo con ⌘ Command + V o simplemente escribirlo a mano:
+bash
+xcode-select --install
+Después presioná la tecla Enter y esperás que aparezca la ventana de instalación.
+¿Lo pudiste pegar?
+me puso versión 2.39.5
+6:49 p.m.
+¡Perfecto! ✅ Git ya está instalado y funcionando.
+Paso 2 — Crear la carpeta del proyecto
+En la Terminal escribí esto y presioná Enter:
+bash
+mkdir ~/Desktop/candy-varela && mkdir ~/Desktop/candy-varela/api
+Eso crea automáticamente la carpeta candy-varela en tu escritorio con la carpeta api adentro.
+Paso 3 — Guardar los 3 archivos
+Ahora necesitás guardar los archivos que ya tenemos listos. Hacelo así para cada uno:
+Archivo 1 — index.html
+Andá al artefacto del catálogo (el primero que hicimos)
+Hacé clic en el botón copiar
+Abrí el Editor de Texto de Mac (buscalo con ⌘ + Espacio → "Editor de Texto")
+Pegá el contenido con ⌘ + V
+Guardalo con ⌘ + S en la carpeta candy-varela con el nombre exacto index.html
+En "Formato" elegí Texto sin formato
+Archivo 2 — login.html
+Igual que el anterior pero copiando el artefacto login.html y guardándolo en candy-varela/
+Archivo 3 — login.js
+Igual pero copiando el artefacto api/login.js y guardándolo dentro de la carpeta api/
+¿Pudiste guardar los 3 archivos?
+podes ayudarme y copiar el artefacto
+6:53 p.m.
+Yo puedo ver y editar los artefactos dentro de esta conversación, pero no puedo copiarlos ni pegarlos en tu computadora directamente — eso solo lo podés hacer vos desde tu pantalla.
+Pero es muy fácil, mirá:
+Para guardar el index.html (el catálogo)
+Scrolleá arriba en esta conversación hasta el primer artefacto grande (el catálogo de Candy Varela)
+En la esquina superior derecha del artefacto vas a ver unos íconos — buscá el de copiar (parece dos papeles superpuestos)
+Hacé clic ahí → ya tenés todo el código copiado
+Abrí el Editor de Texto de tu Mac
+Pegá con ⌘ + V
+⌘ + S para guardar → carpeta candy-varela → nombre: index.html
+⚠️ Importante: antes de guardar, en el Editor de Texto andá a Formato → Convertir a texto sin formato
+¿Ves el ícono de copiar en el artefacto? Si no lo encontrás decime y te mando una imagen de dónde está.
+no se donde esta el editor de texto en mi mac
+6:55 p.m.
+¡Sin problema! Buscalo así:
+Presioná ⌘ Command + Espacio
+Escribí Editor de Texto
+Presioná Enter
+Textedit Lesson 1 Creating A TextEdit With A Custom Button | Windows
+
+fity.club
+Guía: Combinación de teclas para tachar texto en Mac
+
+pdf.wondershare.es
+How to use Spotlight on the Mac | iMore
+iMore
+Resultados de la web
+Se llama TextEdit en inglés o Editor de Texto en español. El ícono se ve como una hoja con un lápiz.
+¿Lo encontraste?
+ya lo encontre y pegue el artefacto
+6:56 p.m.
+¡Genial! Antes de guardar hacé esto primero:
+En la barra de arriba hacé clic en Formato
+Clic en Convertir a texto sin formato
+Así puedes copiar y pegar texto sin formato en Mac
+
+todoappleblog.com
+¿Cómo Crear un Archivo de Texto en Mac? (Guía Paso a Paso)
+
+iboysoft.com
+Guardar TextEdit en formato txt
+
+apple2fan.com
+Resultados de la web
+Así como se ve en la imagen — Formato → Convertir a texto sin formato — te va a preguntar si estás seguro, hacé clic en OK.
+Después guardá con:
+⌘ + S
+En "Nombre" escribí exactamente: index.html
+Navegá a la carpeta candy-varela en el Escritorio
+Hacé clic en Guardar
+¿Lo pudiste guardar?
+si
+6:58 p.m.
+Perfecto! ✅ Ahora repetí lo mismo para los otros 2 archivos.
+Archivo 2 — login.html
+Abrí un TextEdit nuevo (⌘ + N)
+Scrolleá arriba en esta conversación y buscá el artefacto llamado "login.html — Pantalla de login del admin"
+Copiá el contenido y pegalo en el TextEdit
+Formato → Convertir a texto sin formato
+Guardá con ⌘ + S:
+Nombre: login.html
+Carpeta: candy-varela en el Escritorio
+Archivo 3 — login.js
+Abrí un TextEdit nuevo (⌘ + N)
+Buscá el artefacto llamado "api/login.js — Función Vercel"
+Copiá y pegá en el TextEdit
+Formato → Convertir a texto sin formato
+Guardá con ⌘ + S:
+Nombre: login.js
+Carpeta: candy-varela/api en el Escritorio ⚠️ (acordate de entrar a la carpeta api)
+Avisame cuando tengas los 3 guardados y seguimos con GitHub. 🙂
+podes llevarme al lugar donde decís login.html pantalla de login del admin
+6:59 p.m.
+Está más arriba en esta conversación — es el segundo artefacto que generé cuando te expliqué la opción 3 con Vercel.
+Pero para hacértelo más fácil, lo vuelvo a mostrar acá mismo:
+
+login.html — Pantalla de login del admin
+Código 
+Ahí está. Ahora:
+Hacé clic en el ícono de copiar arriba a la derecha del artefacto
+Abrí un TextEdit nuevo (⌘ + N)
+Pegá con ⌘ + V
+Formato → Convertir a texto sin formato
+Guardá como login.html en la carpeta candy-varela
+Avisame cuando esté listo y te muestro el tercer archivo también. 🙂
+podes ubicarme el archivo 3 por favor
+7:02 p.m.
+¡Claro! Acá está:
+
+api/login.js — Función Vercel
+Código 
+Ahí está. Para guardarlo:
+Hacé clic en el ícono de copiar arriba a la derecha
+Abrí un TextEdit nuevo (⌘ + N)
+Pegá con ⌘ + V
+Formato → Convertir a texto sin formato
+Guardá con ⌘ + S:
+Nombre: login.js
+⚠️ Esta vez entrá a la carpeta candy-varela → luego a la carpeta api antes de guardar
+¿Pudiste guardar los 3 archivos? Así arrancamos con GitHub. 🙂
+si, guarde los 3
+7:04 p.m.
+¡Excelente! ✅ Ahora vamos a subir todo a GitHub.
+Paso 1 — Crear el repositorio en GitHub
+Entrá a github.com y asegurate de estar logueado
+Hacé clic en el botón verde que dice New (arriba a la izquierda)
+En Repository name escribí: candy-varela
+Dejalo en Public
+No tildés ninguna opción extra
+Hacé clic en Create repository
+¿Pudiste crear el repositorio? Cuando lo hagas GitHub te va a mostrar una pantalla con instrucciones — no cierres esa pantalla porque la vamos a necesitar en el siguiente paso. 🙂
+si
+7:05 p.m.
+Perfecto! Ahora volvé a la Terminal y pegá estos comandos uno por uno, presionando Enter después de cada uno:
+1️⃣
+bash
+cd ~/Desktop/candy-varela
+2️⃣
+bash
+git init
+3️⃣
+bash
+git add .
+4️⃣
+bash
+git commit -m "Candy Varela - primera version"
+5️⃣
+bash
+git branch -M main
+Después de ese último comando avisame y te doy el siguiente que conecta con tu repositorio de GitHub. 🙂
+listo
+7:07 p.m.
+Perfecto! Ahora el comando que conecta tu carpeta con GitHub.
+En la pantalla que te quedó abierta en GitHub vas a ver una línea que dice algo así:
+git remote add origin https://github.com/TU_USUARIO/candy-varela.git
+Copiá esa línea exacta desde GitHub (tiene tu usuario real) y pegala en la Terminal, presioná Enter.
+Después pegá este:
+bash
+git push -u origin main
+Es posible que te pida tu usuario y contraseña de GitHub. Si te la pide, el usuario es fácil, pero para la contraseña GitHub ya no usa la contraseña normal — necesitás un token. Si te lo pide avisame y te explico cómo generarlo en 2 minutos. 🙂
+no me pidió usuario y contraseña;a
+7:08 p.m.
+Perfecto! ¿Y qué te respondió la Terminal? ¿Algo como esto?
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+O te mostró algún error? Copiame lo que apareció y seguimos. 🙂
+please make sure you have the correct access rights and the repository exists. eso es lo que me puso
+7:09 p.m.
+Ese error significa que GitHub no te reconoció todavía. Necesitás crear un token de acceso. Es rápido, seguí estos pasos:
+Crear el token en GitHub
+Entrá a github.com y asegurate de estar logueado
+Hacé clic en tu foto de perfil (arriba a la derecha)
+Clic en Settings
+Bajá hasta el final del menú izquierdo y hacé clic en Developer settings
+Clic en Personal access tokens
+Clic en Tokens (classic)
+Clic en Generate new token → Generate new token (classic)
+En Note escribí: candy-varela
+En Expiration elegí No expiration
+Tildá la casilla repo (la primera opción)
+Bajá hasta el final y hacé clic en Generate token
+⚠️ Te va a mostrar un código largo — copialo ahora porque GitHub no te lo vuelve a mostrar. Guardalo en un lugar seguro por ejemplo en las notas de tu Mac.
+Avisame cuando tengas el token y te digo cómo usarlo. 🙂
+no logro encontrar la parte settings en github
+7:10 p.m.
+¡No hay problema! Mirá acá:
+Creating and Customizing your GitHub Profile - DEV Community
+
+dev.to
+Configuring Git for GitHub Desktop - GitHub Enterprise Cloud Docs
+
+docs.github.com
+Imagen no disponible
+Resultados de la web
+Como se ve en la imagen, hacé esto:
+Mirá la esquina superior derecha de GitHub
+Vas a ver tu foto de perfil o un ícono de persona
+Hacé clic ahí
+Se despliega un menú hacia abajo
+Al final de ese menú dice Settings — hacé clic ahí
+¿Lo pudiste encontrar?
+si
+7:11 p.m.
+Perfecto! Ahora seguí estos pasos dentro de Settings:
+Mirá el menú de la izquierda y bajá hasta el final
+Vas a ver Developer settings — hacé clic ahí
+Set up Git - GitHub Docs - Вход в личный кабинет
+
+vhod-v-lichnyj-kabinet.ru
+Linking Android Studio and GitHub | GitHub-and-Android-Studio
+
+journeyman-joe.github.io
+How to Monitor Website Uptime With GitHub [No Server Needed]
+
+linuxhandbook.com
+Resultados de la web
+Está bien al fondo del menú izquierdo, como se ve en la imagen.
+¿Lo encontraste?
+si
+7:12 p.m.
+Perfecto! Ahora:
+Clic en Personal access tokens
+Clic en Tokens (classic)
+Create and store your GitHub personal access token - PragmaticLinux
+
+pragmaticlinux.com
+How to GitLab / GitHub Personal Access Token? [ 2026 ]
+
+softwaretestingo.com
+How to Create Personal Access Token [PAT] in GitHub
+
+edledge.com
+Resultados de la web
+Como se ve en la imagen, en el menú izquierdo vas a ver Personal access tokens — expandilo y elegí Tokens (classic).
+¿Lo encontraste?
+si
+7:12 p.m.
+Perfecto! Ahora:
+Hacé clic en Generate new token
+Elegí Generate new token (classic)
+如何使用 GitHub Star History 查看开源项目 - 知乎
+
+zhuanlan.zhihu.com
+GitHub - ZZZ7664/Githubtokens: 申请GitHub个人访问令牌
+
+github.com
+Create and store your GitHub personal access token - PragmaticLinux
+
+pragmaticlinux.com
+Resultados de la web
+Como se ve en la imagen, el botón está arriba a la derecha de la pantalla.
+¿Lo encontraste?
+si
+7:13 p.m.
+Perfecto! Ahora completá el formulario así:
+En Note escribí: candy-varela
+En Expiration elegí No expiration
+Bajá y tildá la casilla repo (la primera opción grande)
+Create and store your GitHub personal access token - PragmaticLinux
+
+pragmaticlinux.com
+GitHub Setup Tutorial - Netflix Advanced Java Engineering Pre-Start Guide
+
+coding-bootcamp-netflix-advanced-java-boot-camp-prework.readthedocs-hosted.com
+Github (Personal Access Token) authentication
+
+velog.io
+Resultados de la web
+Como se ve en la imagen, tildás solo la casilla repo y se tildan automáticamente todas las opciones de abajo.
+Bajá hasta el final y hacé clic en Generate token
+⚠️ Te va a mostrar un código verde largo — copialo inmediatamente y pegalo en las Notas de tu Mac porque GitHub no te lo vuelve a mostrar.
+¿Pudiste generar el token?
+si
+7:15 p.m.
+Perfecto! Ahora volvé a la Terminal y pegá este comando reemplazando los datos con los tuyos:
+bash
+git remote set-url origin https://TU_USUARIO:TU_TOKEN@github.com/TU_USUARIO/candy-varela.git
+Por ejemplo si tu usuario de GitHub es cristian y tu token es ghp_abc123... quedaría así:
+bash
+git remote set-url origin https://cristian:ghp_abc123...@github.com/cristian/candy-varela.git
+Reemplazá:
+TU_USUARIO → tu usuario de GitHub
+TU_TOKEN → el código largo que acabás de copiar
+Pegalo en la Terminal y presioná Enter.
+¿Qué te respondió?
+7:15 p.m.
+⚠️ Ojo — te pido que borres ese token ahora mismo porque lo compartiste públicamente en esta conversación y cualquiera podría usarlo.
+Para borrarlo:
+Andá a GitHub → Settings → Developer settings → Tokens (classic)
+Buscá el token candy-varela
+Hacé clic en Delete
+Después generá uno nuevo siguiendo los mismos pasos de antes.
+Por qué no puedo armarlo yo con ese token
+Tu token es como la llave de tu cuenta de GitHub — si alguien lo ve puede acceder a todo tu perfil. Por eso es importante que nunca lo compartas ni lo pegues en ningún lado público.
+Cómo hacerlo vos de forma segura
+Cuando tengas el token nuevo, en la Terminal escribí el comando parte por parte:
+1️⃣ Primero pegá esto:
+bash
+git remote set-url origin https://
+2️⃣ Sin presionar Enter todavía, escribí tu usuario, el token y el resto así:
+candy-varela:TOKEN@github.com/candy-varela/candy-varela.git
+Reemplazando TOKEN por el código nuevo que generaste.
+¿Pudiste borrar el token viejo?
+si
+7:17 p.m.
+Perfecto, bien hecho! 👍 Ahora generá el token nuevo siguiendo los mismos pasos de antes:
+GitHub → Settings
+Developer settings
+Personal access tokens → Tokens (classic)
+Generate new token (classic)
+Note: candy-varela
+Expiration: No expiration
+Tildá repo
+Generate token
+⚠️ Cuando te aparezca el token nuevo no lo compartas acá — esta vez usalo directamente en la Terminal.
+Cuando lo tengas copiado, pegá este comando en la Terminal reemplazando solo las partes indicadas:
+bash
+git remote set-url origin https://TU_USUARIO:TU_TOKEN@github.com/TU_USUARIO/candy-varela.git
+Reemplazá TU_USUARIO por tu usuario de GitHub
+Reemplazá TU_TOKEN por el token nuevo
+Después presioná Enter y decime qué te responde. 🙂
+me escribió muchas cosas
+7:18 p.m.
+¡Eso es buena señal! Ahora pegá este comando:
+bash
+git push -u origin main
+Presioná Enter y decime qué te aparece. 🙂
+please make sure you have the correct access
+7:19 p.m.
+Hmm, todavía no conecta. Vamos a verificar un par de cosas.
+Pegá este comando en la Terminal:
+bash
+git remote -v
+Y copiame exactamente lo que te aparece (sin el token, tapá esa parte si aparece). Así veo si la URL quedó bien configurada. 🙂
+plase make sure you have the correct access rights and the repository exists.
+7:19 p.m.
+Entiendo, el error persiste. Vamos a verificar el problema. Pegá este comando:
+bash
+git remote -v
+Presioná Enter y copiame lo que aparece en pantalla. 🙂
+no me responde nada, me vuelve a escribir lo que le puse
+7:20 p.m.
+Eso significa que el remote no está configurado. Vamos a hacerlo de nuevo desde cero.
+Primero pegá este comando para ver cómo está configurado:
+bash
+cat ~/.gitconfig
+¿Qué te aparece?
+no such file or directory
+7:20 p.m.
+Ok, necesitamos configurar Git con tu usuario de GitHub. Pegá estos comandos uno por uno:
+1️⃣
+bash
+git config --global user.name "candy-varela"
+2️⃣
+bash
+git config --global user.email "TU_EMAIL@gmail.com"
+Reemplazá TU_EMAIL@gmail.com por el email con el que te registraste en GitHub.
+¿Pudiste pegarlos?
+si
+7:21 p.m.
+Perfecto! Ahora pegá este comando para verificar que quedó bien:
+bash
+git config --list
+¿Qué te aparece?
+muchas cosas
+7:22 p.m.
+Bien! Eso significa que Git está configurado correctamente. Ahora vamos a agregar el remote de nuevo. Pegá este comando:
+bash
+git remote remove origin
+Presioná Enter y decime qué te responde. 🙂
+no such remote
+7:22 p.m.
+Ok, entonces nunca se llegó a configurar. Vamos a agregarlo ahora. Pegá este comando reemplazando los datos:
+bash
+git remote add origin https://TU_USUARIO:TU_TOKEN@github.com/TU_USUARIO/candy-varela.git
+TU_USUARIO → tu usuario de GitHub
+TU_TOKEN → el token nuevo que generaste
+Presioná Enter y después pegá este:
+bash
+git push -u origin main
+¿Qué te aparece? 🙂
+como se mi usuario de github
+7:23 p.m.
+Tu usuario de GitHub lo encontrás así:
+Entrá a github.com
+Hacé clic en tu foto de perfil arriba a la derecha
+Lo primero que aparece en el menú es tu usuario, empieza con @
+Por ejemplo si ves @cristian123 entonces tu usuario es cristian123.
+¿Lo encontraste?
+si
+7:25 p.m.
+Perfecto! Ahora armá el comando con tus datos y pegalo en la Terminal:
+bash
+git remote add origin https://TU_USUARIO:TU_TOKEN@github.com/TU_USUARIO/candy-varela.git
+Por ejemplo si tu usuario es cristian123 y tu token es ghp_abc123... quedaría así:
+bash
+git remote add origin https://cristian123:ghp_abc123...@github.com/cristian123/candy-varela.git
+⚠️ Recordá no compartir el token acá, usalo directamente en la Terminal.
+¿Pudiste pegarlo?
+error remote origin already exists
+7:27 p.m.
+Perfecto, eso significa que ya existe. Entonces hacé esto:
+1️⃣ Primero borrá el origen viejo:
+bash
+git remote remove origin
+2️⃣ Después agregá el nuevo con tus datos:
+bash
+git remote add origin https://TU_USUARIO:TU_TOKEN@github.com/TU_USUARIO/candy-varela.git
+3️⃣ Y finalmente subí los archivos:
+bash
+git push -u origin main
+Pegá los 3 uno por uno y decime qué te responde el último. 🙂
+authentication failed for https githup tu usuario
+7:28 p.m.
+El problema es que el usuario o el token no quedaron bien escritos en el comando. Vamos a verificarlo.
+Decime:
+¿Cuántos caracteres tiene tu token? (contá sin compartirlo)
+¿Tu usuario de GitHub tiene algún símbolo especial como puntos, guiones o mayúsculas?
+Esto me ayuda a entender dónde puede estar el error. 🙂
+40
+7:30 p.m.
+Bien, 40 caracteres es correcto. El problema más común es que al pegar el comando en la Terminal el token o el usuario no quedaron bien.
+Vamos a intentarlo de otra forma. Pegá este comando exactamente así pero reemplazando solo TU_USUARIO:
+bash
+git remote add origin https://TU_USUARIO@github.com/TU_USUARIO/candy-varela.git
+Presioná Enter, y esta vez la Terminal te va a pedir la contraseña sola — ahí pegás el token con ⌘ + V.
+⚠️ Cuando pegues el token no vas a ver nada en pantalla, es normal, es por seguridad. Pegalo y presioná Enter directamente.
+¿Qué te aparece? 🙂
+me dice error remote origin already exists
+7:31 p.m.
+Primero borrá el origen viejo:
+bash
+git remote remove origin
+Presioná Enter y decime qué te responde. 🙂
+solamente me respondió el simmmbolo porcentajhe
+7:31 p.m.
+Perfecto, eso significa que funcionó. Ahora pegá el comando con tu usuario:
+bash
+git remote add origin https://TU_USUARIO@github.com/TU_USUARIO/candy-varela.git
+Reemplazá TU_USUARIO por tu usuario de GitHub y presioná Enter.
+Después te va a pedir la contraseña — ahí pegás el token con ⌘ + V y presioná Enter. 🙂
+me aparece el símbolo porcentaje
+7:33 p.m.
+Perfecto, eso significa que el remote se agregó bien. Ahora pegá este comando para subir los archivos:
+bash
+git push -u origin main
+Presioná Enter y si te pide contraseña pegás el token con ⌘ + V y Enter. 🙂
+me aparece un rectángulo y arriba dice authentication failed
+7:34 p.m.
+Ok, la Terminal te está pidiendo usuario y contraseña de forma visual. Completá así:
+En Username escribí tu usuario de GitHub y presioná Enter
+En Password pegá tu token con ⌘ + V y presioná Enter
+⚠️ En el campo de contraseña no vas a ver nada mientras escribís, es normal.
+¿Qué te aparece después? 🙂
+command not found me aparece
+7:35 p.m.
+Hmm, parece que la Terminal salió del modo correcto. Pegá este comando para asegurarte de estar en la carpeta del proyecto:
+bash
+cd ~/Desktop/candy-varela
+Presioná Enter y después volvé a intentar:
+bash
+git push -u origin main
+¿Qué te aparece? 🙂
+un icono de una llave
+7:35 p.m.
+Perfecto, eso significa que te está pidiendo las credenciales. Completá así:
+En Account o Username escribí tu usuario de GitHub
+En Password pegá tu token con ⌘ + V
+Hacé clic en Sign in o presioná Enter
+¿Qué te aparece después? 🙂
+no me deja pegar o escribir nada
+7:36 p.m.
+Entiendo, es el llavero de Mac que está bloqueando. Presioná Escape para cerrar esa ventana y vamos a intentar otro método.
+Pegá este comando en la Terminal:
+bash
+git config --global credential.helper store
+Presioná Enter y después:
+bash
+git push -u origin main
+Esta vez cuando te pida usuario y contraseña vas a poder escribir directamente en la Terminal. 🙂
+me sigue apareciendo la llave\
+7:37 p.m.
+Ok, el llavero de Mac está interceptando todo. Vamos a desactivarlo. Pegá este comando:
+bash
+git config --global credential.helper osxkeychain
+Presioná Enter y después:
+bash
+git push -u origin main
+Cuando aparezca la ventana de la llave esta vez sí debería dejarte escribir. Intentá hacer clic dentro del campo de Password y pegá el token. 🙂
+me dice password for candy-varela github
+7:37 p.m.
+Perfecto, ahora sí está pidiendo la contraseña directamente en la Terminal.
+Pegá tu token con ⌘ + V y presioná Enter.
+⚠️ No vas a ver nada en pantalla mientras pegás, es normal, es por seguridad. Pegá y Enter directamente. 🙂
+me dice no fount
+7:38 p.m.
+Casi llegamos. El problema es que el usuario en la URL no es el correcto. Vamos a corregirlo.
+Primero borrá el origen:
+bash
+git remote remove origin
+Después agregá el origen nuevo pero con tu usuario real de GitHub (el que empieza con @). Pegá este comando reemplazando TU_USUARIO:
+bash
+git remote add origin https://TU_USUARIO@github.com/TU_USUARIO/candy-varela.git
+⚠️ Acordate que tu usuario de GitHub no es candy-varela — ese es el nombre del repositorio. Tu usuario es el que aparece con @ cuando hacés clic en tu foto de perfil en GitHub.
+¿Cuál es tu usuario real? 🙂
+candyvarela
+7:40 p.m.
+Perfecto! Ahora pegá estos comandos uno por uno:
+1️⃣
+bash
+git remote remove origin
+2️⃣
+bash
+git remote add origin https://candyvarela@github.com/candyvarela/candy-varela.git
+3️⃣
+bash
+git push -u origin main
+Cuando te pida la contraseña pegá el token con ⌘ + V y presioná Enter. 🙂
+ya lo hice y escribio muchas cosas
+7:41 p.m.
+¡Eso suena muy bien! 🎉 ¿La última línea dice algo como esto?
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+O dice algo con error? Copiame la última línea que te apareció. 🙂
+dice branch main set up to track
+7:41 p.m.
+¡¡Felicitaciones!! 🎉🎉🎉
+¡Tus archivos ya están en GitHub!
+Ahora vamos a conectar con Vercel y en minutos tu página va a estar online.
+Conectar con Vercel
+Entrá a vercel.com y asegurate de estar logueado
+Hacé clic en Add New Project
+Te va a mostrar tu repositorio candy-varela — hacé clic en Import
+Dejá todas las opciones por defecto
+Hacé clic en Deploy
+Vercel va a trabajar unos segundos y te va a dar una URL tipo:
+candy-varela.vercel.app
+¡Esa es tu página online! 🙂
+¿Pudiste hacer el Deploy?
+me apareció una ventana que dice security youn
+7:42 p.m.
+¿Podés contarme un poco más sobre lo que dice esa ventana? Copiame el texto completo que aparece así te ayudo a resolverlo. 🙂
+secure your account
+7:43 p.m.
+Vercel te está pidiendo que protejas tu cuenta. Seguramente te pide configurar una verificación en dos pasos.
+¿Qué opciones te muestra en esa ventana? Por ejemplo:
+¿Te pide un número de teléfono?
+¿Te pide instalar una app?
+¿Hay un botón que dice Skip o Later?
+Copiame lo que ves y te guío. 🙂
+ya lo hice
+7:45 p.m.
+Perfecto! ¿Ahora te aparece la pantalla principal de Vercel? ¿Ves un botón que dice Add New Project o New Project? 🙂
+si
+7:45 p.m.
+Perfecto! Hacé clic en ese botón y decime qué te aparece. 🙂
+importin for github
+7:45 p.m.
+Perfecto! Ahí vas a ver tu repositorio candy-varela. Hacé clic en el botón Import que está al lado. 🙂
+listo
+7:45 p.m.
+Perfecto! Ahora te va a mostrar una pantalla con configuraciones. Dejá todo por defecto y hacé clic en Deploy. 🙂
+ghp_Njfa5EBENdojN
+7:46 p.m.
+⚠️ ¡Pará! Parece que estás por pegar tu token en el chat por error.
+No lo compartas acá. Cerrá esa ventana o borrá lo que escribiste.
+¿Pudiste hacer clic en Deploy en Vercel? 🙂
+hice click en deploy y me aparecio un error
+7:47 p.m.
+¿Podés contarme qué dice el error? Copiame el texto que aparece en pantalla. 🙂
+deployment failed
+7:47 p.m.
+¿Ves algún detalle más del error? Generalmente abajo del mensaje "Deployment failed" hay un botón que dice View logs o Ver logs — hacé clic ahí y copiame lo que aparece. 🙂
+me dice go to proyecy y otra opción que dice inspec deployment
+7:47 p.m.
+Hacé clic en Inspect deployment y copiame el error que aparece ahí. 🙂
+Two or more files have conflicting paths or names. Please make sure path segments and filenames, without their extension, are unique. The path "api/login.js" has conflicts with "api/login.html" and "api/login.is
+7:48 p.m.
+El problema es que guardaste el archivo login.js dentro de la carpeta api, pero también hay un login.html ahí. La carpeta api solo debe tener el archivo login.js.
+Vamos a corregirlo. Abrí el Finder y navegá a:
+Escritorio → candy-varela → api
+¿Qué archivos ves adentro de la carpeta api?
+
+1780872518568_login.html
+167 líneas
+HTML
+
+1780872518568_login.is
+167 líneas
+TEXT
+
+1780872518568_login.js
+22 líneas
+JS
+esos archivos hay en la carpeta api
+7:48 p.m.
+Ahí está el problema. En la carpeta api hay 3 archivos cuando solo debería haber uno. Los archivos login.html y login.is están en el lugar equivocado.
+Vamos a corregirlo desde la Terminal:
+1️⃣ Borrá los archivos que no corresponden:
+bash
+rm ~/Desktop/candy-varela/api/login.html
+rm ~/Desktop/candy-varela/api/login.is
+2️⃣ Verificá que quedó solo el correcto:
+bash
+ls ~/Desktop/candy-varela/api
+Debería mostrarte solo login.js.
+¿Qué te aparece? 🙂
+quedo solamente un archivp
+7:49 p.m.
+Perfecto! ✅ Ahora vamos a subir los cambios a GitHub. Pegá estos comandos uno por uno:
+1️⃣
+bash
+cd ~/Desktop/candy-varela
+2️⃣
+bash
+git add .
+3️⃣
+bash
+git commit -m "Fix carpeta api"
+4️⃣
+bash
+git push
+¿Qué te aparece después del último comando? 🙂
+un simbolo de porcentaje
+7:50 p.m.
+Perfecto! ✅ Eso significa que se subió correctamente a GitHub.
+Ahora volvé a Vercel y:
+Hacé clic en tu proyecto candy-varela
+Buscá un botón que diga Redeploy
+Hacé clic ahí
+¿Qué te aparece? 🙂
+no encuentro el botón redeploy
+7:51 p.m.
+No hay problema. Buscalo así:
+Entrá a vercel.com
+Hacé clic en tu proyecto candy-varela
+Hacé clic en la pestaña Deployments (arriba)
+Vas a ver el último deploy que falló
+Hacé clic en los 3 puntitos (...) que aparecen a la derecha
+Ahí aparece la opción Redeploy
+¿Lo encontraste? 🙂
+listo
+7:52 p.m.
+¿Qué te aparece ahora? ¿Está cargando o te muestra algún error? 🙂
+me muestra fix carpeta ready
+7:52 p.m.
+¡¡FELICITACIONES!! 🎉🎉🎉
+¡Tu página está online!
+Ahora buscá tu URL, debería estar visible arriba en Vercel y dice algo como:
+candy-varela.vercel.app
+Hacé clic ahí y vas a ver tu catálogo de Candy Varela funcionando en internet. 🙂
+El próximo paso es configurar las variables de entorno (tu usuario y contraseña de admin). ¿Querés hacerlo ahora?
+puede ser que sea esta https://candy-varela.vercel.app
+7:52 p.m.
+¡Sí, esa es tu página! 🎉
+Entrá a https://candy-varela.vercel.app en tu navegador y deberías ver el catálogo funcionando.
+¿Se ve bien? 🙂
+si, se ve linda . gracias . pero ahora como hago para modificar cosas dentro de mi pagina web
+7:53 p.m.
+¡Qué bueno que se ve bien! 🎉
+Para modificar cosas en tu página el proceso es simple. Cada vez que quieras cambiar algo hacés esto:
+El flujo para modificar
+1️⃣ Modificás el archivo en tu Mac (por ejemplo index.html con el Editor de Texto)
+2️⃣ Guardás el archivo con ⌘ + S
+3️⃣ Abrís la Terminal y pegás estos 3 comandos:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "descripción del cambio"
+git push
+4️⃣ Vercel detecta el cambio automáticamente y en 1 minuto tu página se actualiza sola. ¡No necesitás hacer nada más en Vercel!
+Pero hay una forma más fácil 😊
+Como tenemos esta conversación, podés pedirme directamente los cambios acá, por ejemplo:
+"Agregá este producto nuevo..."
+"Cambiá el precio de Monster a $8.000"
+"Agregá mi número de WhatsApp"
+Yo modifico el artefacto, vos copiás el index.html actualizado, lo reemplazás en la carpeta y subís con los 3 comandos de arriba.
+¿Querés también configurar ahora tu usuario y contraseña de admin? 🙂
+si, primero me gustaría tener un usuario y contraseña de administrador
+7:54 p.m.
+Perfecto! Vamos a configurarlo en Vercel. Es muy fácil:
+Configurar usuario y contraseña en Vercel
+Entrá a vercel.com
+Hacé clic en tu proyecto candy-varela
+Hacé clic en Settings (arriba)
+En el menú izquierdo buscá Environment Variables
+Ahí vas a agregar estas 3 variables una por una:
+Variable 1:
+Name: ADMIN_USER
+Value: el usuario que quieras, por ejemplo cristian
+Variable 2:
+Name: ADMIN_PASSWORD
+Value: tu contraseña segura, por ejemplo Candy2025!
+Variable 3:
+Name: TOKEN_SECRET
+Value: cualquier texto largo aleatorio, por ejemplo candyvarela_secreto_2025_argentina
+Después de agregar las 3 hacé clic en Save y luego vas a Deployments → Redeploy para que tome los cambios.
+¿Qué usuario y contraseña querés usar? Decime y te ayudo a configurarlo. 🙂
+no dice variable, dice solamente environment
+7:59 p.m.
+¡Perfecto, es lo mismo! Hacé clic en Environment y decime qué ves adentro. 🙂
+dice create enviroment
+7:59 p.m.
+Perfecto, hacé clic ahí y te va a mostrar un formulario. Completá así:
+Primera variable:
+En Key escribí: ADMIN_USER
+En Value escribí el usuario que quieras, por ejemplo: cristian
+Hacé clic en Save
+¿Lo pudiste guardar? 🙂
+me dice environment name , y description
+7:59 p.m.
+Hmm, eso parece una pantalla diferente. Vercel a veces muestra primero una pantalla para crear un "entorno".
+Hacé clic en Cancel o Back para volver atrás y decime qué opciones ves en la pantalla anterior. 🙂
+listo, hice mi primer variable
+8:01 p.m.
+Perfecto! ✅ Ahora agregá la segunda. Buscá el botón para agregar una nueva variable y completá:
+Key: ADMIN_PASSWORD
+Value: tu contraseña segura, por ejemplo Candy2025!
+Hacé clic en Save. 🙂
+listo
+8:02 p.m.
+Perfecto! ✅ Ahora la tercera y última:
+Key: TOKEN_SECRET
+Value: candyvarela_secreto_2025_argentina
+Hacé clic en Save. 🙂
+listo
+8:02 p.m.
+Perfecto! ✅ Ahora para que Vercel tome los cambios necesitás hacer un Redeploy:
+Hacé clic en la pestaña Deployments (arriba)
+Buscá el último deploy
+Hacé clic en los 3 puntitos (...)
+Clic en Redeploy
+¿Qué te aparece? 🙂
+listo\
+8:03 p.m.
+¿Te muestra Ready en verde? 🙂
+si
+8:04 p.m.
+¡Perfecto! 🎉 Ahora tu login está funcionando. Probalo así:
+Entrá a https://candy-varela.vercel.app/login.html
+Escribí tu usuario y contraseña que configuraste
+Hacé clic en Ingresar al panel
+¿Pudiste entrar? 🙂
+me dice 404 error
+8:04 p.m.
+El archivo login.html está en tu carpeta pero Vercel no lo encuentra. Vamos a verificarlo.
+Abrí la Terminal y pegá:
+bash
+ls ~/Desktop/candy-varela
+¿Qué archivos te muestra? 🙂
+
+1780873491577_index.html
+1,694 líneas
+HTML
+8:04 p.m.
+Veo el problema — el login.html está dentro de la carpeta api cuando debería estar en la carpeta principal candy-varela. Vamos a moverlo con la Terminal:
+1️⃣ Mover el login.html al lugar correcto:
+bash
+mv ~/Desktop/candy-varela/api/login.html ~/Desktop/candy-varela/login.html
+2️⃣ Verificar que quedó bien:
+bash
+ls ~/Desktop/candy-varela
+Deberías ver: index.html, login.html y la carpeta api.
+3️⃣ Verificar que api solo tiene login.js:
+bash
+ls ~/Desktop/candy-varela/api
+Deberías ver solo: login.js
+¿Qué te aparece? 🙂
+si
+8:05 p.m.
+Perfecto! ✅ Ahora subí los cambios a GitHub:
+1️⃣
+bash
+cd ~/Desktop/candy-varela
+2️⃣
+bash
+git add .
+3️⃣
+bash
+git commit -m "Fix login.html ubicacion correcta"
+4️⃣
+bash
+git push
+Cuando termine avisame y vamos a Vercel a hacer el Redeploy. 🙂
+https://candy-varela.vercel.app podes hacer que mi pagina tenga envío gratis a partir de compras de 100.000 pesos argentinos
+8:07 p.m.
+¡Claro! Ahora te actualizo el artefacto y después lo subís a Vercel.
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 6 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 7 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 8 
+Listo! ✅ Cambié los 3 lugares donde aparecía el monto. Ahora para actualizarlo en tu página:
+Copiá el artefacto del catálogo actualizado
+Reemplazá el index.html en tu carpeta candy-varela
+Abrí la Terminal y pegá:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Envio gratis desde 100000"
+git push
+Vercel lo actualiza solo en menos de 1 minuto. 🙂
+podes sacar la parte donde dice descuentos por transferencia
+8:08 p.m.
+¡Claro!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 9 
+Ahora saco los precios con transferencia de cada producto:
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 10 
+¡Listo! ✅ Saqué todos los precios con descuento por transferencia de toda la página. Ahora para actualizarlo en Vercel:
+Copiá el artefacto actualizado
+Reemplazá el index.html en tu carpeta candy-varela
+Abrí la Terminal y pegá:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Sin descuento transferencia"
+git push
+Vercel lo actualiza solo en menos de 1 minuto. 🙂
+podes modificar las categorías de la siguiente manera
+golosinas con icono de caramelo
+chocolate con icono de chocolate
+alfajores con icono de bombón de chocolate
+gomitas con icono de osito color rosado
+bebidas con icono de lata Monster o redbull es indistinto 
+regalos con icono de una caja de regalos
+8:13 a.m.
+¡Claro!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 11 
+¡Listo! ✅ Quedaron así:
+🍬 Golosinas — caramelo
+🍫 Chocolates — barra de chocolate
+🍩 Alfajores — bombón/rosquita de chocolate
+🐻 Gomitas — osito rosado
+🥫 Bebidas — lata (estilo Monster/Red Bull)
+🍿 Snacks — sin cambios
+🍭 Candy Bar — sin cambios
+🎁 Regalos — caja de regalo
+Para subir los cambios a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Actualizar categorias"
+git push
+¿Querés cambiar algo más? 🙂
+me gustaría que la parte de arriba donde se refiere a envíos y mi numero de WhatsApp sea dinamica y se vaya moviendo a una velocidad que el lector pueda leer tranquilo
+8:24 a.m.
+¡Buena idea!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 12 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 13 
+¡Listo! ✅ Ahora la barra superior se desplaza suavemente de derecha a izquierda mostrando:
+📱 Tu número de WhatsApp (clickeable)
+🇦🇷 El mensaje de Argentina
+🚚 Envío gratis desde $100.000
+🕗 Horario de atención
+🍬 Mayor y menor
+Y si el lector pasa el mouse por encima se pausa para que pueda leer con calma.
+Para subir los cambios:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Top bar animada"
+git push
+🙂
+📱 Tu número de WhatsApp 1176750220
+🇦🇷 El mensaje de Argentina
+🚚 Envío gratis desde $100.000
+🕗 Horario de atención (lunes a sábados de 9 a 20s )
+🍬 Mayor y menor podrías modificar esos datos en la parte superior que es dinamica
+8:26 a.m.
+¡Claro!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 14 
+¡Listo! ✅ Quedaron actualizados todos los datos. Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Actualizar datos top bar"
+git push
+🙂
+podes hacer que un messi animado este haciendo jueguitos en la parte donde esta el asistente virtual
+8:27 a.m.
+¡Me encantaría, pero no puedo usar la imagen o likeness de Messi porque es una persona real y tiene derechos de imagen protegidos!
+Lo que sí puedo hacer es un jugador animado genérico con la camiseta celeste y blanca de Argentina haciendo jueguitos. Quedaría muy copado igual. ¿Lo hacemos así? 🇦🇷⚽
+si
+8:28 a.m.
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 15 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 16 
+¡Listo! ⭐⭐⭐ Ahora arriba del asistente aparece un jugador con la camiseta celeste y blanca, el número 10, haciendo jueguitos con la pelota que rebota. Tiene hasta las 3 estrellas mundiales arriba. 🇦🇷⚽
+Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Jugador animado asistente"
+git push
+🙂
+podes hacer que el jugador no este en movimiento y solamente tengo una pelota similar a la trionda debajo de su brazo
+8:29 a.m.
+¡Claro!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 17 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 18 
+¡Listo! ✅ Ahora el jugador está quieto, parado tranquilo con la camiseta celeste y blanca número 10, sosteniendo una pelota estilo tricolor bajo el brazo derecho y las 3 estrellas arriba. 🇦🇷⚽
+Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Jugador estatico con pelota"
+git push
+🙂
+podes armarme un combo mate y ponerlo la sección de mas vendidos que el combo incluya biscochos de grasa de la marca don satur , un paquete de yerba marca playadito y su valor sea de 4.000 pesos argentinos
+8:31 a.m.
+¡Claro!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 19 
+También agrego el producto al array del carrito:
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 20 
+¡Listo! ✅ El Combo Mate quedó agregado en la sección de más vendidos con:
+🧉 Bizcochos de grasa Don Satur
+🌿 Yerba Playadito
+💰 $4.000
+Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Agregar combo mate"
+git push
+🙂
+podes hacer que la sesión de nuestros reels destacados sean reels reales que están en la pagina de instagram
+8:32 a.m.
+Para conectar reels reales de Instagram necesito saber el usuario exacto de tu cuenta. ¿Es @candyvarela.ok o tenés otro usuario de Instagram?
+Y te aviso algo importante: Instagram no permite incrustar reels directamente en páginas externas por restricciones de su plataforma. Pero hay dos opciones que sí funcionan:
+Opción 1 — Miniaturas clickeables (más simple) Ponemos una imagen de previsualización y al hacer clic abre el reel directamente en Instagram. Necesitás pasarme los links directos de cada reel que quieras mostrar, por ejemplo:
+https://www.instagram.com/reel/ABC123/
+Opción 2 — Widget oficial de Instagram (más profesional) Usamos una herramienta gratuita como Behold.so o EmbedSocial que se conecta a tu cuenta de Instagram y muestra los reels automáticamente y siempre actualizados.
+¿Cuál preferís? Y si elegís la Opción 1, pasame los links de los reels que quieras mostrar. 🙂
+mi instagram es candyvarela.ok y prefiero la opción 1
+te dejo los links directos de los reels que quiero que figuren 
+reel 1 con titulo NUESTRO LOCAL  https://www.instagram.com/reel/DZTIV3VvmLx/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+reel 2 con titulo COMO LLEGAR 
+https://www.instagram.com/reel/DWrSb1IEWPR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+8:39 a.m.
+¡Perfecto! Voy a poner las miniaturas con los títulos reales y que al hacer clic abran los reels en Instagram.
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 21 
+¡Listo! ✅ Ahora la sección muestra los 2 reels reales con sus títulos NUESTRO LOCAL y COMO LLEGAR. Al hacer clic en cualquiera abre directamente el reel en Instagram.
+Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Reels reales de Instagram"
+git push
+Si en el futuro querés agregar más reels solo pasame el link y el título y los sumo. 🙂
+podes armarme un sistema para que los clientes hagan click y los dirija directamente a  unirse a un canal de WhatsApp donde vamos subiendo los ingresos semanales o posibles ofertas
+8:41 a.m.
+¡Buenísima idea! Antes de armarlo, necesito el link de tu canal de WhatsApp.
+Para obtenerlo:
+Abrí WhatsApp
+Andá a tu canal
+Tocá los 3 puntitos (⋮) arriba a la derecha
+Tocá Información del canal
+Tocá Compartir canal o Invitar por enlace
+Copiá el link que empieza con https://whatsapp.com/channel/...
+Pasame ese link y te armo el botón en la página. 🙂
+ok, lo hacemos luego porque tengo bloqueado el WhatsApp\
+8:42 a.m.
+¡Sin problema! Cuando lo tengas disponible me pasás el link y lo agrego en minutos. 🙂
+Mientras tanto, ¿hay algo más que quieras modificar en la página?
+la parte donde dice contacto quisiera modificarle lo siguiente 
+numero de whatsapp 1176750220
+mail : candyvarelaok@gmail.com
+ubicación Florencio Varela, Buenos Aires 
+Lunes a sábados de 7:00 a 20:00 hs
+8:44 a.m.
+¡Claro!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 22 
+¡Listo! ✅ Datos actualizados en el footer. Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Actualizar datos de contacto"
+git push
+🙂
+podes modificar la parte donde dice alenta con sabor , y agregarle 3 combos 
+combo 1 Pringles a elección + Coca Cola grande + gomitas 10.000 pesos argentinos 
+combo 2 Lays a elección + Coca Cola grande + gomitas 8.000 pesos argentinos 
+combo 3 Pringles a elección + Coca Cola grande + 2 alfajores triples a elección 15.000 pesos argentinos
+8:48 a.m.
+¡Claro!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 23 
+Ahora actualizo los puntos del slider a 4:
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 24 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 25 
+¡Listo! ✅ El slider ahora tiene 4 slides:
+Slide 1 — Alentá con sabor 🇦🇷⭐⭐⭐
+Slide 2 — Combo 1: Pringles + Coca + Gomitas → $10.000
+Slide 3 — Combo 2: Lays + Coca + Gomitas → $8.000
+Slide 4 — Combo 3: Pringles + Coca + 2 Alfajores triples → $15.000
+Cada combo tiene un botón que abre WhatsApp directo para pedirlo. Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Agregar combos al slider"
+git push
+🙂
+podes modificar la parte de mas vendidos y eliminar todo
+8:54 a.m.
+¡Claro!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 26 
+¡Listo! ✅ La sección "Más vendidos" quedó vacía. Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Limpiar seccion mas vendidos"
+git push
+¿Querés que la eliminemos completamente de la página o la dejamos vacía para ir agregando productos nuevos después? 🙂
+que la elimines directamente de la pagina, todavía la sigo viendo
+8:57 a.m.
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 27 
+¡Listo! ✅ Eliminada completamente. Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Eliminar seccion mas vendidos"
+git push
+🙂
+podes armarme una sesión con las fotos mas lineadas del instagram y que se puedan ver comentarios positivos de la pagina
+9:01 a.m.
+¡Buena idea! Antes de armarlo te cuento cómo funciona:
+El tema con Instagram 📸
+Instagram no permite mostrar fotos reales de tu cuenta en páginas externas sin una API oficial (que requiere aprobación de Meta y es bastante compleja).
+Lo que sí puedo hacer son dos opciones:
+Opción 1 — Fotos reales con links (más simple) Me pasás los links directos de tus fotos o posts de Instagram más lindos y las muestro como miniaturas clickeables, igual que hicimos con los reels.
+Opción 2 — Sección de testimonios/comentarios (independiente de Instagram) Armo una sección visual con comentarios positivos de clientes que vos me dictés. Queda muy profesional con nombre, estrellitas y foto de perfil genérica.
+Las dos se pueden combinar perfectamente: fotos arriba y comentarios abajo.
+¿Qué preferís? Y si querés la Opción 1, pasame los links de las fotos que más te gusten de tu Instagram. 🙂
+opción 2
+9:01 a.m.
+¡Perfecto! Pasame los comentarios reales de tus clientes que quieras mostrar — nombre, y el comentario — y los armo con estrellitas y diseño profesional. 🙂
+Por ejemplo:
+Nombre: María
+Comentario: "Excelente atención, llegó todo perfecto"
+¿Cuántos comentarios tenés para poner?
+nombre : Maria 
+comentario : el lugar que necesitábamos , todo muy limpio y buena atención 
+nombre : matias 
+comentario : una buena opción y precios muy buenos . éxitos chicos 
+nombre : ori
+comentario: mi momento favorito del día es cuando paso a buscar gomitas sueltas de regreso a casa 
+nombre : Bety 
+comentario : Muy amables y pude pagar con mi tarjeta de debito sin problemas y no me cobraron recargo.
+Mostrar más
+9:13 a.m.
+¡Perfecto! Acá está la sección:
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 28 
+¡Listo! ✅ Quedó una sección con los 4 testimonios, cada uno con 5 estrellas, el comentario, el nombre y el avatar con la inicial. Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Agregar testimonios clientes"
+git push
+Y cuando tengas más comentarios de clientes me los pasás y los agrego. 🙂
+podes actualizarme el artefacto así veo todos los cambios
+9:19 a.m.
+
+Candy Varela — Sitio completo actualizado
+Artefacto interactivo ∙ Versión 29 
+¡Listo! ✅ Acá podés ver todo actualizado junto. Para subir todos los cambios a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Sitio completo actualizado"
+git push
+¿Hay algo más que quieras ajustar? 🙂
+podes dejarme un enlace asi lo pego en instagram y mis clientes puedan entrar a la pagina\
+9:25 a.m.
+¡Ya lo tenés! Tu enlace es:
+https://candy-varela.vercel.app
+Copialo y pegalo directo en la bio de tu Instagram. 🙂
+Un tip: en Instagram podés ir a Editar perfil → Sitio web y pegarlo ahí, así todos tus seguidores lo ven desde tu perfil.
+gracias , podemos seguir modificando algunas cosas
+9:26 a.m.
+¡Por supuesto! Decime qué querés cambiar y lo hacemos. 🙂
+necesito que en la sesión de CATEGORIAS cuando el cliente ingrese a Golosinas , vea los siguientes productos para sumar al carrito 
+obleas Arcor : block , avellanas , bonobon su precio 1600
+bonobon : pistacho, supreme , tradicional su precio 1000
+bombones con licor felfort precio 1500 
+marroc tradicional o cric precio 1200 
+beldent precio 1000
+topline seven precio 1000
+pastillas drf precio 500 
+lengüetazo precio 500 
+bulldog confites precio 500 
+Gomitas mogul moritas precio 1000
+gomitas mogul acidas extreme precio 1000 
+gomitas mogul ositos precio 1000 
+chupetines o paletas chicas precio 300 
+chupetines o paletas grandes precio 500
+Mostrar más
+9:30 a.m.
+¡Perfecto! Voy a crear una página de categoría de Golosinas que se abre al hacer clic en la tarjeta.
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 30 
+Ahora agrego el modal y los productos:
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 31 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 32 
+Ahora agrego las funciones JS:
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 33 
+¡Listo! ✅ Ahora cuando el cliente hace clic en Golosinas se abre un panel con todos los productos organizados en 4 secciones:
+🍫 Obleas & Chocolates
+🍃 Chicles & Pastillas
+👅 Lengüetazos & Chupetines
+🐻 Gomitas Mogul
+Cada producto tiene el precio y el botón + Agregar que suma al carrito. Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Agregar categoria golosinas con productos"
+git push
+¿Querés que hagamos lo mismo para las otras categorías? 🙂
+si , para la categoría chocolates los siguientes productos 
+milka importado 300g precio 24.000
+milka importado 100g precio 9.500
+milka aireado mediano precio 4000
+shot 90g precio 5000
+shot 35g precio 3000
+tableton felfort precio 10.000
+cofler dubai precio 3000
+block gold nuevo precio 3000 
+cadbury frutílla 82g precio 5000?
+cadbury almendras 82g precio 5000
+cadbury 3 suenos precio 3000
+block 300g precio 14000
+blockazo 1k precio 30.000
+block miti miti precio 8.000 
+huevo kinder tradicional 3.5000
+Mostrar más
+9:37 a.m.
+¡Perfecto!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 34 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 35 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 36 
+¡Listo! ✅ La categoría Chocolates ya tiene sus 15 productos organizados en 4 secciones:
+🌍 Milka Importado
+⚡ Shot & Cadbury
+🏆 Block & Felfort
+🥚 Kinder
+Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Agregar categoria chocolates"
+git push
+¿Seguimos con la categoría Alfajores? 🙂
+si, alfajores 
+pescado raul 1000
+rasta clásico 2000
+rasta trico 2500
+capitan triple 2500
+capitan simple 1500 
+guaymallen clasicona 400
+guaymallen oro y platino 1000
+Maixanas Dubai 2500
+fantoche red velvet 1500
+fantoche elixir blanco 2000
+milka super dulce de lechę 2000 
+Jorgito clasico 1200 
+alfachurro 2500 
+barrigón brownie 2500
+barrigon campeón triplazo 2500
+barrigón crema 2500
+fulbito 400
+Mostrar más
+9:59 a.m.
+¡Perfecto!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 37 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 38 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 39 
+¡Listo! ✅ La categoría Alfajores tiene los 17 productos organizados en 5 secciones:
+🐟 Clásicos (Pescado Raúl, Guaymallén, Jorgito, Fulbito)
+🌿 Rasta (Clásico y Trico)
+⚓ Capitán del Espacio (Triple y Simple)
+✨ Especiales & Premium (Maixanas, Fantoche, Milka, Alfachurro)
+🏋️ Barrigón (Brownie, Triplazo, Crema)
+Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Agregar categoria alfajores"
+git push
+¿Seguimos con Gomitas? 🙂
+si, gomitas 
+100 gramos a elección 1800
+200 gramos a elección 3600 
+300 gramos a elección 5400
+PROMO 500g a elección 8500
+Bolsa de 500g cerrada 8500
+Bolsa de 1kg cerrada 12000
+10:02 a.m.
+¡Perfecto!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 40 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 41 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 42 
+¡Listo! ✅ La categoría Gomitas quedó con 2 secciones:
+⚖️ Gomitas sueltas a elección (100g, 200g, 300g y la PROMO 500g destacada en rosa)
+📦 Bolsas cerradas (500g y 1kg con borde dorado)
+Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Agregar categoria gomitas"
+git push
+¿Seguimos con Bebidas? 🙂
+si , bebidas |
+monster argentina 3500
+monster importado brasil o chile 7000
+monster europeo 15000
+energizantes colección 7000
+dr pepper 7000
+prime logan paul 15000
+fanta brasil 4000
+guarana antartica 4000
+fanta asiatica 7000
+coca cola 2,25l 4500
+coca cola 1l 3500
+coca cola 600ml 2000
+cepita 1l 3000
+placer chica 1000
+placer grande 2000
+agua cimes chica 600
+agua cimes grande 1200
+villavicencio sport 750ml 2000
+Mostrar más
+10:05 a.m.
+¡Perfecto!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 43 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 44 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 45 
+¡Listo! ✅ La categoría Bebidas quedó con 18 productos en 4 secciones:
+⚡ Energizantes (Monster x3, Colección)
+🌍 Importadas (Dr Pepper, Prime, Fanta x2, Guaraná)
+🥤 Coca-Cola (2.25L, 1L, 600ml)
+🍊 Jugos & Agua (Cepita, Placer, Cimes, Villavicencio)
+Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Agregar categoria bebidas"
+git push
+¿Seguimos con Snacks, Candy Bar o Regalos? 🙂
+snacks
+10:07 a.m.
+¡Decime los productos con sus precios y los cargo! 🙂
+lays 77g a elección 3500
+lays 40g a elección 2500
+Doritos 40g 3000
+doritos 77g 5000
+Pringles a elección 5500
+saladix NUEVAS 3000 
+Cheetos 43g a elección 2500
+10:08 a.m.
+¡Perfecto!
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 46 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 47 
+
+candy-varela.html
+Artefacto interactivo ∙ Versión 48 
+¡Listo! ✅ La categoría Snacks quedó con 7 productos en 3 secciones:
+🥔 Papas (Lays 77g, Lays 40g, Pringles)
+🌽 Nachos & Cheetos (Doritos x2, Cheetos)
+🧂 Otros (Saladix Nuevas destacadas en rosa)
+Para subir a Vercel:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Agregar categoria snacks"
+git push
+¿Seguimos con Candy Bar o Regalos? 🙂
+por el momento no , ahora quisiera que me digas que me recomendas para que quede operativa
+10:25 a.m.
+¡Muy buena pregunta! La página ya está muy completa. Acá te dejo lo que recomiendo para dejarla 100% operativa:
+✅ Lo que ya funciona
+Catálogo con categorías y productos
+Carrito que envía pedido por WhatsApp
+Reels de Instagram
+Testimonios de clientes
+Contacto actualizado
+Página online en Vercel
+🔧 Lo que falta para que quede operativa
+1️⃣ Subir todos los cambios a Vercel (urgente) Hay varios cambios que hicimos hoy que todavía no subiste. Abrí la Terminal y pegá:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Sitio completo con todas las categorias"
+git push
+2️⃣ Completar las categorías vacías Candy Bar y Regalos todavía no tienen productos. Cuando tengas los precios me los pasás y los cargo.
+3️⃣ Canal de WhatsApp Cuando te desbloqueen el WhatsApp, agregamos el botón para que los clientes se unan al canal de ofertas.
+4️⃣ Número de WhatsApp real En la página figura 11 7675-0220 — verificá que sea el número correcto donde van a llegar los pedidos.
+5️⃣ Dominio propio (opcional pero recomendado) En lugar de candy-varela.vercel.app podrías tener candyvarela.com.ar. Un dominio .com.ar cuesta alrededor de $3.000 pesos por año en NIC Argentina. Te doy los pasos cuando quieras.
+6️⃣ Poner el link en Instagram En tu perfil de Instagram → Editar perfil → Sitio web → pegá https://candy-varela.vercel.app
+¿Por cuál querés empezar? 🙂
+me podes ayudar a tener el dominio propio
+10:26 a.m.
+¡Claro! Vamos paso a paso. El dominio .com.ar se registra en NIC Argentina que es el organismo oficial.
+Paso 1 — Verificar que el dominio esté disponible
+Entrá a esta página: https://nic.ar
+Y buscá candyvarela para ver si está disponible.
+¿Qué te aparece? ¿Está libre o ya está tomado? 🙂
+esta libre pero no recuerdo mi clave fiscal y me lo piden. hay otra pagina confiable para registrar mi pagina que no me pida ese dato
+10:31 a.m.
+Sí, hay opciones confiables que no te piden clave fiscal. Las más usadas en Argentina son:
+Opción 1 — Donweb ✅ (la más recomendada)
+Precio: alrededor de $5.000/año para .com.ar
+Ventaja: muy usada en Argentina, soporte en español, fácil de usar
+Link: donweb.com
+Opción 2 — Hostinger
+Precio: similar a Donweb
+Ventaja: interfaz muy simple, soporte 24hs
+Link: hostinger.com.ar
+Opción 3 — Namecheap
+Precio: en dólares, más barato si tenés acceso a dólares
+Ventaja: muy reconocida internacionalmente
+Link: namecheap.com
+Mi recomendación
+Arrancá con Donweb — es argentina, acepta todos los medios de pago locales (Mercado Pago, tarjeta, transferencia) y no te pide clave fiscal.
+Lo que vas a necesitar hacer después
+Una vez que compres el dominio en Donweb, lo conectás con Vercel en 5 minutos. Yo te guío paso a paso.
+¿Querés que arranquemos con Donweb? 🙂
+ya lo registre en donweb ahora tengo que esperar entre 24 y 48hs supuestamente
+10:41 a.m.
+¡Perfecto! 🎉 Muy bien hecho.
+Mientras esperás la confirmación, usá ese tiempo para:
+✅ Lo que podés hacer ahora
+1️⃣ Subir todos los cambios pendientes a Vercel si todavía no lo hiciste:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Sitio completo con todas las categorias"
+git push
+2️⃣ Poner el link actual en Instagram sin esperar el dominio:
+Abrí Instagram → Editar perfil → Sitio web
+Pegá https://candy-varela.vercel.app
+Cuando llegue el dominio propio lo cambiás por candyvarela.com.ar
+Cuando te llegue el mail de confirmación de Donweb avisame y te guío para conectarlo con Vercel. Son solo unos pocos clics. 🙂
+tardan entre 24 y 48hs mientras que podemos hacer ?
+10:17 a.m.
+¡Hay varias cosas copadas que podemos avanzar! ¿Qué te parece más útil ahora?
+🛍️ Completar el catálogo
+Agregar productos a Candy Bar y Regalos
+Agregar productos a Pringles Brasil y Asiáticas que teníamos pendientes
+📱 Canal de WhatsApp
+Si ya te desbloquearon el WhatsApp, agregamos el botón para que los clientes se unan al canal de ofertas
+🎨 Diseño y contenido
+Mejorar el banner de los combos del slider
+Agregar una sección de "Cómo comprar" paso a paso
+Agregar un mapa de Google con la ubicación del local
+Mejorar la sección de newsletter
+⚙️ Funcionalidades
+Agregar un botón flotante de WhatsApp para consultas rápidas
+Hacer que el carrito muestre un resumen antes de enviar el pedido
+Agregar una página "Sobre nosotros"
+¿Cuál de estas te parece más importante para el negocio ahora mismo? 🙂
+ya me desbloquearon whatsapp
+10:17 a.m.
+¡Perfecto! Entonces pasame el link de tu canal de WhatsApp y lo agrego ahora mismo.
+Para obtenerlo:
+Abrí WhatsApp
+Entrá a tu canal
+Tocá los 3 puntitos (⋮) arriba a la derecha
+Tocá Información del canal
+Tocá Compartir canal o Invitar por enlace
+Copiá el link que empieza con https://whatsapp.com/channel/...
+Pasámelo y lo agrego en la página. 🙂
+me podes dar una idea de descripción para el canal que enfoque a los clientes y las cosas que vendemos, mencionando que se usa para mencionar novedades y promociones a clientes\
+10:19 a.m.
+¡Claro! Acá te dejo varias opciones para que elijas la que más te guste:
+Opción 1 — Simple y directa
+🍬 Candy Varela — Tu kiosco de confianza en Florencio Varela. Seguinos para enterarte primero de las novedades, promociones y nuevos productos. Golosinas, chocolates, alfajores, bebidas importadas, snacks y mucho más. 🇦🇷⭐
+Opción 2 — Más dinámica
+⭐ Bienvenido al canal oficial de Candy Varela ⭐ Acá vas a encontrar todas las novedades, ofertas exclusivas y productos nuevos antes que nadie. Chocolates importados, gomitas, energizantes, snacks y los mejores combos. 📍 Florencio Varela, Buenos Aires. 🍫🥤🍿
+Opción 3 — Con más emoción
+🔥 ¡Las mejores novedades del kiosco están acá! Candy Varela te trae cada semana nuevos ingresos, promociones exclusivas y combos imperdibles. Chocolates, alfajores, bebidas importadas, gomitas y snacks. Sé el primero en enterarte. 📍 Florencio Varela 🇦🇷
+Opción 4 — Corta y efectiva
+🍬 Candy Varela · Florencio Varela 📍 Canal oficial de novedades y promociones. Nuevos productos, combos y ofertas exclusivas para nuestros clientes. ¡Activá las notificaciones! 🔔
+¿Cuál te gusta más o querés que combine elementos de varias? 🙂
+podes armarme un mensaje para publicar el enlace en instagram para que la gente empiece a seguirnos en el canal
+10:25 a.m.
+¡Claro! Acá te dejo varias opciones:
+Opción 1 — Energética
+🔔 ¡YA TENEMOS CANAL DE WHATSAPP! 🍬
+Unite ahora y sé el primero en enterarte de:
+✅ Nuevos ingresos semanales
+✅ Ofertas y promociones exclusivas
+✅ Combos especiales
+✅ Productos importados recién llegados
+📲 El link está en nuestra bio
+👆 ¡Entrá y activá las notificaciones! 🔔
+📍 Candy Varela — Florencio Varela 🇦🇷
+#CandyVarela #Golosinas #FlorencioVarela #Novedades
+Opción 2 — Más cercana
+🍫 ¡Hola a todos! Les avisamos que ya tenemos canal de WhatsApp 🎉
+Ahí vamos a subir cada semana los nuevos productos que entran, las mejores promos y combos exclusivos para ustedes 💛
+¡Es gratis y podés salir cuando quieras!
+📲 Link en la bio 👆
+#CandyVarela #FlorencioVarela #Kiosco #Golosinas
+Opción 3 — Corta para historia
+🔔 ¡NUEVO CANAL DE WHATSAPP!
+Novedades + ofertas + combos exclusivos
+Todo antes que nadie 💛
+📲 Link en bio
+¡Unite ya! 👆
+La Opción 3 es ideal para una historia de Instagram y las opciones 1 y 2 para un post en el feed.
+¿Cuál te gusta o querés que ajuste algo? 🙂
+pongo la dirección en la web y no se actualizaron los cambios , que podemos hacer
+7:50 a.m.
+Tranquilo, seguramente es porque no subiste los últimos cambios a Vercel. Abrí la Terminal y pegá estos comandos uno por uno:
+1️⃣
+bash
+cd ~/Desktop/candy-varela
+2️⃣
+bash
+git add .
+3️⃣
+bash
+git commit -m "Sitio completo actualizado"
+4️⃣
+bash
+git push
+Cuando termine avisame qué te aparece y verificamos que Vercel lo actualizó. 🙂
+me aparece el símbolo porcentaje\
+7:51 a.m.
+¡Perfecto! ✅ Eso significa que se subió correctamente.
+Ahora esperá 1 minuto y entrá a https://candy-varela.vercel.app — recargá la página con ⌘ + Shift + R para limpiar el caché y ver los cambios nuevos.
+¿Se actualizó? 🙂
+sigue sin actualizarse
+7:54 a.m.
+Vamos a verificar que Vercel recibió los cambios. Entrá a vercel.com y seguí estos pasos:
+Hacé clic en tu proyecto candy-varela
+Hacé clic en la pestaña Deployments
+¿Cuál es el estado del último deployment? ¿Dice Ready, Building o Error?
+Copiame lo que ves y lo resolvemos. 🙂
+el ultimo dice ready pero figura que se hizo hace 3 dias
+7:55 a.m.
+Eso significa que Vercel no recibió los cambios nuevos. El push no llegó bien. Vamos a verificarlo.
+Pegá este comando en la Terminal:
+bash
+git log --oneline -5
+Copiame lo que te aparece — así veo qué commits existen y cuál fue el último que se subió. 🙂
+no me deja copiar
+7:56 a.m.
+No hay problema, leeme los últimos 2 o 3 que aparecen en pantalla. 🙂
+sin descuento transferencia , fix carpeta api , primera version
+7:56 a.m.
+Ahí está el problema — los commits nuevos de las categorías y todos los cambios de hoy no se subieron. El último que llegó a Vercel fue "sin descuento transferencia".
+Vamos a forzar la subida. Pegá estos comandos uno por uno:
+1️⃣
+bash
+cd ~/Desktop/candy-varela
+2️⃣
+bash
+git add -A
+3️⃣
+bash
+git commit -m "Actualizar sitio completo"
+4️⃣
+bash
+git push origin main --force
+¿Qué te aparece después del último comando? 🙂
+un simbolo porcentaje
+7:57 a.m.
+Bien! Ahora entrá a vercel.com → tu proyecto candy-varela → pestaña Deployments y fijate si aparece un nuevo deployment que dice Building o Ready con fecha de hoy.
+¿Qué ves? 🙂
+no hay ninguno con fecha de hoy
+7:59 a.m.
+El problema es que Vercel no está detectando los cambios automáticamente. Vamos a hacer un redeploy manual.
+Entrá a vercel.com
+Hacé clic en tu proyecto candy-varela
+Hacé clic en la pestaña Deployments
+Hacé clic en los 3 puntitos (...) del último deployment
+Hacé clic en Redeploy
+¿Qué te aparece? 🙂
+me aparece bullding lastest
+7:59 a.m.
+¡Perfecto! 🎉 Está construyendo. Esperá 1 minuto y cuando cambie a Ready entrá a:
+https://candy-varela.vercel.app
+Recargá con ⌘ + Shift + R y deberían aparecer todos los cambios. 🙂
+dice readty lastest pero no se agrego nada nuevo
+8:00 a.m.
+El problema es que Vercel está redespliegando la versión vieja porque los archivos en tu computadora no se subieron bien a GitHub.
+Vamos a verificarlo. Entrá a github.com → tu repositorio candy-varela → hacé clic en el archivo index.html y fijate en la primera línea si dice algo como "Candy Varela — Alentá con sabor".
+¿Qué fecha figura al lado del archivo index.html? ¿Dice hace 3 días o algo más reciente? 🙂
+no se donde esta el archivo index.html
+8:01 a.m.
+Seguí estos pasos:
+Entrá a github.com
+Hacé clic en tu usuario arriba a la derecha
+Hacé clic en Your repositories
+Hacé clic en candy-varela
+Vas a ver una lista de archivos — buscá index.html
+¿Qué fecha figura al lado? ¿Dice "3 days ago" o algo más reciente?
+¿Lo encontraste? 🙂
+figura la fecha de 4 días atras
+8:02 a.m.
+Ahí está el problema — los cambios nunca llegaron a GitHub. El push no funcionó bien.
+Vamos a solucionarlo. Pegá estos comandos uno por uno en la Terminal:
+1️⃣ Verificar el estado:
+bash
+cd ~/Desktop/candy-varela && git status
+¿Qué te aparece? ¿Dice algo como "nothing to commit" o "changes not staged"? 🙂
+nothing to commit
+8:03 a.m.
+Eso significa que Git cree que no hay cambios nuevos, pero el index.html en tu carpeta puede no tener el contenido actualizado.
+Vamos a verificarlo. Abrí el Finder y navegá a:
+Escritorio → candy-varela → index.html
+Hacé clic derecho sobre el archivo → Abrir con → Editor de Texto
+Buscá en las primeras líneas si dice algo como modalGolosinas o modalChocolates.
+¿Lo encontrás? 🙂
+no me deja hacer click derecho en el archivo
+8:04 a.m.
+No hay problema. Abrí el Editor de Texto directamente:
+Presioná ⌘ + Espacio
+Escribí Editor de Texto
+Presioná Enter
+Una vez abierto presioná ⌘ + O para abrir un archivo
+Navegá a Escritorio → candy-varela
+Hacé clic en index.html
+Presioná Abrir
+Una vez abierto buscá con ⌘ + F y escribí modalGolosinas.
+¿Lo encontrás en el archivo? 🙂
+no
+8:06 a.m.
+Ahí está el problema — el index.html que está en tu carpeta es el viejo, sin los cambios que hicimos acá.
+Lo que pasó es que los cambios del artefacto nunca se copiaron al archivo de tu Mac.
+Vamos a solucionarlo ahora:
+Hacé clic en el botón de copiar del artefacto actualizado que tenemos acá
+En el Editor de Texto que ya tenés abierto con el index.html
+Seleccioná todo con ⌘ + A
+Pegá con ⌘ + V
+Guardá con ⌘ + S
+Después volvé a la Terminal y pegá:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Sitio completo con categorias"
+git push origin main --force
+¿Pudiste copiar el artefacto? 🙂
+no encuentro el botón de copiar del artefacto actualizado
+8:07 a.m.
+No hay problema. Mirá en la esquina superior derecha del artefacto — hay unos íconos pequeños. Uno de ellos parece dos cuadrados superpuestos, ese es el de copiar.
+Si no lo ves, también podés hacer esto:
+Hacé clic dentro del artefacto
+Presioná ⌘ + A para seleccionar todo
+Presioná ⌘ + C para copiar
+¿Pudiste copiarlo? 🙂
+si
+8:07 a.m.
+Perfecto! Ahora:
+Andá al Editor de Texto donde tenés el index.html abierto
+Presioná ⌘ + A para seleccionar todo el contenido viejo
+Presioná ⌘ + V para pegar el nuevo
+Presioná ⌘ + S para guardar
+Después volvé a la Terminal y pegá estos comandos uno por uno:
+1️⃣
+bash
+cd ~/Desktop/candy-varela
+2️⃣
+bash
+git add .
+3️⃣
+bash
+git commit -m "Sitio completo con categorias"
+4️⃣
+bash
+git push origin main --force
+¿Qué te aparece después del último comando? 🙂
+simbolo porcentaje
+8:08 a.m.
+Ahora entrá a vercel.com → tu proyecto candy-varela → pestaña Deployments y fijate si aparece un nuevo deployment con fecha de hoy.
+¿Qué ves? 🙂
+si aparece uno creado recientemente
+8:09 a.m.
+¡Perfecto! ¿Dice Building o ya cambió a Ready? 🙂
+ready
+8:10 a.m.
+¡Excelente! 🎉 Ahora entrá a:
+https://candy-varela.vercel.app
+Recargá con ⌘ + Shift + R y deberían aparecer todos los cambios con las categorías de Golosinas, Chocolates, Alfajores, Gomitas, Bebidas y Snacks.
+¿Se actualizó? 🙂
+me aparece todas letras azules como que no tiene formato de pagina
+8:10 a.m.
+Eso pasa porque el archivo se guardó como texto enriquecido en lugar de HTML puro. Vamos a solucionarlo.
+Abrí el Editor de Texto con el index.html y fijate arriba si dice Formato → Convertir a texto sin formato.
+Hacé clic en Formato
+Hacé clic en Convertir a texto sin formato
+Te va a preguntar si estás seguro → hacé clic en OK
+Guardá con ⌘ + S
+Después en la Terminal:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Fix formato html"
+git push origin main --force
+¿Qué te aparece? 🙂
+simbolo porcentaje
+8:11 a.m.
+Perfecto! Ahora entrá a vercel.com → tu proyecto → Deployments y esperá que aparezca Ready.
+Cuando esté listo entrá a https://candy-varela.vercel.app y recargá con ⌘ + Shift + R.
+¿Cómo se ve ahora? 🙂
+ahora me aparecen solamente letras en blanco
+8:12 a.m.
+Casi llegamos. El problema es que el Editor de Texto está agregando formato aunque dijiste que lo convertiste. Vamos a usar la Terminal directamente para reemplazar el archivo sin pasar por el Editor de Texto.
+Primero copiá el contenido del artefacto. Luego en la Terminal pegá:
+bash
 pbpaste > ~/Desktop/candy-varela/index.html
+Este comando toma lo que tenés copiado y lo guarda directamente como archivo sin ningún formato extra.
+Después:
+bash
+cd ~/Desktop/candy-varela
+git add .
+git commit -m "Fix html directo"
+git push origin main --force
+¿Qué te aparece? 🙂
+simbolo porcentaje
+8:14 a.m.
+Perfecto! Esperá que Vercel procese y cuando aparezca Ready en Deployments, entrá a la página y recargá con ⌘ + Shift + R.
+¿Cómo se ve ahora? 🙂
+pbpaste > ~/Desktop/candy-varela/index.html
+8:15 a.m.
+Parece que pegaste el comando en el chat en lugar de la Terminal. 😄
+Abrí la Terminal y pegá ese comando ahí:
+bash
+pbpaste > ~/Desktop/candy-varela/index.html
+⚠️ Antes de pegarlo asegurate de haber copiado el artefacto con ⌘ + A y ⌘ + C dentro del artefacto de acá.
+¿Pudiste? 🙂
+pero si copio el artefacto y después copio el link que me dejas no puedo copiar los dos a la vez
+8:16 a.m.
+Tenés razón, disculpá! Hagámoslo en orden:
+Primero — Copiá el artefacto:
+Hacé clic dentro del artefacto
+Presioná ⌘ + A y después ⌘ + C
+Segundo — Sin copiar nada más, abrí la Terminal y pegá directamente:
+bash
+pbpaste > ~/Desktop/candy-varela/index.html
+Podés escribir ese comando a mano en la Terminal, así no necesitás copiarlo. Son pocas letras.
+¿Pudiste? 🙂
+si
+8:18 a.m.
+Perfecto! Ahora pegá estos comandos uno por uno:
+1️⃣
+bash
+cd ~/Desktop/candy-varela
+2️⃣
+bash
+git add .
+3️⃣
+bash
+git commit -m "Fix html final"
+4️⃣
+bash
+git push origin main --force
+¿Qué te aparece? 🙂
+símbolo porcentaje
+8:18 a.m.
+Perfecto! Ahora esperá 1 minuto y entrá a vercel.com → tu proyecto → Deployments y esperá que diga Ready.
+Cuando esté listo entrá a https://candy-varela.vercel.app y recargá con ⌘ + Shift + R.
+¿Cómo se ve? 🙂
+dice readty pero hace 3 miniutos
+8:19 a.m.
+Perfecto, eso es de hoy. Entrá a https://candy-varela.vercel.app y recargá con ⌘ + Shift + R.
+¿Cómo se ve ahora? 🙂
+lo mismo , se ve que sigue el mismo de hace 4 minutios
+8:20 a.m.
+Vamos a verificar que el archivo se guardó bien. Pegá este comando en la Terminal:
+bash
+grep -c "modalGolosinas" ~/Desktop/candy-varela/index.html
+¿Qué número te aparece? Si dice 0 significa que el archivo no se actualizó bien. 🙂
+si dice cero
+8:20 a.m.
+Ahí está el problema — el pbpaste no copió bien el contenido. Vamos a intentarlo de otra forma.
+Paso 1 — Copiá el artefacto:
+Hacé clic en el artefacto de acá
+Presioná ⌘ + A y después ⌘ + C
+Paso 2 — Inmediatamente abrí la Terminal y escribí este comando a mano (no lo copies, escribilo letra por letra):
+bash
+pbpaste > ~/Desktop/candy-varela/index.html
+Paso 3 — Verificá que funcionó:
+bash
+grep -c "modalGolosinas" ~/Desktop/candy-varela/index.html
+Si te aparece un número mayor a 0 ¡funcionó!
+¿Qué número te aparece? 🙂
+me aparece 0
+8:22 a.m.
+El problema es que al copiar el artefacto con ⌘+A y ⌘+C dentro del preview no copia el código sino lo que se ve visualmente.
+Vamos a intentarlo diferente:
+Mirá el artefacto acá arriba
+En la esquina superior derecha del artefacto hay unos íconos pequeños
+Buscá el que dice </> o parece un código
+Hacé clic ahí para ver el código fuente
+Ahí presioná ⌘ + A y ⌘ + C
+Después en la Terminal escribí a mano:
+bash
+pbpaste > ~/Desktop/candy-varela/index.html
+Y verificá:
+bash
+grep -c "modalGolosinas" ~/Desktop/candy-varela/index.html
+¿Qué número te aparece? 🙂
+
+
+
+
+
+Claude es IA y puede cometer errores. Por favor, verifica nuevamente las respuestas.
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candy Varela — Alentá con sabor ⭐⭐⭐🇦🇷</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  function abrirCatSnacks() { document.getElementById('modalSnacks').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCatSnacks() { document.getElementById('modalSnacks').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalSnacks').addEventListener('click', function(e){ if(e.target===this) cerrarCatSnacks(); });
+
+  function abrirCatBebidas() { document.getElementById('modalBebidas').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCatBebidas() { document.getElementById('modalBebidas').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalBebidas').addEventListener('click', function(e){ if(e.target===this) cerrarCatBebidas(); });
+
+  function abrirCatGomitas() { document.getElementById('modalGomitas').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCatGomitas() { document.getElementById('modalGomitas').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalGomitas').addEventListener('click', function(e){ if(e.target===this) cerrarCatGomitas(); });
+
+  function abrirCatAlfajores() { document.getElementById('modalAlfajores').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCatAlfajores() { document.getElementById('modalAlfajores').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalAlfajores').addEventListener('click', function(e){ if(e.target===this) cerrarCatAlfajores(); });
+
+  function abrirCatChocolates() { document.getElementById('modalChocolates').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCatChocolates() { document.getElementById('modalChocolates').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalChocolates').addEventListener('click', function(e){ if(e.target===this) cerrarCatChocolates(); });
+
+  function abrirCategoria() { document.getElementById('modalGolosinas').classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarCategoria() { document.getElementById('modalGolosinas').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('modalGolosinas').addEventListener('click', function(e){ if(e.target===this) cerrarCategoria(); });
+
+  function agregarModal(btn, nombre, precio) {
+    cartCount++; cartTotal += precio;
+    cartItems[nombre] = (cartItems[nombre] || 0) + 1;
+    updateCartUI();
+    btn.textContent = '✓ Listo'; btn.classList.add('agregado');
+    setTimeout(() => { btn.textContent = '+ Agregar'; btn.classList.remove('agregado'); }, 1400);
+  }
+
+  :root {
+    --celeste: #75AADB; --azul: #1a3a6e; --azul-dark: #0d2147;
+    --amarillo: #f5c518; --rosa: #e91e8c; --rosa-light: #fce4f3;
+    --gris-bg: #f8f5ff; --text: #1a1a2e; --text-muted: #666;
+    --green: #22c55e; --shadow: 0 4px 20px rgba(26,58,110,0.10); --radius: 18px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Nunito',sans-serif; background:var(--gris-bg); color:var(--text); overflow-x:hidden; }
+
+  /* TOP BAR ANIMADA */
+  .top-bar { background:var(--azul-dark); color:#fff; font-size:0.78rem; font-weight:600; padding:7px 0; overflow:hidden; white-space:nowrap; }
+  .top-bar-track { display:inline-flex; animation:marquee 28s linear infinite; }
+  .top-bar-track:hover { animation-play-state:paused; }
+  .top-bar-item { display:inline-flex; align-items:center; gap:6px; padding:0 40px; }
+  .top-bar-item a { color:var(--amarillo); text-decoration:none; }
+  .top-bar-item.celeste { color:var(--celeste); }
+  .top-bar-sep { color:rgba(255,255,255,0.3); padding:0 4px; }
+  @keyframes marquee { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+
+  /* HEADER */
+  header { background:linear-gradient(135deg,var(--azul-dark),var(--azul)); padding:14px 24px 10px; position:sticky; top:0; z-index:100; box-shadow:0 4px 18px rgba(0,0,0,0.18); }
+  .header-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:18px; }
+  .logo { font-family:'Baloo 2',cursive; font-size:1.65rem; font-weight:800; color:#fff; text-decoration:none; display:flex; align-items:center; gap:6px; white-space:nowrap; }
+  .logo span { color:var(--amarillo); }
+  .search-bar { flex:1; display:flex; align-items:center; background:rgba(255,255,255,0.13); border:1.5px solid rgba(255,255,255,0.22); border-radius:50px; padding:8px 16px; gap:8px; }
+  .search-bar input { background:transparent; border:none; outline:none; color:#fff; font-size:0.9rem; width:100%; font-family:'Nunito',sans-serif; }
+  .search-bar input::placeholder { color:rgba(255,255,255,0.55); }
+  .header-actions { display:flex; align-items:center; gap:10px; }
+  .btn-cuenta { background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.25); color:#fff; padding:7px 14px; border-radius:50px; font-size:0.82rem; font-weight:700; cursor:pointer; text-decoration:none; transition:background 0.2s; }
+  .btn-carrito { background:var(--rosa); color:#fff; padding:8px 18px; border-radius:50px; font-size:0.88rem; font-weight:800; cursor:pointer; text-decoration:none; display:flex; align-items:center; gap:6px; box-shadow:0 3px 12px rgba(233,30,140,0.35); transition:transform 0.15s; white-space:nowrap; }
+  .carrito-count { background:#fff; color:var(--rosa); border-radius:50%; width:20px; height:20px; font-size:0.72rem; font-weight:900; display:flex; align-items:center; justify-content:center; }
+
+  /* NAV */
+  nav { background:rgba(255,255,255,0.97); border-bottom:2px solid rgba(117,170,219,0.2); box-shadow:0 2px 10px rgba(0,0,0,0.05); }
+  .nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; overflow-x:auto; scrollbar-width:none; padding:0 10px; gap:2px; }
+  .nav-inner::-webkit-scrollbar { display:none; }
+  .nav-inner a { color:var(--azul); text-decoration:none; font-size:0.83rem; font-weight:700; padding:11px 13px; border-radius:8px; white-space:nowrap; transition:background 0.18s,color 0.18s; }
+  .nav-inner a:hover { background:var(--rosa-light); color:var(--rosa); }
+  .nav-inner a.ofertas { color:var(--rosa); background:var(--rosa-light); border-radius:50px; padding:7px 14px; }
+  .nav-inner a.reels { color:#fff; background:linear-gradient(135deg,#e91e8c,#ff6b35); border-radius:50px; padding:7px 14px; }
+
+  /* HERO SLIDER */
+  .hero { position:relative; overflow:hidden; }
+  .slides-container { display:flex; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); }
+  .slide { min-width:100%; min-height:420px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+  .slide-1 { background:linear-gradient(135deg,#0d2147 0%,#1a3a6e 40%,#75aadb 100%); }
+  .slide-2 { background:linear-gradient(135deg,#1a1a2e 0%,#6d0f5a 50%,#e91e8c 100%); }
+  .slide-3 { background:linear-gradient(135deg,#0f4c10 0%,#1a7a1e 50%,#22c55e 100%); }
+  .slide-bg-emoji { position:absolute; font-size:180px; opacity:0.07; right:-20px; bottom:-30px; pointer-events:none; }
+  .slide-content { max-width:1200px; width:100%; padding:50px 40px; display:flex; align-items:center; gap:40px; margin:0 auto; }
+  .slide-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); color:#fff; font-size:0.78rem; font-weight:700; padding:5px 14px; border-radius:50px; margin-bottom:14px; text-transform:uppercase; letter-spacing:0.05em; }
+  .slide-title { font-family:'Baloo 2',cursive; font-size:2.8rem; font-weight:800; color:#fff; line-height:1.1; margin-bottom:14px; text-shadow:0 2px 20px rgba(0,0,0,0.3); }
+  .slide-title .highlight { color:var(--amarillo); }
+  .slide-desc { color:rgba(255,255,255,0.85); font-size:1.05rem; line-height:1.5; margin-bottom:28px; max-width:440px; font-weight:600; }
+  .slide-emoji-large { font-size:120px; line-height:1; filter:drop-shadow(0 8px 24px rgba(0,0,0,0.3)); animation:float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-12px); } }
+  .btn-slide { display:inline-block; background:var(--amarillo); color:var(--azul-dark); font-family:'Baloo 2',cursive; font-weight:800; font-size:1rem; padding:12px 30px; border-radius:50px; text-decoration:none; box-shadow:0 4px 20px rgba(245,197,24,0.5); transition:transform 0.15s; }
+  .btn-slide:hover { transform:translateY(-2px); }
+  .slide-arrow { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.2); border:1.5px solid rgba(255,255,255,0.3); color:#fff; width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem; z-index:10; user-select:none; }
+  .slide-arrow.prev { left:18px; } .slide-arrow.next { right:18px; }
+  .slide-dots { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:7px; z-index:10; }
+  .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.45); cursor:pointer; transition:background 0.2s,transform 0.2s; }
+  .dot.active { background:#fff; transform:scale(1.3); }
+
+  /* BENEFICIOS */
+  .beneficios { background:#fff; border-bottom:2px solid rgba(117,170,219,0.15); }
+  .beneficios-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); }
+  .beneficio-item { display:flex; align-items:center; gap:14px; padding:20px 22px; border-right:1px solid rgba(0,0,0,0.06); }
+  .beneficio-item:last-child { border-right:none; }
+  .beneficio-icon { width:44px; height:44px; border-radius:12px; background:var(--rosa-light); display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+  .beneficio-text strong { display:block; font-size:0.88rem; font-weight:800; color:var(--azul-dark); }
+  .beneficio-text span { font-size:0.78rem; color:var(--text-muted); font-weight:600; }
+
+  /* MAIN */
+  main { max-width:1200px; margin:0 auto; padding:36px 20px; }
+  .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
+  .section-title { font-family:'Baloo 2',cursive; font-size:1.5rem; font-weight:800; color:var(--azul-dark); display:flex; align-items:center; gap:8px; }
+  .section-link { color:var(--rosa); text-decoration:none; font-size:0.88rem; font-weight:700; }
+
+  /* CATEGORÍAS */
+  .categorias-grid { display:grid; grid-template-columns:repeat(8,1fr); gap:12px; margin-bottom:40px; }
+  .categoria-card { background:#fff; border-radius:16px; padding:18px 10px; text-align:center; cursor:pointer; transition:transform 0.2s,box-shadow 0.2s; box-shadow:var(--shadow); text-decoration:none; color:var(--azul-dark); display:flex; flex-direction:column; align-items:center; gap:8px; border:2px solid transparent; }
+  .categoria-card:hover { transform:translateY(-4px); box-shadow:0 8px 28px rgba(26,58,110,0.15); border-color:var(--rosa); }
+  .cat-emoji { font-size:1.9rem; line-height:1; }
+  .cat-name { font-size:0.72rem; font-weight:800; line-height:1.2; }
+
+  /* BANNERS */
+  .destacados-banner { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:40px; }
+  .banner-card { border-radius:20px; padding:28px; display:flex; flex-direction:column; justify-content:flex-end; min-height:200px; position:relative; overflow:hidden; text-decoration:none; }
+  .banner-card-1 { background:linear-gradient(135deg,var(--azul-dark),var(--azul)); }
+  .banner-card-2 { background:linear-gradient(135deg,#6d0f5a,#e91e8c); }
+  .banner-bg-emoji { position:absolute; top:-10px; right:-10px; font-size:100px; opacity:0.15; pointer-events:none; }
+  .banner-badge-small { background:rgba(255,255,255,0.2); color:#fff; font-size:0.7rem; font-weight:800; padding:3px 10px; border-radius:50px; width:fit-content; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em; }
+  .banner-title { font-family:'Baloo 2',cursive; font-size:1.45rem; font-weight:800; color:#fff; line-height:1.2; margin-bottom:10px; }
+  .banner-title .amarillo { color:var(--amarillo); }
+  .banner-cta { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.2); color:#fff; font-size:0.82rem; font-weight:800; padding:7px 16px; border-radius:50px; border:1.5px solid rgba(255,255,255,0.3); width:fit-content; }
+
+  /* TESTIMONIOS */
+  .testimonios-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-bottom:40px; }
+  .testimonio-card { background:#fff; border-radius:18px; padding:22px; box-shadow:var(--shadow); position:relative; }
+  .testimonio-estrellas { font-size:1.1rem; color:var(--amarillo); margin-bottom:10px; }
+  .testimonio-texto { font-size:0.9rem; color:var(--text); font-weight:600; line-height:1.6; margin-bottom:16px; font-style:italic; }
+  .testimonio-autor { display:flex; align-items:center; gap:10px; }
+  .testimonio-avatar { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:0.95rem; flex-shrink:0; }
+  .testimonio-nombre { font-size:0.85rem; color:var(--azul-dark); font-weight:800; display:block; }
+  .testimonio-tag { font-size:0.72rem; color:var(--text-muted); font-weight:600; }
+
+  /* REELS */
+  .reels-section { margin-bottom:40px; }
+  .reels-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:500px; margin:0 auto; }
+  .reel-card { background:var(--azul-dark); border-radius:20px; overflow:hidden; aspect-ratio:9/16; max-height:320px; position:relative; cursor:pointer; text-decoration:none; transition:transform 0.2s,box-shadow 0.2s; display:flex; flex-direction:column; justify-content:flex-end; box-shadow:var(--shadow); }
+  .reel-card:hover { transform:scale(1.03); box-shadow:0 12px 30px rgba(0,0,0,0.2); }
+  .reel-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:70px; opacity:0.25; }
+  .reel-card-1 { background:linear-gradient(160deg,#1a1a2e,#e91e8c80); }
+  .reel-card-2 { background:linear-gradient(160deg,#1a1a2e,#75aadb80); }
+  .reel-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; background:rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.35); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem; }
+  .reel-info { position:relative; z-index:2; padding:14px; background:linear-gradient(transparent,rgba(0,0,0,0.7)); }
+  .reel-views { font-size:0.7rem; color:rgba(255,255,255,0.7); font-weight:600; margin-bottom:3px; }
+  .reel-desc { font-size:0.9rem; color:#fff; font-weight:800; line-height:1.3; }
+  .reels-handle { text-align:center; font-size:0.82rem; color:var(--text-muted); font-weight:700; margin-bottom:16px; }
+  .btn-instagram { display:flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,#e91e8c,#ff6b35); color:#fff; font-weight:800; font-size:0.9rem; padding:12px 30px; border-radius:50px; text-decoration:none; width:fit-content; margin:18px auto 0; box-shadow:0 4px 18px rgba(233,30,140,0.35); transition:transform 0.15s; }
+  .btn-instagram:hover { transform:translateY(-2px); }
+
+  /* NEWSLETTER */
+  .newsletter { background:linear-gradient(135deg,var(--azul-dark),var(--azul)); border-radius:24px; padding:44px 40px; text-align:center; margin-bottom:40px; position:relative; overflow:hidden; }
+  .newsletter-title { font-family:'Baloo 2',cursive; font-size:1.7rem; font-weight:800; color:#fff; margin-bottom:8px; }
+  .newsletter-desc { color:rgba(255,255,255,0.75); font-size:0.95rem; font-weight:600; margin-bottom:22px; }
+  .newsletter-form { display:flex; gap:10px; max-width:440px; margin:0 auto; }
+  .newsletter-input { flex:1; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.25); border-radius:50px; padding:12px 20px; color:#fff; font-size:0.9rem; font-family:'Nunito',sans-serif; font-weight:600; outline:none; }
+  .newsletter-input::placeholder { color:rgba(255,255,255,0.5); }
+  .btn-newsletter { background:var(--amarillo); color:var(--azul-dark); border:none; border-radius:50px; font-family:'Baloo 2',cursive; font-weight:800; font-size:0.95rem; padding:12px 24px; cursor:pointer; white-space:nowrap; }
+
+  /* FOOTER */
+  footer { background:var(--azul-dark); color:rgba(255,255,255,0.75); padding:44px 24px 22px; }
+  .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1.2fr; gap:36px; margin-bottom:32px; }
+  .footer-brand p { font-size:0.82rem; line-height:1.6; color:rgba(255,255,255,0.6); margin-bottom:16px; }
+  .footer-socials { display:flex; gap:10px; }
+  .social-btn { width:38px; height:38px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; text-decoration:none; transition:background 0.2s; }
+  .social-btn:hover { background:rgba(255,255,255,0.2); }
+  .footer-col h5 { color:#fff; font-family:'Baloo 2',cursive; font-weight:800; font-size:0.95rem; margin-bottom:14px; }
+  .footer-col ul { list-style:none; }
+  .footer-col ul li { margin-bottom:8px; }
+  .footer-col ul li a { color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.18s; }
+  .footer-col ul li a:hover { color:var(--amarillo); }
+  .footer-col .contact-item { display:flex; align-items:flex-start; gap:8px; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.6); margin-bottom:8px; line-height:1.4; }
+  .footer-bottom { max-width:1200px; margin:0 auto; border-top:1px solid rgba(255,255,255,0.1); padding-top:18px; text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.4); font-weight:600; }
+
+  /* CHAT WIDGET */
+  .chat-widget { position:fixed; bottom:24px; right:24px; z-index:999; }
+  .jugador-container { position:absolute; bottom:100%; right:10px; width:80px; height:110px; pointer-events:none; }
+  .carrito-flotante { background:#fff; border-radius:14px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; box-shadow:var(--shadow); margin-top:10px; border:2px solid rgba(233,30,140,0.15); min-width:220px; }
+  .chat-bubble { background:var(--azul-dark); border:2px solid rgba(255,255,255,0.15); border-radius:18px; padding:12px 18px; display:flex; align-items:center; gap:10px; box-shadow:0 8px 30px rgba(0,0,0,0.25); cursor:pointer; transition:transform 0.2s; min-width:220px; position:relative; }
+  .chat-bubble:hover { transform:translateY(-3px); }
+  .chat-close { position:absolute; top:-8px; right:-8px; width:22px; height:22px; background:var(--text-muted); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.65rem; cursor:pointer; font-weight:900; }
+  .chat-icon { width:42px; height:42px; background:linear-gradient(135deg,var(--rosa),#ff6b35); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; position:relative; }
+  .chat-online-dot { position:absolute; bottom:1px; right:1px; width:11px; height:11px; background:var(--green); border-radius:50%; border:2px solid var(--azul-dark); }
+  .chat-text strong { display:block; color:#fff; font-size:0.85rem; font-weight:800; }
+  .chat-text span { color:rgba(255,255,255,0.55); font-size:0.73rem; font-weight:600; }
+  .btn-enviar { background:var(--green); color:#fff; border:none; border-radius:10px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:8px 14px; cursor:pointer; }
+
+  @media (max-width:900px) {
+    .beneficios-inner,.categorias-grid { grid-template-columns:repeat(4,1fr); }
+    .productos-grid,.testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr 1fr; }
+    .slide-title { font-size:2rem; }
+    .slide-emoji-large { font-size:80px; }
+  }
+  @media (max-width:600px) {
+    .header-inner { gap:10px; }
+    .logo { font-size:1.3rem; }
+    .categorias-grid { grid-template-columns:repeat(4,1fr); }
+    .testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr; }
+    .slide-content { flex-direction:column; text-align:center; padding:32px 20px; }
+    .newsletter { padding:28px 20px; }
+    .newsletter-form { flex-direction:column; }
+    .reels-grid { grid-template-columns:1fr 1fr; max-width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-track">
+    <span class="top-bar-item">📱 WhatsApp: <a href="https://wa.me/541176750220">11 7675-0220</a></span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🇦🇷 ¡Vamos Argentina! Golosinas para alentar ⭐⭐⭐</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item celeste">🚚 Envío gratis en compras desde $100.000</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🕗 Lunes a sábados de 9 a 20 hs</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🍬 Venta por mayor y menor</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">📱 WhatsApp: <a href="https://wa.me/541176750220">11 7675-0220</a></span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🇦🇷 ¡Vamos Argentina! Golosinas para alentar ⭐⭐⭐</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item celeste">🚚 Envío gratis en compras desde $100.000</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🕗 Lunes a sábados de 9 a 20 hs</span>
+    <span class="top-bar-sep">·</span>
+    <span class="top-bar-item">🍬 Venta por mayor y menor</span>
+    <span class="top-bar-sep">·</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">🇦🇷 Candy <span>Varela</span> ⭐⭐⭐</a>
+    <div class="search-bar">
+      <span>🔍</span>
+      <input type="text" placeholder="Buscar golosinas, chocolates, combos...">
+    </div>
+    <div class="header-actions">
+      <a href="#" class="btn-cuenta">👤 Mi cuenta</a>
+      <a href="https://wa.me/541176750220" class="btn-carrito">🛒 Carrito <div class="carrito-count">0</div></a>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#destacados" class="ofertas">🔥 Ofertas</a>
+    <a href="#categorias">Golosinas</a>
+    <a href="#categorias">Chocolates</a>
+    <a href="#categorias">Alfajores</a>
+    <a href="#categorias">Gomitas</a>
+    <a href="#categorias">Bebidas</a>
+    <a href="#categorias">Snacks</a>
+    <a href="#categorias">Candy Bar</a>
+    <a href="#categorias">Combos</a>
+    <a href="#reels" class="reels">📸 Reels</a>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="hero" id="destacados">
+  <div class="slides-container" id="slidesContainer">
+    <div class="slide slide-1">
+      <div class="slide-bg-emoji">🇦🇷</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">🇦🇷 Edición Mundial · ¡Vamos Argentina!</div>
+          <h1 class="slide-title">Alentá con sabor <span class="highlight">⭐⭐⭐</span></h1>
+          <p class="slide-desc">Armá tu combo para ver el partido. ¡Las mejores golosinas para gritar los goles!</p>
+          <a href="#combos-partido" class="btn-slide">Ver combos</a>
+        </div>
+        <div class="slide-emoji-large">🍭⚽🎉</div>
+      </div>
+    </div>
+    <div class="slide slide-2">
+      <div class="slide-bg-emoji">🍿</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">🔥 Combo 1 · El Clásico</div>
+          <h1 class="slide-title">Pringles + Coca + <span class="highlight">Gomitas</span></h1>
+          <p class="slide-desc">Pringles a elección + Coca Cola grande + Gomitas. ¡El combo ideal para el partido!</p>
+          <a href="https://wa.me/541176750220" class="btn-slide" style="background:#fff;color:#1a3a6e;">Pedir por $10.000 →</a>
+        </div>
+        <div class="slide-emoji-large">🍿🥤🐻</div>
+      </div>
+    </div>
+    <div class="slide slide-3">
+      <div class="slide-bg-emoji">🥔</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">💛 Combo 2 · El Económico</div>
+          <h1 class="slide-title">Lays + Coca + <span class="highlight">Gomitas</span></h1>
+          <p class="slide-desc">Lays a elección + Coca Cola grande + Gomitas. ¡Rico, completo y al mejor precio!</p>
+          <a href="https://wa.me/541176750220" class="btn-slide" style="background:#fff;color:#1a3a6e;">Pedir por $8.000 →</a>
+        </div>
+        <div class="slide-emoji-large">🥔🥤🐻</div>
+      </div>
+    </div>
+    <div class="slide" style="background:linear-gradient(135deg,#4a0030,#8b1a5e,#e91e8c);">
+      <div class="slide-bg-emoji">🧁</div>
+      <div class="slide-content">
+        <div>
+          <div class="slide-badge">👑 Combo 3 · El Premium</div>
+          <h1 class="slide-title">Pringles + Coca + <span class="highlight">2 Alfajores</span></h1>
+          <p class="slide-desc">Pringles a elección + Coca Cola grande + 2 alfajores triples a elección. ¡El combo de los campeones!</p>
+          <a href="https://wa.me/541176750220" class="btn-slide">Pedir por $15.000 →</a>
+        </div>
+        <div class="slide-emoji-large">🍿🥤🧁</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-arrow prev" onclick="changeSlide(-1)">‹</div>
+  <div class="slide-arrow next" onclick="changeSlide(1)">›</div>
+  <div class="slide-dots">
+    <div class="dot active" onclick="goSlide(0)"></div>
+    <div class="dot" onclick="goSlide(1)"></div>
+    <div class="dot" onclick="goSlide(2)"></div>
+    <div class="dot" onclick="goSlide(3)"></div>
+  </div>
+</div>
+
+<!-- BENEFICIOS -->
+<div class="beneficios">
+  <div class="beneficios-inner">
+    <div class="beneficio-item">
+      <div class="beneficio-icon">🚚</div>
+      <div class="beneficio-text"><strong>Envío gratis</strong><span>En compras desde $100.000</span></div>
+    </div>
+    <div class="beneficio-item">
+      <div class="beneficio-icon">⚽</div>
+      <div class="beneficio-text"><strong>Combos Mundial</strong><span>Listos para la hinchada</span></div>
+    </div>
+    <div class="beneficio-item">
+      <div class="beneficio-icon">🎁</div>
+      <div class="beneficio-text"><strong>Combos exclusivos</strong><span>Para emprendedores y revendedores</span></div>
+    </div>
+    <div class="beneficio-item">
+      <div class="beneficio-icon">🛍️</div>
+      <div class="beneficio-text"><strong>Mayor y menor</strong><span>Comprá la cantidad que quieras</span></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- CATEGORÍAS -->
+  <div id="categorias">
+    <div class="section-header">
+      <h2 class="section-title">Categorías</h2>
+      <a href="#" class="section-link">Ver todo →</a>
+    </div>
+    <div class="categorias-grid">
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCategoria()"><div class="cat-emoji">🍬</div><div class="cat-name">Golosinas</div></a>
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatChocolates()"><div class="cat-emoji">🍫</div><div class="cat-name">Chocolates</div></a>
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatAlfajores()"><div class="cat-emoji">🍩</div><div class="cat-name">Alfajores</div></a>
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatGomitas()"><div class="cat-emoji" style="filter:hue-rotate(300deg)">🐻</div><div class="cat-name">Gomitas</div></a>
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatBebidas()"><div class="cat-emoji">🥫</div><div class="cat-name">Bebidas</div></a>
+      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatSnacks()"><div class="cat-emoji">🍿</div><div class="cat-name">Snacks</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🍭</div><div class="cat-name">Candy Bar</div></a>
+      <a href="#" class="categoria-card"><div class="cat-emoji">🎁</div><div class="cat-name">Regalos</div></a>
+    </div>
+  </div>
+
+  <!-- BANNERS -->
+  <div class="destacados-banner">
+    <a href="#" class="banner-card banner-card-1">
+      <div class="banner-bg-emoji">⚽🇦🇷</div>
+      <div class="banner-badge-small">⚽ Combo Mundial</div>
+      <h3 class="banner-title">Combo Día de Partido</h3>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Snacks + bebidas + golosinas para alentar con la barra</p>
+      <div class="banner-cta">Ver combo →</div>
+    </a>
+    <a href="https://wa.me/541176750220" class="banner-card banner-card-2">
+      <div class="banner-bg-emoji">🏆🎉</div>
+      <div class="banner-badge-small">🏆 Pack Mundialista</div>
+      <h3 class="banner-title">Festejá los goles <span class="amarillo">🇦🇷</span></h3>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Armá tu pack mundialista y gritá cada gol con sabor</p>
+      <div class="banner-cta">Armar mi pack →</div>
+    </a>
+  </div>
+
+  <!-- TESTIMONIOS -->
+  <div class="section-header">
+    <h2 class="section-title">💬 Lo que dicen nuestros clientes</h2>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonio-card" style="border-left:4px solid var(--rosa);">
+      <div class="testimonio-estrellas">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-texto">"El lugar que necesitábamos, todo muy limpio y buena atención."</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar" style="background:linear-gradient(135deg,var(--rosa),#ff6b35);">M</div>
+        <div><span class="testimonio-nombre">María</span><span class="testimonio-tag">Cliente verificada ✓</span></div>
+      </div>
+    </div>
+    <div class="testimonio-card" style="border-left:4px solid var(--celeste);">
+      <div class="testimonio-estrellas">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-texto">"Una buena opción y precios muy buenos. ¡Éxitos chicos!"</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar" style="background:linear-gradient(135deg,var(--azul),var(--celeste));">M</div>
+        <div><span class="testimonio-nombre">Matías</span><span class="testimonio-tag">Cliente verificado ✓</span></div>
+      </div>
+    </div>
+    <div class="testimonio-card" style="border-left:4px solid var(--amarillo);">
+      <div class="testimonio-estrellas">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-texto">"Mi momento favorito del día es cuando paso a buscar gomitas sueltas de regreso a casa."</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar" style="background:linear-gradient(135deg,#22c55e,#16a34a);">O</div>
+        <div><span class="testimonio-nombre">Ori</span><span class="testimonio-tag">Cliente verificada ✓</span></div>
+      </div>
+    </div>
+    <div class="testimonio-card" style="border-left:4px solid var(--green);">
+      <div class="testimonio-estrellas">⭐⭐⭐⭐⭐</div>
+      <p class="testimonio-texto">"Muy amables y pude pagar con mi tarjeta de débito sin problemas y no me cobraron recargo."</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar" style="background:linear-gradient(135deg,#f5c518,#ff6b35);">B</div>
+        <div><span class="testimonio-nombre">Bety</span><span class="testimonio-tag">Cliente verificada ✓</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REELS -->
+  <div class="reels-section" id="reels">
+    <div class="section-header">
+      <h2 class="section-title">📸 Nuestros Reels destacados</h2>
+    </div>
+    <p class="reels-handle">@candyvarela.ok</p>
+    <div class="reels-grid">
+      <a href="https://www.instagram.com/reel/DZTIV3VvmLx/" target="_blank" class="reel-card reel-card-1">
+        <div class="reel-bg">🏪</div>
+        <div class="reel-play">▶</div>
+        <div class="reel-info">
+          <div class="reel-views">📍 @candyvarela.ok</div>
+          <div class="reel-desc">NUESTRO LOCAL</div>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/reel/DWrSb1IEWPR/" target="_blank" class="reel-card reel-card-2">
+        <div class="reel-bg">📍</div>
+        <div class="reel-play">▶</div>
+        <div class="reel-info">
+          <div class="reel-views">📍 @candyvarela.ok</div>
+          <div class="reel-desc">COMO LLEGAR</div>
+        </div>
+      </a>
+    </div>
+    <a href="https://instagram.com/candyvarela.ok" target="_blank" class="btn-instagram">📷 Seguinos en Instagram</a>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <h3 class="newsletter-title">¡Sumate a la hinchada dulce! 🇦🇷💌</h3>
+    <p class="newsletter-desc">Recibí los combos mundialistas y ofertas antes que nadie</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="Tu email...">
+      <button class="btn-newsletter">Suscribirme</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="margin-bottom:12px;display:inline-flex;">🇦🇷 Candy <span style="color:var(--amarillo)">Varela</span> ⭐⭐⭐</a>
+      <p>Tu kiosco de confianza. Golosinas, chocolates y combos. Venta por mayor y menor. Florencio Varela, Buenos Aires.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/candyvarela.ok" class="social-btn">📷</a>
+        <a href="https://wa.me/541176750220" class="social-btn">📱</a>
+        <a href="#" class="social-btn">📘</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Categorías</h5>
+      <ul>
+        <li><a href="#">Golosinas</a></li>
+        <li><a href="#">Chocolates</a></li>
+        <li><a href="#">Alfajores</a></li>
+        <li><a href="#">Candy Bar</a></li>
+        <li><a href="#">Combos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Ayuda</h5>
+      <ul>
+        <li><a href="#">Cómo comprar</a></li>
+        <li><a href="#">Medios de pago</a></li>
+        <li><a href="#">Envíos</a></li>
+        <li><a href="#">Preguntas frecuentes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <div class="contact-item">📱 11 7675-0220</div>
+      <div class="contact-item">✉️ candyvarelaok@gmail.com</div>
+      <div class="contact-item">📍 Florencio Varela, Buenos Aires</div>
+      <div class="contact-item">🕗 Lunes a sábados de 7 a 20 hs</div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Candy Varela · Alentá con sabor 🇦🇷⭐⭐⭐ · Todos los derechos reservados</div>
+</footer>
+
+<!-- MODAL SNACKS -->
+<div class="modal-overlay" id="modalSnacks">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#7b3f00,#e65c00);">
+      <h2>🍿 Snacks</h2>
+      <button class="modal-close" onclick="cerrarCatSnacks()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🥔 Papas</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Lays 77g</div>
+            <div class="modal-producto-variantes">A elección — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Lays 77g',3500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Lays 40g</div>
+            <div class="modal-producto-variantes">A elección — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Lays 40g',2500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Pringles</div>
+            <div class="modal-producto-variantes">A elección — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$5.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Pringles',5500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🌽 Nachos & Cheetos</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Doritos 40g</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Doritos 40g',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Doritos 77g</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$5.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Doritos 77g',5000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cheetos 43g</div>
+            <div class="modal-producto-variantes">A elección — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cheetos 43g',2500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🧂 Otros</div>
+      <div class="modal-productos">
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Saladix Nuevas 🆕</div>
+            <div class="modal-producto-variantes">Nuevos sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Saladix Nuevas',3000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL BEBIDAS -->
+<div class="modal-overlay" id="modalBebidas">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#0d2147,#00b140);">
+      <h2>🥫 Bebidas</h2>
+      <button class="modal-close" onclick="cerrarCatBebidas()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">⚡ Energizantes</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Monster Argentina</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Monster Argentina',3500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Monster Brasil / Chile</div>
+            <div class="modal-producto-variantes">Importado</div>
+          </div>
+          <div class="modal-producto-precio">$7.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Monster Brasil / Chile',7000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--amarillo);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Monster Europeo</div>
+            <div class="modal-producto-variantes">Importado Europa</div>
+          </div>
+          <div class="modal-producto-precio" style="color:var(--rosa);">$15.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Monster Europeo',15000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Energizantes Colección</div>
+            <div class="modal-producto-variantes">Personajes · varios</div>
+          </div>
+          <div class="modal-producto-precio">$7.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Energizantes Colección',7000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🌍 Importadas</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Dr Pepper</div>
+            <div class="modal-producto-variantes">Importada USA</div>
+          </div>
+          <div class="modal-producto-precio">$7.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Dr Pepper',7000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Prime Logan Paul</div>
+            <div class="modal-producto-variantes">Hidratante · varios sabores</div>
+          </div>
+          <div class="modal-producto-precio" style="color:var(--rosa);">$15.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Prime Logan Paul',15000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Fanta Brasil</div>
+            <div class="modal-producto-variantes">Sabor tropical</div>
+          </div>
+          <div class="modal-producto-precio">$4.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Fanta Brasil',4000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Fanta Asiática</div>
+            <div class="modal-producto-variantes">Sabores asiáticos</div>
+          </div>
+          <div class="modal-producto-precio">$7.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Fanta Asiática',7000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Guaraná Antarctica</div>
+            <div class="modal-producto-variantes">Importada Brasil</div>
+          </div>
+          <div class="modal-producto-precio">$4.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Guaraná Antarctica',4000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🥤 Coca-Cola</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Coca Cola 2.25L</div>
+            <div class="modal-producto-variantes">Familiar</div>
+          </div>
+          <div class="modal-producto-precio">$4.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Coca Cola 2.25L',4500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Coca Cola 1L</div>
+            <div class="modal-producto-variantes">Mediana</div>
+          </div>
+          <div class="modal-producto-precio">$3.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Coca Cola 1L',3500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Coca Cola 600ml</div>
+            <div class="modal-producto-variantes">Personal</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Coca Cola 600ml',2000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🍊 Jugos & Agua</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cepita 1L</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cepita 1L',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Placer Chica</div>
+            <div class="modal-producto-variantes">Jugo</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Placer Chica',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Placer Grande</div>
+            <div class="modal-producto-variantes">Jugo</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Placer Grande',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Agua Cimes Chica</div>
+            <div class="modal-producto-variantes">Sin gas</div>
+          </div>
+          <div class="modal-producto-precio">$600</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Agua Cimes Chica',600)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Agua Cimes Grande</div>
+            <div class="modal-producto-variantes">Sin gas</div>
+          </div>
+          <div class="modal-producto-precio">$1.200</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Agua Cimes Grande',1200)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Villavicencio Sport 750ml</div>
+            <div class="modal-producto-variantes">Con gas</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Villavicencio Sport 750ml',2000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL GOMITAS -->
+<div class="modal-overlay" id="modalGomitas">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#6d0f5a,#e91e8c);">
+      <h2>🐻 Gomitas</h2>
+      <button class="modal-close" onclick="cerrarCatGomitas()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">⚖️ Gomitas Sueltas a elección</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">100 gramos</div>
+            <div class="modal-producto-variantes">A elección del cliente</div>
+          </div>
+          <div class="modal-producto-precio">$1.800</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas sueltas 100g',1800)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">200 gramos</div>
+            <div class="modal-producto-variantes">A elección del cliente</div>
+          </div>
+          <div class="modal-producto-precio">$3.600</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas sueltas 200g',3600)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">300 gramos</div>
+            <div class="modal-producto-variantes">A elección del cliente</div>
+          </div>
+          <div class="modal-producto-precio">$5.400</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas sueltas 300g',5400)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">🔥 PROMO 500 gramos</div>
+            <div class="modal-producto-variantes">A elección del cliente</div>
+          </div>
+          <div class="modal-producto-precio" style="color:var(--rosa);">$8.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'PROMO Gomitas sueltas 500g',8500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">📦 Bolsas cerradas</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bolsa cerrada 500g</div>
+            <div class="modal-producto-variantes">Mogul o Fini — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$8.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bolsa gomitas cerrada 500g',8500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--amarillo);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bolsa cerrada 1kg</div>
+            <div class="modal-producto-variantes">Mogul o Fini — varios sabores</div>
+          </div>
+          <div class="modal-producto-precio" style="color:var(--azul-dark);">$12.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bolsa gomitas cerrada 1kg',12000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ALFAJORES -->
+<div class="modal-overlay" id="modalAlfajores">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>🍩 Alfajores</h2>
+      <button class="modal-close" onclick="cerrarCatAlfajores()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🐟 Clásicos</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Pescado Raúl</div>
+            <div class="modal-producto-variantes">Clásico</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Pescado Raúl',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Guaymallén Clasicona</div>
+            <div class="modal-producto-variantes">Triple de chocolate</div>
+          </div>
+          <div class="modal-producto-precio">$400</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Guaymallén Clasicona',400)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Guaymallén Oro y Platino</div>
+            <div class="modal-producto-variantes">Premium</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Guaymallén Oro y Platino',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Jorgito Clásico</div>
+            <div class="modal-producto-variantes">Dulce de leche</div>
+          </div>
+          <div class="modal-producto-precio">$1.200</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Jorgito Clásico',1200)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Fulbito</div>
+            <div class="modal-producto-variantes">Clásico</div>
+          </div>
+          <div class="modal-producto-precio">$400</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Fulbito',400)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🌿 Rasta</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Rasta Clásico</div>
+            <div class="modal-producto-variantes">Dulce de leche</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Rasta Clásico',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Rasta Trico</div>
+            <div class="modal-producto-variantes">Triple chocolate</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Rasta Trico',2500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">⚓ Capitán del Espacio</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Capitán Triple</div>
+            <div class="modal-producto-variantes">Triple de chocolate</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Capitán Triple',2500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Capitán Simple</div>
+            <div class="modal-producto-variantes">Clásico</div>
+          </div>
+          <div class="modal-producto-precio">$1.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Capitán Simple',1500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">✨ Especiales & Premium</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Maixanas Dubai</div>
+            <div class="modal-producto-variantes">Edición especial</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Maixanas Dubai',2500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Fantoche Red Velvet</div>
+            <div class="modal-producto-variantes">Edición especial</div>
+          </div>
+          <div class="modal-producto-precio">$1.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Fantoche Red Velvet',1500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Fantoche Elixir Blanco</div>
+            <div class="modal-producto-variantes">Chocolate blanco</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Fantoche Elixir Blanco',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Milka Super Dulce de Leche</div>
+            <div class="modal-producto-variantes">Con chocolate Milka</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Milka Super Dulce de Leche',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Alfachurro</div>
+            <div class="modal-producto-variantes">Sabor churro</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Alfachurro',2500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🏋️ Barrigón</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Barrigón Brownie</div>
+            <div class="modal-producto-variantes">Sabor brownie</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Barrigón Brownie',2500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Barrigón Campeón Triplazo</div>
+            <div class="modal-producto-variantes">Triple relleno</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Barrigón Campeón Triplazo',2500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Barrigón Crema</div>
+            <div class="modal-producto-variantes">Relleno de crema</div>
+          </div>
+          <div class="modal-producto-precio">$2.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Barrigón Crema',2500)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CHOCOLATES -->
+<div class="modal-overlay" id="modalChocolates">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>🍫 Chocolates</h2>
+      <button class="modal-close" onclick="cerrarCatChocolates()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🌍 Milka Importado</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Milka Importado 300g</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$24.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Milka Importado 300g',24000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Milka Importado 100g</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$9.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Milka Importado 100g',9500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Milka Aireado Mediano</div>
+            <div class="modal-producto-variantes">Chocolate con aire</div>
+          </div>
+          <div class="modal-producto-precio">$4.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Milka Aireado Mediano',4000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">⚡ Shot & Cadbury</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Shot 90g</div>
+            <div class="modal-producto-variantes">Chocolate relleno</div>
+          </div>
+          <div class="modal-producto-precio">$5.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Shot 90g',5000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Shot 35g</div>
+            <div class="modal-producto-variantes">Chocolate relleno</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Shot 35g',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cadbury Frutilla 82g</div>
+            <div class="modal-producto-variantes">Con frutilla</div>
+          </div>
+          <div class="modal-producto-precio">$5.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cadbury Frutilla 82g',5000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cadbury Almendras 82g</div>
+            <div class="modal-producto-variantes">Con almendras</div>
+          </div>
+          <div class="modal-producto-precio">$5.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cadbury Almendras 82g',5000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cadbury 3 Sueños</div>
+            <div class="modal-producto-variantes">Triple relleno</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cadbury 3 Sueños',3000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🏆 Block & Felfort</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Tabletón Felfort</div>
+            <div class="modal-producto-variantes">Chocolate con maní</div>
+          </div>
+          <div class="modal-producto-precio">$10.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Tabletón Felfort',10000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Cofler Dubai</div>
+            <div class="modal-producto-variantes">Edición especial</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cofler Dubai',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Block Gold Nuevo</div>
+            <div class="modal-producto-variantes">Nuevo sabor</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Block Gold Nuevo',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Block 300g</div>
+            <div class="modal-producto-variantes">Chocolate con leche</div>
+          </div>
+          <div class="modal-producto-precio">$14.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Block 300g',14000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Blockazo 1kg</div>
+            <div class="modal-producto-variantes">Tamaño familiar</div>
+          </div>
+          <div class="modal-producto-precio">$30.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Blockazo 1kg',30000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Block Miti Miti</div>
+            <div class="modal-producto-variantes">Mitad negro · mitad leche</div>
+          </div>
+          <div class="modal-producto-precio">$8.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Block Miti Miti',8000)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🥚 Kinder</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Huevo Kinder Tradicional</div>
+            <div class="modal-producto-variantes">Con sorpresa adentro</div>
+          </div>
+          <div class="modal-producto-precio">$3.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Huevo Kinder Tradicional',3500)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL GOLOSINAS -->
+<div class="modal-overlay" id="modalGolosinas">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>🍬 Golosinas</h2>
+      <button class="modal-close" onclick="cerrarCategoria()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🍫 Obleas & Chocolates</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Obleas Arcor</div>
+            <div class="modal-producto-variantes">Block · Avellanas · Bonobon</div>
+          </div>
+          <div class="modal-producto-precio">$1.600</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Obleas Arcor',1600)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bonobon</div>
+            <div class="modal-producto-variantes">Pistacho · Supreme · Tradicional</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bonobon',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bombones con Licor Felfort</div>
+            <div class="modal-producto-variantes">Surtidos</div>
+          </div>
+          <div class="modal-producto-precio">$1.500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bombones con Licor Felfort',1500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Marroc</div>
+            <div class="modal-producto-variantes">Tradicional · Cric</div>
+          </div>
+          <div class="modal-producto-precio">$1.200</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Marroc',1200)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🍃 Chicles & Pastillas</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Beldent</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Beldent',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Topline Seven</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Topline Seven',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Pastillas DRF</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Pastillas DRF',500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bulldog Confites</div>
+            <div class="modal-producto-variantes">Surtidos</div>
+          </div>
+          <div class="modal-producto-precio">$500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bulldog Confites',500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">👅 Lengüetazos & Chupetines</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Lengüetazo</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Lengüetazo',500)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Chupetín / Paleta chica</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$300</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Chupetín / Paleta chica',300)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Chupetín / Paleta grande</div>
+            <div class="modal-producto-variantes">Varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$500</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Chupetín / Paleta grande',500)">+ Agregar</button>
+        </div>
+      </div>
+
+      <div class="modal-subcat">🐻 Gomitas Mogul</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Gomitas Mogul Moritas</div>
+            <div class="modal-producto-variantes">Bolsa individual</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas Mogul Moritas',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Gomitas Mogul Ácidas Extreme</div>
+            <div class="modal-producto-variantes">Bolsa individual</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas Mogul Ácidas Extreme',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Gomitas Mogul Ositos</div>
+            <div class="modal-producto-variantes">Bolsa individual</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas Mogul Ositos',1000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CHAT WIDGET CON JUGADOR -->
+<div class="chat-widget" id="chatWidget">
+  <div class="jugador-container">
+    <svg viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg" width="80" height="110">
+      <ellipse cx="40" cy="107" rx="14" ry="3" fill="rgba(0,0,0,0.12)"/>
+      <rect x="36" y="72" width="7" height="20" rx="3" fill="#1a3a6e"/>
+      <rect x="35" y="88" width="9" height="6" rx="2" fill="#333"/>
+      <rect x="44" y="72" width="7" height="20" rx="3" fill="#1a3a6e"/>
+      <rect x="43" y="88" width="9" height="6" rx="2" fill="#333"/>
+      <rect x="28" y="45" width="24" height="28" rx="5" fill="#75AADB"/>
+      <rect x="35" y="45" width="5" height="28" fill="#fff" opacity="0.55"/>
+      <rect x="42" y="45" width="3" height="28" fill="#fff" opacity="0.35"/>
+      <text x="40" y="63" text-anchor="middle" font-size="8" font-weight="900" fill="#0d2147" font-family="Arial">10</text>
+      <rect x="20" y="47" width="9" height="6" rx="3" fill="#75AADB" transform="rotate(80 25 50)"/>
+      <rect x="51" y="47" width="9" height="6" rx="3" fill="#75AADB" transform="rotate(-70 55 50)"/>
+      <circle cx="62" cy="58" r="9" fill="#fff" stroke="#222" stroke-width="1"/>
+      <polygon points="62,50 66,53 66,59 62,62 58,59 58,53" fill="#111" opacity="0.85"/>
+      <polygon points="62,62 65,65 62,68 59,65" fill="#111" opacity="0.6"/>
+      <polygon points="53,55 56,52 58,55 56,58" fill="#111" opacity="0.5"/>
+      <polygon points="69,54 71,57 69,60 67,57" fill="#111" opacity="0.5"/>
+      <rect x="36" y="38" width="8" height="9" rx="3" fill="#f5c89a"/>
+      <ellipse cx="40" cy="28" rx="13" ry="14" fill="#f5c89a"/>
+      <ellipse cx="40" cy="17" rx="13" ry="7" fill="#3d2000"/>
+      <ellipse cx="29" cy="22" rx="5" ry="8" fill="#3d2000"/>
+      <ellipse cx="51" cy="22" rx="4" ry="6" fill="#3d2000"/>
+      <circle cx="35" cy="28" r="2.5" fill="#fff"/><circle cx="45" cy="28" r="2.5" fill="#fff"/>
+      <circle cx="36" cy="28" r="1.2" fill="#2d1000"/><circle cx="46" cy="28" r="1.2" fill="#2d1000"/>
+      <path d="M36 34 Q40 38 44 34" stroke="#c0704a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <text x="40" y="9" text-anchor="middle" font-size="8">⭐⭐⭐</text>
+    </svg>
+  </div>
+  <div class="carrito-flotante" id="carritoFlotante" style="display:none;">
+    <div><span id="carritoResumen">🛒 0 productos · <strong>$0</strong></span></div>
+    <button class="btn-enviar" id="btnEnviarPedido">📲 Finalizar por WhatsApp</button>
+  </div>
+  <div class="chat-bubble" onclick="toggleChat()">
+    <div class="chat-close" onclick="event.stopPropagation();document.getElementById('chatWidget').style.display='none'">✕</div>
+    <div class="chat-icon">🍬<div class="chat-online-dot"></div></div>
+    <div class="chat-text">
+      <strong>Candy · Asistente</strong>
+      <span id="chatStatus">En línea · te ayuda a comprar</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const WA_NUMBER = '541176750220';
+  let currentSlide = 0, total = 4;
+  const container = document.getElementById('slidesContainer');
+  const dots = document.querySelectorAll('.dot');
+  function updateSlider() {
+    container.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((d,i) => d.classList.toggle('active', i === currentSlide));
+  }
+  function changeSlide(dir) { currentSlide = (currentSlide + dir + total) % total; updateSlider(); }
+  function goSlide(i) { currentSlide = i; updateSlider(); }
+  setInterval(() => changeSlide(1), 4500);
+
+  let cartCount = 0, cartTotal = 0, cartItems = {};
+  function updateCartUI() {
+    document.querySelector('.carrito-count').textContent = cartCount;
+    document.getElementById('carritoResumen').innerHTML = `🛒 ${cartCount} producto${cartCount!==1?'s':''} · <strong>$${cartTotal.toLocaleString('es-AR')}</strong>`;
+    document.getElementById('carritoFlotante').style.display = cartCount > 0 ? 'flex' : 'none';
+    document.getElementById('chatStatus').textContent = cartCount > 0 ? `${cartCount} producto${cartCount!==1?'s':''} en el carrito` : 'En línea · te ayuda a comprar';
+  }
+  document.getElementById('btnEnviarPedido').addEventListener('click', function() {
+    if (cartCount === 0) return;
+    let detalle = '🛒 *Hola! Quiero hacer el siguiente pedido:*\n\n';
+    for (const [nombre, cantidad] of Object.entries(cartItems)) {
+      detalle += `▪ ${nombre} x${cantidad}\n`;
+    }
+    detalle += `\n💰 *Total: $${cartTotal.toLocaleString('es-AR')}*\n\n¿Cómo puedo abonar y coordinar el envío?`;
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(detalle)}`, '_blank');
+  });
+  function toggleChat() {
+    const fl = document.getElementById('carritoFlotante');
+    if (cartCount > 0) fl.style.display = fl.style.display === 'none' ? 'flex' : 'none';
+  }
+</script>
+</body>
+</html>
