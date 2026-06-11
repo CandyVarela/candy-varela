@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,10 +8,6 @@
 <title>Candy Varela — Alentá con sabor ⭐⭐⭐🇦🇷</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  function abrirCatSnacks() { document.getElementById('modalSnacks').classList.add('open'); document.body.style.overflow='hidden'; }
-  function cerrarCatSnacks() { document.getElementById('modalSnacks').classList.remove('open'); document.body.style.overflow=''; }
-  document.getElementById('modalSnacks').addEventListener('click', function(e){ if(e.target===this) cerrarCatSnacks(); });
-
   function abrirCatBebidas() { document.getElementById('modalBebidas').classList.add('open'); document.body.style.overflow='hidden'; }
   function cerrarCatBebidas() { document.getElementById('modalBebidas').classList.remove('open'); document.body.style.overflow=''; }
   document.getElementById('modalBebidas').addEventListener('click', function(e){ if(e.target===this) cerrarCatBebidas(); });
