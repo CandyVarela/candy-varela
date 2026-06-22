@@ -183,6 +183,24 @@
   .chat-text span { color:rgba(255,255,255,0.55); font-size:0.73rem; font-weight:600; }
   .btn-enviar { background:var(--green); color:#fff; border:none; border-radius:10px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:8px 14px; cursor:pointer; }
 
+  /* GALERÍA NEÓN MONSTER */
+  .neon-section { background:#0a0a14; padding:46px 24px; text-align:center; overflow:hidden; }
+  .neon-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#fff; margin-bottom:6px; text-shadow:0 0 8px #39ff14,0 0 18px #39ff14,0 0 32px rgba(57,255,20,0.6); letter-spacing:0.02em; }
+  .neon-title .verde { color:#39ff14; }
+  .neon-sub { color:rgba(255,255,255,0.55); font-size:0.9rem; font-weight:600; margin-bottom:30px; }
+  .neon-gallery { display:grid; grid-template-columns:repeat(5,1fr); gap:18px; max-width:1100px; margin:0 auto; }
+  .neon-frame { position:relative; border-radius:14px; overflow:hidden; aspect-ratio:3/4; border:2px solid #39ff14; box-shadow:0 0 6px #39ff14,0 0 16px rgba(57,255,20,0.6),inset 0 0 10px rgba(57,255,20,0.3); transition:transform 0.25s,box-shadow 0.25s; }
+  .neon-frame:hover { transform:translateY(-6px) scale(1.03); box-shadow:0 0 12px #39ff14,0 0 28px rgba(57,255,20,0.9),inset 0 0 14px rgba(57,255,20,0.4); }
+  .neon-frame img { width:100%; height:100%; object-fit:cover; display:block; }
+  .neon-badge { position:absolute; top:8px; left:8px; background:rgba(10,10,20,0.75); border:1px solid #39ff14; color:#39ff14; font-size:0.62rem; font-weight:800; padding:3px 8px; border-radius:50px; text-transform:uppercase; letter-spacing:0.04em; }
+  @media (max-width:900px) {
+    .neon-gallery { grid-template-columns:repeat(3,1fr); }
+  }
+  @media (max-width:600px) {
+    .neon-gallery { grid-template-columns:repeat(2,1fr); }
+    .neon-title { font-size:1.4rem; }
+  }
+
   @media (max-width:900px) {
     .beneficios-inner,.categorias-grid { grid-template-columns:repeat(4,1fr); }
     .productos-grid,.testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr 1fr; }
@@ -349,6 +367,19 @@
     <div class="dot" onclick="goSlide(1)"></div>
     <div class="dot" onclick="goSlide(2)"></div>
     <div class="dot" onclick="goSlide(3)"></div>
+  </div>
+</div>
+
+<!-- GALERÍA NEÓN MONSTER -->
+<div class="neon-section">
+  <h2 class="neon-title">⚡ Monster <span class="verde">Edición Limitada</span> ⚡</h2>
+  <p class="neon-sub">Sabores importados que no vas a encontrar en otro lado 👀</p>
+  <div class="neon-gallery">
+    <div class="neon-frame"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-1.jpg" alt="Monster Edición Limitada 1" loading="lazy"></div>
+    <div class="neon-frame"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-2.jpg" alt="Monster Edición Limitada 2" loading="lazy"></div>
+    <div class="neon-frame"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-3.jpg" alt="Monster Edición Limitada 3" loading="lazy"></div>
+    <div class="neon-frame"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-4.jpg" alt="Monster Edición Limitada 4" loading="lazy"></div>
+    <div class="neon-frame"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-5.jpg" alt="Monster Edición Limitada 5" loading="lazy"></div>
   </div>
 </div>
 
