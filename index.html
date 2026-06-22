@@ -38,14 +38,15 @@
   .btn-carrito { background:var(--rosa); color:#fff; padding:8px 18px; border-radius:50px; font-size:0.88rem; font-weight:800; cursor:pointer; text-decoration:none; display:flex; align-items:center; gap:6px; box-shadow:0 3px 12px rgba(233,30,140,0.35); transition:transform 0.15s; white-space:nowrap; }
   .carrito-count { background:#fff; color:var(--rosa); border-radius:50%; width:20px; height:20px; font-size:0.72rem; font-weight:900; display:flex; align-items:center; justify-content:center; }
 
-  /* NAV */
-  nav { background:rgba(255,255,255,0.97); border-bottom:2px solid rgba(117,170,219,0.2); box-shadow:0 2px 10px rgba(0,0,0,0.05); }
-  .nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; overflow-x:auto; scrollbar-width:none; padding:0 10px; gap:2px; }
+  /* NAV NEON */
+  nav { background:linear-gradient(90deg,#1a0a2e,#6d0f5a,#ff2fb0,#6d0f5a,#1a0a2e); background-size:300% 100%; animation:neonMove 12s linear infinite; border-bottom:2px solid #ff2fb0; box-shadow:0 0 14px rgba(255,47,176,0.65),0 2px 10px rgba(0,0,0,0.3); }
+  @keyframes neonMove { 0%{ background-position:0% 50%; } 100%{ background-position:300% 50%; } }
+  .nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; overflow-x:auto; scrollbar-width:none; padding:6px 10px; gap:4px; }
   .nav-inner::-webkit-scrollbar { display:none; }
-  .nav-inner a { color:var(--azul); text-decoration:none; font-size:0.83rem; font-weight:700; padding:11px 13px; border-radius:8px; white-space:nowrap; transition:background 0.18s,color 0.18s; }
-  .nav-inner a:hover { background:var(--rosa-light); color:var(--rosa); }
-  .nav-inner a.ofertas { color:var(--rosa); background:var(--rosa-light); border-radius:50px; padding:7px 14px; }
-  .nav-inner a.reels { color:#fff; background:linear-gradient(135deg,#e91e8c,#ff6b35); border-radius:50px; padding:7px 14px; }
+  .nav-inner a { color:#fff; text-decoration:none; font-size:0.83rem; font-weight:700; padding:9px 14px; border-radius:50px; white-space:nowrap; transition:background 0.18s,color 0.18s,box-shadow 0.18s; cursor:pointer; }
+  .nav-inner a:hover { background:rgba(255,255,255,0.15); text-shadow:0 0 8px #ff2fb0,0 0 16px rgba(255,47,176,0.9); box-shadow:0 0 10px rgba(255,47,176,0.7) inset; }
+  .nav-inner a.ofertas { color:#1a0a2e; background:var(--amarillo); box-shadow:0 0 8px var(--amarillo),0 0 16px rgba(245,197,24,0.6); }
+  .nav-inner a.reels { color:#fff; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.4); }
 
   /* HERO SLIDER */
   .hero { position:relative; overflow:hidden; }
@@ -291,6 +292,22 @@
     </div>
   </div>
 </header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#destacados" class="ofertas">🔥 Ofertas</a>
+    <a href="#" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
+    <a href="#" onclick="event.preventDefault();abrirCatChocolates()">Chocolates</a>
+    <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
+    <a href="#" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
+    <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
+    <a href="#" onclick="event.preventDefault();abrirCatSnacks()">Snacks</a>
+    <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
+    <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
+    <a href="#reels" class="reels">📸 Reels</a>
+  </div>
+</nav>
 
 <!-- HERO SLIDER -->
 <div class="hero" id="destacados">
