@@ -261,7 +261,7 @@
     </div>
     <div class="header-actions">
       <a href="#" class="btn-cuenta">👤 Mi cuenta</a>
-      <a href="https://wa.me/541176750220" class="btn-carrito">🛒 Carrito <div class="carrito-count">0</div></a>
+      <a href="#" class="btn-carrito" onclick="event.preventDefault();abrirCarrito()">🛒 Carrito <div class="carrito-count">0</div></a>
     </div>
   </div>
 </header>
@@ -1339,6 +1339,17 @@
   </div>
 </div>
 
+<!-- MODAL CARRITO -->
+<div class="modal-overlay" id="modalCarrito">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,var(--azul-dark),var(--rosa));">
+      <h2>🛒 Tu carrito</h2>
+      <button class="modal-close" onclick="cerrarCarrito()">✕</button>
+    </div>
+    <div class="modal-body" id="carritoModalBody"></div>
+  </div>
+</div>
+
 <!-- MODAL COMBOS EXCLUSIVOS -->
 <div class="modal-overlay" id="modalCombosExclusivos">
   <div class="modal">
@@ -1375,7 +1386,7 @@
 <script>
   function abrirModalCat(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function cerrarModalCat(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos'].forEach(id => {
+  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) cerrarModalCat(id); });
   });
 
@@ -1398,10 +1409,44 @@
   let cartCount = 0, cartTotal = 0, cartItems = {};
   function agregarModal(btn, nombre, precio) {
     cartCount++; cartTotal += precio;
-    cartItems[nombre] = (cartItems[nombre] || 0) + 1;
+    if (!cartItems[nombre]) cartItems[nombre] = { cantidad: 0, precio };
+    cartItems[nombre].cantidad++;
     updateCartUI();
     btn.textContent = '✓ Listo'; btn.classList.add('agregado');
     setTimeout(() => { btn.textContent = '+ Agregar'; btn.classList.remove('agregado'); }, 1400);
+  }
+  function quitarDelCarrito(nombre) {
+    const item = cartItems[nombre];
+    if (!item) return;
+    item.cantidad--; cartCount--; cartTotal -= item.precio;
+    if (item.cantidad <= 0) delete cartItems[nombre];
+    updateCartUI();
+    renderCarrito();
+  }
+  function abrirCarrito() { renderCarrito(); abrirModalCat('modalCarrito'); }
+  function cerrarCarrito() { cerrarModalCat('modalCarrito'); }
+  function renderCarrito() {
+    const cont = document.getElementById('carritoModalBody');
+    if (cartCount === 0) {
+      cont.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:30px 0;">Tu carrito está vacío 🛒</p>';
+      return;
+    }
+    let html = '<div class="modal-productos">';
+    for (const [nombre, info] of Object.entries(cartItems)) {
+      html += `<div class="modal-producto">
+        <div class="modal-producto-info">
+          <div class="modal-producto-nombre">${nombre}</div>
+          <div class="modal-producto-variantes">Cantidad: ${info.cantidad}</div>
+        </div>
+        <div class="modal-producto-precio">$${(info.precio * info.cantidad).toLocaleString('es-AR')}</div>
+        <button class="btn-modal-agregar" style="background:var(--rosa);" onclick="quitarDelCarrito('${nombre}')">Quitar</button>
+      </div>`;
+    }
+    html += `</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:18px;border-top:1px solid rgba(0,0,0,0.08);">
+      <strong style="font-size:1.05rem;">Total: $${cartTotal.toLocaleString('es-AR')}</strong>
+      <button class="btn-enviar" onclick="enviarPedidoWhatsApp()">📲 Finalizar por WhatsApp</button>
+    </div>`;
+    cont.innerHTML = html;
   }
 
   const WA_NUMBER = '541176750220';
@@ -1422,15 +1467,16 @@
     document.getElementById('carritoFlotante').style.display = cartCount > 0 ? 'flex' : 'none';
     document.getElementById('chatStatus').textContent = cartCount > 0 ? `${cartCount} producto${cartCount!==1?'s':''} en el carrito` : 'En línea · te ayuda a comprar';
   }
-  document.getElementById('btnEnviarPedido').addEventListener('click', function() {
+  function enviarPedidoWhatsApp() {
     if (cartCount === 0) return;
     let detalle = '🛒 *Hola! Quiero hacer el siguiente pedido:*\n\n';
-    for (const [nombre, cantidad] of Object.entries(cartItems)) {
-      detalle += `▪ ${nombre} x${cantidad}\n`;
+    for (const [nombre, info] of Object.entries(cartItems)) {
+      detalle += `▪ ${nombre} x${info.cantidad}\n`;
     }
     detalle += `\n💰 *Total: $${cartTotal.toLocaleString('es-AR')}*\n\n¿Cómo puedo abonar y coordinar el envío?`;
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(detalle)}`, '_blank');
-  });
+  }
+  document.getElementById('btnEnviarPedido').addEventListener('click', enviarPedidoWhatsApp);
   function toggleChat() {
     const fl = document.getElementById('carritoFlotante');
     if (cartCount > 0) fl.style.display = fl.style.display === 'none' ? 'flex' : 'none';
