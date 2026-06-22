@@ -6,34 +6,6 @@
 <title>Candy Varela — Alentá con sabor ⭐⭐⭐🇦🇷</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  function abrirCatBebidas() { document.getElementById('modalBebidas').classList.add('open'); document.body.style.overflow='hidden'; }
-  function cerrarCatBebidas() { document.getElementById('modalBebidas').classList.remove('open'); document.body.style.overflow=''; }
-  document.getElementById('modalBebidas').addEventListener('click', function(e){ if(e.target===this) cerrarCatBebidas(); });
-
-  function abrirCatGomitas() { document.getElementById('modalGomitas').classList.add('open'); document.body.style.overflow='hidden'; }
-  function cerrarCatGomitas() { document.getElementById('modalGomitas').classList.remove('open'); document.body.style.overflow=''; }
-  document.getElementById('modalGomitas').addEventListener('click', function(e){ if(e.target===this) cerrarCatGomitas(); });
-
-  function abrirCatAlfajores() { document.getElementById('modalAlfajores').classList.add('open'); document.body.style.overflow='hidden'; }
-  function cerrarCatAlfajores() { document.getElementById('modalAlfajores').classList.remove('open'); document.body.style.overflow=''; }
-  document.getElementById('modalAlfajores').addEventListener('click', function(e){ if(e.target===this) cerrarCatAlfajores(); });
-
-  function abrirCatChocolates() { document.getElementById('modalChocolates').classList.add('open'); document.body.style.overflow='hidden'; }
-  function cerrarCatChocolates() { document.getElementById('modalChocolates').classList.remove('open'); document.body.style.overflow=''; }
-  document.getElementById('modalChocolates').addEventListener('click', function(e){ if(e.target===this) cerrarCatChocolates(); });
-
-  function abrirCategoria() { document.getElementById('modalGolosinas').classList.add('open'); document.body.style.overflow='hidden'; }
-  function cerrarCategoria() { document.getElementById('modalGolosinas').classList.remove('open'); document.body.style.overflow=''; }
-  document.getElementById('modalGolosinas').addEventListener('click', function(e){ if(e.target===this) cerrarCategoria(); });
-
-  function agregarModal(btn, nombre, precio) {
-    cartCount++; cartTotal += precio;
-    cartItems[nombre] = (cartItems[nombre] || 0) + 1;
-    updateCartUI();
-    btn.textContent = '✓ Listo'; btn.classList.add('agregado');
-    setTimeout(() => { btn.textContent = '+ Agregar'; btn.classList.remove('agregado'); }, 1400);
-  }
-
   :root {
     --celeste: #75AADB; --azul: #1a3a6e; --azul-dark: #0d2147;
     --amarillo: #f5c518; --rosa: #e91e8c; --rosa-light: #fce4f3;
@@ -199,6 +171,28 @@
     .productos-grid,.testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr 1fr; }
     .slide-title { font-size:2rem; }
     .slide-emoji-large { font-size:80px; }
+  }
+  /* MODALES DE CATEGORÍA */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(13,33,71,0.55); z-index:1000; align-items:center; justify-content:center; padding:20px; }
+  .modal-overlay.open { display:flex; }
+  .modal { background:var(--gris-bg); border-radius:var(--radius); max-width:680px; width:100%; max-height:85vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+  .modal-header { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; color:#fff; position:sticky; top:0; }
+  .modal-header h2 { font-family:'Baloo 2',cursive; font-size:1.3rem; font-weight:800; }
+  .modal-close { background:rgba(255,255,255,0.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:1rem; cursor:pointer; }
+  .modal-body { padding:20px 24px 28px; }
+  .modal-subcat { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.02rem; color:var(--azul-dark); margin:18px 0 10px; }
+  .modal-subcat:first-child { margin-top:0; }
+  .modal-productos { display:flex; flex-direction:column; gap:10px; }
+  .modal-producto { background:#fff; border-radius:14px; padding:12px 14px; display:flex; align-items:center; gap:12px; box-shadow:var(--shadow); }
+  .modal-producto-info { flex:1; min-width:0; }
+  .modal-producto-nombre { font-weight:800; font-size:0.92rem; color:var(--azul-dark); }
+  .modal-producto-variantes { font-size:0.78rem; color:var(--text-muted); font-weight:600; }
+  .modal-producto-precio { font-weight:800; color:var(--rosa); font-size:0.92rem; white-space:nowrap; }
+  .btn-modal-agregar { background:var(--azul); color:#fff; border:none; border-radius:50px; font-weight:800; font-size:0.78rem; padding:8px 14px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .btn-modal-agregar.agregado { background:var(--green); }
+  @media (max-width:600px) {
+    .modal-producto { flex-wrap:wrap; }
+    .modal-producto-precio { order:3; }
   }
   @media (max-width:600px) {
     .header-inner { gap:10px; }
@@ -614,6 +608,7 @@
           <button class="btn-modal-agregar" onclick="agregarModal(this,'Monster Argentina',3500)">+ Agregar</button>
         </div>
         <div class="modal-producto">
+          <img src="img/productos/monster-brasil-1.jpg" alt="Monster Brasil / Chile" class="modal-producto-img" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
           <div class="modal-producto-info">
             <div class="modal-producto-nombre">Monster Brasil / Chile</div>
             <div class="modal-producto-variantes">Importado</div>
@@ -1341,6 +1336,34 @@
 </div>
 
 <script>
+  function abrirModalCat(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+  function cerrarModalCat(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas'].forEach(id => {
+    document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) cerrarModalCat(id); });
+  });
+
+  function abrirCatSnacks() { abrirModalCat('modalSnacks'); }
+  function cerrarCatSnacks() { cerrarModalCat('modalSnacks'); }
+  function abrirCatBebidas() { abrirModalCat('modalBebidas'); }
+  function cerrarCatBebidas() { cerrarModalCat('modalBebidas'); }
+  function abrirCatGomitas() { abrirModalCat('modalGomitas'); }
+  function cerrarCatGomitas() { cerrarModalCat('modalGomitas'); }
+  function abrirCatAlfajores() { abrirModalCat('modalAlfajores'); }
+  function cerrarCatAlfajores() { cerrarModalCat('modalAlfajores'); }
+  function abrirCatChocolates() { abrirModalCat('modalChocolates'); }
+  function cerrarCatChocolates() { cerrarModalCat('modalChocolates'); }
+  function abrirCategoria() { abrirModalCat('modalGolosinas'); }
+  function cerrarCategoria() { cerrarModalCat('modalGolosinas'); }
+
+  let cartCount = 0, cartTotal = 0, cartItems = {};
+  function agregarModal(btn, nombre, precio) {
+    cartCount++; cartTotal += precio;
+    cartItems[nombre] = (cartItems[nombre] || 0) + 1;
+    updateCartUI();
+    btn.textContent = '✓ Listo'; btn.classList.add('agregado');
+    setTimeout(() => { btn.textContent = '+ Agregar'; btn.classList.remove('agregado'); }, 1400);
+  }
+
   const WA_NUMBER = '541176750220';
   let currentSlide = 0, total = 4;
   const container = document.getElementById('slidesContainer');
@@ -1353,7 +1376,6 @@
   function goSlide(i) { currentSlide = i; updateSlider(); }
   setInterval(() => changeSlide(1), 4500);
 
-  let cartCount = 0, cartTotal = 0, cartItems = {};
   function updateCartUI() {
     document.querySelector('.carrito-count').textContent = cartCount;
     document.getElementById('carritoResumen').innerHTML = `🛒 ${cartCount} producto${cartCount!==1?'s':''} · <strong>$${cartTotal.toLocaleString('es-AR')}</strong>`;
