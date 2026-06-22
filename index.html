@@ -189,10 +189,12 @@
   .neon-title .verde { color:#39ff14; }
   .neon-sub { color:rgba(255,255,255,0.55); font-size:0.9rem; font-weight:600; margin-bottom:30px; }
   .neon-gallery { display:grid; grid-template-columns:repeat(5,1fr); gap:18px; max-width:1100px; margin:0 auto; }
-  .neon-frame { position:relative; border-radius:14px; overflow:hidden; aspect-ratio:3/4; border:2px solid #39ff14; box-shadow:0 0 6px #39ff14,0 0 16px rgba(57,255,20,0.6),inset 0 0 10px rgba(57,255,20,0.3); transition:transform 0.25s,box-shadow 0.25s; }
+  .neon-frame { position:relative; border-radius:14px; overflow:hidden; aspect-ratio:3/4; border:2px solid #39ff14; box-shadow:0 0 6px #39ff14,0 0 16px rgba(57,255,20,0.6),inset 0 0 10px rgba(57,255,20,0.3); transition:transform 0.25s,box-shadow 0.25s; cursor:pointer; }
   .neon-frame:hover { transform:translateY(-6px) scale(1.03); box-shadow:0 0 12px #39ff14,0 0 28px rgba(57,255,20,0.9),inset 0 0 14px rgba(57,255,20,0.4); }
   .neon-frame img { width:100%; height:100%; object-fit:cover; display:block; }
-  .neon-badge { position:absolute; top:8px; left:8px; background:rgba(10,10,20,0.75); border:1px solid #39ff14; color:#39ff14; font-size:0.62rem; font-weight:800; padding:3px 8px; border-radius:50px; text-transform:uppercase; letter-spacing:0.04em; }
+  .neon-badge { position:absolute; top:8px; left:8px; background:rgba(10,10,20,0.75); border:1px solid #39ff14; color:#39ff14; font-size:0.62rem; font-weight:800; padding:3px 8px; border-radius:50px; text-transform:uppercase; letter-spacing:0.04em; transition:background 0.2s,color 0.2s,border-color 0.2s; }
+  .neon-badge.agregado { background:var(--green); color:#fff; border-color:var(--green); }
+  .neon-add { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,0.88)); color:#39ff14; font-weight:800; font-size:0.78rem; padding:22px 6px 9px; text-align:center; text-shadow:0 0 6px rgba(57,255,20,0.8); }
   @media (max-width:900px) {
     .neon-gallery { grid-template-columns:repeat(3,1fr); }
   }
@@ -375,11 +377,11 @@
   <h2 class="neon-title">⚡ Monster <span class="verde">Edición Limitada</span> ⚡</h2>
   <p class="neon-sub">Sabores importados que no vas a encontrar en otro lado 👀</p>
   <div class="neon-gallery">
-    <div class="neon-frame"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-1.jpg" alt="Monster Edición Limitada 1" loading="lazy"></div>
-    <div class="neon-frame"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-2.jpg" alt="Monster Edición Limitada 2" loading="lazy"></div>
-    <div class="neon-frame"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-3.jpg" alt="Monster Edición Limitada 3" loading="lazy"></div>
-    <div class="neon-frame"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-4.jpg" alt="Monster Edición Limitada 4" loading="lazy"></div>
-    <div class="neon-frame"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-5.jpg" alt="Monster Edición Limitada 5" loading="lazy"></div>
+    <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-1.jpg" alt="Monster Edición Limitada 1" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
+    <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-2.jpg" alt="Monster Edición Limitada 2" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
+    <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-3.jpg" alt="Monster Edición Limitada 3" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
+    <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-4.jpg" alt="Monster Edición Limitada 4" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
+    <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-5.jpg" alt="Monster Edición Limitada 5" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
   </div>
 </div>
 
@@ -1445,6 +1447,19 @@
     updateCartUI();
     btn.textContent = '✓ Listo'; btn.classList.add('agregado');
     setTimeout(() => { btn.textContent = '+ Agregar'; btn.classList.remove('agregado'); }, 1400);
+  }
+  function agregarMonsterNeon(frame) {
+    const nombre = 'Monster Importada (Edición Limitada)';
+    const precio = 7000;
+    cartCount++; cartTotal += precio;
+    if (!cartItems[nombre]) cartItems[nombre] = { cantidad: 0, precio };
+    cartItems[nombre].cantidad++;
+    updateCartUI();
+    const badge = frame.querySelector('.neon-badge');
+    const add = frame.querySelector('.neon-add');
+    badge.textContent = '✓'; badge.classList.add('agregado');
+    add.textContent = '✓ Agregado al carrito';
+    setTimeout(() => { badge.textContent = 'Limited'; badge.classList.remove('agregado'); add.textContent = '+ Agregar $7.000'; }, 1400);
   }
   function quitarDelCarrito(nombre) {
     const item = cartItems[nombre];
