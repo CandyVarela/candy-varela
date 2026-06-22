@@ -296,7 +296,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#destacados" class="ofertas">🔥 Ofertas</a>
+    <a href="#" class="ofertas" onclick="event.preventDefault();abrirOfertas()">🔥 Ofertas</a>
     <a href="#" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
     <a href="#" onclick="event.preventDefault();abrirCatChocolates()">Chocolates</a>
     <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
@@ -1377,6 +1377,55 @@
   </div>
 </div>
 
+<!-- MODAL OFERTAS -->
+<div class="modal-overlay" id="modalOfertas">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#7b0f3a,var(--rosa));">
+      <h2>🔥 Ofertas</h2>
+      <button class="modal-close" onclick="cerrarOfertas()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🔥 Ofertas de la semana</div>
+      <div class="modal-productos">
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Oferta 1</div>
+            <div class="modal-producto-variantes">2 Capitán del Espacio simple + 1 Capitán triple</div>
+          </div>
+          <div class="modal-producto-precio">$5.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Oferta 1: 2 Capitán del Espacio simple + 1 Capitán triple',5000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Oferta 2</div>
+            <div class="modal-producto-variantes">3 Alfajores Guaymallén simple</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Oferta 2: 3 Alfajores Guaymallén simple',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Oferta 3</div>
+            <div class="modal-producto-variantes">2 Alfajores Guaymallén Rubi</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Oferta 3: 2 Alfajores Guaymallén Rubi',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Oferta 4</div>
+            <div class="modal-producto-variantes">100g de gomitas a elección + Takis</div>
+          </div>
+          <div class="modal-producto-precio">$4.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Oferta 4: 100g gomitas + Takis',4000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- MODAL AYUDA -->
 <div class="modal-overlay" id="modalAyuda">
   <div class="modal">
@@ -1488,10 +1537,12 @@
 <script>
   function abrirModalCat(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function cerrarModalCat(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades','modalAyuda'].forEach(id => {
+  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades','modalAyuda','modalOfertas'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) cerrarModalCat(id); });
   });
 
+  function abrirOfertas() { abrirModalCat('modalOfertas'); }
+  function cerrarOfertas() { cerrarModalCat('modalOfertas'); }
   function abrirCombosExclusivos() { abrirModalCat('modalCombosExclusivos'); }
   function cerrarCombosExclusivos() { cerrarModalCat('modalCombosExclusivos'); }
   function abrirNovedades() { abrirModalCat('modalNovedades'); }
