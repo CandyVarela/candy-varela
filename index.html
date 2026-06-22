@@ -530,10 +530,9 @@
     <div class="footer-col">
       <h5>Ayuda</h5>
       <ul>
-        <li><a href="#">Cómo comprar</a></li>
-        <li><a href="#">Medios de pago</a></li>
-        <li><a href="#">Envíos</a></li>
-        <li><a href="#">Preguntas frecuentes</a></li>
+        <li><a href="#" onclick="event.preventDefault();abrirAyuda('comprar')">Cómo comprar</a></li>
+        <li><a href="#" onclick="event.preventDefault();abrirAyuda('pago')">Medios de pago</a></li>
+        <li><a href="#" onclick="event.preventDefault();abrirAyuda('envios')">Envíos</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1375,6 +1374,17 @@
   </div>
 </div>
 
+<!-- MODAL AYUDA -->
+<div class="modal-overlay" id="modalAyuda">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,var(--azul-dark),var(--azul));">
+      <h2 id="ayudaTitulo">Ayuda</h2>
+      <button class="modal-close" onclick="cerrarAyuda()">✕</button>
+    </div>
+    <div class="modal-body" id="ayudaBody"></div>
+  </div>
+</div>
+
 <!-- MODAL NOVEDADES -->
 <div class="modal-overlay" id="modalNovedades">
   <div class="modal">
@@ -1475,7 +1485,7 @@
 <script>
   function abrirModalCat(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function cerrarModalCat(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades'].forEach(id => {
+  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades','modalAyuda'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) cerrarModalCat(id); });
   });
 
@@ -1483,6 +1493,27 @@
   function cerrarCombosExclusivos() { cerrarModalCat('modalCombosExclusivos'); }
   function abrirNovedades() { abrirModalCat('modalNovedades'); }
   function cerrarNovedades() { cerrarModalCat('modalNovedades'); }
+
+  const AYUDA_CONTENIDO = {
+    comprar: { titulo: '🛍️ Cómo comprar', html: `
+      <ol style="padding-left:20px;display:flex;flex-direction:column;gap:14px;color:var(--text);font-weight:600;font-size:0.92rem;line-height:1.5;">
+        <li>Podés elegir los productos que quieras y los sumás a tu carrito.</li>
+        <li>Podés finalizar la compra con el asistente virtual y te llevará a nuestro WhatsApp.</li>
+        <li>Necesitamos que aclares tu forma de pago, ya sea efectivo o transferencia, así te enviamos nuestros datos.</li>
+        <li>Necesitamos saber si retirás en el local o precisás que lo enviemos.</li>
+      </ol>` },
+    pago: { titulo: '💳 Medios de pago', html: `
+      <p style="color:var(--text);font-weight:600;font-size:0.92rem;line-height:1.6;">Podés abonar los productos en efectivo directamente al retirar por nuestro local, por medio de transferencia o con tarjeta en el posnet.</p>` },
+    envios: { titulo: '🚚 Envíos', html: `
+      <p style="color:var(--text);font-weight:600;font-size:0.92rem;line-height:1.6;">Nuestros envíos se realizan a través de la logística Vía Cargo, el mismo día de tu compra o en 24hs según disponibilidad. Cuando realizamos el envío te enviamos el comprobante y podés seguirlo desde la página. Todos los envíos están asegurados.</p>` },
+  };
+  function abrirAyuda(tipo) {
+    const data = AYUDA_CONTENIDO[tipo];
+    document.getElementById('ayudaTitulo').textContent = data.titulo;
+    document.getElementById('ayudaBody').innerHTML = data.html;
+    abrirModalCat('modalAyuda');
+  }
+  function cerrarAyuda() { cerrarModalCat('modalAyuda'); }
 
   function abrirCatSnacks() { abrirModalCat('modalSnacks'); }
   function cerrarCatSnacks() { cerrarModalCat('modalSnacks'); }
