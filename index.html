@@ -52,8 +52,25 @@
   .slides-container { display:flex; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); }
   .slide { min-width:100%; min-height:420px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
   .slide-1 { background:linear-gradient(135deg,#0d2147 0%,#1a3a6e 40%,#75aadb 100%); }
-  .slide-2 { background:linear-gradient(135deg,#1a1a2e 0%,#6d0f5a 50%,#e91e8c 100%); }
-  .slide-3 { background:linear-gradient(135deg,#0f4c10 0%,#1a7a1e 50%,#22c55e 100%); }
+  .slide-2 { background:linear-gradient(135deg,#0d2147 0%,#1a3a6e 45%,#75aadb 100%); }
+  .slide-3 { background:linear-gradient(135deg,#75aadb 0%,#cfe6f7 50%,#fff 100%); }
+  .slide-3 .slide-title,.slide-3 .slide-desc,.slide-3 .slide-badge { color:#0d2147; }
+  .slide-3 .slide-badge { background:rgba(13,33,71,0.08); border-color:rgba(13,33,71,0.18); }
+  .slide-3 .slide-desc { color:#1a3a6e; }
+  .slide-3 .slide-title .highlight { color:var(--rosa); }
+
+  /* FILETEADO ESTILO TANGO / SELECCIÓN ARGENTINA */
+  .filete-frame { position:relative; border:3px double var(--amarillo); border-radius:22px; padding:26px 32px; background:rgba(13,33,71,0.18); backdrop-filter:blur(2px); }
+  .slide-3 .filete-frame { border-color:#0d2147; background:rgba(255,255,255,0.35); }
+  .filete-frame::before,.filete-frame::after { position:absolute; font-size:1.4rem; color:var(--amarillo); line-height:1; }
+  .filete-frame::before { content:'✦'; top:-14px; left:-10px; }
+  .filete-frame::after { content:'✦'; bottom:-14px; right:-10px; }
+  .slide-3 .filete-frame::before,.slide-3 .filete-frame::after { color:#0d2147; }
+  .filete-corner { position:absolute; font-size:1.4rem; color:var(--amarillo); line-height:1; }
+  .filete-corner.tr { top:-14px; right:-10px; } .filete-corner.bl { bottom:-14px; left:-10px; }
+  .slide-3 .filete-corner { color:#0d2147; }
+  .filete-line { width:70px; height:4px; margin:0 0 16px; border-radius:4px; background:repeating-linear-gradient(90deg,var(--celeste) 0 10px,#fff 10px 20px); position:relative; }
+  .filete-line::after { content:'☀'; position:absolute; right:-22px; top:-9px; font-size:1.1rem; color:var(--amarillo); }
   .slide-bg-emoji { position:absolute; font-size:180px; opacity:0.07; right:-20px; bottom:-30px; pointer-events:none; }
   .slide-content { max-width:1200px; width:100%; padding:50px 40px; display:flex; align-items:center; gap:40px; margin:0 auto; }
   .slide-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); color:#fff; font-size:0.78rem; font-weight:700; padding:5px 14px; border-radius:50px; margin-bottom:14px; text-transform:uppercase; letter-spacing:0.05em; }
@@ -271,8 +288,10 @@
     <div class="slide slide-1">
       <div class="slide-bg-emoji">🇦🇷</div>
       <div class="slide-content">
-        <div>
+        <div class="filete-frame">
+          <span class="filete-corner tr">✦</span><span class="filete-corner bl">✦</span>
           <div class="slide-badge">🇦🇷 Edición Mundial · ¡Vamos Argentina!</div>
+          <div class="filete-line"></div>
           <h1 class="slide-title">Alentá con sabor <span class="highlight">⭐⭐⭐</span></h1>
           <p class="slide-desc">Armá tu combo para ver el partido. ¡Las mejores golosinas para gritar los goles!</p>
           <a href="#combos-partido" class="btn-slide">Ver combos</a>
@@ -283,37 +302,43 @@
     <div class="slide slide-2">
       <div class="slide-bg-emoji">🍿</div>
       <div class="slide-content">
-        <div>
-          <div class="slide-badge">🔥 Combo 1 · El Clásico</div>
-          <h1 class="slide-title">Pringles + Coca + <span class="highlight">Gomitas</span></h1>
-          <p class="slide-desc">Pringles a elección + Coca Cola grande + Gomitas. ¡El combo ideal para el partido!</p>
-          <a href="https://wa.me/541176750220" class="btn-slide" style="background:#fff;color:#1a3a6e;">Pedir por $10.000 →</a>
+        <div class="filete-frame">
+          <span class="filete-corner tr">✦</span><span class="filete-corner bl">✦</span>
+          <div class="slide-badge">🔥 Promo Mundialista 1</div>
+          <div class="filete-line"></div>
+          <h1 class="slide-title">Pringles + Coca <span class="highlight">500ml</span></h1>
+          <p class="slide-desc">Pringles a elección + Coca Cola 500ml. ¡El combo justo para alentar!</p>
+          <a href="https://wa.me/541176750220" class="btn-slide" style="background:#fff;color:#1a3a6e;">Pedir por $7.000 →</a>
         </div>
-        <div class="slide-emoji-large">🍿🥤🐻</div>
+        <div class="slide-emoji-large">🍿🥤🇦🇷</div>
       </div>
     </div>
     <div class="slide slide-3">
       <div class="slide-bg-emoji">🥔</div>
       <div class="slide-content">
-        <div>
-          <div class="slide-badge">💛 Combo 2 · El Económico</div>
-          <h1 class="slide-title">Lays + Coca + <span class="highlight">Gomitas</span></h1>
-          <p class="slide-desc">Lays a elección + Coca Cola grande + Gomitas. ¡Rico, completo y al mejor precio!</p>
-          <a href="https://wa.me/541176750220" class="btn-slide" style="background:#fff;color:#1a3a6e;">Pedir por $8.000 →</a>
+        <div class="filete-frame">
+          <span class="filete-corner tr">✦</span><span class="filete-corner bl">✦</span>
+          <div class="slide-badge">💛 Promo Mundialista 2</div>
+          <div class="filete-line"></div>
+          <h1 class="slide-title">Pringles + Coca 500ml + Block + <span class="highlight">Gomitas Mogul</span></h1>
+          <p class="slide-desc">Pringles a elección + Coca Cola 500ml + Block + Gomitas Mogul. ¡Para alentar a pleno!</p>
+          <a href="https://wa.me/541176750220" class="btn-slide" style="background:#0d2147;color:#fff;">Pedir por $10.000 →</a>
         </div>
-        <div class="slide-emoji-large">🥔🥤🐻</div>
+        <div class="slide-emoji-large">🍿🥤🐻🇦🇷</div>
       </div>
     </div>
-    <div class="slide" style="background:linear-gradient(135deg,#4a0030,#8b1a5e,#e91e8c);">
-      <div class="slide-bg-emoji">🧁</div>
+    <div class="slide slide-1" style="background:linear-gradient(135deg,#0d2147 0%,#1a3a6e 45%,#75aadb 100%);">
+      <div class="slide-bg-emoji">🌟</div>
       <div class="slide-content">
-        <div>
-          <div class="slide-badge">👑 Combo 3 · El Premium</div>
-          <h1 class="slide-title">Pringles + Coca + <span class="highlight">2 Alfajores</span></h1>
-          <p class="slide-desc">Pringles a elección + Coca Cola grande + 2 alfajores triples a elección. ¡El combo de los campeones!</p>
+        <div class="filete-frame">
+          <span class="filete-corner tr">✦</span><span class="filete-corner bl">✦</span>
+          <div class="slide-badge">👑 Promo Mundialista 3</div>
+          <div class="filete-line"></div>
+          <h1 class="slide-title">Pringles + Takis + Palitos + Lays + <span class="highlight">Coca 1L</span></h1>
+          <p class="slide-desc">Pringles + Takis + Palitos + Lays a elección + Coca Cola 1 Litro. ¡El combo de los campeones del mundo!</p>
           <a href="https://wa.me/541176750220" class="btn-slide">Pedir por $15.000 →</a>
         </div>
-        <div class="slide-emoji-large">🍿🥤🧁</div>
+        <div class="slide-emoji-large">🍿🌶️🥤🏆</div>
       </div>
     </div>
   </div>
