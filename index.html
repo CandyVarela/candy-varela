@@ -1442,12 +1442,36 @@
         <button class="btn-modal-agregar" style="background:var(--rosa);" onclick="quitarDelCarrito('${nombre}')">Quitar</button>
       </div>`;
     }
-    html += `</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:18px;border-top:1px solid rgba(0,0,0,0.08);">
+    html += '</div>';
+
+    const sugeridos = SUGERIDOS_CARRITO.filter(p => !cartItems[p.nombre]);
+    if (sugeridos.length > 0) {
+      html += `<div class="modal-subcat" style="margin-top:20px;">✨ También te puede interesar</div><div class="modal-productos">`;
+      for (const p of sugeridos) {
+        html += `<div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">${p.nombre}</div>
+            <div class="modal-producto-variantes">${p.variante}</div>
+          </div>
+          <div class="modal-producto-precio">$${p.precio.toLocaleString('es-AR')}</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'${p.nombre}',${p.precio});renderCarrito();">+ Agregar</button>
+        </div>`;
+      }
+      html += '</div>';
+    }
+
+    html += `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:18px;border-top:1px solid rgba(0,0,0,0.08);">
       <strong style="font-size:1.05rem;">Total: $${cartTotal.toLocaleString('es-AR')}</strong>
       <button class="btn-enviar" onclick="enviarPedidoWhatsApp()">📲 Finalizar por WhatsApp</button>
     </div>`;
     cont.innerHTML = html;
   }
+  const SUGERIDOS_CARRITO = [
+    { nombre:'Bonobon', variante:'Pistacho · Supreme · Tradicional', precio:1000 },
+    { nombre:'Lays 40g', variante:'A elección — varios sabores', precio:2500 },
+    { nombre:'Saladix Nuevas', variante:'Nuevos sabores', precio:3000 },
+    { nombre:'Doritos 40g', variante:'Varios sabores', precio:3000 },
+  ];
 
   const WA_NUMBER = '541176750220';
   let currentSlide = 0, total = 4;
