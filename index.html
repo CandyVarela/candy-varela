@@ -41,8 +41,10 @@
   /* NAV NEON */
   nav { background:linear-gradient(90deg,#1a0a2e,#6d0f5a,#ff2fb0,#6d0f5a,#1a0a2e); background-size:300% 100%; animation:neonMove 12s linear infinite; border-bottom:2px solid #ff2fb0; box-shadow:0 0 14px rgba(255,47,176,0.65),0 2px 10px rgba(0,0,0,0.3); }
   @keyframes neonMove { 0%{ background-position:0% 50%; } 100%{ background-position:300% 50%; } }
-  .nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; overflow-x:auto; scrollbar-width:none; padding:6px 10px; gap:4px; }
-  .nav-inner::-webkit-scrollbar { display:none; }
+  .nav-inner { overflow:hidden; padding:6px 0; }
+  .nav-track { display:inline-flex; align-items:center; gap:4px; white-space:nowrap; animation:navMarquee 22s linear infinite; }
+  .nav-track:hover { animation-play-state:paused; }
+  @keyframes navMarquee { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
   .nav-inner a { color:#fff; text-decoration:none; font-size:0.83rem; font-weight:700; padding:9px 14px; border-radius:50px; white-space:nowrap; transition:background 0.18s,color 0.18s,box-shadow 0.18s; cursor:pointer; }
   .nav-inner a:hover { background:rgba(255,255,255,0.15); text-shadow:0 0 8px #ff2fb0,0 0 16px rgba(255,47,176,0.9); box-shadow:0 0 10px rgba(255,47,176,0.7) inset; }
   .nav-inner a.ofertas { color:#1a0a2e; background:var(--amarillo); box-shadow:0 0 8px var(--amarillo),0 0 16px rgba(245,197,24,0.6); }
@@ -296,16 +298,28 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="ofertas" onclick="event.preventDefault();abrirOfertas()">🔥 Ofertas</a>
-    <a href="#" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
-    <a href="#" onclick="event.preventDefault();abrirCatChocolates()">Chocolates</a>
-    <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
-    <a href="#" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
-    <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
-    <a href="#" onclick="event.preventDefault();abrirCatSnacks()">Snacks</a>
-    <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
-    <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
-    <a href="#reels" class="reels">📸 Reels</a>
+    <div class="nav-track">
+      <a href="#" class="ofertas" onclick="event.preventDefault();abrirOfertas()">🔥 Ofertas</a>
+      <a href="#" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
+      <a href="#" onclick="event.preventDefault();abrirCatChocolates()">Chocolates</a>
+      <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
+      <a href="#" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
+      <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
+      <a href="#" onclick="event.preventDefault();abrirCatSnacks()">Snacks</a>
+      <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
+      <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
+      <a href="#reels" class="reels">📸 Reels</a>
+      <a href="#" class="ofertas" onclick="event.preventDefault();abrirOfertas()">🔥 Ofertas</a>
+      <a href="#" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
+      <a href="#" onclick="event.preventDefault();abrirCatChocolates()">Chocolates</a>
+      <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
+      <a href="#" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
+      <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
+      <a href="#" onclick="event.preventDefault();abrirCatSnacks()">Snacks</a>
+      <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
+      <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
+      <a href="#reels" class="reels">📸 Reels</a>
+    </div>
   </div>
 </nav>
 
