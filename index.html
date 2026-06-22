@@ -114,6 +114,9 @@
   .banner-card { border-radius:20px; padding:28px; display:flex; flex-direction:column; justify-content:flex-end; min-height:200px; position:relative; overflow:hidden; text-decoration:none; }
   .banner-card-1 { background:linear-gradient(135deg,var(--azul-dark),var(--azul)); }
   .banner-card-2 { background:linear-gradient(135deg,#6d0f5a,#e91e8c); }
+  .banner-card-neon { cursor:pointer; border:2px solid #ff2fb0; box-shadow:0 0 6px #ff2fb0,0 0 18px rgba(255,47,176,0.7),inset 0 0 14px rgba(255,47,176,0.25); transition:transform 0.2s,box-shadow 0.2s; }
+  .banner-card-neon:hover { transform:translateY(-4px); box-shadow:0 0 10px #ff2fb0,0 0 28px rgba(255,47,176,0.95),inset 0 0 18px rgba(255,47,176,0.35); }
+  .banner-card-neon .banner-title { text-shadow:0 0 8px #ff2fb0,0 0 18px rgba(255,47,176,0.8); }
   .banner-bg-emoji { position:absolute; top:-10px; right:-10px; font-size:100px; opacity:0.15; pointer-events:none; }
   .banner-badge-small { background:rgba(255,255,255,0.2); color:#fff; font-size:0.7rem; font-weight:800; padding:3px 10px; border-radius:50px; width:fit-content; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em; }
   .banner-title { font-family:'Poppins',sans-serif; font-size:1.45rem; font-weight:800; color:#fff; line-height:1.2; margin-bottom:10px; }
@@ -415,12 +418,12 @@
       <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Snacks + bebidas + golosinas para alentar con la barra</p>
       <div class="banner-cta">Ver combo →</div>
     </a>
-    <a href="https://wa.me/541176750220" class="banner-card banner-card-2">
-      <div class="banner-bg-emoji">🏆🎉</div>
-      <div class="banner-badge-small">🏆 Pack Mundialista</div>
-      <h3 class="banner-title">Festejá los goles <span class="amarillo">🇦🇷</span></h3>
-      <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Armá tu pack mundialista y gritá cada gol con sabor</p>
-      <div class="banner-cta">Armar mi pack →</div>
+    <a href="#" class="banner-card banner-card-2 banner-card-neon" onclick="event.preventDefault();abrirNovedades()">
+      <div class="banner-bg-emoji">✨🆕</div>
+      <div class="banner-badge-small">🆕 Recién llegados</div>
+      <h3 class="banner-title">Novedades</h3>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Descubrí los productos que acaban de llegar a la tienda</p>
+      <div class="banner-cta">Ver novedades →</div>
     </a>
   </div>
 
@@ -1372,6 +1375,63 @@
   </div>
 </div>
 
+<!-- MODAL NOVEDADES -->
+<div class="modal-overlay" id="modalNovedades">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#6d0f5a,#ff2fb0);">
+      <h2>✨ Novedades</h2>
+      <button class="modal-close" onclick="cerrarNovedades()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🆕 Recién llegados</div>
+      <div class="modal-productos">
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Saladix Nuevas 🆕</div>
+            <div class="modal-producto-variantes">Nuevos sabores</div>
+          </div>
+          <div class="modal-producto-precio">$3.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Saladix Nuevas',3000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Prime Logan Paul 🆕</div>
+            <div class="modal-producto-variantes">Hidratante · varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$15.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Prime Logan Paul',15000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--rosa);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Monster Importada (Edición Limitada) 🆕</div>
+            <div class="modal-producto-variantes">Sabores importados exclusivos</div>
+          </div>
+          <div class="modal-producto-precio">$7.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Monster Importada (Edición Limitada)',7000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--amarillo);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Combo Plata 🆕</div>
+            <div class="modal-producto-variantes">4 bolsas gomitas Mogul 500g · 2 malvaviscos 200g · 1 caja tubos Extreme Mogul</div>
+          </div>
+          <div class="modal-producto-precio">$50.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Combo Plata',50000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--amarillo);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Combo Oro 🆕</div>
+            <div class="modal-producto-variantes">8 bolsas gomitas Mogul 500g · 2 gomitas Mogul 1kg · 4 malvaviscos 200g · 1 caja tubos Extreme Mogul</div>
+          </div>
+          <div class="modal-producto-precio">$100.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Combo Oro',100000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- MODAL CARRITO -->
 <div class="modal-overlay" id="modalCarrito">
   <div class="modal">
@@ -1419,12 +1479,14 @@
 <script>
   function abrirModalCat(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function cerrarModalCat(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito'].forEach(id => {
+  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) cerrarModalCat(id); });
   });
 
   function abrirCombosExclusivos() { abrirModalCat('modalCombosExclusivos'); }
   function cerrarCombosExclusivos() { cerrarModalCat('modalCombosExclusivos'); }
+  function abrirNovedades() { abrirModalCat('modalNovedades'); }
+  function cerrarNovedades() { cerrarModalCat('modalNovedades'); }
 
   function abrirCatSnacks() { abrirModalCat('modalSnacks'); }
   function cerrarCatSnacks() { cerrarModalCat('modalSnacks'); }
