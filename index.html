@@ -363,7 +363,7 @@
       <div class="beneficio-icon">⚽</div>
       <div class="beneficio-text"><strong>Combos Mundial</strong><span>Listos para la hinchada</span></div>
     </div>
-    <div class="beneficio-item">
+    <div class="beneficio-item" style="cursor:pointer;" onclick="abrirCombosExclusivos()">
       <div class="beneficio-icon">🎁</div>
       <div class="beneficio-text"><strong>Combos exclusivos</strong><span>Para emprendedores y revendedores</span></div>
     </div>
@@ -1360,12 +1360,48 @@
   </div>
 </div>
 
+<!-- MODAL COMBOS EXCLUSIVOS -->
+<div class="modal-overlay" id="modalCombosExclusivos">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#7b6000,#f5c518);">
+      <h2>🎁 Combos exclusivos</h2>
+      <button class="modal-close" onclick="cerrarCombosExclusivos()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🥈 Para emprendedores y revendedores</div>
+      <div class="modal-productos">
+        <div class="modal-producto" style="align-items:flex-start;">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Combo Plata</div>
+            <div class="modal-producto-variantes">4 bolsas de gomitas Mogul 500g · 2 bolsas de malvaviscos 200g · 1 caja de tubos Extreme Mogul</div>
+          </div>
+          <div class="modal-producto-precio">$50.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Combo Plata',50000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="align-items:flex-start;border:2px solid var(--amarillo);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Combo Oro</div>
+            <div class="modal-producto-variantes">8 bolsas de gomitas Mogul 500g · 2 bolsas de gomitas Mogul 1kg · 4 bolsas de malvaviscos 200g · 1 caja de tubos Extreme Mogul</div>
+          </div>
+          <div class="modal-producto-precio">$100.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Combo Oro',100000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
   function abrirModalCat(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function cerrarModalCat(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas'].forEach(id => {
+  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) cerrarModalCat(id); });
   });
+
+  function abrirCombosExclusivos() { abrirModalCat('modalCombosExclusivos'); }
+  function cerrarCombosExclusivos() { cerrarModalCat('modalCombosExclusivos'); }
 
   function abrirCatSnacks() { abrirModalCat('modalSnacks'); }
   function cerrarCatSnacks() { cerrarModalCat('modalSnacks'); }
