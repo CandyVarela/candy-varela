@@ -135,7 +135,10 @@
 
   /* REELS */
   .reels-section { margin-bottom:40px; }
-  .reels-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:500px; margin:0 auto; }
+  .reels-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:740px; margin:0 auto; }
+  .reel-card-gold { border:3px solid var(--amarillo); box-shadow:0 0 8px var(--amarillo),0 0 20px rgba(245,197,24,0.6); }
+  .reel-card-gold .reel-views { color:var(--amarillo); font-weight:800; }
+  .reel-top-badge { position:absolute; top:8px; left:8px; background:var(--amarillo); color:var(--azul-dark); font-size:0.62rem; font-weight:800; padding:3px 8px; border-radius:50px; z-index:3; text-transform:uppercase; letter-spacing:0.03em; }
   .reel-card { background:var(--azul-dark); border-radius:20px; overflow:hidden; aspect-ratio:9/16; max-height:320px; position:relative; cursor:pointer; text-decoration:none; transition:transform 0.2s,box-shadow 0.2s; display:flex; flex-direction:column; justify-content:flex-end; box-shadow:var(--shadow); }
   .reel-card:hover { transform:scale(1.03); box-shadow:0 12px 30px rgba(0,0,0,0.2); }
   .reel-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:70px; opacity:0.25; }
@@ -473,6 +476,15 @@
     </div>
     <p class="reels-handle">@candyvarela.ok</p>
     <div class="reels-grid">
+      <a href="https://www.instagram.com/p/DYs4uHcsybw/" target="_blank" class="reel-card reel-card-gold" style="background:linear-gradient(160deg,#1a1a2e,#f5c51880);">
+        <div class="reel-top-badge">🏆 Más visto</div>
+        <div class="reel-bg">🚀</div>
+        <div class="reel-play">▶</div>
+        <div class="reel-info">
+          <div class="reel-views">📍 @candyvarela.ok</div>
+          <div class="reel-desc">CAPITÁN DEL ESPACIO: EL ORIGEN</div>
+        </div>
+      </a>
       <a href="https://www.instagram.com/reel/DZTIV3VvmLx/" target="_blank" class="reel-card reel-card-1">
         <div class="reel-bg">🏪</div>
         <div class="reel-play">▶</div>
