@@ -323,76 +323,6 @@
   </div>
 </nav>
 
-<!-- HERO SLIDER -->
-<div class="hero" id="destacados">
-  <div class="slides-container" id="slidesContainer">
-    <div class="slide slide-1">
-      <div class="slide-bg-emoji">🇦🇷</div>
-      <div class="slide-content">
-        <div class="filete-frame">
-          <span class="filete-corner tr">✦</span><span class="filete-corner bl">✦</span>
-          <div class="slide-badge">🇦🇷 Edición Mundial · ¡Vamos Argentina!</div>
-          <div class="filete-line"></div>
-          <h1 class="slide-title">Alentá con sabor <span class="highlight">⭐⭐⭐</span></h1>
-          <p class="slide-desc">Armá tu combo para ver el partido. ¡Las mejores golosinas para gritar los goles!</p>
-          <a href="#combos-partido" class="btn-slide">Ver combos</a>
-        </div>
-        <div class="slide-emoji-large">🍭⚽🎉</div>
-      </div>
-    </div>
-    <div class="slide slide-2">
-      <div class="slide-bg-emoji">🍟</div>
-      <div class="slide-content">
-        <div class="filete-frame">
-          <span class="filete-corner tr">✦</span><span class="filete-corner bl">✦</span>
-          <div class="slide-badge">🔥 Promo Mundialista 1</div>
-          <div class="filete-line"></div>
-          <h1 class="slide-title">Pringles + Coca <span class="highlight">500ml</span></h1>
-          <p class="slide-desc">Pringles a elección + Coca Cola 500ml. ¡El combo justo para alentar!</p>
-          <a href="https://wa.me/541176750220" class="btn-slide" style="background:#fff;color:#1a3a6e;">Pedir por $7.000 →</a>
-        </div>
-        <div class="slide-emoji-large">🍟🥤🇦🇷</div>
-      </div>
-    </div>
-    <div class="slide slide-3">
-      <div class="slide-bg-emoji">🥔</div>
-      <div class="slide-content">
-        <div class="filete-frame">
-          <span class="filete-corner tr">✦</span><span class="filete-corner bl">✦</span>
-          <div class="slide-badge">💛 Promo Mundialista 2</div>
-          <div class="filete-line"></div>
-          <h1 class="slide-title">Pringles + Coca 500ml + Block + <span class="highlight">Gomitas Mogul</span></h1>
-          <p class="slide-desc">Pringles a elección + Coca Cola 500ml + Block + Gomitas Mogul. ¡Para alentar a pleno!</p>
-          <a href="https://wa.me/541176750220" class="btn-slide" style="background:#0d2147;color:#fff;">Pedir por $10.000 →</a>
-        </div>
-        <div class="slide-emoji-large">🍟🥤🐻🇦🇷</div>
-      </div>
-    </div>
-    <div class="slide slide-1" style="background:linear-gradient(135deg,#0d2147 0%,#1a3a6e 45%,#75aadb 100%);">
-      <div class="slide-bg-emoji">🌟</div>
-      <div class="slide-content">
-        <div class="filete-frame">
-          <span class="filete-corner tr">✦</span><span class="filete-corner bl">✦</span>
-          <div class="slide-badge">👑 Promo Mundialista 3</div>
-          <div class="filete-line"></div>
-          <h1 class="slide-title">Pringles + Takis + Palitos + Lays + <span class="highlight">Coca 1L</span></h1>
-          <p class="slide-desc">Pringles + Takis + Palitos + Lays a elección + Coca Cola 1 Litro. ¡El combo de los campeones del mundo!</p>
-          <a href="https://wa.me/541176750220" class="btn-slide">Pedir por $15.000 →</a>
-        </div>
-        <div class="slide-emoji-large">🍟🌶️🥤🏆</div>
-      </div>
-    </div>
-  </div>
-  <div class="slide-arrow prev" onclick="changeSlide(-1)">‹</div>
-  <div class="slide-arrow next" onclick="changeSlide(1)">›</div>
-  <div class="slide-dots">
-    <div class="dot active" onclick="goSlide(0)"></div>
-    <div class="dot" onclick="goSlide(1)"></div>
-    <div class="dot" onclick="goSlide(2)"></div>
-    <div class="dot" onclick="goSlide(3)"></div>
-  </div>
-</div>
-
 <!-- GALERÍA NEÓN MONSTER -->
 <div class="neon-section">
   <h2 class="neon-title">⚡ Monster <span class="verde">Edición Limitada</span> ⚡</h2>
@@ -429,7 +359,7 @@
 
   <!-- BANNERS -->
   <div class="destacados-banner">
-    <a href="#destacados" class="banner-card banner-card-1" onclick="goSlide(1);">
+    <a href="#" class="banner-card banner-card-1" onclick="event.preventDefault();abrirPromos()">
       <div class="banner-bg-emoji">⚽🇦🇷</div>
       <div class="banner-badge-small">⚽ Combo Mundial</div>
       <h3 class="banner-title">Combo Día de Partido</h3>
@@ -1391,6 +1321,47 @@
   </div>
 </div>
 
+<!-- MODAL PROMOS MUNDIALISTAS -->
+<div class="modal-overlay" id="modalPromos">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#0d2147,#75aadb);">
+      <h2>⚽ Combos del Mundial</h2>
+      <button class="modal-close" onclick="cerrarPromos()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-subcat">🇦🇷 Promos para alentar</div>
+      <div class="modal-productos">
+        <div class="modal-producto" style="border:2px solid var(--amarillo);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Promo Mundialista 1</div>
+            <div class="modal-producto-variantes">Pringles a elección + Coca Cola 500ml</div>
+          </div>
+          <div class="modal-producto-precio">$7.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Promo Mundialista 1: Pringles + Coca 500ml',7000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--amarillo);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Promo Mundialista 2</div>
+            <div class="modal-producto-variantes">Pringles + Coca 500ml + Block + Gomitas Mogul</div>
+          </div>
+          <div class="modal-producto-precio">$10.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Promo Mundialista 2: Pringles + Coca 500ml + Block + Gomitas Mogul',10000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto" style="border:2px solid var(--amarillo);">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Promo Mundialista 3</div>
+            <div class="modal-producto-variantes">Pringles + Takis + Palitos + Lays + Coca 1L</div>
+          </div>
+          <div class="modal-producto-precio">$15.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Promo Mundialista 3: Pringles + Takis + Palitos + Lays + Coca 1L',15000)">+ Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- MODAL OFERTAS -->
 <div class="modal-overlay" id="modalOfertas">
   <div class="modal">
@@ -1551,10 +1522,12 @@
 <script>
   function abrirModalCat(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function cerrarModalCat(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades','modalAyuda','modalOfertas'].forEach(id => {
+  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades','modalAyuda','modalOfertas','modalPromos'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) cerrarModalCat(id); });
   });
 
+  function abrirPromos() { abrirModalCat('modalPromos'); }
+  function cerrarPromos() { cerrarModalCat('modalPromos'); }
   function abrirOfertas() { abrirModalCat('modalOfertas'); }
   function cerrarOfertas() { cerrarModalCat('modalOfertas'); }
   function abrirCombosExclusivos() { abrirModalCat('modalCombosExclusivos'); }
@@ -1677,16 +1650,6 @@
   ];
 
   const WA_NUMBER = '541176750220';
-  let currentSlide = 0, total = 4;
-  const container = document.getElementById('slidesContainer');
-  const dots = document.querySelectorAll('.dot');
-  function updateSlider() {
-    container.style.transform = `translateX(-${currentSlide * 100}%)`;
-    dots.forEach((d,i) => d.classList.toggle('active', i === currentSlide));
-  }
-  function changeSlide(dir) { currentSlide = (currentSlide + dir + total) % total; updateSlider(); }
-  function goSlide(i) { currentSlide = i; updateSlider(); }
-  setInterval(() => changeSlide(1), 4500);
 
   function updateCartUI() {
     document.querySelector('.carrito-count').textContent = cartCount;
