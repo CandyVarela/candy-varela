@@ -234,6 +234,33 @@
     .kinder-title { font-size:1.5rem; }
   }
 
+  /* SECCIÓN IMPORTADOS */
+  .imp-section { position:relative; background:linear-gradient(180deg,#0a2a5e,#1e63b8 60%,#7fc4f0); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; overflow:hidden; box-shadow:0 6px 24px rgba(10,42,94,0.25); }
+  .imp-section::before { content:"✈️"; position:absolute; top:18px; left:-60px; font-size:2rem; animation:vuela 9s linear infinite; }
+  @keyframes vuela { 0%{ left:-60px; transform:translateY(0) rotate(8deg); } 50%{ transform:translateY(-14px) rotate(8deg); } 100%{ left:110%; transform:translateY(0) rotate(8deg); } }
+  .imp-cloud { position:absolute; color:rgba(255,255,255,0.18); pointer-events:none; }
+  .imp-cloud.c1 { font-size:3rem; top:40px; right:30px; } .imp-cloud.c2 { font-size:2rem; bottom:80px; left:24px; }
+  .imp-head { text-align:center; margin-bottom:28px; position:relative; z-index:2; }
+  .imp-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#fff; letter-spacing:0.02em; text-shadow:0 2px 10px rgba(0,0,0,0.25); }
+  .imp-title .dorado { color:var(--amarillo); }
+  .imp-sub { color:rgba(255,255,255,0.85); font-size:0.9rem; font-weight:600; margin-top:4px; }
+  .imp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:1000px; margin:0 auto; position:relative; z-index:2; }
+  .imp-card { background:#fff; border-radius:18px; overflow:hidden; border:2px dashed var(--celeste); box-shadow:0 4px 14px rgba(0,0,0,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
+  .imp-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,0.3); }
+  .imp-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .imp-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .imp-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.95rem; color:var(--azul-dark); line-height:1.2; display:flex; align-items:center; gap:5px; }
+  .imp-flag { font-size:0.8rem; }
+  .imp-desc { font-size:0.78rem; color:var(--text-muted); font-weight:600; line-height:1.35; flex:1; }
+  .imp-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:4px; }
+  .imp-precio { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.05rem; color:var(--azul); }
+  .imp-btn { background:var(--azul); color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.78rem; padding:8px 14px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .imp-btn.agregado { background:var(--green); }
+  @media (max-width:700px) {
+    .imp-grid { grid-template-columns:repeat(2,1fr); }
+    .imp-title { font-size:1.5rem; }
+  }
+
   @media (max-width:900px) {
     .beneficios-inner,.categorias-grid { grid-template-columns:repeat(4,1fr); }
     .productos-grid,.testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr 1fr; }
@@ -472,6 +499,129 @@
           <div class="kinder-nombre">Kinder Bueno White</div>
           <div class="kinder-desc">Caja de Kinder Bueno White: oblea con chocolate blanco y avellana.</div>
           <div class="kinder-row"><span class="kinder-precio">$35.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Kinder Bueno White',35000)">+ Agregar</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN IMPORTADOS -->
+  <div class="imp-section">
+    <span class="imp-cloud c1">☁️</span><span class="imp-cloud c2">☁️</span>
+    <div class="imp-head">
+      <h2 class="imp-title">✈️ Golosinas <span class="dorado">Importadas</span></h2>
+      <p class="imp-sub">Traídas de todo el mundo, directo a tu paladar 🌎</p>
+    </div>
+    <div class="imp-grid">
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/toblerone-gigante.jpg" alt="Toblerone Gigante" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇨🇭</span> Toblerone Gigante</div>
+          <div class="imp-desc">Barra gigante de chocolate suizo con miel y almendras.</div>
+          <div class="imp-row"><span class="imp-precio">$30.000</span><button class="imp-btn" onclick="agregarKinder(this,'Toblerone Gigante',30000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/jelly-bubble-gum.jpg" alt="Jelly Belly Bubble Gum" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> Jelly Belly Bubble Gum</div>
+          <div class="imp-desc">Bolsa de jelly beans gourmet sabor chicle.</div>
+          <div class="imp-row"><span class="imp-precio">$10.000</span><button class="imp-btn" onclick="agregarKinder(this,'Jelly Belly Bubble Gum',10000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/haribo-gold.jpg" alt="Haribo Goldbears" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇩🇪</span> Haribo Goldbears</div>
+          <div class="imp-desc">Los clásicos ositos de gomita Haribo, bolsa grande.</div>
+          <div class="imp-row"><span class="imp-precio">$14.000</span><button class="imp-btn" onclick="agregarKinder(this,'Haribo Goldbears',14000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/haribo-pico-balla.jpg" alt="Haribo Pico-Balla" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇩🇪</span> Haribo Pico-Balla</div>
+          <div class="imp-desc">Gomitas rellenas frutales Haribo, maxi size.</div>
+          <div class="imp-row"><span class="imp-precio">$20.000</span><button class="imp-btn" onclick="agregarKinder(this,'Haribo Pico-Balla',20000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/skittles-gomitas.jpg" alt="Skittles Gummies" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> Skittles Gomitas</div>
+          <div class="imp-desc">Skittles Gummies Wild Berry, gomitas frutales.</div>
+          <div class="imp-row"><span class="imp-precio">$9.000</span><button class="imp-btn" onclick="agregarKinder(this,'Skittles Gomitas',9000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/skittles-confites.jpg" alt="Skittles Confites" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> Skittles Confites</div>
+          <div class="imp-desc">Confites Skittles clásicos, sabor a arcoíris.</div>
+          <div class="imp-row"><span class="imp-precio">$5.000</span><button class="imp-btn" onclick="agregarKinder(this,'Skittles Confites',5000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/mym-bolsa.jpg" alt="M&M's Bolsa" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> M&amp;M's Bolsa</div>
+          <div class="imp-desc">Bolsa de M&amp;M's, a elección maní o chocolate.</div>
+          <div class="imp-row"><span class="imp-precio">$5.000</span><button class="imp-btn" onclick="agregarKinder(this,'M&amp;M\'s Bolsa',5000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/mym-tubo.jpg" alt="M&M's Tubo" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> M&amp;M's Tubo</div>
+          <div class="imp-desc">Tubo coleccionable M&amp;M's edición Marvel.</div>
+          <div class="imp-row"><span class="imp-precio">$6.000</span><button class="imp-btn" onclick="agregarKinder(this,'M&amp;M\'s Tubo',6000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/nerds.jpg" alt="Nerds" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> Nerds</div>
+          <div class="imp-desc">Caramelos crocantes Nerds, sabores frutales.</div>
+          <div class="imp-row"><span class="imp-precio">$6.000</span><button class="imp-btn" onclick="agregarKinder(this,'Nerds',6000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/caramelos-toxic.jpg" alt="Caramelos Toxic" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> Caramelos Toxic</div>
+          <div class="imp-desc">Toxic Waste Nuclear Fusion, caramelos súper ácidos.</div>
+          <div class="imp-row"><span class="imp-precio">$9.000</span><button class="imp-btn" onclick="agregarKinder(this,'Caramelos Toxic',9000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/mym-paleta.jpg" alt="M&M's Paleta Chocolate" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> M&amp;M's Paleta Chocolate</div>
+          <div class="imp-desc">Paleta de chocolate M&amp;M's con sorpresa.</div>
+          <div class="imp-row"><span class="imp-precio">$5.000</span><button class="imp-btn" onclick="agregarKinder(this,'M&amp;M\'s Paleta Chocolate',5000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/icebreakers.jpg" alt="Ice Breakers" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> Ice Breakers</div>
+          <div class="imp-desc">Chicles Ice Breakers Ice Cubes sabor uva.</div>
+          <div class="imp-row"><span class="imp-precio">$18.000</span><button class="imp-btn" onclick="agregarKinder(this,'Ice Breakers',18000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/jelly-beans-36.jpg" alt="Jelly Beans 36 Huge Flavours" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇮🇪</span> Jelly Beans 36 Sabores</div>
+          <div class="imp-desc">Tubo The Jelly Bean Factory con 36 sabores gourmet.</div>
+          <div class="imp-row"><span class="imp-precio">$20.000</span><button class="imp-btn" onclick="agregarKinder(this,'Jelly Beans 36 Sabores',20000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="imp-card">
+        <img class="imp-img" src="img/productos/jelly-belly-rose.jpg" alt="Jelly Belly Rosé" loading="lazy">
+        <div class="imp-info">
+          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> Jelly Belly Rosé</div>
+          <div class="imp-desc">Botellita de jelly beans sabor Rosé, edición especial.</div>
+          <div class="imp-row"><span class="imp-precio">$6.000</span><button class="imp-btn" onclick="agregarKinder(this,'Jelly Belly Rosé',6000)">+ Agregar</button></div>
         </div>
       </div>
     </div>
