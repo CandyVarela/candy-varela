@@ -197,18 +197,18 @@
   .neon-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#fff; margin-bottom:6px; text-shadow:0 0 8px #39ff14,0 0 18px #39ff14,0 0 32px rgba(57,255,20,0.6); letter-spacing:0.02em; }
   .neon-title .verde { color:#39ff14; }
   .neon-sub { color:rgba(255,255,255,0.55); font-size:0.9rem; font-weight:600; margin-bottom:30px; }
-  .neon-gallery { display:grid; grid-template-columns:repeat(5,1fr); gap:18px; max-width:1100px; margin:0 auto; }
-  .neon-frame { position:relative; border-radius:14px; overflow:hidden; aspect-ratio:3/4; border:2px solid #39ff14; box-shadow:0 0 6px #39ff14,0 0 16px rgba(57,255,20,0.6),inset 0 0 10px rgba(57,255,20,0.3); transition:transform 0.25s,box-shadow 0.25s; cursor:pointer; }
+  .neon-gallery { display:flex; gap:18px; max-width:1100px; margin:0 auto; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:#39ff14 transparent; }
+  .neon-gallery::-webkit-scrollbar { height:7px; }
+  .neon-gallery::-webkit-scrollbar-thumb { background:#39ff14; border-radius:50px; }
+  .neon-gallery::-webkit-scrollbar-track { background:rgba(255,255,255,0.08); border-radius:50px; }
+  .neon-frame { flex:0 0 190px; width:190px; scroll-snap-align:start; position:relative; border-radius:14px; overflow:hidden; aspect-ratio:3/4; border:2px solid #39ff14; box-shadow:0 0 6px #39ff14,0 0 16px rgba(57,255,20,0.6),inset 0 0 10px rgba(57,255,20,0.3); transition:transform 0.25s,box-shadow 0.25s; cursor:pointer; }
   .neon-frame:hover { transform:translateY(-6px) scale(1.03); box-shadow:0 0 12px #39ff14,0 0 28px rgba(57,255,20,0.9),inset 0 0 14px rgba(57,255,20,0.4); }
   .neon-frame img { width:100%; height:100%; object-fit:cover; display:block; }
   .neon-badge { position:absolute; top:8px; left:8px; background:rgba(10,10,20,0.75); border:1px solid #39ff14; color:#39ff14; font-size:0.62rem; font-weight:800; padding:3px 8px; border-radius:50px; text-transform:uppercase; letter-spacing:0.04em; transition:background 0.2s,color 0.2s,border-color 0.2s; }
   .neon-badge.agregado { background:var(--green); color:#fff; border-color:var(--green); }
   .neon-add { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,0.88)); color:#39ff14; font-weight:800; font-size:0.78rem; padding:22px 6px 9px; text-align:center; text-shadow:0 0 6px rgba(57,255,20,0.8); }
-  @media (max-width:900px) {
-    .neon-gallery { grid-template-columns:repeat(3,1fr); }
-  }
   @media (max-width:600px) {
-    .neon-gallery { grid-template-columns:repeat(2,1fr); }
+    .neon-frame { flex:0 0 160px; width:160px; }
     .neon-title { font-size:1.4rem; }
   }
 
@@ -218,8 +218,11 @@
   .kinder-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#e2231a; letter-spacing:0.02em; }
   .kinder-title .choco { color:#7b4a21; }
   .kinder-sub { color:#7b4a21; font-size:0.9rem; font-weight:600; margin-top:4px; }
-  .kinder-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:1000px; margin:0 auto; }
-  .kinder-card { background:#fff; border-radius:18px; overflow:hidden; border:2px solid #e2231a; box-shadow:0 4px 14px rgba(226,35,26,0.15); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
+  .kinder-grid { display:flex; gap:18px; max-width:1000px; margin:0 auto; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:#e2231a transparent; }
+  .kinder-grid::-webkit-scrollbar { height:7px; }
+  .kinder-grid::-webkit-scrollbar-thumb { background:#e2231a; border-radius:50px; }
+  .kinder-grid::-webkit-scrollbar-track { background:rgba(226,35,26,0.12); border-radius:50px; }
+  .kinder-card { flex:0 0 230px; width:230px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #e2231a; box-shadow:0 4px 14px rgba(226,35,26,0.15); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
   .kinder-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(226,35,26,0.28); }
   .kinder-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
   .kinder-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
@@ -230,7 +233,7 @@
   .kinder-btn { background:#e2231a; color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.78rem; padding:8px 14px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
   .kinder-btn.agregado { background:var(--green); }
   @media (max-width:700px) {
-    .kinder-grid { grid-template-columns:repeat(2,1fr); }
+    .kinder-card { flex:0 0 200px; width:200px; }
     .kinder-title { font-size:1.5rem; }
   }
 
@@ -244,8 +247,11 @@
   .imp-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#fff; letter-spacing:0.02em; text-shadow:0 2px 10px rgba(0,0,0,0.25); }
   .imp-title .dorado { color:var(--amarillo); }
   .imp-sub { color:rgba(255,255,255,0.85); font-size:0.9rem; font-weight:600; margin-top:4px; }
-  .imp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:1000px; margin:0 auto; position:relative; z-index:2; }
-  .imp-card { background:#fff; border-radius:18px; overflow:hidden; border:2px dashed var(--celeste); box-shadow:0 4px 14px rgba(0,0,0,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
+  .imp-grid { display:flex; gap:18px; max-width:1000px; margin:0 auto; position:relative; z-index:2; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:var(--amarillo) transparent; }
+  .imp-grid::-webkit-scrollbar { height:7px; }
+  .imp-grid::-webkit-scrollbar-thumb { background:var(--amarillo); border-radius:50px; }
+  .imp-grid::-webkit-scrollbar-track { background:rgba(255,255,255,0.2); border-radius:50px; }
+  .imp-card { flex:0 0 230px; width:230px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px dashed var(--celeste); box-shadow:0 4px 14px rgba(0,0,0,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
   .imp-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,0.3); }
   .imp-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
   .imp-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
@@ -257,7 +263,7 @@
   .imp-btn { background:var(--azul); color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.78rem; padding:8px 14px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
   .imp-btn.agregado { background:var(--green); }
   @media (max-width:700px) {
-    .imp-grid { grid-template-columns:repeat(2,1fr); }
+    .imp-card { flex:0 0 200px; width:200px; }
     .imp-title { font-size:1.5rem; }
   }
 
@@ -396,7 +402,7 @@
   <!-- GALERÍA NEÓN MONSTER -->
   <div class="neon-section" style="border-radius:24px;margin-bottom:40px;">
     <h2 class="neon-title">⚡ Monster <span class="verde">Edición Limitada</span> ⚡</h2>
-    <p class="neon-sub">Sabores importados que no vas a encontrar en otro lado 👀</p>
+    <p class="neon-sub">Sabores importados que no vas a encontrar en otro lado 👀 · deslizá para ver más →</p>
     <div class="neon-gallery">
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-1.jpg" alt="Monster Edición Limitada 1" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-2.jpg" alt="Monster Edición Limitada 2" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
@@ -410,7 +416,7 @@
   <div class="kinder-section">
     <div class="kinder-head">
       <h2 class="kinder-title">🍫 Mundo <span class="choco">Kinder</span></h2>
-      <p class="kinder-sub">Lo mejor de Kinder y Ferrero, importado y a elección 😍</p>
+      <p class="kinder-sub">Lo mejor de Kinder y Ferrero, importado y a elección 😍 · deslizá para ver más →</p>
     </div>
     <div class="kinder-grid">
       <div class="kinder-card">
@@ -509,7 +515,7 @@
     <span class="imp-cloud c1">☁️</span><span class="imp-cloud c2">☁️</span>
     <div class="imp-head">
       <h2 class="imp-title">✈️ Golosinas <span class="dorado">Importadas</span></h2>
-      <p class="imp-sub">Traídas de todo el mundo, directo a tu paladar 🌎</p>
+      <p class="imp-sub">Traídas de todo el mundo, directo a tu paladar 🌎 · deslizá para ver más →</p>
     </div>
     <div class="imp-grid">
       <div class="imp-card">
