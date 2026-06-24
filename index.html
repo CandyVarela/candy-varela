@@ -212,6 +212,28 @@
     .neon-title { font-size:1.4rem; }
   }
 
+  /* SECCIÓN KINDER */
+  .kinder-section { background:linear-gradient(180deg,#fff6ee,#ffe9d6); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; border:2px solid #e2231a; box-shadow:0 6px 24px rgba(226,35,26,0.12); }
+  .kinder-head { text-align:center; margin-bottom:28px; }
+  .kinder-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#e2231a; letter-spacing:0.02em; }
+  .kinder-title .choco { color:#7b4a21; }
+  .kinder-sub { color:#7b4a21; font-size:0.9rem; font-weight:600; margin-top:4px; }
+  .kinder-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:1000px; margin:0 auto; }
+  .kinder-card { background:#fff; border-radius:18px; overflow:hidden; border:2px solid #e2231a; box-shadow:0 4px 14px rgba(226,35,26,0.15); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
+  .kinder-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(226,35,26,0.28); }
+  .kinder-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .kinder-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .kinder-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.98rem; color:#e2231a; line-height:1.2; }
+  .kinder-desc { font-size:0.78rem; color:#7b4a21; font-weight:600; line-height:1.35; flex:1; }
+  .kinder-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:4px; }
+  .kinder-precio { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.05rem; color:#7b4a21; }
+  .kinder-btn { background:#e2231a; color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.78rem; padding:8px 14px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .kinder-btn.agregado { background:var(--green); }
+  @media (max-width:700px) {
+    .kinder-grid { grid-template-columns:repeat(2,1fr); }
+    .kinder-title { font-size:1.5rem; }
+  }
+
   @media (max-width:900px) {
     .beneficios-inner,.categorias-grid { grid-template-columns:repeat(4,1fr); }
     .productos-grid,.testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr 1fr; }
@@ -354,6 +376,104 @@
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-3.jpg" alt="Monster Edición Limitada 3" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-4.jpg" alt="Monster Edición Limitada 4" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-5.jpg" alt="Monster Edición Limitada 5" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN KINDER -->
+  <div class="kinder-section">
+    <div class="kinder-head">
+      <h2 class="kinder-title">🍫 Mundo <span class="choco">Kinder</span></h2>
+      <p class="kinder-sub">Lo mejor de Kinder y Ferrero, importado y a elección 😍</p>
+    </div>
+    <div class="kinder-grid">
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/nutella-love.jpg" alt="Nutella Love" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Nutella Love</div>
+          <div class="kinder-desc">Frasco de Nutella en edición especial "I ❤ you", ideal para regalar.</div>
+          <div class="kinder-row"><span class="kinder-precio">$20.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Nutella Love',20000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/duplo.jpg" alt="Duplo" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Duplo</div>
+          <div class="kinder-desc">Barrita crocante de chocolate con avellanas, importada.</div>
+          <div class="kinder-row"><span class="kinder-precio">$4.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Duplo',4000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/nutall.jpg" alt="Nutall" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Nutall</div>
+          <div class="kinder-desc">Palitos de biscocho con crema de avellana y cacao para mojar.</div>
+          <div class="kinder-row"><span class="kinder-precio">$8.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Nutall',8000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/kinder-chocolate-barra.jpg" alt="Kinder Chocolate barra" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Kinder Chocolate</div>
+          <div class="kinder-desc">Barra individual de chocolate con leche y relleno cremoso.</div>
+          <div class="kinder-row"><span class="kinder-precio">$1.500</span><button class="kinder-btn" onclick="agregarKinder(this,'Kinder Chocolate barra',1500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/kinder-country.jpg" alt="Kinder Country" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Kinder Country</div>
+          <div class="kinder-desc">Chocolate con cereales crocantes y relleno de leche.</div>
+          <div class="kinder-row"><span class="kinder-precio">$4.500</span><button class="kinder-btn" onclick="agregarKinder(this,'Kinder Country',4500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/kinder-cards.jpg" alt="Kinder Cards" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Kinder Cards</div>
+          <div class="kinder-desc">Obleas rellenas de leche y cacao, x2 unidades.</div>
+          <div class="kinder-row"><span class="kinder-precio">$5.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Kinder Cards',5000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/kinder-happy-hippo.jpg" alt="Kinder Happy Hippo" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Kinder Happy Hippo</div>
+          <div class="kinder-desc">Hipopótamo de oblea relleno de crema de cacao y avellana.</div>
+          <div class="kinder-row"><span class="kinder-precio">$5.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Kinder Happy Hippo',5000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/kinder-ovo.jpg" alt="Kinder Ovo" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Kinder Ovo</div>
+          <div class="kinder-desc">Huevo sorpresa con chocolate y juguete coleccionable, x2.</div>
+          <div class="kinder-row"><span class="kinder-precio">$20.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Kinder Ovo',20000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/cartuchera-kinder.jpg" alt="Cartuchera Kinder" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Cartuchera Kinder</div>
+          <div class="kinder-desc">Lata cartuchera con 16 barras de Kinder Chocolate. Edición coleccionable.</div>
+          <div class="kinder-row"><span class="kinder-precio">$38.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Cartuchera Kinder',38000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/exagonal-kinder.jpg" alt="Exagonal Kinder Colección" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Exagonal Kinder Colección</div>
+          <div class="kinder-desc">Caja hexagonal Kinder &amp; Co con surtido: Bueno, Duplo, Hanuta, Tronky.</div>
+          <div class="kinder-row"><span class="kinder-precio">$30.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Exagonal Kinder Colección',30000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="kinder-card">
+        <img class="kinder-img" src="img/productos/kinder-bueno-white.jpg" alt="Kinder Bueno White" loading="lazy">
+        <div class="kinder-info">
+          <div class="kinder-nombre">Kinder Bueno White</div>
+          <div class="kinder-desc">Caja de Kinder Bueno White: oblea con chocolate blanco y avellana.</div>
+          <div class="kinder-row"><span class="kinder-precio">$35.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Kinder Bueno White',35000)">+ Agregar</button></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1590,6 +1710,14 @@
     badge.textContent = '✓'; badge.classList.add('agregado');
     add.textContent = '✓ Agregado al carrito';
     setTimeout(() => { badge.textContent = 'Limited'; badge.classList.remove('agregado'); add.textContent = '+ Agregar $7.000'; }, 1400);
+  }
+  function agregarKinder(btn, nombre, precio) {
+    cartCount++; cartTotal += precio;
+    if (!cartItems[nombre]) cartItems[nombre] = { cantidad: 0, precio };
+    cartItems[nombre].cantidad++;
+    updateCartUI();
+    btn.textContent = '✓ Listo'; btn.classList.add('agregado');
+    setTimeout(() => { btn.textContent = '+ Agregar'; btn.classList.remove('agregado'); }, 1400);
   }
   function quitarDelCarrito(nombre) {
     const item = cartItems[nombre];
