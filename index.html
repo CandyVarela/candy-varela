@@ -291,6 +291,38 @@
     .imp-title { font-size:1.5rem; }
   }
 
+  /* SECCIÓN BEBIDAS IMPORTADAS */
+  .beb-section { position:relative; background:linear-gradient(180deg,#06b6d4,#0891b2 55%,#7dd3fc); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; overflow:hidden; box-shadow:0 6px 24px rgba(6,182,212,0.25); }
+  .beb-bubble { position:absolute; border-radius:50%; background:rgba(255,255,255,0.18); pointer-events:none; animation:burbuja 7s ease-in infinite; }
+  .beb-bubble.b1 { width:26px; height:26px; left:10%; bottom:-30px; animation-delay:0s; }
+  .beb-bubble.b2 { width:16px; height:16px; left:32%; bottom:-30px; animation-delay:1.6s; }
+  .beb-bubble.b3 { width:34px; height:34px; left:60%; bottom:-30px; animation-delay:0.8s; }
+  .beb-bubble.b4 { width:20px; height:20px; left:82%; bottom:-30px; animation-delay:2.4s; }
+  .beb-bubble.b5 { width:12px; height:12px; left:48%; bottom:-30px; animation-delay:3.2s; }
+  @keyframes burbuja { 0%{ transform:translateY(0); opacity:0; } 15%{ opacity:1; } 100%{ transform:translateY(-360px); opacity:0; } }
+  .beb-head { text-align:center; margin-bottom:28px; position:relative; z-index:2; }
+  .beb-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#fff; letter-spacing:0.02em; text-shadow:0 2px 10px rgba(0,0,0,0.2); }
+  .beb-title .amar { color:var(--amarillo); }
+  .beb-sub { color:rgba(255,255,255,0.9); font-size:0.9rem; font-weight:600; margin-top:4px; }
+  .beb-grid { display:flex; gap:18px; max-width:1000px; margin:0 auto; position:relative; z-index:2; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:#fff transparent; }
+  .beb-grid::-webkit-scrollbar { height:7px; }
+  .beb-grid::-webkit-scrollbar-thumb { background:#fff; border-radius:50px; }
+  .beb-grid::-webkit-scrollbar-track { background:rgba(255,255,255,0.25); border-radius:50px; }
+  .beb-card { flex:0 0 220px; width:220px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #06b6d4; box-shadow:0 4px 14px rgba(0,0,0,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
+  .beb-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,0.3); }
+  .beb-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .beb-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .beb-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.95rem; color:#0e7490; line-height:1.2; }
+  .beb-desc { font-size:0.78rem; color:var(--text-muted); font-weight:600; line-height:1.35; flex:1; }
+  .beb-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:4px; }
+  .beb-precio { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.05rem; color:#0891b2; }
+  .beb-btn { background:#0891b2; color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.78rem; padding:8px 14px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .beb-btn.agregado { background:var(--green); }
+  @media (max-width:700px) {
+    .beb-card { flex:0 0 200px; width:200px; }
+    .beb-title { font-size:1.5rem; }
+  }
+
   @media (max-width:900px) {
     .beneficios-inner,.categorias-grid { grid-template-columns:repeat(4,1fr); }
     .productos-grid,.testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr 1fr; }
@@ -395,6 +427,7 @@
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatAlfajores()"><span class="drawer-ico">🍩</span> Alfajores</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatGomitas()"><span class="drawer-ico">🐻</span> Gomitas</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatBebidas()"><span class="drawer-ico">🥤</span> Bebidas</a>
+    <a href="#bebidasImportadas" onclick="cerrarDrawer()"><span class="drawer-ico">🌎</span> Bebidas Importadas</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatSnacks()"><span class="drawer-ico">🍟</span> Snacks</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCombosExclusivos()"><span class="drawer-ico">🎁</span> Combos Exclusivos</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirPromos()"><span class="drawer-ico">⚽</span> Combos del Mundial</a>
@@ -719,6 +752,145 @@
           <div class="imp-nombre"><span class="imp-flag">🇧🇷</span> Galletitas Netflix</div>
           <div class="imp-desc">Bauducco Choco Brownie edición Netflix.</div>
           <div class="imp-row"><span class="imp-precio">$8.500</span><button class="imp-btn" onclick="agregarKinder(this,'Galletitas Netflix',8500)">+ Agregar</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN BEBIDAS IMPORTADAS -->
+  <div class="beb-section" id="bebidasImportadas" style="scroll-margin-top:120px;">
+    <span class="beb-bubble b1"></span><span class="beb-bubble b2"></span><span class="beb-bubble b3"></span><span class="beb-bubble b4"></span><span class="beb-bubble b5"></span>
+    <div class="beb-head">
+      <h2 class="beb-title">🥤 Bebidas <span class="amar">Importadas</span></h2>
+      <p class="beb-sub">Gaseosas y energizantes de todo el mundo · ¡todas a $7.000! · deslizá para ver más →</p>
+    </div>
+    <div class="beb-grid">
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/coca-cherry.jpg" alt="Coca-Cola Cherry" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Coca-Cola Cherry</div>
+          <div class="beb-desc">Coca-Cola sabor cereza, importada.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Coca-Cola Cherry',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/coca-lemon.jpg" alt="Coca-Cola Lemon" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Coca-Cola Lemon</div>
+          <div class="beb-desc">Coca-Cola sabor limón, importada.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Coca-Cola Lemon',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/fanta-uva.jpg" alt="Fanta Uva" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Fanta Uva</div>
+          <div class="beb-desc">Fanta sabor uva, edición importada.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Fanta Uva',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/fanta-melon.jpg" alt="Fanta Melón" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Fanta Melón</div>
+          <div class="beb-desc">Fanta sabor melón, edición coreana.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Fanta Melón',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/mountain-dew.jpg" alt="Mountain Dew Voltage" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Mountain Dew Voltage</div>
+          <div class="beb-desc">Mountain Dew sabor frambuesa, importada.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Mountain Dew Voltage',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/drpepper-vanilla.jpg" alt="Dr Pepper Vanilla Float" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Dr Pepper Vanilla Float</div>
+          <div class="beb-desc">Dr Pepper sabor vainilla, importada.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Dr Pepper Vanilla Float',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/guarana.jpg" alt="Guaraná Antarctica" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Guaraná Antarctica</div>
+          <div class="beb-desc">Gaseosa brasilera de guaraná, original do Brasil.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Guaraná Antarctica',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/jugo-uva-verde.jpg" alt="Jugo de Uva Verde" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Jugo de Uva Verde</div>
+          <div class="beb-desc">Jugo importado sabor uva verde.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Jugo de Uva Verde',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/qdol-pikachu.jpg" alt="QDOL Pikachu" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">QDOL Pokémon · Pikachu</div>
+          <div class="beb-desc">Gaseosa QDOL edición Pokémon, lata Pikachu.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'QDOL Pokémon Pikachu',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/qdol-squirtle.jpg" alt="QDOL Squirtle" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">QDOL Pokémon · Squirtle</div>
+          <div class="beb-desc">Gaseosa QDOL edición Pokémon, lata Squirtle.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'QDOL Pokémon Squirtle',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/qdol-patricio.jpg" alt="QDOL Patricio" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">QDOL Bob Esponja · Patricio</div>
+          <div class="beb-desc">Gaseosa QDOL edición Bob Esponja, lata Patricio.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'QDOL Bob Esponja Patricio',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/qdol-gary.jpg" alt="QDOL Gary" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">QDOL Bob Esponja · Gary</div>
+          <div class="beb-desc">Gaseosa QDOL edición Bob Esponja, lata Gary.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'QDOL Bob Esponja Gary',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/qdol-arenita.jpg" alt="QDOL Arenita" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">QDOL Bob Esponja · Arenita</div>
+          <div class="beb-desc">Gaseosa QDOL edición Bob Esponja, lata Arenita.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'QDOL Bob Esponja Arenita',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/energy-colapinto.jpg" alt="Energizante Franco Colapinto" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Energizante Franco Colapinto</div>
+          <div class="beb-desc">Bebida energizante edición Franco Colapinto (BWT).</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Energizante Franco Colapinto',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/energy-river.jpg" alt="Energizante River Plate" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Energizante River Plate</div>
+          <div class="beb-desc">Bebida energizante oficial del Club River Plate.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Energizante River Plate',7000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/energy-darthvader.jpg" alt="Energizante Darth Vader" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Energizante Darth Vader</div>
+          <div class="beb-desc">Bebida energizante edición Star Wars Darth Vader.</div>
+          <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Energizante Darth Vader',7000)">+ Agregar</button></div>
         </div>
       </div>
     </div>
