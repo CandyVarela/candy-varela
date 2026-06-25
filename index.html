@@ -28,6 +28,19 @@
   /* HEADER */
   header { background:linear-gradient(135deg,var(--azul-dark),var(--azul)); padding:14px 24px 10px; position:sticky; top:0; z-index:100; box-shadow:0 4px 18px rgba(0,0,0,0.18); }
   .header-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:18px; }
+  .menu-btn { display:flex; flex-direction:column; justify-content:center; gap:4px; width:40px; height:40px; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.25); border-radius:12px; cursor:pointer; flex-shrink:0; padding:0 9px; }
+  .menu-btn span { display:block; height:2.5px; width:100%; background:#fff; border-radius:3px; transition:0.2s; }
+  .menu-btn:hover { background:rgba(255,255,255,0.2); }
+  .drawer-overlay { display:none; position:fixed; inset:0; background:rgba(13,33,71,0.5); z-index:1100; }
+  .drawer-overlay.open { display:block; }
+  .drawer { position:fixed; top:0; left:0; height:100%; width:280px; max-width:82vw; background:#fff; z-index:1101; transform:translateX(-100%); transition:transform 0.28s cubic-bezier(0.4,0,0.2,1); box-shadow:4px 0 30px rgba(0,0,0,0.25); display:flex; flex-direction:column; }
+  .drawer.open { transform:translateX(0); }
+  .drawer-header { display:flex; align-items:center; justify-content:space-between; padding:18px 20px; background:linear-gradient(135deg,var(--azul-dark),var(--rosa)); color:#fff; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem; }
+  .drawer-close { background:rgba(255,255,255,0.2); border:none; color:#fff; width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:0.9rem; }
+  .drawer-nav { display:flex; flex-direction:column; padding:8px 0; overflow-y:auto; }
+  .drawer-nav a { display:flex; align-items:center; gap:12px; padding:13px 22px; color:var(--azul-dark); text-decoration:none; font-weight:700; font-size:0.95rem; border-bottom:1px solid rgba(0,0,0,0.05); transition:background 0.15s,padding 0.15s; }
+  .drawer-nav a:hover { background:var(--rosa-light); color:var(--rosa); padding-left:28px; }
+  .drawer-ico { font-size:1.25rem; width:26px; text-align:center; }
   .logo { font-family:'Poppins',sans-serif; font-size:1.65rem; font-weight:800; color:#fff; text-decoration:none; display:flex; align-items:center; gap:6px; white-space:nowrap; }
   .logo span { color:var(--amarillo); }
   .search-bar { flex:1; min-width:0; display:flex; align-items:center; background:rgba(255,255,255,0.13); border:1.5px solid rgba(255,255,255,0.22); border-radius:50px; padding:8px 16px; gap:8px; }
@@ -355,6 +368,7 @@
 <!-- HEADER -->
 <header>
   <div class="header-inner">
+    <button class="menu-btn" onclick="abrirDrawer()" aria-label="Menú"><span></span><span></span><span></span></button>
     <a href="#" class="logo">🇦🇷 Candy <span>Varela</span> ⭐⭐⭐</a>
     <div class="search-bar">
       <span>🔍</span>
@@ -365,6 +379,28 @@
     </div>
   </div>
 </header>
+
+<!-- DRAWER MENÚ LATERAL -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="cerrarDrawer()"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-header">
+    <span>🍬 Categorías</span>
+    <button class="drawer-close" onclick="cerrarDrawer()" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="drawer-nav">
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirOfertas()"><span class="drawer-ico">🔥</span> Ofertas</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirNovedades()"><span class="drawer-ico">✨</span> Novedades</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCategoria()"><span class="drawer-ico">🍬</span> Golosinas</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatChocolates()"><span class="drawer-ico">🍫</span> Chocolates</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatAlfajores()"><span class="drawer-ico">🍩</span> Alfajores</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatGomitas()"><span class="drawer-ico">🐻</span> Gomitas</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatBebidas()"><span class="drawer-ico">🥤</span> Bebidas</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatSnacks()"><span class="drawer-ico">🍟</span> Snacks</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCombosExclusivos()"><span class="drawer-ico">🎁</span> Combos Exclusivos</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirPromos()"><span class="drawer-ico">⚽</span> Combos del Mundial</a>
+    <a href="#reels" onclick="cerrarDrawer()"><span class="drawer-ico">📸</span> Reels</a>
+  </div>
+</aside>
 
 <!-- NAV -->
 <nav>
@@ -396,24 +432,6 @@
 
 <!-- BENEFICIOS -->
 <main>
-
-  <!-- CATEGORÍAS -->
-  <div id="categorias">
-    <div class="section-header">
-      <h2 class="section-title">Categorías</h2>
-      <a href="#" class="section-link">Ver todo →</a>
-    </div>
-    <div class="categorias-grid">
-      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCategoria()"><div class="cat-emoji" style="filter:hue-rotate(300deg) saturate(1.6);">🍬</div><div class="cat-name">Golosinas</div></a>
-      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatChocolates()"><div class="cat-emoji" style="filter:hue-rotate(300deg) saturate(2.2) brightness(1.15);">🍫</div><div class="cat-name">Chocolates</div></a>
-      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatAlfajores()"><div class="cat-emoji" style="filter:hue-rotate(300deg) saturate(1.8);">🍩</div><div class="cat-name">Alfajores</div></a>
-      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatGomitas()"><div class="cat-emoji" style="filter:hue-rotate(300deg)">🐻</div><div class="cat-name">Gomitas</div></a>
-      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatBebidas()"><div class="cat-emoji" style="filter:hue-rotate(300deg) saturate(1.8);">🥫</div><div class="cat-name">Bebidas</div></a>
-      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCatSnacks()"><div class="cat-emoji" style="filter:hue-rotate(300deg) saturate(1.8);">🍿</div><div class="cat-name">Snacks</div></a>
-      <a href="#" class="categoria-card"><div class="cat-emoji" style="filter:hue-rotate(300deg) saturate(1.6);">🍭</div><div class="cat-name">Candy Bar</div></a>
-      <a href="#" class="categoria-card" onclick="event.preventDefault();abrirCombosExclusivos()"><div class="cat-emoji" style="filter:hue-rotate(300deg) saturate(1.8);">🎁</div><div class="cat-name">Combos Exclusivos</div></a>
-    </div>
-  </div>
 
   <!-- SECCIÓN IMPORTADOS -->
   <div class="imp-section">
@@ -2199,6 +2217,16 @@
         setTimeout(() => addChatMsg('¿Te ayudo con algo más?', 'bot'), 500);
       }
     }, 350);
+  }
+  function abrirDrawer() {
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('drawerOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function cerrarDrawer() {
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('drawerOverlay').classList.remove('open');
+    document.body.style.overflow = '';
   }
   function abrirChat() {
     document.getElementById('chatPanel').classList.add('open');
