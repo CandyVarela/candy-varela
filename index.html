@@ -30,7 +30,7 @@
   .header-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:18px; }
   .logo { font-family:'Poppins',sans-serif; font-size:1.65rem; font-weight:800; color:#fff; text-decoration:none; display:flex; align-items:center; gap:6px; white-space:nowrap; }
   .logo span { color:var(--amarillo); }
-  .search-bar { flex:1; display:flex; align-items:center; background:rgba(255,255,255,0.13); border:1.5px solid rgba(255,255,255,0.22); border-radius:50px; padding:8px 16px; gap:8px; }
+  .search-bar { flex:1; min-width:0; display:flex; align-items:center; background:rgba(255,255,255,0.13); border:1.5px solid rgba(255,255,255,0.22); border-radius:50px; padding:8px 16px; gap:8px; }
   .search-bar input { background:transparent; border:none; outline:none; color:#fff; font-size:0.9rem; width:100%; font-family:'Nunito',sans-serif; }
   .search-bar input::placeholder { color:rgba(255,255,255,0.55); }
   .header-actions { display:flex; align-items:center; gap:10px; }
@@ -296,8 +296,10 @@
     .modal-producto-precio { order:3; }
   }
   @media (max-width:600px) {
-    .header-inner { gap:10px; }
-    .logo { font-size:1.3rem; }
+    .header-inner { gap:10px; flex-wrap:wrap; }
+    .search-bar { order:3; flex:1 0 100%; }
+    .logo { font-size:1.2rem; }
+    .btn-carrito { padding:8px 14px; font-size:0.82rem; }
     .categorias-grid { grid-template-columns:repeat(4,1fr); }
     .testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr; }
     .slide-content { flex-direction:column; text-align:center; padding:32px 20px; }
@@ -344,7 +346,6 @@
       <input type="text" placeholder="Buscar golosinas, chocolates, combos...">
     </div>
     <div class="header-actions">
-      <a href="#" class="btn-cuenta">👤 Mi cuenta</a>
       <a href="#" class="btn-carrito" onclick="event.preventDefault();abrirCarrito()">🛒 Carrito <div class="carrito-count">0</div></a>
     </div>
   </div>
