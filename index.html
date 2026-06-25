@@ -190,6 +190,17 @@
   .chat-online-dot { position:absolute; bottom:1px; right:1px; width:11px; height:11px; background:var(--green); border-radius:50%; border:2px solid var(--azul-dark); }
   .chat-text strong { display:block; color:#fff; font-size:0.85rem; font-weight:800; }
   .chat-text span { color:rgba(255,255,255,0.55); font-size:0.73rem; font-weight:600; }
+  .chat-panel { display:none; flex-direction:column; width:320px; max-width:calc(100vw - 32px); max-height:60vh; background:#fff; border-radius:18px; box-shadow:0 12px 40px rgba(0,0,0,0.3); overflow:hidden; margin-bottom:10px; }
+  .chat-panel.open { display:flex; }
+  .chat-panel-header { display:flex; align-items:center; gap:10px; padding:12px 14px; background:linear-gradient(135deg,var(--azul-dark),var(--rosa)); color:#fff; }
+  .chat-panel-close { margin-left:auto; background:rgba(255,255,255,0.2); border:none; color:#fff; width:26px; height:26px; border-radius:50%; cursor:pointer; font-size:0.8rem; }
+  .chat-msgs { flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; background:var(--gris-bg); min-height:120px; }
+  .chat-msg { max-width:85%; padding:9px 13px; border-radius:14px; font-size:0.85rem; font-weight:600; line-height:1.45; }
+  .chat-msg.bot { background:#fff; color:var(--text); border:1px solid rgba(0,0,0,0.06); border-bottom-left-radius:4px; align-self:flex-start; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+  .chat-msg.user { background:var(--rosa); color:#fff; border-bottom-right-radius:4px; align-self:flex-end; }
+  .chat-options { display:flex; flex-wrap:wrap; gap:7px; padding:12px 14px; border-top:1px solid rgba(0,0,0,0.07); background:#fff; }
+  .chat-chip { background:var(--rosa-light); color:var(--rosa); border:1.5px solid rgba(233,30,140,0.25); border-radius:50px; padding:7px 13px; font-size:0.8rem; font-weight:800; cursor:pointer; font-family:'Nunito',sans-serif; transition:background 0.18s,color 0.18s; }
+  .chat-chip:hover { background:var(--rosa); color:#fff; }
   .btn-enviar { background:var(--green); color:#fff; border:none; border-radius:10px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:8px 14px; cursor:pointer; }
 
   /* GALERÍA NEÓN MONSTER */
@@ -1756,6 +1767,18 @@
       <text x="40" y="9" text-anchor="middle" font-size="8">⭐⭐⭐</text>
     </svg>
   </div>
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-panel-header">
+      <div class="chat-icon" style="width:36px;height:36px;font-size:1rem;">🍬<div class="chat-online-dot"></div></div>
+      <div>
+        <strong style="display:block;font-size:0.9rem;">Candy · Asistente</strong>
+        <span style="font-size:0.72rem;opacity:0.7;">En línea · te ayuda a comprar</span>
+      </div>
+      <button class="chat-panel-close" onclick="cerrarChat()">✕</button>
+    </div>
+    <div class="chat-msgs" id="chatMsgs"></div>
+    <div class="chat-options" id="chatOptions"></div>
+  </div>
   <div class="carrito-flotante" id="carritoFlotante" style="display:none;">
     <div><span id="carritoResumen">🛒 0 productos · <strong>$0</strong></span></div>
     <button class="btn-enviar" id="btnEnviarPedido">📲 Finalizar por WhatsApp</button>
@@ -2136,9 +2159,59 @@
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(detalle)}`, '_blank');
   }
   document.getElementById('btnEnviarPedido').addEventListener('click', enviarPedidoWhatsApp);
+  const CHAT_RESP = {
+    comprar: 'Elegí los productos que quieras de las categorías o de las secciones (Importados, Kinder, Monster, Ofertas) y tocá "+ Agregar" para sumarlos al carrito 🛒. Cuando termines, abrí el carrito y tocá "Finalizar por WhatsApp" para coordinar el pago y el envío. ¡Es muy fácil! 😊',
+    local: '📍 Estamos en Florencio Varela, Buenos Aires.<br>🕗 Atendemos de lunes a sábados de 7 a 20 hs.<br>📱 WhatsApp: 11 7675-0220<br>✉️ candyvarelaok@gmail.com<br>🍬 Vendemos por mayor y menor.',
+    envios: '🚚 Hacemos envíos a todo el país a través de Vía Cargo, el mismo día de tu compra o en 24hs según disponibilidad. Te enviamos el comprobante y podés seguir tu envío. ¡Todos los envíos están asegurados! 📦',
+    pago: '💳 Podés abonar en efectivo al retirar por el local, por transferencia, o con tarjeta en el posnet. Cuando finalices el pedido por WhatsApp te pasamos los datos según tu forma de pago elegida.'
+  };
+  const CHAT_CHIPS = [
+    { id:'comprar', label:'🛍️ Quiero comprar' },
+    { id:'local', label:'🏪 Info del local' },
+    { id:'envios', label:'🚚 Envíos' },
+    { id:'pago', label:'💳 Medios de pago' },
+  ];
+  let chatIniciado = false;
+  function addChatMsg(texto, tipo) {
+    const cont = document.getElementById('chatMsgs');
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + tipo;
+    div.innerHTML = texto;
+    cont.appendChild(div);
+    cont.scrollTop = cont.scrollHeight;
+  }
+  function renderChatChips() {
+    const cont = document.getElementById('chatOptions');
+    cont.innerHTML = '';
+    CHAT_CHIPS.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'chat-chip';
+      b.textContent = c.label;
+      b.onclick = () => responderChat(c.id, c.label);
+      cont.appendChild(b);
+    });
+  }
+  function responderChat(id, label) {
+    addChatMsg(label, 'user');
+    setTimeout(() => {
+      addChatMsg(CHAT_RESP[id], 'bot');
+      if (id === 'comprar') {
+        setTimeout(() => addChatMsg('¿Te ayudo con algo más?', 'bot'), 500);
+      }
+    }, 350);
+  }
+  function abrirChat() {
+    document.getElementById('chatPanel').classList.add('open');
+    if (!chatIniciado) {
+      addChatMsg('¡Hola! 👋 Soy el asistente de Candy Varela. ¿Qué querés hacer?', 'bot');
+      renderChatChips();
+      chatIniciado = true;
+    }
+  }
+  function cerrarChat() { document.getElementById('chatPanel').classList.remove('open'); }
   function toggleChat() {
-    const fl = document.getElementById('carritoFlotante');
-    if (cartCount > 0) fl.style.display = fl.style.display === 'none' ? 'flex' : 'none';
+    const p = document.getElementById('chatPanel');
+    if (p.classList.contains('open')) cerrarChat(); else abrirChat();
   }
 </script>
 </body>
