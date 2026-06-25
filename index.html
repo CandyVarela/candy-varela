@@ -291,6 +291,10 @@
   .modal-producto-precio { font-weight:800; color:var(--rosa); font-size:0.92rem; white-space:nowrap; }
   .btn-modal-agregar { background:var(--azul); color:#fff; border:none; border-radius:50px; font-weight:800; font-size:0.78rem; padding:8px 14px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
   .btn-modal-agregar.agregado { background:var(--green); }
+  .cant-control { display:flex; align-items:center; gap:8px; background:var(--rosa-light); border-radius:50px; padding:3px; flex-shrink:0; }
+  .cant-btn { width:30px; height:30px; border:none; border-radius:50%; background:var(--rosa); color:#fff; font-size:1.2rem; font-weight:800; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.1s,background 0.2s; }
+  .cant-btn:active { transform:scale(0.88); }
+  .cant-num { min-width:22px; text-align:center; font-weight:800; font-size:0.95rem; color:var(--azul-dark); }
   @media (max-width:600px) {
     .modal-producto { flex-wrap:wrap; }
     .modal-producto-precio { order:3; }
@@ -2052,6 +2056,13 @@
     updateCartUI();
     renderCarrito();
   }
+  function sumarItem(nombre) {
+    const item = cartItems[nombre];
+    if (!item) return;
+    item.cantidad++; cartCount++; cartTotal += item.precio;
+    updateCartUI();
+    renderCarrito();
+  }
   function abrirCarrito() { renderCarrito(); abrirModalCat('modalCarrito'); }
   function cerrarCarrito() { cerrarModalCat('modalCarrito'); }
   function renderCarrito() {
@@ -2062,13 +2073,18 @@
     }
     let html = '<div class="modal-productos">';
     for (const [nombre, info] of Object.entries(cartItems)) {
+      const safe = nombre.replace(/'/g, "\\'");
       html += `<div class="modal-producto">
         <div class="modal-producto-info">
           <div class="modal-producto-nombre">${nombre}</div>
-          <div class="modal-producto-variantes">Cantidad: ${info.cantidad}</div>
+          <div class="modal-producto-variantes">$${info.precio.toLocaleString('es-AR')} c/u</div>
+        </div>
+        <div class="cant-control">
+          <button class="cant-btn" onclick="quitarDelCarrito('${safe}')">−</button>
+          <span class="cant-num">${info.cantidad}</span>
+          <button class="cant-btn" onclick="sumarItem('${safe}')">+</button>
         </div>
         <div class="modal-producto-precio">$${(info.precio * info.cantidad).toLocaleString('es-AR')}</div>
-        <button class="btn-modal-agregar" style="background:var(--rosa);" onclick="quitarDelCarrito('${nombre}')">Quitar</button>
       </div>`;
     }
     html += '</div>';
