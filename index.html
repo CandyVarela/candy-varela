@@ -1132,6 +1132,22 @@
           <div class="beb-row"><span class="beb-precio">$7.000</span><button class="beb-btn" onclick="agregarKinder(this,'Energizante Darth Vader',7000)">+ Agregar</button></div>
         </div>
       </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/prime-orange.jpg" alt="Prime Ice Orange" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Prime Ice Orange</div>
+          <div class="beb-desc">Bebida de hidratación Prime sabor naranja, importada.</div>
+          <div class="beb-row"><span class="beb-precio">$15.000</span><button class="beb-btn" onclick="agregarKinder(this,'Prime Ice Orange',15000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="beb-card">
+        <img class="beb-img" src="img/productos/prime-blue-chill.jpg" alt="Prime Ice Blue Chill" loading="lazy">
+        <div class="beb-info">
+          <div class="beb-nombre">Prime Ice Blue Chill</div>
+          <div class="beb-desc">Bebida de hidratación Prime sabor Blue Chill, importada.</div>
+          <div class="beb-row"><span class="beb-precio">$15.000</span><button class="beb-btn" onclick="agregarKinder(this,'Prime Ice Blue Chill',15000)">+ Agregar</button></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1245,6 +1261,13 @@
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-5.jpg" alt="Monster Edición Limitada 5" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
       <div class="neon-frame euro" onclick="agregarMonsterEuro(this,'Monster Europea Juiced Monarch 500ml')"><span class="neon-badge">Europa 500ml</span><img src="img/productos/monster-europea-1.jpg" alt="Monster Europea Juiced Monarch 500ml" loading="lazy"><div class="neon-add">Juiced Monarch · + Agregar $15.000</div></div>
       <div class="neon-frame euro" onclick="agregarMonsterEuro(this,'Monster Europea Ultra Strawberry Dreams 500ml')"><span class="neon-badge">Europa 500ml</span><img src="img/productos/monster-europea-2.jpg" alt="Monster Europea Ultra Strawberry Dreams 500ml" loading="lazy"><div class="neon-add">Ultra Strawberry · + Agregar $15.000</div></div>
+      <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster Original',3500,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-original.jpg" alt="Monster Original" loading="lazy"><div class="neon-add">Original · + Agregar $3.500</div></div>
+      <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster Ultra',3500,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-ultra-blanca.jpg" alt="Monster Ultra" loading="lazy"><div class="neon-add">Ultra · + Agregar $3.500</div></div>
+      <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster Mango Loco',3500,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-mango-loco.jpg" alt="Monster Mango Loco" loading="lazy"><div class="neon-add">Mango Loco · + Agregar $3.500</div></div>
+      <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster Pipeline Punch',3500,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-pipeline.jpg" alt="Monster Pipeline Punch" loading="lazy"><div class="neon-add">Pipeline Punch · + Agregar $3.500</div></div>
+      <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster Ultra Peachy Keen',3500,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-peachy.jpg" alt="Monster Ultra Peachy Keen" loading="lazy"><div class="neon-add">Peachy Keen · + Agregar $3.500</div></div>
+      <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster The Doctor',3500,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-the-doctor.jpg" alt="Monster The Doctor" loading="lazy"><div class="neon-add">The Doctor · + Agregar $3.500</div></div>
+      <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster Reserve Ananá',3500,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-reserve-anana.jpg" alt="Monster Reserve Ananá" loading="lazy"><div class="neon-add">Reserve Ananá · + Agregar $3.500</div></div>
     </div>
   </div>
 
@@ -2410,6 +2433,17 @@
     badge.textContent = '✓'; badge.classList.add('agregado');
     add.textContent = '✓ Agregado al carrito';
     setTimeout(() => { badge.textContent = 'Limited'; badge.classList.remove('agregado'); add.textContent = '+ Agregar $7.000'; }, 1400);
+  }
+  function agregarMonsterGen(frame, nombre, precio, badgeLabel) {
+    cartCount++; cartTotal += precio;
+    if (!cartItems[nombre]) cartItems[nombre] = { cantidad: 0, precio };
+    cartItems[nombre].cantidad++;
+    updateCartUI();
+    const badge = frame.querySelector('.neon-badge');
+    const add = frame.querySelector('.neon-add');
+    badge.textContent = '✓'; badge.classList.add('agregado');
+    add.textContent = '✓ Agregado al carrito';
+    setTimeout(() => { badge.textContent = badgeLabel; badge.classList.remove('agregado'); add.textContent = '+ Agregar $' + precio.toLocaleString('es-AR'); }, 1400);
   }
   function agregarMonsterEuro(frame, nombre) {
     const precio = 15000;
