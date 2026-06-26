@@ -470,7 +470,7 @@
       <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
       <a href="#" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
       <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
-      <a href="#" onclick="event.preventDefault();abrirCatSnacks()">Snacks</a>
+      <a href="#snacks">Snacks</a>
       <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
       <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
       <a href="#reels" class="reels">📸 Reels</a>
@@ -480,7 +480,7 @@
       <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
       <a href="#" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
       <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
-      <a href="#" onclick="event.preventDefault();abrirCatSnacks()">Snacks</a>
+      <a href="#snacks">Snacks</a>
       <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
       <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
       <a href="#reels" class="reels">📸 Reels</a>
@@ -1377,87 +1377,6 @@
   </div>
   <div class="footer-bottom">© 2025 Candy Varela · Alentá con sabor 🇦🇷⭐⭐⭐ · Todos los derechos reservados</div>
 </footer>
-
-<!-- MODAL SNACKS -->
-<div class="modal-overlay" id="modalSnacks">
-  <div class="modal">
-    <div class="modal-header" style="background:linear-gradient(135deg,#7b3f00,#e65c00);">
-      <h2>🍿 Snacks</h2>
-      <button class="modal-close" onclick="cerrarCatSnacks()">✕</button>
-    </div>
-    <div class="modal-body">
-
-      <div class="modal-subcat">🥔 Papas</div>
-      <div class="modal-productos">
-        <div class="modal-producto">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Lays 77g</div>
-            <div class="modal-producto-variantes">A elección — varios sabores</div>
-          </div>
-          <div class="modal-producto-precio">$3.500</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Lays 77g',3500)">+ Agregar</button>
-        </div>
-        <div class="modal-producto">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Lays 40g</div>
-            <div class="modal-producto-variantes">A elección — varios sabores</div>
-          </div>
-          <div class="modal-producto-precio">$2.500</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Lays 40g',2500)">+ Agregar</button>
-        </div>
-        <div class="modal-producto">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Pringles</div>
-            <div class="modal-producto-variantes">A elección — varios sabores</div>
-          </div>
-          <div class="modal-producto-precio">$5.500</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Pringles',5500)">+ Agregar</button>
-        </div>
-      </div>
-
-      <div class="modal-subcat">🌽 Nachos & Cheetos</div>
-      <div class="modal-productos">
-        <div class="modal-producto">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Doritos 40g</div>
-            <div class="modal-producto-variantes">Varios sabores</div>
-          </div>
-          <div class="modal-producto-precio">$3.000</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Doritos 40g',3000)">+ Agregar</button>
-        </div>
-        <div class="modal-producto">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Doritos 77g</div>
-            <div class="modal-producto-variantes">Varios sabores</div>
-          </div>
-          <div class="modal-producto-precio">$5.000</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Doritos 77g',5000)">+ Agregar</button>
-        </div>
-        <div class="modal-producto">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Cheetos 43g</div>
-            <div class="modal-producto-variantes">A elección — varios sabores</div>
-          </div>
-          <div class="modal-producto-precio">$2.500</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cheetos 43g',2500)">+ Agregar</button>
-        </div>
-      </div>
-
-      <div class="modal-subcat">🧂 Otros</div>
-      <div class="modal-productos">
-        <div class="modal-producto" style="border:2px solid var(--rosa);">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Saladix Nuevas 🆕</div>
-            <div class="modal-producto-variantes">Nuevos sabores</div>
-          </div>
-          <div class="modal-producto-precio">$3.000</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Saladix Nuevas',3000)">+ Agregar</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 <!-- MODAL BEBIDAS -->
 <div class="modal-overlay" id="modalBebidas">
@@ -2419,7 +2338,7 @@
 <script>
   function abrirModalCat(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function cerrarModalCat(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-  ['modalSnacks','modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades','modalAyuda','modalOfertas','modalPromos'].forEach(id => {
+  ['modalBebidas','modalGomitas','modalAlfajores','modalChocolates','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades','modalAyuda','modalOfertas','modalPromos'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) cerrarModalCat(id); });
   });
 
@@ -2453,8 +2372,6 @@
   }
   function cerrarAyuda() { cerrarModalCat('modalAyuda'); }
 
-  function abrirCatSnacks() { abrirModalCat('modalSnacks'); }
-  function cerrarCatSnacks() { cerrarModalCat('modalSnacks'); }
   function abrirCatBebidas() { abrirModalCat('modalBebidas'); }
   function cerrarCatBebidas() { cerrarModalCat('modalBebidas'); }
   function abrirCatGomitas() { abrirModalCat('modalGomitas'); }
