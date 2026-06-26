@@ -231,6 +231,10 @@
   .neon-badge { position:absolute; top:8px; left:8px; background:rgba(10,10,20,0.75); border:1px solid #39ff14; color:#39ff14; font-size:0.62rem; font-weight:800; padding:3px 8px; border-radius:50px; text-transform:uppercase; letter-spacing:0.04em; transition:background 0.2s,color 0.2s,border-color 0.2s; }
   .neon-badge.agregado { background:var(--green); color:#fff; border-color:var(--green); }
   .neon-add { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,0.88)); color:#39ff14; font-weight:800; font-size:0.78rem; padding:22px 6px 9px; text-align:center; text-shadow:0 0 6px rgba(57,255,20,0.8); }
+  .neon-frame.euro { border-color:#00e5ff; box-shadow:0 0 6px #00e5ff,0 0 16px rgba(0,229,255,0.6),inset 0 0 10px rgba(0,229,255,0.3); }
+  .neon-frame.euro:hover { box-shadow:0 0 12px #00e5ff,0 0 28px rgba(0,229,255,0.9),inset 0 0 14px rgba(0,229,255,0.4); }
+  .neon-frame.euro .neon-badge { border-color:#00e5ff; color:#00e5ff; }
+  .neon-frame.euro .neon-add { color:#00e5ff; text-shadow:0 0 6px rgba(0,229,255,0.8); }
   @media (max-width:600px) {
     .neon-frame { flex:0 0 160px; width:160px; }
     .neon-title { font-size:1.4rem; }
@@ -1239,6 +1243,8 @@
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-3.jpg" alt="Monster Edición Limitada 3" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-4.jpg" alt="Monster Edición Limitada 4" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-5.jpg" alt="Monster Edición Limitada 5" loading="lazy"><div class="neon-add">+ Agregar $7.000</div></div>
+      <div class="neon-frame euro" onclick="agregarMonsterEuro(this,'Monster Europea Juiced Monarch 500ml')"><span class="neon-badge">Europa 500ml</span><img src="img/productos/monster-europea-1.jpg" alt="Monster Europea Juiced Monarch 500ml" loading="lazy"><div class="neon-add">Juiced Monarch · + Agregar $15.000</div></div>
+      <div class="neon-frame euro" onclick="agregarMonsterEuro(this,'Monster Europea Ultra Strawberry Dreams 500ml')"><span class="neon-badge">Europa 500ml</span><img src="img/productos/monster-europea-2.jpg" alt="Monster Europea Ultra Strawberry Dreams 500ml" loading="lazy"><div class="neon-add">Ultra Strawberry · + Agregar $15.000</div></div>
     </div>
   </div>
 
@@ -2404,6 +2410,18 @@
     badge.textContent = '✓'; badge.classList.add('agregado');
     add.textContent = '✓ Agregado al carrito';
     setTimeout(() => { badge.textContent = 'Limited'; badge.classList.remove('agregado'); add.textContent = '+ Agregar $7.000'; }, 1400);
+  }
+  function agregarMonsterEuro(frame, nombre) {
+    const precio = 15000;
+    cartCount++; cartTotal += precio;
+    if (!cartItems[nombre]) cartItems[nombre] = { cantidad: 0, precio };
+    cartItems[nombre].cantidad++;
+    updateCartUI();
+    const badge = frame.querySelector('.neon-badge');
+    const add = frame.querySelector('.neon-add');
+    badge.textContent = '✓'; badge.classList.add('agregado');
+    add.textContent = '✓ Agregado al carrito';
+    setTimeout(() => { badge.textContent = 'Europa 500ml'; badge.classList.remove('agregado'); add.textContent = '+ Agregar $15.000'; }, 1400);
   }
   function agregarKinder(btn, nombre, precio) {
     cartCount++; cartTotal += precio;
