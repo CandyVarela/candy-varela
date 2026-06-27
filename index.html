@@ -352,6 +352,25 @@
     .snk-title { font-size:1.5rem; }
   }
 
+  /* MINI SECCIÓN PARA APROVECHAR */
+  .promo-top { background:linear-gradient(135deg,#fff0f8,#ffe2f3); border:2px solid #ff7ac6; border-radius:24px; padding:20px 18px 22px; margin-bottom:40px; animation:promoGlow 2.2s ease-in-out infinite; }
+  @keyframes promoGlow { 0%,100%{ box-shadow:0 0 12px rgba(255,122,198,0.45); } 50%{ box-shadow:0 0 26px rgba(255,122,198,0.9); } }
+  .promo-top-title { text-align:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.4rem; color:#e0118c; text-shadow:0 0 10px rgba(255,122,198,0.8); margin-bottom:14px; letter-spacing:0.05em; }
+  .promo-top-grid { display:flex; gap:12px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin; scrollbar-color:#ff7ac6 transparent; justify-content:flex-start; }
+  .promo-top-grid::-webkit-scrollbar { height:6px; }
+  .promo-top-grid::-webkit-scrollbar-thumb { background:#ff7ac6; border-radius:50px; }
+  .promo-item { flex:0 0 150px; width:150px; background:#fff; border:2px solid #ff7ac6; border-radius:14px; overflow:hidden; box-shadow:0 0 8px rgba(255,122,198,0.4); display:flex; flex-direction:column; transition:transform 0.2s; }
+  .promo-item:hover { transform:translateY(-4px); }
+  .promo-item-img { width:100%; height:110px; object-fit:cover; }
+  .promo-emoji { width:100%; height:110px; display:flex; align-items:center; justify-content:center; font-size:3rem; background:#ffe2f3; }
+  .promo-item-info { padding:8px 10px 10px; display:flex; flex-direction:column; gap:5px; flex:1; }
+  .promo-item-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.8rem; color:#c0107a; line-height:1.15; }
+  .promo-item-row { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:auto; }
+  .promo-item-precio { font-weight:800; font-size:0.85rem; color:#e0118c; }
+  .promo-item-btn { background:#e0118c; color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.7rem; padding:6px 11px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .promo-item-btn.agregado { background:var(--green); }
+  @media (max-width:600px) { .promo-top-grid { justify-content:flex-start; } }
+
   /* SECCIÓN CHOCOLATES */
   .cho-section { background:linear-gradient(180deg,#2b1505,#5b3413 55%,#9c6b3a); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; box-shadow:0 6px 24px rgba(60,32,0,0.3); }
   .cho-head { text-align:center; margin-bottom:28px; }
@@ -523,6 +542,41 @@
 
 <!-- BENEFICIOS -->
 <main>
+
+  <!-- MINI SECCIÓN PARA APROVECHAR -->
+  <div class="promo-top">
+    <div class="promo-top-title">✨ PARA APROVECHAR ✨</div>
+    <div class="promo-top-grid">
+      <div class="promo-item">
+        <img class="promo-item-img" src="img/productos/blockazo.jpg" alt="Cofler Blockazo 1kg" loading="lazy">
+        <div class="promo-item-info">
+          <div class="promo-item-nombre">Blockazo 1kg</div>
+          <div class="promo-item-row"><span class="promo-item-precio">$30.000</span><button class="promo-item-btn" onclick="agregarKinder(this,'Cofler Blockazo 1kg',30000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="promo-item">
+        <img class="promo-item-img" src="img/productos/monster-europea-2.jpg" alt="Monster Ultra Strawberry Dreams" loading="lazy">
+        <div class="promo-item-info">
+          <div class="promo-item-nombre">Monster Ultra Dreams</div>
+          <div class="promo-item-row"><span class="promo-item-precio">$15.000</span><button class="promo-item-btn" onclick="agregarKinder(this,'Monster Europea Ultra Strawberry Dreams 500ml',15000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="promo-item">
+        <img class="promo-item-img" src="img/productos/kinder-ovo.jpg" alt="Kinder Ovo" loading="lazy">
+        <div class="promo-item-info">
+          <div class="promo-item-nombre">Kinder Ovo</div>
+          <div class="promo-item-row"><span class="promo-item-precio">$20.000</span><button class="promo-item-btn" onclick="agregarKinder(this,'Kinder Ovo',20000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="promo-item">
+        <div class="promo-emoji">🍬</div>
+        <div class="promo-item-info">
+          <div class="promo-item-nombre">500g Gomitas en promo</div>
+          <div class="promo-item-row"><span class="promo-item-precio">$8.000</span><button class="promo-item-btn" onclick="agregarKinder(this,'500g de Gomitas en promo',8000)">+ Agregar</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- SECCIÓN IMPORTADOS -->
   <div class="imp-section">
