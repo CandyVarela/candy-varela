@@ -352,6 +352,35 @@
     .snk-title { font-size:1.5rem; }
   }
 
+  /* SECCIÓN CHOCOLATES */
+  .cho-section { background:linear-gradient(180deg,#2b1505,#5b3413 55%,#9c6b3a); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; box-shadow:0 6px 24px rgba(60,32,0,0.3); }
+  .cho-head { text-align:center; margin-bottom:28px; }
+  .cho-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#fff; letter-spacing:0.02em; text-shadow:0 2px 10px rgba(0,0,0,0.3); }
+  .cho-title .crema { color:#e8b27a; }
+  .cho-sub { color:rgba(255,255,255,0.85); font-size:0.9rem; font-weight:600; margin-top:4px; }
+  .cho-grid { display:flex; gap:18px; max-width:1000px; margin:0 auto; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:#e8b27a transparent; }
+  .cho-grid::-webkit-scrollbar { height:7px; }
+  .cho-grid::-webkit-scrollbar-thumb { background:#e8b27a; border-radius:50px; }
+  .cho-grid::-webkit-scrollbar-track { background:rgba(255,255,255,0.2); border-radius:50px; }
+  .cho-card { flex:0 0 220px; width:220px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #9c6b3a; box-shadow:0 4px 14px rgba(0,0,0,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; position:relative; }
+  .cho-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,0.3); }
+  .cho-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .cho-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .cho-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.95rem; color:#5b3413; line-height:1.2; }
+  .cho-desc { font-size:0.78rem; color:var(--text-muted); font-weight:600; line-height:1.35; flex:1; }
+  .cho-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:4px; }
+  .cho-precio { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.05rem; color:#7b4a21; }
+  .cho-btn { background:#7b4a21; color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.78rem; padding:8px 14px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .cho-btn.agregado { background:var(--green); }
+  .cho-card.oferta { border:3px solid #ffd400; animation:ofertaPulse 1.4s ease-in-out infinite; }
+  @keyframes ofertaPulse { 0%,100%{ box-shadow:0 0 8px #ffd400,0 0 18px rgba(255,212,0,0.55); } 50%{ box-shadow:0 0 14px #ffd400,0 0 34px rgba(255,212,0,1); } }
+  .cho-oferta-badge { position:absolute; top:8px; left:8px; z-index:2; background:#e2231a; color:#fff; font-size:0.62rem; font-weight:800; padding:3px 9px; border-radius:50px; text-transform:uppercase; letter-spacing:0.04em; box-shadow:0 0 8px rgba(255,212,0,0.9); }
+  .cho-card.oferta .cho-precio { color:#e2231a; }
+  @media (max-width:700px) {
+    .cho-card { flex:0 0 200px; width:200px; }
+    .cho-title { font-size:1.5rem; }
+  }
+
   @media (max-width:900px) {
     .beneficios-inner,.categorias-grid { grid-template-columns:repeat(4,1fr); }
     .productos-grid,.testimonios-grid,.footer-inner,.destacados-banner { grid-template-columns:1fr 1fr; }
@@ -452,7 +481,7 @@
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirOfertas()"><span class="drawer-ico">🔥</span> Ofertas</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirNovedades()"><span class="drawer-ico">✨</span> Novedades</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCategoria()"><span class="drawer-ico">🍬</span> Golosinas</a>
-    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatChocolates()"><span class="drawer-ico">🍫</span> Chocolates</a>
+    <a href="#chocolates" onclick="cerrarDrawer()"><span class="drawer-ico">🍫</span> Chocolates</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatAlfajores()"><span class="drawer-ico">🍩</span> Alfajores</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatGomitas()"><span class="drawer-ico">🐻</span> Gomitas</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatBebidas()"><span class="drawer-ico">🥤</span> Bebidas</a>
@@ -470,7 +499,7 @@
     <div class="nav-track">
       <a href="#" class="ofertas" onclick="event.preventDefault();abrirOfertas()">🔥 Ofertas</a>
       <a href="#" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
-      <a href="#" onclick="event.preventDefault();abrirCatChocolates()">Chocolates</a>
+      <a href="#chocolates">Chocolates</a>
       <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
       <a href="#" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
       <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
@@ -480,7 +509,7 @@
       <a href="#reels" class="reels">📸 Reels</a>
       <a href="#" class="ofertas" onclick="event.preventDefault();abrirOfertas()">🔥 Ofertas</a>
       <a href="#" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
-      <a href="#" onclick="event.preventDefault();abrirCatChocolates()">Chocolates</a>
+      <a href="#chocolates">Chocolates</a>
       <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
       <a href="#" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
       <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
@@ -1146,6 +1175,137 @@
           <div class="beb-nombre">Prime Ice Blue Chill</div>
           <div class="beb-desc">Bebida de hidratación Prime sabor Blue Chill, importada.</div>
           <div class="beb-row"><span class="beb-precio">$15.000</span><button class="beb-btn" onclick="agregarKinder(this,'Prime Ice Blue Chill',15000)">+ Agregar</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN CHOCOLATES -->
+  <div class="cho-section" id="chocolates" style="scroll-margin-top:120px;">
+    <div class="cho-head">
+      <h2 class="cho-title">🍫 <span class="crema">Chocolates</span></h2>
+      <p class="cho-sub">Milka, Cadbury, Cofler y más · deslizá para ver más →</p>
+    </div>
+    <div class="cho-grid">
+      <div class="cho-card oferta">
+        <span class="cho-oferta-badge">🔥 Oferta</span>
+        <img class="cho-img" src="img/productos/blockazo.jpg" alt="Cofler Blockazo 1kg" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Cofler Blockazo 1kg</div>
+          <div class="cho-desc">Bloque gigante de 1kg, edición ¡Vamos Argentina! ¡Precio oferta!</div>
+          <div class="cho-row"><span class="cho-precio">$30.000</span><button class="cho-btn" onclick="agregarKinder(this,'Cofler Blockazo 1kg',30000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/milka-frutilla.jpg" alt="Milka Frutilla" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Milka Frutilla (importada)</div>
+          <div class="cho-desc">Tableta importada con relleno de frutilla.</div>
+          <div class="cho-row"><span class="cho-precio">$9.500</span><button class="cho-btn" onclick="agregarKinder(this,'Milka Frutilla importada',9500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/milka-cookies.jpg" alt="Milka Cookies" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Milka Cookies (importada)</div>
+          <div class="cho-desc">Tableta importada con trozos de galleta.</div>
+          <div class="cho-row"><span class="cho-precio">$9.500</span><button class="cho-btn" onclick="agregarKinder(this,'Milka Cookies importada',9500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/milka-max-caramelo.jpg" alt="Milka Max Caramelo y Avellanas" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Milka Max Caramelo &amp; Avellanas</div>
+          <div class="cho-desc">Tableta grande MMMAX con caramelo y avellanas enteras.</div>
+          <div class="cho-row"><span class="cho-precio">$24.000</span><button class="cho-btn" onclick="agregarKinder(this,'Milka Max Caramelo y Avellanas',24000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/milka-max-chocoswing.jpg" alt="Milka Max Choco-Swing" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Milka Max Choco-Swing</div>
+          <div class="cho-desc">Tableta grande MMMAX con biscuit y galleta.</div>
+          <div class="cho-row"><span class="cho-precio">$24.000</span><button class="cho-btn" onclick="agregarKinder(this,'Milka Max Choco-Swing',24000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/cadbury-almendras.jpg" alt="Cadbury Almendras" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Cadbury Almendras (grande)</div>
+          <div class="cho-desc">Tableta grande de chocolate con leche y almendras.</div>
+          <div class="cho-row"><span class="cho-precio">$5.000</span><button class="cho-btn" onclick="agregarKinder(this,'Cadbury Almendras grande',5000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/aguila-amargo.jpg" alt="Águila Amargo 70%" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Águila Amargo 70%</div>
+          <div class="cho-desc">Chocolate amargo extra fino 70% cacao.</div>
+          <div class="cho-row"><span class="cho-precio">$6.000</span><button class="cho-btn" onclick="agregarKinder(this,'Águila Amargo 70%',6000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/cofler-block-300.jpg" alt="Cofler Block 300g" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Cofler Block 300g</div>
+          <div class="cho-desc">Tableta Cofler Block con maní, 300g.</div>
+          <div class="cho-row"><span class="cho-precio">$14.000</span><button class="cho-btn" onclick="agregarKinder(this,'Cofler Block 300g',14000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/cofler-block-170.jpg" alt="Cofler Block 170g" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Cofler Block 170g</div>
+          <div class="cho-desc">Tableta Cofler Block con maní, 170g.</div>
+          <div class="cho-row"><span class="cho-precio">$9.000</span><button class="cho-btn" onclick="agregarKinder(this,'Cofler Block 170g',9000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/cofler-aireado.jpg" alt="Cofler Aireado" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Cofler Aireado</div>
+          <div class="cho-desc">Chocolate Cofler aireado, sabores a elección.</div>
+          <div class="cho-row"><span class="cho-precio">$5.000</span><button class="cho-btn" onclick="agregarKinder(this,'Cofler Aireado',5000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/cofler-dubai.jpg" alt="Cofler Dubai Pistacho" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Cofler Dubai Pistacho</div>
+          <div class="cho-desc">Chocolate Cofler edición Dubái con pistacho.</div>
+          <div class="cho-row"><span class="cho-precio">$3.000</span><button class="cho-btn" onclick="agregarKinder(this,'Cofler Dubai Pistacho',3000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/milka-dulce-leche.jpg" alt="Milka Dulce de Leche" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Milka Dulce de Leche</div>
+          <div class="cho-desc">Barrita Milka rellena de dulce de leche.</div>
+          <div class="cho-row"><span class="cho-precio">$3.000</span><button class="cho-btn" onclick="agregarKinder(this,'Milka Dulce de Leche',3000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/milka-oreo.jpg" alt="Milka Oreo" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Milka Oreo</div>
+          <div class="cho-desc">Barrita Milka con relleno y trozos de Oreo.</div>
+          <div class="cho-row"><span class="cho-precio">$3.000</span><button class="cho-btn" onclick="agregarKinder(this,'Milka Oreo',3000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/shot-choco.jpg" alt="Shot Chocolate" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Shot Chocolate (grande)</div>
+          <div class="cho-desc">Barra Shot de chocolate con maní, tamaño grande.</div>
+          <div class="cho-row"><span class="cho-precio">$3.000</span><button class="cho-btn" onclick="agregarKinder(this,'Shot Chocolate grande',3000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <img class="cho-img" src="img/productos/shot-blanco.jpg" alt="Shot Blanco" loading="lazy">
+        <div class="cho-info">
+          <div class="cho-nombre">Shot Blanco (chico)</div>
+          <div class="cho-desc">Barrita Shot de chocolate blanco con maní.</div>
+          <div class="cho-row"><span class="cho-precio">$2.000</span><button class="cho-btn" onclick="agregarKinder(this,'Shot Blanco chico',2000)">+ Agregar</button></div>
         </div>
       </div>
     </div>
