@@ -531,7 +531,7 @@
   <div class="drawer-nav">
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirOfertas()"><span class="drawer-ico">🔥</span> Ofertas</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirNovedades()"><span class="drawer-ico">✨</span> Novedades</a>
-    <a href="#tradicional" onclick="cerrarDrawer()"><span class="drawer-ico">🍬</span> Tradicional</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirTradicional()"><span class="drawer-ico">🍬</span> Tradicional</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCategoria()"><span class="drawer-ico">🍭</span> Golosinas</a>
     <a href="#chocolates" onclick="cerrarDrawer()"><span class="drawer-ico">🍫</span> Chocolates</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatAlfajores()"><span class="drawer-ico">🍩</span> Alfajores</a>
@@ -1265,80 +1265,6 @@
           <div class="beb-nombre">Prime Ice Blue Chill</div>
           <div class="beb-desc">Bebida de hidratación Prime sabor Blue Chill, importada.</div>
           <div class="beb-row"><span class="beb-precio">$15.000</span><button class="beb-btn" onclick="agregarKinder(this,'Prime Ice Blue Chill',15000)">+ Agregar</button></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECCIÓN TRADICIONAL -->
-  <div class="trad-section" id="tradicional" style="scroll-margin-top:120px;">
-    <div class="trad-head">
-      <h2 class="trad-title">🍬 <span class="rosa">Tradicional</span></h2>
-      <p class="trad-sub">Las clásicas de kiosco de siempre · deslizá para ver más →</p>
-    </div>
-    <div class="trad-grid">
-      <div class="trad-card">
-        <div class="trad-emoji">🐻</div>
-        <div class="trad-info">
-          <div class="trad-nombre">Gomitas Mogul</div>
-          <div class="trad-desc">Gomitas frutales Mogul, a elección.</div>
-          <div class="trad-row"><span class="trad-precio">$1.000</span><button class="trad-btn" onclick="agregarKinder(this,'Gomitas Mogul',1000)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="trad-card">
-        <div class="trad-emoji">🫧</div>
-        <div class="trad-info">
-          <div class="trad-nombre">Beldent</div>
-          <div class="trad-desc">Chicles Beldent, varios sabores.</div>
-          <div class="trad-row"><span class="trad-precio">$1.000</span><button class="trad-btn" onclick="agregarKinder(this,'Beldent',1000)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="trad-card">
-        <div class="trad-emoji">🫧</div>
-        <div class="trad-info">
-          <div class="trad-nombre">Bubbaloo</div>
-          <div class="trad-desc">Chicle Bubbaloo con relleno líquido.</div>
-          <div class="trad-row"><span class="trad-precio">$200</span><button class="trad-btn" onclick="agregarKinder(this,'Bubbaloo',200)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="trad-card">
-        <div class="trad-emoji">🍬</div>
-        <div class="trad-info">
-          <div class="trad-nombre">Sugus</div>
-          <div class="trad-desc">Caramelos masticables Sugus frutales.</div>
-          <div class="trad-row"><span class="trad-precio">$2.000</span><button class="trad-btn" onclick="agregarKinder(this,'Sugus',2000)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="trad-card">
-        <div class="trad-emoji">🍭</div>
-        <div class="trad-info">
-          <div class="trad-nombre">Flynn Paff</div>
-          <div class="trad-desc">Chupetín con chicle Flynn Paff.</div>
-          <div class="trad-row"><span class="trad-precio">$200</span><button class="trad-btn" onclick="agregarKinder(this,'Flynn Paff',200)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="trad-card">
-        <div class="trad-emoji">🟢</div>
-        <div class="trad-info">
-          <div class="trad-nombre">Tic Tac</div>
-          <div class="trad-desc">Pastillas Tic Tac refrescantes.</div>
-          <div class="trad-row"><span class="trad-precio">$2.000</span><button class="trad-btn" onclick="agregarKinder(this,'Tic Tac',2000)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="trad-card">
-        <div class="trad-emoji">🌿</div>
-        <div class="trad-info">
-          <div class="trad-nombre">Menthoplus</div>
-          <div class="trad-desc">Caramelos Menthoplus de menta y miel.</div>
-          <div class="trad-row"><span class="trad-precio">$1.000</span><button class="trad-btn" onclick="agregarKinder(this,'Menthoplus',1000)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="trad-card">
-        <div class="trad-emoji">🍭</div>
-        <div class="trad-info">
-          <div class="trad-nombre">Chupetines</div>
-          <div class="trad-desc">Chupetines surtidos, a elección.</div>
-          <div class="trad-row"><span class="trad-precio">$400</span><button class="trad-btn" onclick="agregarKinder(this,'Chupetines',400)">+ Agregar</button></div>
         </div>
       </div>
     </div>
@@ -2438,6 +2364,85 @@
   </div>
 </div>
 
+<!-- MODAL TRADICIONAL -->
+<div class="modal-overlay" id="modalTradicional">
+  <div class="modal">
+    <div class="modal-header" style="background:linear-gradient(135deg,#e91e8c,#75aadb);">
+      <h2>🍬 Tradicional</h2>
+      <button class="modal-close" onclick="cerrarTradicional()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-subcat">🍬 Las clásicas de kiosco</div>
+      <div class="modal-productos">
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Gomitas Mogul</div>
+            <div class="modal-producto-variantes">Gomitas frutales Mogul, a elección</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas Mogul',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Beldent</div>
+            <div class="modal-producto-variantes">Chicles Beldent, varios sabores</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Beldent',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Bubbaloo</div>
+            <div class="modal-producto-variantes">Chicle con relleno líquido</div>
+          </div>
+          <div class="modal-producto-precio">$200</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bubbaloo',200)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Sugus</div>
+            <div class="modal-producto-variantes">Caramelos masticables frutales</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Sugus',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Flynn Paff</div>
+            <div class="modal-producto-variantes">Chupetín con chicle</div>
+          </div>
+          <div class="modal-producto-precio">$200</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Flynn Paff',200)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Tic Tac</div>
+            <div class="modal-producto-variantes">Pastillas refrescantes</div>
+          </div>
+          <div class="modal-producto-precio">$2.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Tic Tac',2000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Menthoplus</div>
+            <div class="modal-producto-variantes">Caramelos de menta y miel</div>
+          </div>
+          <div class="modal-producto-precio">$1.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Menthoplus',1000)">+ Agregar</button>
+        </div>
+        <div class="modal-producto">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Chupetines</div>
+            <div class="modal-producto-variantes">Chupetines surtidos, a elección</div>
+          </div>
+          <div class="modal-producto-precio">$400</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Chupetines',400)">+ Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL OFERTAS -->
 <div class="modal-overlay" id="modalOfertas">
   <div class="modal">
@@ -2598,12 +2603,14 @@
 <script>
   function abrirModalCat(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function cerrarModalCat(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-  ['modalBebidas','modalGomitas','modalAlfajores','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades','modalAyuda','modalOfertas','modalPromos'].forEach(id => {
+  ['modalBebidas','modalGomitas','modalAlfajores','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades','modalAyuda','modalOfertas','modalPromos','modalTradicional'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) cerrarModalCat(id); });
   });
 
   function abrirPromos() { abrirModalCat('modalPromos'); }
   function cerrarPromos() { cerrarModalCat('modalPromos'); }
+  function abrirTradicional() { abrirModalCat('modalTradicional'); }
+  function cerrarTradicional() { cerrarModalCat('modalTradicional'); }
   function abrirOfertas() { abrirModalCat('modalOfertas'); }
   function cerrarOfertas() { cerrarModalCat('modalOfertas'); }
   function abrirCombosExclusivos() { abrirModalCat('modalCombosExclusivos'); }
