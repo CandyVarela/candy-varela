@@ -377,6 +377,31 @@
   .promo-item-btn.agregado { background:var(--green); }
   @media (max-width:600px) { .promo-top-grid { justify-content:flex-start; } }
 
+  /* SECCIÓN TRADICIONAL */
+  .trad-section { background:linear-gradient(135deg,#ffd3e0,#d9e7ff 50%,#d6f5e3); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; box-shadow:0 6px 24px rgba(0,0,0,0.1); }
+  .trad-head { text-align:center; margin-bottom:28px; }
+  .trad-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:var(--azul-dark); letter-spacing:0.02em; }
+  .trad-title .rosa { color:var(--rosa); }
+  .trad-sub { color:var(--text-muted); font-size:0.9rem; font-weight:600; margin-top:4px; }
+  .trad-grid { display:flex; gap:18px; max-width:1000px; margin:0 auto; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:var(--rosa) transparent; }
+  .trad-grid::-webkit-scrollbar { height:7px; }
+  .trad-grid::-webkit-scrollbar-thumb { background:var(--rosa); border-radius:50px; }
+  .trad-grid::-webkit-scrollbar-track { background:rgba(0,0,0,0.08); border-radius:50px; }
+  .trad-card { flex:0 0 180px; width:180px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid var(--celeste); box-shadow:0 4px 14px rgba(0,0,0,0.12); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
+  .trad-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,0.2); }
+  .trad-emoji { width:100%; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; font-size:3.4rem; background:linear-gradient(135deg,#fff0f6,#eaf2ff); }
+  .trad-info { padding:11px 13px 13px; display:flex; flex-direction:column; gap:5px; flex:1; }
+  .trad-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.92rem; color:var(--azul-dark); line-height:1.2; }
+  .trad-desc { font-size:0.76rem; color:var(--text-muted); font-weight:600; line-height:1.35; flex:1; }
+  .trad-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:4px; }
+  .trad-precio { font-family:'Poppins',sans-serif; font-weight:800; font-size:1rem; color:var(--rosa); }
+  .trad-btn { background:var(--rosa); color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.76rem; padding:7px 13px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .trad-btn.agregado { background:var(--green); }
+  @media (max-width:700px) {
+    .trad-card { flex:0 0 160px; width:160px; }
+    .trad-title { font-size:1.5rem; }
+  }
+
   /* SECCIÓN CHOCOLATES */
   .cho-section { background:linear-gradient(180deg,#2b1505,#5b3413 55%,#9c6b3a); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; box-shadow:0 6px 24px rgba(60,32,0,0.3); }
   .cho-head { text-align:center; margin-bottom:28px; }
@@ -390,6 +415,7 @@
   .cho-card { flex:0 0 220px; width:220px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #9c6b3a; box-shadow:0 4px 14px rgba(0,0,0,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; position:relative; }
   .cho-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,0.3); }
   .cho-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .cho-emoji { width:100%; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; font-size:3.6rem; background:linear-gradient(135deg,#f3e2cf,#e8c9a8); }
   .cho-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
   .cho-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.95rem; color:#5b3413; line-height:1.2; }
   .cho-desc { font-size:0.78rem; color:var(--text-muted); font-weight:600; line-height:1.35; flex:1; }
@@ -505,7 +531,8 @@
   <div class="drawer-nav">
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirOfertas()"><span class="drawer-ico">🔥</span> Ofertas</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirNovedades()"><span class="drawer-ico">✨</span> Novedades</a>
-    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCategoria()"><span class="drawer-ico">🍬</span> Golosinas</a>
+    <a href="#tradicional" onclick="cerrarDrawer()"><span class="drawer-ico">🍬</span> Tradicional</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCategoria()"><span class="drawer-ico">🍭</span> Golosinas</a>
     <a href="#chocolates" onclick="cerrarDrawer()"><span class="drawer-ico">🍫</span> Chocolates</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatAlfajores()"><span class="drawer-ico">🍩</span> Alfajores</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCatGomitas()"><span class="drawer-ico">🐻</span> Gomitas</a>
@@ -1243,6 +1270,80 @@
     </div>
   </div>
 
+  <!-- SECCIÓN TRADICIONAL -->
+  <div class="trad-section" id="tradicional" style="scroll-margin-top:120px;">
+    <div class="trad-head">
+      <h2 class="trad-title">🍬 <span class="rosa">Tradicional</span></h2>
+      <p class="trad-sub">Las clásicas de kiosco de siempre · deslizá para ver más →</p>
+    </div>
+    <div class="trad-grid">
+      <div class="trad-card">
+        <div class="trad-emoji">🐻</div>
+        <div class="trad-info">
+          <div class="trad-nombre">Gomitas Mogul</div>
+          <div class="trad-desc">Gomitas frutales Mogul, a elección.</div>
+          <div class="trad-row"><span class="trad-precio">$1.000</span><button class="trad-btn" onclick="agregarKinder(this,'Gomitas Mogul',1000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="trad-card">
+        <div class="trad-emoji">🫧</div>
+        <div class="trad-info">
+          <div class="trad-nombre">Beldent</div>
+          <div class="trad-desc">Chicles Beldent, varios sabores.</div>
+          <div class="trad-row"><span class="trad-precio">$1.000</span><button class="trad-btn" onclick="agregarKinder(this,'Beldent',1000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="trad-card">
+        <div class="trad-emoji">🫧</div>
+        <div class="trad-info">
+          <div class="trad-nombre">Bubbaloo</div>
+          <div class="trad-desc">Chicle Bubbaloo con relleno líquido.</div>
+          <div class="trad-row"><span class="trad-precio">$200</span><button class="trad-btn" onclick="agregarKinder(this,'Bubbaloo',200)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="trad-card">
+        <div class="trad-emoji">🍬</div>
+        <div class="trad-info">
+          <div class="trad-nombre">Sugus</div>
+          <div class="trad-desc">Caramelos masticables Sugus frutales.</div>
+          <div class="trad-row"><span class="trad-precio">$2.000</span><button class="trad-btn" onclick="agregarKinder(this,'Sugus',2000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="trad-card">
+        <div class="trad-emoji">🍭</div>
+        <div class="trad-info">
+          <div class="trad-nombre">Flynn Paff</div>
+          <div class="trad-desc">Chupetín con chicle Flynn Paff.</div>
+          <div class="trad-row"><span class="trad-precio">$200</span><button class="trad-btn" onclick="agregarKinder(this,'Flynn Paff',200)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="trad-card">
+        <div class="trad-emoji">🟢</div>
+        <div class="trad-info">
+          <div class="trad-nombre">Tic Tac</div>
+          <div class="trad-desc">Pastillas Tic Tac refrescantes.</div>
+          <div class="trad-row"><span class="trad-precio">$2.000</span><button class="trad-btn" onclick="agregarKinder(this,'Tic Tac',2000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="trad-card">
+        <div class="trad-emoji">🌿</div>
+        <div class="trad-info">
+          <div class="trad-nombre">Menthoplus</div>
+          <div class="trad-desc">Caramelos Menthoplus de menta y miel.</div>
+          <div class="trad-row"><span class="trad-precio">$1.000</span><button class="trad-btn" onclick="agregarKinder(this,'Menthoplus',1000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="trad-card">
+        <div class="trad-emoji">🍭</div>
+        <div class="trad-info">
+          <div class="trad-nombre">Chupetines</div>
+          <div class="trad-desc">Chupetines surtidos, a elección.</div>
+          <div class="trad-row"><span class="trad-precio">$400</span><button class="trad-btn" onclick="agregarKinder(this,'Chupetines',400)">+ Agregar</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- SECCIÓN CHOCOLATES -->
   <div class="cho-section" id="chocolates" style="scroll-margin-top:120px;">
     <div class="cho-head">
@@ -1369,6 +1470,62 @@
           <div class="cho-nombre">Shot Blanco (chico)</div>
           <div class="cho-desc">Barrita Shot de chocolate blanco con maní.</div>
           <div class="cho-row"><span class="cho-precio">$2.000</span><button class="cho-btn" onclick="agregarKinder(this,'Shot Blanco chico',2000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <div class="cho-emoji">🍫</div>
+        <div class="cho-info">
+          <div class="cho-nombre">Bon o Bon</div>
+          <div class="cho-desc">Bombón con relleno de maní, a elección.</div>
+          <div class="cho-row"><span class="cho-precio">$1.000</span><button class="cho-btn" onclick="agregarKinder(this,'Bon o Bon',1000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <div class="cho-emoji">🍬</div>
+        <div class="cho-info">
+          <div class="cho-nombre">Tofi</div>
+          <div class="cho-desc">Chocolate con dulce de leche, varios.</div>
+          <div class="cho-row"><span class="cho-precio">$3.000</span><button class="cho-btn" onclick="agregarKinder(this,'Tofi',3000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <div class="cho-emoji">🥜</div>
+        <div class="cho-info">
+          <div class="cho-nombre">Marroc</div>
+          <div class="cho-desc">Chocolate con praliné de maní.</div>
+          <div class="cho-row"><span class="cho-precio">$1.500</span><button class="cho-btn" onclick="agregarKinder(this,'Marroc',1500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <div class="cho-emoji">🔴</div>
+        <div class="cho-info">
+          <div class="cho-nombre">Rocklets</div>
+          <div class="cho-desc">Grageas de chocolate con leche de colores.</div>
+          <div class="cho-row"><span class="cho-precio">$2.000</span><button class="cho-btn" onclick="agregarKinder(this,'Rocklets',2000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <div class="cho-emoji">🍫</div>
+        <div class="cho-info">
+          <div class="cho-nombre">Cofler Relleno</div>
+          <div class="cho-desc">Cofler Rebenô con relleno cremoso.</div>
+          <div class="cho-row"><span class="cho-precio">$3.500</span><button class="cho-btn" onclick="agregarKinder(this,'Cofler Relleno',3500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <div class="cho-emoji">🌾</div>
+        <div class="cho-info">
+          <div class="cho-nombre">Barras de Cereal</div>
+          <div class="cho-desc">Barritas de cereal, varios sabores.</div>
+          <div class="cho-row"><span class="cho-precio">$2.500</span><button class="cho-btn" onclick="agregarKinder(this,'Barras de Cereal',2500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="cho-card">
+        <div class="cho-emoji">🍫</div>
+        <div class="cho-info">
+          <div class="cho-nombre">Cofler Ghantt</div>
+          <div class="cho-desc">Barra Cofler Ghantt con maní y cereal.</div>
+          <div class="cho-row"><span class="cho-precio">$5.000</span><button class="cho-btn" onclick="agregarKinder(this,'Cofler Ghantt',5000)">+ Agregar</button></div>
         </div>
       </div>
     </div>
