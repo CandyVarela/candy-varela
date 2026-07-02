@@ -1360,21 +1360,21 @@
   <div class="box-section" id="boxes" style="scroll-margin-top:120px;">
     <div class="box-head">
       <h2 class="box-title">🎁 BOX</h2>
-      <p class="box-sub">Boxes personalizados para regalar y sorprender · deslizá para ver más →</p>
+      <p class="box-sub">Cajas vacías para que armes tu propio box con los productos que quieras 💝 · deslizá para ver más →</p>
     </div>
     <div class="dulzura-boxes">
       <div class="dulzura-box">
-        <img src="img/productos/box-dulzura-2.jpg" alt="Box Chocolates" loading="lazy">
+        <img src="img/productos/box-vacio-1.jpg" alt="Box con manija para armar" loading="lazy">
         <div class="dulzura-box-info">
-          <div class="dulzura-box-nombre">Box Chocolates</div>
-          <div class="dulzura-box-row"><span class="dulzura-box-precio">$2.000</span><button class="dulzura-box-btn" onclick="agregarKinder(this,'Box Chocolates',2000)">+ Agregar</button></div>
+          <div class="dulzura-box-nombre">Box con Manija</div>
+          <div class="dulzura-box-row"><span class="dulzura-box-precio">$2.000</span><button class="dulzura-box-btn" onclick="agregarKinder(this,'Box con Manija (para armar)',2000)">+ Agregar</button></div>
         </div>
       </div>
       <div class="dulzura-box">
-        <img src="img/productos/box-dulzura-3.jpg" alt="Box Surtido" loading="lazy">
+        <img src="img/productos/box-vacio-2.jpg" alt="Box cuadrado para armar" loading="lazy">
         <div class="dulzura-box-info">
-          <div class="dulzura-box-nombre">Box Surtido</div>
-          <div class="dulzura-box-row"><span class="dulzura-box-precio">$2.000</span><button class="dulzura-box-btn" onclick="agregarKinder(this,'Box Surtido',2000)">+ Agregar</button></div>
+          <div class="dulzura-box-nombre">Box Cuadrado</div>
+          <div class="dulzura-box-row"><span class="dulzura-box-precio">$2.000</span><button class="dulzura-box-btn" onclick="agregarKinder(this,'Box Cuadrado (para armar)',2000)">+ Agregar</button></div>
         </div>
       </div>
     </div>
@@ -2870,14 +2870,14 @@
     }
     html += '</div>';
 
-    if (!cartItems['Box Chocolates'] && !cartItems['Box Surtido']) {
+    if (!cartItems['Box con Manija (para armar)'] && !cartItems['Box Cuadrado (para armar)']) {
       html += `<div style="margin-top:16px;display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid #ffb3e0;border-radius:14px;box-shadow:0 0 8px #ffb3e0;background:#fff0f7;">
         <span style="font-size:1.9rem;flex-shrink:0;">🎁</span>
         <div style="flex:1;min-width:0;">
-          <div style="font-family:'Poppins',sans-serif;font-weight:800;color:#c0107a;font-size:0.9rem;">¿Querés sumar un BOX?</div>
-          <div style="font-size:0.76rem;color:var(--text-muted);font-weight:600;">Sumá un box personalizado a tu pedido por $2.000</div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:800;color:#c0107a;font-size:0.9rem;">¿Querés armar tu propio BOX?</div>
+          <div style="font-size:0.76rem;color:var(--text-muted);font-weight:600;">Sumá una caja vacía y armá tu box por $2.000</div>
         </div>
-        <button class="btn-modal-agregar" style="background:#e0118c;flex-shrink:0;" onclick="agregarModal(this,'Box Chocolates',2000);renderCarrito();">+ Sumar</button>
+        <button class="btn-modal-agregar" style="background:#e0118c;flex-shrink:0;" onclick="agregarModal(this,'Box con Manija (para armar)',2000);renderCarrito();">+ Sumar</button>
       </div>`;
     }
 
