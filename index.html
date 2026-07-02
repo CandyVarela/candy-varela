@@ -379,6 +379,12 @@
   .dulzura-box-btn.agregado { background:var(--green); }
   @media (max-width:600px) { .dulzura-title { font-size:1.3rem; } .dulzura-box { flex:0 0 140px; } }
 
+  /* SECCIÓN BOX */
+  .box-section { background:linear-gradient(135deg,#ffa7d4,#ff5fa8); border-radius:24px; padding:26px 20px 30px; margin-bottom:40px; box-shadow:0 6px 24px rgba(255,95,168,0.35); }
+  .box-head { text-align:center; margin-bottom:16px; color:#fff; }
+  .box-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.7rem; letter-spacing:0.03em; text-shadow:0 2px 10px rgba(0,0,0,0.2); }
+  .box-sub { font-size:0.88rem; font-weight:600; opacity:0.95; margin-top:2px; }
+
   /* MINI BANNER DESCUENTO */
   .promo-banner { display:flex; align-items:center; justify-content:center; gap:10px; text-align:center; background:linear-gradient(90deg,#e0118c,#ff6b35,#f5c518,#ff6b35,#e0118c); background-size:300% 100%; animation:promoBannerMove 8s linear infinite; color:#fff; font-family:'Poppins',sans-serif; font-weight:800; font-size:0.92rem; padding:12px 18px; border-radius:16px; margin-bottom:20px; box-shadow:0 4px 16px rgba(224,17,140,0.35); line-height:1.3; }
   @keyframes promoBannerMove { 0%{ background-position:0% 50%; } 100%{ background-position:300% 50%; } }
@@ -562,6 +568,7 @@
   <div class="drawer-nav">
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirOfertas()"><span class="drawer-ico">🔥</span> Ofertas</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirNovedades()"><span class="drawer-ico">✨</span> Novedades</a>
+    <a href="#boxes" onclick="cerrarDrawer()"><span class="drawer-ico">🎁</span> Box</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirTradicional()"><span class="drawer-ico">🍬</span> Tradicional</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCategoria()"><span class="drawer-ico">🍭</span> Golosinas</a>
     <a href="#chocolates" onclick="cerrarDrawer()"><span class="drawer-ico">🍫</span> Chocolates</a>
@@ -1349,6 +1356,30 @@
     </div>
   </div>
 
+  <!-- SECCIÓN BOX -->
+  <div class="box-section" id="boxes" style="scroll-margin-top:120px;">
+    <div class="box-head">
+      <h2 class="box-title">🎁 BOX</h2>
+      <p class="box-sub">Boxes personalizados para regalar y sorprender · deslizá para ver más →</p>
+    </div>
+    <div class="dulzura-boxes">
+      <div class="dulzura-box">
+        <img src="img/productos/box-dulzura-2.jpg" alt="Box Chocolates" loading="lazy">
+        <div class="dulzura-box-info">
+          <div class="dulzura-box-nombre">Box Chocolates</div>
+          <div class="dulzura-box-row"><span class="dulzura-box-precio">$2.000</span><button class="dulzura-box-btn" onclick="agregarKinder(this,'Box Chocolates',2000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="dulzura-box">
+        <img src="img/productos/box-dulzura-3.jpg" alt="Box Surtido" loading="lazy">
+        <div class="dulzura-box-info">
+          <div class="dulzura-box-nombre">Box Surtido</div>
+          <div class="dulzura-box-row"><span class="dulzura-box-precio">$2.000</span><button class="dulzura-box-btn" onclick="agregarKinder(this,'Box Surtido',2000)">+ Agregar</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- SECCIÓN CHOCOLATES -->
   <div class="cho-section" id="chocolates" style="scroll-margin-top:120px;">
     <div class="cho-head">
@@ -1560,11 +1591,11 @@
         </div>
       </div>
       <div class="kinder-card">
-        <img class="kinder-img" src="img/productos/nutall.jpg" alt="Nutall" loading="lazy">
+        <img class="kinder-img img-agotado" src="img/productos/nutall.jpg" alt="Nutall" loading="lazy">
         <div class="kinder-info">
           <div class="kinder-nombre">Nutall</div>
-          <div class="kinder-desc">Palitos de biscocho con crema de avellana y cacao para mojar.</div>
-          <div class="kinder-row"><span class="kinder-precio">$8.000</span><button class="kinder-btn" onclick="agregarKinder(this,'Nutall',8000)">+ Agregar</button></div>
+          <div class="kinder-desc">Agotado temporalmente.</div>
+          <div class="kinder-row"><span class="kinder-precio">$8.000</span><button class="kinder-btn btn-agotado" disabled>Agotado</button></div>
         </div>
       </div>
       <div class="kinder-card">
@@ -2838,6 +2869,17 @@
       </div>`;
     }
     html += '</div>';
+
+    if (!cartItems['Box Chocolates'] && !cartItems['Box Surtido']) {
+      html += `<div style="margin-top:16px;display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid #ffb3e0;border-radius:14px;box-shadow:0 0 8px #ffb3e0;background:#fff0f7;">
+        <span style="font-size:1.9rem;flex-shrink:0;">🎁</span>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'Poppins',sans-serif;font-weight:800;color:#c0107a;font-size:0.9rem;">¿Querés sumar un BOX?</div>
+          <div style="font-size:0.76rem;color:var(--text-muted);font-weight:600;">Sumá un box personalizado a tu pedido por $2.000</div>
+        </div>
+        <button class="btn-modal-agregar" style="background:#e0118c;flex-shrink:0;" onclick="agregarModal(this,'Box Chocolates',2000);renderCarrito();">+ Sumar</button>
+      </div>`;
+    }
 
     const sugeridos = SUGERIDOS_CARRITO.filter(p => !cartItems[p.nombre]);
     if (sugeridos.length > 0) {
