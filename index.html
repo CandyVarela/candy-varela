@@ -410,6 +410,8 @@
   .promo-item-btn.agregado { background:var(--green); }
   .btn-agotado { background:#b0b0b0 !important; color:#fff !important; cursor:not-allowed; box-shadow:none !important; }
   .img-agotado { filter:grayscale(0.65); opacity:0.55; }
+  .oferta-neon { border:2px solid #39ff14 !important; box-shadow:0 0 6px #39ff14,0 0 16px rgba(57,255,20,0.55); }
+  .oferta-timer { display:inline-flex; align-items:center; gap:4px; background:#0a2a05; color:#39ff14; font-weight:800; font-size:0.68rem; padding:3px 9px; border-radius:8px; margin-top:5px; box-shadow:0 0 8px rgba(57,255,20,0.5); white-space:nowrap; width:fit-content; }
   @media (max-width:600px) { .promo-top-grid { justify-content:flex-start; } }
 
   /* SECCIÓN TRADICIONAL */
@@ -2564,6 +2566,16 @@
 
       <div class="modal-subcat">🔥 Ofertas de la semana</div>
       <div class="modal-productos">
+        <div class="modal-producto oferta-neon">
+          <img src="img/productos/gomitas-surtidas.jpg" alt="Gomitas Surtidas 300g" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+          <div class="modal-producto-info">
+            <div class="modal-producto-nombre">Gomitas Surtidas 300g</div>
+            <div class="modal-producto-variantes">Bolsa de 300g a elección</div>
+            <div class="oferta-timer">⏳ <span id="ofertaTimer">Cargando…</span></div>
+          </div>
+          <div class="modal-producto-precio">$5.000</div>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas Surtidas 300g',5000)">+ Agregar</button>
+        </div>
         <div class="modal-producto" style="border:2px solid var(--rosa);">
           <div class="modal-producto-info">
             <div class="modal-producto-nombre">Oferta 1</div>
@@ -2992,6 +3004,22 @@
     const p = document.getElementById('chatPanel');
     if (p.classList.contains('open')) cerrarChat(); else abrirChat();
   }
+
+  // Contador oferta gomitas (3 días)
+  const OFERTA_FIN = new Date('2026-07-05T23:59:59').getTime();
+  function updateOfertaTimer() {
+    const el = document.getElementById('ofertaTimer');
+    if (!el) return;
+    const diff = OFERTA_FIN - Date.now();
+    if (diff <= 0) { el.textContent = '¡Oferta finalizada!'; return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    el.textContent = `${d}d ${h}h ${m}m ${s}s`;
+  }
+  updateOfertaTimer();
+  setInterval(updateOfertaTimer, 1000);
 </script>
 </body>
 </html>
