@@ -445,6 +445,20 @@
   .hotsale-item-btn.agregado { background:var(--green); }
   @media (max-width:600px) { .hotsale-title { font-size:1.4rem; } .hotsale-item { flex:0 0 136px; width:136px; } }
 
+  /* HOT SALE MINIATURA (debajo de Semana de la Dulzura) */
+  .hotsale-mini { padding:14px 14px 16px; margin-bottom:24px; }
+  .hotsale-mini .hotsale-badge { font-size:0.6rem; padding:3px 10px; margin-bottom:6px; }
+  .hotsale-mini .hotsale-title { font-size:1.1rem; margin-bottom:2px; }
+  .hotsale-mini .hotsale-sub { font-size:0.7rem; margin-bottom:10px; }
+  .hotsale-mini .hotsale-item { flex:0 0 108px; width:108px; }
+  .hotsale-mini .hotsale-item img,
+  .hotsale-mini .hotsale-item-emoji { height:74px; font-size:1.8rem; }
+  .hotsale-mini .hotsale-item-info { padding:6px 7px 8px; gap:3px; }
+  .hotsale-mini .hotsale-item-nombre { font-size:0.66rem; }
+  .hotsale-mini .hotsale-item-var { font-size:0.54rem; }
+  .hotsale-mini .hotsale-item-precio { font-size:0.72rem; }
+  .hotsale-mini .hotsale-item-btn { font-size:0.58rem; padding:5px 8px; }
+
   /* SECCIÓN TRADICIONAL */
   .trad-section { background:linear-gradient(135deg,#ffd3e0,#d9e7ff 50%,#d6f5e3); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; box-shadow:0 6px 24px rgba(0,0,0,0.1); }
   .trad-head { text-align:center; margin-bottom:28px; }
@@ -752,6 +766,65 @@
           <div class="dulzura-box-info">
             <div class="dulzura-box-nombre">Bolsita Chocolate</div>
             <div class="dulzura-box-row"><span class="dulzura-box-precio">$8.500</span><button class="dulzura-box-btn" onclick="agregarKinder(this,'Bolsita Dulzura Chocolate',8500)">+ Agregar</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MINI SECCIÓN HOT SALE -->
+  <div class="hotsale-section hotsale-mini">
+    <span class="hotsale-flame f1">🔥</span><span class="hotsale-flame f2">🔥</span><span class="hotsale-flame f3">🔥</span><span class="hotsale-flame f4">🔥</span>
+    <div class="hotsale-inner">
+      <span class="hotsale-badge">⚡ Tiempo limitado</span>
+      <h2 class="hotsale-title">🔥 HOT SALE 🔥</h2>
+      <p class="hotsale-sub">Las mejores ofertas de la semana · deslizá para ver más →</p>
+      <div class="hotsale-grid">
+        <div class="hotsale-item">
+          <span class="hotsale-item-badge">Últimas 5</span>
+          <img src="img/productos/blockazo.jpg" alt="Cofler Blockazo 1kg" loading="lazy">
+          <div class="hotsale-item-info">
+            <div class="hotsale-item-nombre">Cofler Blockazo 1kg</div>
+            <div class="hotsale-item-row"><span class="hotsale-item-precio">$30.000</span><button class="hotsale-item-btn" onclick="agregarKinder(this,'Cofler Blockazo 1kg',30000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="hotsale-item">
+          <img src="img/productos/gomitas-surtidas.jpg" alt="Gomitas Surtidas 300g" loading="lazy">
+          <div class="hotsale-item-info">
+            <div class="hotsale-item-nombre">Gomitas Surtidas 300g</div>
+            <div class="hotsale-item-row"><span class="hotsale-item-precio">$5.000</span><button class="hotsale-item-btn" onclick="agregarKinder(this,'Gomitas Surtidas 300g',5000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="hotsale-item">
+          <div class="hotsale-item-emoji">🚀</div>
+          <div class="hotsale-item-info">
+            <div class="hotsale-item-nombre">Oferta 1</div>
+            <div class="hotsale-item-var">2 Capitán del Espacio simple + 1 triple</div>
+            <div class="hotsale-item-row"><span class="hotsale-item-precio">$6.000</span><button class="hotsale-item-btn" onclick="agregarKinder(this,'Oferta 1: 2 Capitán del Espacio simple + 1 Capitán triple',6000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="hotsale-item">
+          <div class="hotsale-item-emoji">🍪</div>
+          <div class="hotsale-item-info">
+            <div class="hotsale-item-nombre">Oferta 2</div>
+            <div class="hotsale-item-var">3 Alfajores Guaymallén simple</div>
+            <div class="hotsale-item-row"><span class="hotsale-item-precio">$1.000</span><button class="hotsale-item-btn" onclick="agregarKinder(this,'Oferta 2: 3 Alfajores Guaymallén simple',1000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="hotsale-item">
+          <div class="hotsale-item-emoji">🍫</div>
+          <div class="hotsale-item-info">
+            <div class="hotsale-item-nombre">Oferta 3</div>
+            <div class="hotsale-item-var">2 Alfajores Guaymallén Rubi</div>
+            <div class="hotsale-item-row"><span class="hotsale-item-precio">$2.000</span><button class="hotsale-item-btn btn-agotado" disabled>Agotado</button></div>
+          </div>
+        </div>
+        <div class="hotsale-item">
+          <img src="img/productos/takis-nacho.jpg" alt="Oferta 4: gomitas + Takis" loading="lazy">
+          <div class="hotsale-item-info">
+            <div class="hotsale-item-nombre">Oferta 4</div>
+            <div class="hotsale-item-var">100g gomitas a elección + Takis</div>
+            <div class="hotsale-item-row"><span class="hotsale-item-precio">$4.000</span><button class="hotsale-item-btn" onclick="agregarKinder(this,'Oferta 4: 100g gomitas + Takis',4000)">+ Agregar</button></div>
           </div>
         </div>
       </div>
@@ -2551,65 +2624,6 @@
 </details>
 
 
-    </div>
-  </div>
-
-  <!-- MINI SECCIÓN HOT SALE -->
-  <div class="hotsale-section">
-    <span class="hotsale-flame f1">🔥</span><span class="hotsale-flame f2">🔥</span><span class="hotsale-flame f3">🔥</span><span class="hotsale-flame f4">🔥</span>
-    <div class="hotsale-inner">
-      <span class="hotsale-badge">⚡ Tiempo limitado</span>
-      <h2 class="hotsale-title">🔥 HOT SALE 🔥</h2>
-      <p class="hotsale-sub">Las mejores ofertas de la semana · deslizá para ver más →</p>
-      <div class="hotsale-grid">
-        <div class="hotsale-item">
-          <span class="hotsale-item-badge">Últimas 5</span>
-          <img src="img/productos/blockazo.jpg" alt="Cofler Blockazo 1kg" loading="lazy">
-          <div class="hotsale-item-info">
-            <div class="hotsale-item-nombre">Cofler Blockazo 1kg</div>
-            <div class="hotsale-item-row"><span class="hotsale-item-precio">$30.000</span><button class="hotsale-item-btn" onclick="agregarKinder(this,'Cofler Blockazo 1kg',30000)">+ Agregar</button></div>
-          </div>
-        </div>
-        <div class="hotsale-item">
-          <img src="img/productos/gomitas-surtidas.jpg" alt="Gomitas Surtidas 300g" loading="lazy">
-          <div class="hotsale-item-info">
-            <div class="hotsale-item-nombre">Gomitas Surtidas 300g</div>
-            <div class="hotsale-item-row"><span class="hotsale-item-precio">$5.000</span><button class="hotsale-item-btn" onclick="agregarKinder(this,'Gomitas Surtidas 300g',5000)">+ Agregar</button></div>
-          </div>
-        </div>
-        <div class="hotsale-item">
-          <div class="hotsale-item-emoji">🚀</div>
-          <div class="hotsale-item-info">
-            <div class="hotsale-item-nombre">Oferta 1</div>
-            <div class="hotsale-item-var">2 Capitán del Espacio simple + 1 triple</div>
-            <div class="hotsale-item-row"><span class="hotsale-item-precio">$6.000</span><button class="hotsale-item-btn" onclick="agregarKinder(this,'Oferta 1: 2 Capitán del Espacio simple + 1 Capitán triple',6000)">+ Agregar</button></div>
-          </div>
-        </div>
-        <div class="hotsale-item">
-          <div class="hotsale-item-emoji">🍪</div>
-          <div class="hotsale-item-info">
-            <div class="hotsale-item-nombre">Oferta 2</div>
-            <div class="hotsale-item-var">3 Alfajores Guaymallén simple</div>
-            <div class="hotsale-item-row"><span class="hotsale-item-precio">$1.000</span><button class="hotsale-item-btn" onclick="agregarKinder(this,'Oferta 2: 3 Alfajores Guaymallén simple',1000)">+ Agregar</button></div>
-          </div>
-        </div>
-        <div class="hotsale-item">
-          <div class="hotsale-item-emoji">🍫</div>
-          <div class="hotsale-item-info">
-            <div class="hotsale-item-nombre">Oferta 3</div>
-            <div class="hotsale-item-var">2 Alfajores Guaymallén Rubi</div>
-            <div class="hotsale-item-row"><span class="hotsale-item-precio">$2.000</span><button class="hotsale-item-btn btn-agotado" disabled>Agotado</button></div>
-          </div>
-        </div>
-        <div class="hotsale-item">
-          <img src="img/productos/takis-nacho.jpg" alt="Oferta 4: gomitas + Takis" loading="lazy">
-          <div class="hotsale-item-info">
-            <div class="hotsale-item-nombre">Oferta 4</div>
-            <div class="hotsale-item-var">100g gomitas a elección + Takis</div>
-            <div class="hotsale-item-row"><span class="hotsale-item-precio">$4.000</span><button class="hotsale-item-btn" onclick="agregarKinder(this,'Oferta 4: 100g gomitas + Takis',4000)">+ Agregar</button></div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
