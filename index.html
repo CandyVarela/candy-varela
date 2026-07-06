@@ -458,6 +458,9 @@
   .hotsale-grid::-webkit-scrollbar-thumb { background:#ff2600; border-radius:50px; }
   .hotsale-item { position:relative; flex:0 0 148px; width:148px; scroll-snap-align:start; background:#1a0505; border:2px solid #ff6a00; border-radius:16px; overflow:hidden; box-shadow:0 0 8px rgba(255,106,0,0.7); display:flex; flex-direction:column; transition:transform 0.2s; }
   .hotsale-item:hover { transform:translateY(-4px); }
+  .hotsale-item.ultima-unidad { border:3px solid #ffd400; animation:ultimaUnidadPulse 1.2s ease-in-out infinite; }
+  @keyframes ultimaUnidadPulse { 0%,100%{ box-shadow:0 0 8px #ffd400,0 0 16px rgba(255,212,0,0.6); } 50%{ box-shadow:0 0 16px #ffd400,0 0 34px rgba(255,212,0,1); } }
+  .hotsale-item-badge.urgente { background:#e2231a; color:#fff; box-shadow:0 0 8px rgba(226,35,26,0.9); }
   .hotsale-item img { width:100%; height:104px; object-fit:cover; }
   .hotsale-item-emoji { width:100%; height:104px; display:flex; align-items:center; justify-content:center; font-size:2.6rem; background:linear-gradient(135deg,#3a0000,#1a0505); }
   .hotsale-item-badge { position:absolute; top:6px; left:6px; z-index:2; background:#ffd400; color:#1a0000; font-size:0.6rem; font-weight:900; padding:2px 8px; border-radius:50px; text-transform:uppercase; letter-spacing:0.03em; box-shadow:0 0 8px rgba(255,212,0,0.9); }
@@ -757,8 +760,8 @@
       <h2 class="hotsale-title">🔥 HOT SALE 🔥</h2>
       <p class="hotsale-sub">Las mejores ofertas de la semana · deslizá para ver más →</p>
       <div class="hotsale-grid">
-        <div class="hotsale-item">
-          <span class="hotsale-item-badge">Últimas 5</span>
+        <div class="hotsale-item ultima-unidad">
+          <span class="hotsale-item-badge urgente">⚡ Última unidad</span>
           <img src="img/productos/blockazo.jpg" alt="Cofler Blockazo 1kg" loading="lazy">
           <div class="hotsale-item-info">
             <div class="hotsale-item-nombre">Cofler Blockazo 1kg</div>
@@ -1549,7 +1552,7 @@
         <img class="cho-img" src="img/productos/blockazo.jpg" alt="Cofler Blockazo 1kg" loading="lazy">
         <div class="cho-info">
           <div class="cho-nombre">Cofler Blockazo 1kg</div>
-          <div class="cho-desc">Bloque gigante de 1kg, edición ¡Vamos Argentina! ¡Precio oferta! Últimas 5 unidades disponibles.</div>
+          <div class="cho-desc">Bloque gigante de 1kg, edición ¡Vamos Argentina! ¡Precio oferta! ⚡ ¡Última unidad disponible!</div>
           <div class="cho-row"><span class="cho-precio">$30.000</span><button class="cho-btn" onclick="agregarKinder(this,'Cofler Blockazo 1kg',30000)">+ Agregar</button></div>
         </div>
       </div>
