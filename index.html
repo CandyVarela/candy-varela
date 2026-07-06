@@ -265,6 +265,32 @@
     .kinder-title { font-size:1.5rem; }
   }
 
+  /* SECCIÓN ALFAJORES VIRALES */
+  .viral-section { background:linear-gradient(180deg,#1a0a2e,#2e0f4d); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; border:2px solid #ff2ea6; box-shadow:0 6px 24px rgba(255,46,166,0.25); }
+  .viral-head { text-align:center; margin-bottom:28px; }
+  .viral-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#fff; letter-spacing:0.02em; text-shadow:0 0 10px rgba(255,46,166,0.8); }
+  .viral-title .rosa { color:#ff2ea6; }
+  .viral-sub { color:rgba(255,255,255,0.7); font-size:0.9rem; font-weight:600; margin-top:4px; }
+  .viral-grid { display:flex; gap:18px; max-width:1000px; margin:0 auto; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:#ff2ea6 transparent; }
+  .viral-grid::-webkit-scrollbar { height:7px; }
+  .viral-grid::-webkit-scrollbar-thumb { background:#ff2ea6; border-radius:50px; }
+  .viral-grid::-webkit-scrollbar-track { background:rgba(255,46,166,0.12); border-radius:50px; }
+  .viral-card { flex:0 0 230px; width:230px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #ff2ea6; box-shadow:0 4px 14px rgba(255,46,166,0.35); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; position:relative; }
+  .viral-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(255,46,166,0.55); }
+  .viral-badge { position:absolute; top:8px; left:8px; z-index:2; background:#ff2ea6; color:#fff; font-size:0.62rem; font-weight:800; padding:3px 9px; border-radius:50px; text-transform:uppercase; letter-spacing:0.04em; }
+  .viral-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .viral-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .viral-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.98rem; color:#7b0f3a; line-height:1.2; }
+  .viral-desc { font-size:0.78rem; color:#666; font-weight:600; line-height:1.35; flex:1; }
+  .viral-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:4px; }
+  .viral-precio { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.05rem; color:#7b0f3a; }
+  .viral-btn { background:#ff2ea6; color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.78rem; padding:8px 14px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .viral-btn.agregado { background:var(--green); }
+  @media (max-width:700px) {
+    .viral-card { flex:0 0 200px; width:200px; }
+    .viral-title { font-size:1.5rem; }
+  }
+
   /* SECCIÓN IMPORTADOS */
   .imp-section { position:relative; background:linear-gradient(180deg,#0a2a5e,#1e63b8 60%,#7fc4f0); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; overflow:hidden; box-shadow:0 6px 24px rgba(10,42,94,0.25); }
   .imp-section::before { content:"✈️"; position:absolute; top:18px; left:-60px; font-size:2rem; animation:vuela 9s linear infinite; }
@@ -1815,6 +1841,88 @@
           <div class="kinder-nombre">Barritas Kinder</div>
           <div class="kinder-desc">Agotado temporalmente.</div>
           <div class="kinder-row"><span class="kinder-precio">$8.000</span><button class="kinder-btn btn-agotado" disabled>Agotado</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN ALFAJORES VIRALES -->
+  <div class="viral-section">
+    <div class="viral-head">
+      <h2 class="viral-title">🍬 Alfajores <span class="rosa">Virales</span> 🍬</h2>
+      <p class="viral-sub">Los que arrasan en TikTok, uno por uno 🔥 · deslizá para ver más →</p>
+    </div>
+    <div class="viral-grid">
+      <div class="viral-card">
+        <span class="viral-badge">Viral</span>
+        <img class="viral-img" src="img/productos/alfajor-matilda.jpg" alt="Alfajor Matilda" loading="lazy">
+        <div class="viral-info">
+          <div class="viral-nombre">Matilda</div>
+          <div class="viral-desc">Alfajor negro relleno de dulce de leche bien intenso, el que explotó en redes.</div>
+          <div class="viral-row"><span class="viral-precio">$3.000</span><button class="viral-btn" onclick="agregarKinder(this,'Alfajor Matilda',3000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="viral-card">
+        <span class="viral-badge">Viral</span>
+        <img class="viral-img" src="img/productos/alfajor-giga.jpg" alt="Alfajor Giga by Spreen" loading="lazy">
+        <div class="viral-info">
+          <div class="viral-nombre">Giga by Spreen</div>
+          <div class="viral-desc">Alfajor de brownie bañado en chocolate, la creación de Spreen que se volvió viral.</div>
+          <div class="viral-row"><span class="viral-precio">$2.500</span><button class="viral-btn" onclick="agregarKinder(this,'Alfajor Giga by Spreen',2500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="viral-card">
+        <span class="viral-badge">Viral</span>
+        <img class="viral-img" src="img/productos/alfajor-goat.jpg" alt="Alfajor Goat" loading="lazy">
+        <div class="viral-info">
+          <div class="viral-nombre">Goat</div>
+          <div class="viral-desc">Alfajor con corazón de dulce de leche bien relleno, suave y goloso.</div>
+          <div class="viral-row"><span class="viral-precio">$2.000</span><button class="viral-btn" onclick="agregarKinder(this,'Alfajor Goat',2000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="viral-card">
+        <span class="viral-badge">Viral</span>
+        <img class="viral-img" src="img/productos/alfachurro.jpg" alt="Alfachurro" loading="lazy">
+        <div class="viral-info">
+          <div class="viral-nombre">Alfachurro</div>
+          <div class="viral-desc">Alfajor estilo churro relleno, con onda a canela y dulce de leche.</div>
+          <div class="viral-row"><span class="viral-precio">$2.500</span><button class="viral-btn" onclick="agregarKinder(this,'Alfachurro',2500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="viral-card">
+        <span class="viral-badge">Viral</span>
+        <img class="viral-img" src="img/productos/alfajor-mantecol.jpg" alt="Alfajor Mantecol" loading="lazy">
+        <div class="viral-info">
+          <div class="viral-nombre">Mantecol</div>
+          <div class="viral-desc">Alfajor relleno con la clásica pasta de maní Mantecol, bañado en chocolate.</div>
+          <div class="viral-row"><span class="viral-precio">$1.500</span><button class="viral-btn" onclick="agregarKinder(this,'Alfajor Mantecol',1500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="viral-card">
+        <span class="viral-badge">Viral</span>
+        <img class="viral-img" src="img/productos/bomba-gula.jpg" alt="Bomba Gula Extrema" loading="lazy">
+        <div class="viral-info">
+          <div class="viral-nombre">Gula</div>
+          <div class="viral-desc">Bomba Gula Extrema: alfajor doble de chocolate blanco y negro, 100% pecado.</div>
+          <div class="viral-row"><span class="viral-precio">$2.000</span><button class="viral-btn" onclick="agregarKinder(this,'Bomba Gula Extrema',2000)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="viral-card">
+        <span class="viral-badge">Viral</span>
+        <img class="viral-img" src="img/productos/alfajor-dubai-pistacho.jpg" alt="Alfajor Dubai Pistacho" loading="lazy">
+        <div class="viral-info">
+          <div class="viral-nombre">Dubai</div>
+          <div class="viral-desc">Alfajor relleno de crema de pistacho estilo Dubai, con toque crocante.</div>
+          <div class="viral-row"><span class="viral-precio">$2.500</span><button class="viral-btn" onclick="agregarKinder(this,'Alfajor Dubai Pistacho',2500)">+ Agregar</button></div>
+        </div>
+      </div>
+      <div class="viral-card">
+        <span class="viral-badge">Viral</span>
+        <img class="viral-img" src="img/productos/pescado-raul.jpg" alt="Alfajor Pescado Raúl" loading="lazy">
+        <div class="viral-info">
+          <div class="viral-nombre">Pescado Raúl</div>
+          <div class="viral-desc">El clásico alfajor simple (blanco o negro) con el pescado más divertido del kiosco.</div>
+          <div class="viral-row"><span class="viral-precio">$1.000</span><button class="viral-btn" onclick="agregarKinder(this,'Alfajor Pescado Raúl',1000)">+ Agregar</button></div>
         </div>
       </div>
     </div>
