@@ -292,34 +292,28 @@
   }
 
   /* SECCIÓN IMPORTADOS */
-  .imp-section { position:relative; background:linear-gradient(180deg,#0a2a5e,#1e63b8 60%,#7fc4f0); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; overflow:hidden; box-shadow:0 6px 24px rgba(10,42,94,0.25); }
-  .imp-section::before { content:"✈️"; position:absolute; top:18px; left:-60px; font-size:2rem; animation:vuela 9s linear infinite; }
-  @keyframes vuela { 0%{ left:-60px; transform:translateY(0) rotate(8deg); } 50%{ transform:translateY(-14px) rotate(8deg); } 100%{ left:110%; transform:translateY(0) rotate(8deg); } }
-  .imp-cloud { position:absolute; color:rgba(255,255,255,0.18); pointer-events:none; }
-  .imp-cloud.c1 { font-size:3rem; top:40px; right:30px; } .imp-cloud.c2 { font-size:2rem; bottom:80px; left:24px; }
-  .imp-head { text-align:center; margin-bottom:28px; position:relative; z-index:2; }
-  .imp-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#fff; letter-spacing:0.02em; text-shadow:0 2px 10px rgba(0,0,0,0.25); }
-  .imp-title .dorado { color:var(--amarillo); }
-  .imp-sub { color:rgba(255,255,255,0.85); font-size:0.9rem; font-weight:600; margin-top:4px; }
-  .imp-grid { display:flex; flex-wrap:nowrap; align-items:flex-start; gap:14px; width:100%; position:relative; z-index:2; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:var(--amarillo) transparent; }
+  .imp-section { background:linear-gradient(180deg,#f0f4ff,#dce8ff); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; border:2px solid var(--celeste); box-shadow:0 6px 24px rgba(117,170,219,0.15); }
+  .imp-head { text-align:center; margin-bottom:28px; }
+  .imp-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:var(--azul-dark); letter-spacing:0.02em; }
+  .imp-title .dorado { color:#c8960c; }
+  .imp-sub { color:var(--azul); font-size:0.9rem; font-weight:600; margin-top:4px; }
+  .imp-grid { display:flex; flex-wrap:nowrap; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:var(--celeste) transparent; position:relative; z-index:2; }
   .imp-grid::-webkit-scrollbar { height:7px; }
-  .imp-grid::-webkit-scrollbar-thumb { background:var(--amarillo); border-radius:50px; }
-  .imp-grid::-webkit-scrollbar-track { background:rgba(255,255,255,0.2); border-radius:50px; }
-  .imp-card { flex:0 0 200px; width:200px; min-width:200px; flex-shrink:0; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px dashed var(--celeste); box-shadow:0 4px 14px rgba(0,0,0,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
-  .imp-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,0.3); }
-  .imp-img { width:100%; height:150px; object-fit:cover; background:#f8f5ff; }
+  .imp-grid::-webkit-scrollbar-thumb { background:var(--celeste); border-radius:50px; }
+  .imp-grid::-webkit-scrollbar-track { background:rgba(117,170,219,0.15); border-radius:50px; }
+  .imp-card { flex:0 0 200px; width:200px; min-width:200px; flex-shrink:0; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid var(--celeste); box-shadow:0 4px 14px rgba(117,170,219,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
+  .imp-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(117,170,219,0.35); }
+  .imp-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
   .imp-info { padding:10px 12px 12px; display:flex; flex-direction:column; gap:5px; flex:1; }
-  .imp-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.85rem; color:var(--azul-dark); line-height:1.2; display:flex; align-items:center; gap:5px; }
-  .imp-flag { font-size:0.8rem; }
-  .imp-desc { font-size:0.74rem; color:var(--text-muted); font-weight:600; line-height:1.3; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .imp-row { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:8px; }
-  .imp-precio { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.05rem; color:var(--azul); }
-  .imp-btn { background:var(--azul); color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.78rem; padding:8px 14px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .imp-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.88rem; color:var(--azul-dark); line-height:1.2; display:flex; align-items:center; gap:5px; }
+  .imp-flag { font-size:0.82rem; }
+  .imp-desc { font-size:0.74rem; color:var(--text-muted); font-weight:600; line-height:1.3; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; flex:1; }
+  .imp-row { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:auto; padding-top:6px; }
+  .imp-precio { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.95rem; color:var(--azul-dark); }
+  .imp-btn { background:var(--celeste); color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.75rem; padding:7px 12px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .imp-btn:hover { background:var(--azul); }
   .imp-btn.agregado { background:var(--green); }
-  @media (max-width:700px) {
-    .imp-card { flex:0 0 200px; width:200px; }
-    .imp-title { font-size:1.5rem; }
-  }
+  @media (max-width:700px) { .imp-card { flex:0 0 160px; width:160px; } .imp-title { font-size:1.5rem; } }
 
   /* SECCIÓN BEBIDAS IMPORTADAS */
   .beb-section { position:relative; background:linear-gradient(180deg,#06b6d4,#0891b2 55%,#7dd3fc); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; overflow:hidden; box-shadow:0 6px 24px rgba(6,182,212,0.25); }
@@ -1015,7 +1009,7 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img" src="img/productos/skittles-gomitas.jpg" alt="Skittles Gummies" loading="lazy">
+        <img class="imp-img" src="img/productos/skittles-gomitas.jpg" alt="Skittles Gomitas" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> Skittles Gomitas</div>
           <div class="imp-desc">Skittles Gummies Wild Berry, gomitas frutales.</div>
@@ -1031,43 +1025,11 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img" src="img/productos/mym-bolsa.jpg" alt="M&M's Bolsa" loading="lazy">
-        <div class="imp-info">
-          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> M&amp;M's Bolsa</div>
-          <div class="imp-desc">Bolsa de M&amp;M's, a elección maní o chocolate.</div>
-          <div class="imp-row"><span class="imp-precio">$5.000</span><button class="imp-btn" onclick="agregarKinder(this,'M&amp;M\'s Bolsa',5000)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="imp-card">
-        <img class="imp-img" src="img/productos/mym-tubo.jpg" alt="M&M's Tubo" loading="lazy">
-        <div class="imp-info">
-          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> M&amp;M's Tubo</div>
-          <div class="imp-desc">Tubo coleccionable M&amp;M's edición Marvel.</div>
-          <div class="imp-row"><span class="imp-precio">$6.000</span><button class="imp-btn" onclick="agregarKinder(this,'M&amp;M\'s Tubo',6000)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="imp-card">
         <img class="imp-img" src="img/productos/nerds.jpg" alt="Nerds" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> Nerds</div>
           <div class="imp-desc">Caramelos crocantes Nerds, sabores frutales.</div>
           <div class="imp-row"><span class="imp-precio">$6.000</span><button class="imp-btn" onclick="agregarKinder(this,'Nerds',6000)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="imp-card">
-        <img class="imp-img" src="img/productos/caramelos-toxic.jpg" alt="Caramelos Toxic" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
-        <div class="imp-info">
-          <div class="imp-nombre" style="color:#aaa;"><span class="imp-flag">🇺🇸</span> Caramelos Toxic</div>
-          <div class="imp-desc">Toxic Waste Nuclear Fusion, caramelos súper ácidos.</div>
-          <div class="imp-row"><span class="imp-precio" style="color:#aaa;">$9.000</span><button class="imp-btn" disabled style="background:#ccc;cursor:not-allowed;color:#888;">Agotado</button></div>
-        </div>
-      </div>
-      <div class="imp-card">
-        <img class="imp-img" src="img/productos/mym-paleta.jpg" alt="M&M's Paleta Chocolate" loading="lazy">
-        <div class="imp-info">
-          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> M&amp;M's Paleta Chocolate</div>
-          <div class="imp-desc">Paleta de chocolate M&amp;M's con sorpresa.</div>
-          <div class="imp-row"><span class="imp-precio">$5.000</span><button class="imp-btn" onclick="agregarKinder(this,'M&amp;M\'s Paleta Chocolate',5000)">+ Agregar</button></div>
         </div>
       </div>
       <div class="imp-card">
@@ -1087,7 +1049,7 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img" src="img/productos/jelly-beans-36.jpg" alt="Jelly Beans 36 Huge Flavours" loading="lazy">
+        <img class="imp-img" src="img/productos/jelly-beans-36.jpg" alt="Jelly Beans 36 Sabores" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🇮🇪</span> Jelly Beans 36 Sabores</div>
           <div class="imp-desc">Tubo The Jelly Bean Factory con 36 sabores gourmet.</div>
@@ -1111,7 +1073,7 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img" src="img/productos/gomitas-kitty-new.jpg" alt="Gomitas Hello Kitty Frutales" loading="lazy">
+        <img class="imp-img" src="img/productos/gomitas-kitty-new.jpg" alt="Gomitas Kitty Frutales" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🌎</span> Gomitas Kitty Frutales</div>
           <div class="imp-desc">Set de gomitas Hello Kitty con figuras frutales. Lata coleccionable redonda, edición especial.</div>
@@ -1151,14 +1113,6 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img img-agotado" src="img/productos/grajeas-hp-2.jpg" alt="Grajeas Harry Potter" loading="lazy">
-        <div class="imp-info">
-          <div class="imp-nombre"><span class="imp-flag">🇺🇸</span> Grajeas Harry Potter</div>
-          <div class="imp-desc">Bertie Bott's Every Flavour Beans, sabores sorpresa.</div>
-          <div class="imp-row"><span class="imp-precio">$15.000</span><button class="imp-btn btn-agotado" disabled>Agotado</button></div>
-        </div>
-      </div>
-      <div class="imp-card">
         <img class="imp-img" src="img/productos/lata-pokemon.jpg" alt="Lata Pokémon" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🇯🇵</span> Lata Pokémon</div>
@@ -1183,14 +1137,6 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img" src="img/productos/hello-kitty-gomitas.jpg" alt="Hello Kitty Gomitas" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
-        <div class="imp-info">
-          <div class="imp-nombre" style="color:#aaa;"><span class="imp-flag">🌎</span> Hello Kitty Gomitas</div>
-          <div class="imp-desc">Gomitas Hello Kitty sabor cola, lata coleccionable.</div>
-          <div class="imp-row"><span class="imp-precio" style="color:#aaa;">$3.000</span><button class="imp-btn" disabled style="background:#ccc;cursor:not-allowed;color:#888;">Agotado</button></div>
-        </div>
-      </div>
-      <div class="imp-card">
         <img class="imp-img" src="img/productos/pochoclos-stranger.jpg" alt="Pochoclos Stranger Things" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🇧🇷</span> Pochoclos Stranger Things</div>
@@ -1199,7 +1145,7 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img" src="img/productos/nesquik.jpg" alt="Nesquik Frutilla Brasil" loading="lazy">
+        <img class="imp-img" src="img/productos/nesquik.jpg" alt="Nesquik Frutilla" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🇧🇷</span> Nesquik Frutilla</div>
           <div class="imp-desc">Nesquik sabor frutilla 200g importado de Brasil. Alegría en tu leche, edición morango.</div>
@@ -1207,7 +1153,7 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img" src="img/productos/nescau.jpg" alt="Nescau Brasil" loading="lazy">
+        <img class="imp-img" src="img/productos/nescau.jpg" alt="Nescau" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🇧🇷</span> Nescau</div>
           <div class="imp-desc">Achocolatado Nescau 350g importado de Brasil. El clásico energizante con vitaminas y minerales.</div>
@@ -1215,7 +1161,7 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img" src="img/productos/toddy.jpg" alt="Toddy Original Brasil" loading="lazy">
+        <img class="imp-img" src="img/productos/toddy.jpg" alt="Toddy Original" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🇧🇷</span> Toddy Original</div>
           <div class="imp-desc">Achocolatado en polvo Toddy Original 370g, importado de Brasil. Con vitaminas y calcio.</div>
@@ -1239,35 +1185,11 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img" src="img/productos/block-dubai.jpg" alt="Block Dubai Brasil" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
-        <div class="imp-info">
-          <div class="imp-nombre" style="color:#aaa;"><span class="imp-flag">🇧🇷</span> Block Dubai Brasil</div>
-          <div class="imp-desc">Chocolate Block estilo Dubái con relleno de pistacho.</div>
-          <div class="imp-row"><span class="imp-precio" style="color:#aaa;">$15.000</span><button class="imp-btn" disabled style="background:#ccc;cursor:not-allowed;color:#888;">Agotado</button></div>
-        </div>
-      </div>
-      <div class="imp-card">
-        <img class="imp-img" src="img/productos/block-dubai-avellana.jpg" alt="Block Dubai Brasil Avellana" loading="lazy">
+        <img class="imp-img" src="img/productos/block-dubai-avellana.jpg" alt="Block Dubai Avellana" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🇧🇷</span> Block Dubai Avellana</div>
           <div class="imp-desc">Chocolate Block estilo Dubái relleno con avellana.</div>
           <div class="imp-row"><span class="imp-precio">$15.000</span><button class="imp-btn" onclick="agregarKinder(this,'Block Dubai Brasil Avellana',15000)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="imp-card">
-        <img class="imp-img img-agotado" src="img/productos/kitkat-bolas.jpg" alt="KitKat Bolas" loading="lazy">
-        <div class="imp-info">
-          <div class="imp-nombre"><span class="imp-flag">🌎</span> KitKat Bolas</div>
-          <div class="imp-desc">Agotado temporalmente.</div>
-          <div class="imp-row"><span class="imp-precio">$15.000</span><button class="imp-btn btn-agotado" disabled>Agotado</button></div>
-        </div>
-      </div>
-      <div class="imp-card">
-        <img class="imp-img" src="img/productos/ferrero-chocolates.jpg" alt="Ferrero Chocolates" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
-        <div class="imp-info">
-          <div class="imp-nombre" style="color:#aaa;"><span class="imp-flag">🇮🇹</span> Ferrero Chocolates</div>
-          <div class="imp-desc">Barras Ferrero Rocher y Raffaello, a elección.</div>
-          <div class="imp-row"><span class="imp-precio" style="color:#aaa;">$16.000</span><button class="imp-btn" disabled style="background:#ccc;cursor:not-allowed;color:#888;">Agotado</button></div>
         </div>
       </div>
       <div class="imp-card">
@@ -1287,7 +1209,7 @@
         </div>
       </div>
       <div class="imp-card">
-        <img class="imp-img" src="img/productos/milka-choco-pause.jpg" alt="Galletitas Milka Choco Pause" loading="lazy">
+        <img class="imp-img" src="img/productos/milka-choco-pause.jpg" alt="Milka Choco Pause" loading="lazy">
         <div class="imp-info">
           <div class="imp-nombre"><span class="imp-flag">🌎</span> Milka Choco Pause</div>
           <div class="imp-desc">Galletitas Milka rellenas con chocolate, tubo.</div>
@@ -1309,14 +1231,6 @@
           <div class="imp-desc">Pack Kit Kat Chunky x9 unidades en versión grande. Wafer con chocolate grueso, distintos sabores.</div>
           <div class="imp-row"><span class="imp-precio">$25.000</span><button class="imp-btn" onclick="agregarKinder(this,'Kit Kat Chunky Mix',25000)">+ Agregar</button></div>
         </div>
-      
-      <div class="imp-card">
-        <img class="imp-img" src="img/productos/kinder-mini.jpg" alt="Kinder Chocolate Mini" loading="lazy">
-        <div class="imp-info">
-          <div class="imp-nombre"><span class="imp-flag">🇩🇪</span> Kinder Chocolate Mini</div>
-          <div class="imp-desc">Bolsa Kinder Chocolate Mini x12 unidades importada. El clásico kinder en versión pequeña.</div>
-          <div class="imp-row"><span class="imp-precio">$40.000</span><button class="imp-btn" onclick="agregarKinder(this,'Kinder Chocolate Mini',40000)">+ Agregar</button></div>
-        </div>
       </div>
       <div class="imp-card">
         <img class="imp-img" src="img/productos/kitkat-mix.jpg" alt="Kit Kat Mix" loading="lazy">
@@ -1326,6 +1240,7 @@
           <div class="imp-row"><span class="imp-precio">$35.000</span><button class="imp-btn" onclick="agregarKinder(this,'Kit Kat Mix',35000)">+ Agregar</button></div>
         </div>
       </div>
+    
     </div>
   </div>
 
