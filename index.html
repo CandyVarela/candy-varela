@@ -379,72 +379,32 @@
   }
 
   /* SECCIÓN REGALERÍA */
-  .regaleria-section { margin-bottom:48px; }
-  .regaleria-header { text-align:center; margin-bottom:30px; }
-  .regaleria-tag-badge {
-    display:inline-block;
-    background:linear-gradient(135deg,#f5c518,#ff9800);
-    color:#fff; font-size:0.75rem; font-weight:900;
-    padding:4px 14px; border-radius:50px;
-    letter-spacing:0.08em; text-transform:uppercase;
-    margin-bottom:10px; box-shadow:0 3px 12px rgba(245,197,24,0.4);
-  }
-  .regaleria-main-title {
-    font-family:'Baloo 2',cursive; font-size:2rem; font-weight:800;
-    color:#0d2147; margin-bottom:8px;
-  }
-  .regaleria-main-title span {
-    background:linear-gradient(135deg,#e91e8c,#ff6b35);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    background-clip:text;
-  }
-  .regaleria-sub { color:#666; font-size:0.95rem; font-weight:600; max-width:480px; margin:0 auto; line-height:1.5; }
-  .regaleria-grid {
-    display:grid;
-    grid-template-columns:1.5fr 1fr 1fr 1fr;
-    grid-template-rows:auto auto;
-    gap:16px; margin-bottom:20px;
-  }
-  .regalo-card {
-    background:#fff; border-radius:20px; padding:22px 20px;
-    box-shadow:0 4px 20px rgba(26,58,110,0.10);
-    display:flex; flex-direction:column; gap:8px;
-    position:relative; overflow:hidden;
-    border:2px solid transparent;
-    transition:transform 0.22s, box-shadow 0.22s, border-color 0.2s;
-  }
-  .regalo-card:hover { transform:translateY(-5px); box-shadow:0 14px 36px rgba(233,30,140,0.15); border-color:rgba(233,30,140,0.25); }
-  .regalo-featured {
-    grid-row:span 2;
-    background:linear-gradient(160deg,#1a1a2e 0%,#2d1a4e 60%,#4a1a6e 100%);
-    padding:30px 26px; justify-content:flex-end;
-  }
-  .regalo-featured:hover { border-color:rgba(245,197,24,0.5); box-shadow:0 16px 40px rgba(74,26,110,0.35); }
-  .regalo-shine { position:absolute; top:-60px; right:-60px; width:180px; height:180px; background:radial-gradient(circle,rgba(245,197,24,0.18) 0%,transparent 70%); pointer-events:none; }
-  .regalo-emoji-bg { position:absolute; top:16px; right:10px; font-size:80px; opacity:0.12; pointer-events:none; line-height:1; }
-  .regalo-tag-top { position:absolute; top:18px; left:18px; background:#f5c518; color:#0d2147; font-size:0.7rem; font-weight:900; padding:4px 12px; border-radius:50px; }
-  .regalo-emoji-icon { font-size:2.4rem; line-height:1; margin-bottom:4px; }
-  .regalo-featured .regalo-emoji-icon { font-size:3.5rem; margin-top:30px; }
-  .regalo-name { font-family:'Baloo 2',cursive; font-size:1rem; font-weight:800; color:#0d2147; line-height:1.2; }
-  .regalo-featured .regalo-name { color:#fff; font-size:1.3rem; }
-  .regalo-desc { font-size:0.78rem; color:#666; font-weight:600; line-height:1.45; flex:1; }
-  .regalo-featured .regalo-desc { color:rgba(255,255,255,0.7); }
-  .regalo-precio { font-family:'Baloo 2',cursive; font-size:1.25rem; font-weight:800; color:#e91e8c; margin-top:4px; }
-  .regalo-featured .regalo-precio { color:#f5c518; font-size:1.5rem; }
-  .btn-regalo { border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.82rem; padding:10px 16px; cursor:pointer; margin-top:4px; transition:transform 0.15s,background 0.18s; text-align:center; text-decoration:none; display:block; }
-  .btn-regalo.btn-agregar-rg { background:#e91e8c; color:#fff; }
-  .btn-regalo.btn-agregar-rg:hover { background:#d4167e; transform:scale(1.02); }
-  .regalo-featured .btn-regalo.btn-agregar-rg { background:#f5c518; color:#0d2147; }
-  .btn-regalo.btn-wa-rg { background:linear-gradient(135deg,#25d366,#128c7e); color:#fff; display:flex; align-items:center; justify-content:center; gap:6px; }
-  .btn-regalo.btn-wa-rg:hover { transform:scale(1.02); filter:brightness(1.1); }
-  .regalo-custom { background:linear-gradient(135deg,#f8f5ff,#fce4f3); border:2px dashed rgba(233,30,140,0.3); }
-  .regalo-custom:hover { border-color:#e91e8c; }
-  .regaleria-banner { background:linear-gradient(135deg,#0d2147,#1a3a6e); border-radius:20px; padding:22px 30px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
-  .regaleria-banner-left { flex:1; }
-  .rb-tag { display:inline-block; background:rgba(255,255,255,0.15); color:#f5c518; font-size:0.75rem; font-weight:800; padding:4px 12px; border-radius:50px; margin-bottom:6px; }
-  .regaleria-banner-left p { color:rgba(255,255,255,0.8); font-size:0.88rem; font-weight:600; }
-  @media (max-width:900px) { .regaleria-grid { grid-template-columns:1fr 1fr; } .regalo-featured { grid-row:span 1; } }
-  @media (max-width:600px) { .regaleria-grid { grid-template-columns:1fr 1fr; } .regaleria-banner { flex-direction:column; text-align:center; } }
+  .regaleria-section { position:relative; background:linear-gradient(135deg,#1a1a2e 0%,#2d1860 55%,#6b1fa8); border-radius:20px; padding:14px 18px 18px; margin-bottom:40px; overflow:hidden; box-shadow:0 6px 28px rgba(107,31,168,0.45); }
+  .regaleria-deco { position:absolute; color:rgba(255,255,255,0.12); pointer-events:none; font-size:2rem; animation:floatDeco 7s ease-in-out infinite; }
+  .regaleria-deco.d1 { top:12px; left:6%; animation-delay:0s; }
+  .regaleria-deco.d2 { top:36px; right:12%; animation-delay:1.4s; }
+  .regaleria-deco.d3 { bottom:18px; left:22%; animation-delay:0.7s; }
+  .regaleria-deco.d4 { bottom:36px; right:7%; animation-delay:2s; }
+  @keyframes floatDeco { 0%,100%{ transform:translateY(0); opacity:0.4; } 50%{ transform:translateY(-10px); opacity:0.85; } }
+  .regaleria-inner { position:relative; z-index:2; max-width:900px; margin:0 auto; color:#fff; text-align:center; }
+  .regaleria-badge { display:inline-block; background:#f5c518; color:#1a1a2e; font-weight:800; font-size:0.68rem; padding:3px 12px; border-radius:50px; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:6px; }
+  .regaleria-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.3rem; line-height:1.1; text-shadow:0 2px 12px rgba(0,0,0,0.3); margin-bottom:4px; }
+  .regaleria-desc { font-size:0.78rem; font-weight:600; line-height:1.35; margin-bottom:6px; opacity:0.9; }
+  .regaleria-promo { display:inline-block; background:rgba(255,255,255,0.15); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.25); color:#fff; font-weight:800; font-size:0.72rem; padding:5px 14px; border-radius:50px; margin-bottom:10px; }
+  .regaleria-boxes { display:flex; gap:10px; overflow-x:auto; flex-wrap:nowrap; scroll-snap-type:x mandatory; padding:2px 2px 8px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:rgba(255,255,255,0.4) transparent; }
+  .regaleria-boxes::-webkit-scrollbar { height:6px; }
+  .regaleria-boxes::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.4); border-radius:50px; }
+  .regaleria-box { flex:0 0 130px; scroll-snap-align:start; background:#fff; border:2px solid rgba(245,197,24,0.5); border-radius:16px; overflow:hidden; box-shadow:0 0 10px rgba(245,197,24,0.25),0 0 22px rgba(245,197,24,0.15); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
+  .regaleria-box:hover { transform:translateY(-5px); box-shadow:0 0 16px rgba(245,197,24,0.5),0 0 30px rgba(245,197,24,0.25); }
+  .regaleria-box img { width:100%; height:88px; object-fit:cover; }
+  .regaleria-box-info { padding:7px 9px 9px; display:flex; flex-direction:column; gap:5px; }
+  .regaleria-box-nombre { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.75rem; color:#2d1860; }
+  .regaleria-box-row { display:flex; align-items:center; justify-content:space-between; gap:5px; }
+  .regaleria-box-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.8rem; color:#6b1fa8; }
+  .regaleria-box-btn { background:linear-gradient(135deg,#6b1fa8,#e91e8c); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.62rem; padding:5px 9px; cursor:pointer; white-space:nowrap; transition:opacity 0.2s; }
+  .regaleria-box-btn.agregado { background:var(--green); }
+  .regaleria-box-btn:hover { opacity:0.88; }
+  @media (max-width:600px) { .regaleria-title { font-size:1.1rem; } .regaleria-box { flex:0 0 118px; } }
 /* SECCIÓN BOX */
   .box-section { background:linear-gradient(135deg,#ffa7d4,#ff5fa8); border-radius:24px; padding:26px 20px 30px; margin-bottom:40px; box-shadow:0 6px 24px rgba(255,95,168,0.35); }
   .box-head { text-align:center; margin-bottom:16px; color:#fff; }
@@ -717,64 +677,78 @@
 <main>
 
   <!-- SECCIÓN REGALERÍA -->
-  <div class="regaleria-section" id="regaleria">
-    <div class="regaleria-header">
-      <div class="regaleria-tag-badge">✨ Nuevo</div>
-      <h2 class="regaleria-main-title">Regalería <span>Candy Varela</span></h2>
-      <p class="regaleria-sub">Los mejores regalos con sabor. Ideales para cumpleaños, eventos y ocasiones especiales.</p>
-    </div>
-    <div class="regaleria-grid">
-      <div class="regalo-card regalo-featured">
-        <div class="regalo-shine"></div>
-        <div class="regalo-emoji-bg">🎁</div>
-        <div class="regalo-tag-top">⭐ Más regalado</div>
-        <div class="regalo-emoji-icon">🎁</div>
-        <h3 class="regalo-name">Canasta Sorpresa Deluxe</h3>
-        <p class="regalo-desc">Chocolates, gomitas, alfajores y bebidas seleccionados. El regalo perfecto para cualquier ocasión.</p>
-        <div class="regalo-precio">$6.500</div>
-        <button class="btn-regalo btn-agregar-rg" onclick="agregarAlCarrito('Canasta Sorpresa Deluxe', 6500, this)">Agregar al carrito</button>
+  <div class="regaleria-section">
+    <span class="regaleria-deco d1">🎁</span><span class="regaleria-deco d2">✨</span><span class="regaleria-deco d3">🎀</span><span class="regaleria-deco d4">💜</span>
+    <div class="regaleria-inner">
+      <span class="regaleria-badge">✨ Edición especial</span>
+      <h2 class="regaleria-title">Regalería Candy Varela 🎁</h2>
+      <p class="regaleria-desc">Boxes personalizados con los mejores chocolates y golosinas, ¡el regalo perfecto!</p>
+      <div class="regaleria-promo">🎁 Comprando cualquier box te llevás de REGALO una paleta de corazón 💗</div>
+      <div class="regaleria-boxes">
+        <div class="regaleria-box">
+          <img src="img/productos/box-personalizado.jpg" alt="Box Dulzura Chocolates" loading="lazy">
+          <div class="regaleria-box-info">
+            <div class="regaleria-box-nombre">Box Chocolates</div>
+            <div class="regaleria-box-row"><span class="regaleria-box-precio">$20.000</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Box Regalería · Chocolates',20000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="regaleria-box">
+          <img src="img/productos/box-dulzura-2.jpg" alt="Box Surtido" loading="lazy">
+          <div class="regaleria-box-info">
+            <div class="regaleria-box-nombre">Box Surtido</div>
+            <div class="regaleria-box-row"><span class="regaleria-box-precio">$20.000</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Box Regalería · Surtido',20000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="regaleria-box">
+          <img src="img/productos/box-dulzura-3.jpg" alt="Box Importados" loading="lazy">
+          <div class="regaleria-box-info">
+            <div class="regaleria-box-nombre">Box Importados</div>
+            <div class="regaleria-box-row"><span class="regaleria-box-precio">$20.000</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Box Regalería · Importados',20000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="regaleria-box">
+          <img src="img/productos/dulzura-bolsa-1.jpg" alt="Bolsita Clásica" loading="lazy">
+          <div class="regaleria-box-info">
+            <div class="regaleria-box-nombre">Bolsita Clásica</div>
+            <div class="regaleria-box-row"><span class="regaleria-box-precio">$5.000</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Bolsita Regalería Clásica',5000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="regaleria-box">
+          <img src="img/productos/dulzura-bolsa-3.jpg" alt="Bolsita Mix" loading="lazy">
+          <div class="regaleria-box-info">
+            <div class="regaleria-box-nombre">Bolsita Mix</div>
+            <div class="regaleria-box-row"><span class="regaleria-box-precio">$6.000</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Bolsita Regalería Mix',6000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="regaleria-box">
+          <img src="img/productos/dulzura-bolsa-2.jpg" alt="Bolsita Argenta" loading="lazy">
+          <div class="regaleria-box-info">
+            <div class="regaleria-box-nombre">Bolsita Argenta</div>
+            <div class="regaleria-box-row"><span class="regaleria-box-precio">$6.500</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Bolsita Regalería Argenta',6500)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="regaleria-box">
+          <img src="img/productos/dulzura-bolsa-4.jpg" alt="Bolsita Premium" loading="lazy">
+          <div class="regaleria-box-info">
+            <div class="regaleria-box-nombre">Bolsita Premium</div>
+            <div class="regaleria-box-row"><span class="regaleria-box-precio">$8.500</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Bolsita Regalería Premium',8500)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="regaleria-box">
+          <img src="img/productos/dulzura-bolsa-5.jpg" alt="Bolsita Importada" loading="lazy">
+          <div class="regaleria-box-info">
+            <div class="regaleria-box-nombre">Bolsita Importada</div>
+            <div class="regaleria-box-row"><span class="regaleria-box-precio">$8.500</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Bolsita Regalería Importada',8500)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="regaleria-box">
+          <img src="img/productos/dulzura-bolsa-6.jpg" alt="Bolsita Chocolate" loading="lazy">
+          <div class="regaleria-box-info">
+            <div class="regaleria-box-nombre">Bolsita Chocolate</div>
+            <div class="regaleria-box-row"><span class="regaleria-box-precio">$8.500</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Bolsita Regalería Chocolate',8500)">+ Agregar</button></div>
+          </div>
+        </div>
       </div>
-      <div class="regalo-card">
-        <div class="regalo-emoji-icon">🍫</div>
-        <h3 class="regalo-name">Box Chocolates Premium</h3>
-        <p class="regalo-desc">Surtido de chocolates importados y nacionales. Ideal para regalar.</p>
-        <div class="regalo-precio">$4.200</div>
-        <button class="btn-regalo btn-agregar-rg" onclick="agregarAlCarrito('Box Chocolates Premium', 4200, this)">Agregar al carrito</button>
-      </div>
-      <div class="regalo-card">
-        <div class="regalo-emoji-icon">🎀</div>
-        <h3 class="regalo-name">Kit Cumpleaños Dulce</h3>
-        <p class="regalo-desc">Golosinas variadas, velas y sorpresas. ¡Incluye bolsa decorada!</p>
-        <div class="regalo-precio">$3.800</div>
-        <button class="btn-regalo btn-agregar-rg" onclick="agregarAlCarrito('Kit Cumpleaños Dulce', 3800, this)">Agregar al carrito</button>
-      </div>
-      <div class="regalo-card">
-        <div class="regalo-emoji-icon">🧸</div>
-        <h3 class="regalo-name">Pack Infantil Surpresa</h3>
-        <p class="regalo-desc">Chupetines, gomitas y figuritas. El favorito de los más chiquitos.</p>
-        <div class="regalo-precio">$2.500</div>
-        <button class="btn-regalo btn-agregar-rg" onclick="agregarAlCarrito('Pack Infantil Surpresa', 2500, this)">Agregar al carrito</button>
-      </div>
-      <div class="regalo-card">
-        <div class="regalo-emoji-icon">💝</div>
-        <h3 class="regalo-name">Caja San Valentín</h3>
-        <p class="regalo-desc">Chocolates corazón, gomitas y tarjeta personalizada. Amor en cada bocado.</p>
-        <div class="regalo-precio">$5.000</div>
-        <button class="btn-regalo btn-agregar-rg" onclick="agregarAlCarrito('Caja San Valentín', 5000, this)">Agregar al carrito</button>
-      </div>
-      <div class="regalo-card regalo-custom">
-        <div class="regalo-emoji-icon">✏️</div>
-        <h3 class="regalo-name">Armá tu propio regalo</h3>
-        <p class="regalo-desc">Elegís los productos, la presentación y el mensaje. Lo hacemos a medida para vos.</p>
-        <a href="https://wa.me/541176750220?text=Hola!%20Quiero%20armar%20un%20regalo%20personalizado%20%F0%9F%8E%81" class="btn-regalo btn-wa-rg" target="_blank">📲 Consultar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="regaleria-banner">
-      <div class="regaleria-banner-left">
-        <span class="rb-tag">🚚 Envío incluido en pedidos de regalería</span>
-        <p>Llegamos a todo Buenos Aires. Pedido antes de las 14hs → entrega el mismo día.</p>
-      </div>
-      <a href="https://wa.me/541176750220?text=Hola!%20Quiero%20info%20sobre%20regal%C3%ADa%20%F0%9F%8E%81" class="btn-pedir" target="_blank" style="background:#f5c518;color:#0d2147;font-family:'Baloo 2',cursive;font-weight:800;padding:12px 28px;border-radius:50px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 16px rgba(245,197,24,0.45);">Pedir ahora →</a>
     </div>
   </div>
 
