@@ -418,9 +418,9 @@
   .promo-top-grid { display:flex; gap:12px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin; scrollbar-color:#ff7ac6 transparent; justify-content:flex-start; }
   .promo-top-grid::-webkit-scrollbar { height:6px; }
   .promo-top-grid::-webkit-scrollbar-thumb { background:#ff7ac6; border-radius:50px; }
-  .promo-item { flex:0 0 150px; width:150px; background:#fff; border:2px solid #ff7ac6; border-radius:14px; overflow:hidden; box-shadow:0 0 8px rgba(255,122,198,0.4); display:flex; flex-direction:column; transition:transform 0.2s; }
+  .promo-item { flex:0 0 200px; width:200px; min-width:200px; flex-shrink:0; background:#fff; border:2px solid #ff7ac6; border-radius:18px; overflow:hidden; box-shadow:0 4px 14px rgba(255,122,198,0.25); display:flex; flex-direction:column; transition:transform 0.2s; }
   .promo-item:hover { transform:translateY(-4px); }
-  .promo-item-img { width:100%; height:110px; object-fit:cover; }
+  .promo-item-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff8fc; }
   .promo-emoji { width:100%; height:110px; display:flex; align-items:center; justify-content:center; font-size:3rem; background:#ffe2f3; }
   .promo-item-info { padding:8px 10px 10px; display:flex; flex-direction:column; gap:5px; flex:1; }
   .promo-item-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.8rem; color:#c0107a; line-height:1.15; }
