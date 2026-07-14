@@ -581,6 +581,20 @@
   .search-btn-add:hover{background:#d4167e;}
   .search-btn-add:disabled{background:#ccc;cursor:not-allowed;color:#999;}
   .search-no-result{padding:20px;text-align:center;color:#aaa;font-size:0.85rem;font-weight:600;}
+  /* SECCIÓN BOX - cards */
+  .box-cards-grid { display:flex; flex-wrap:nowrap; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:#ff5fa8 transparent; }
+  .box-cards-grid::-webkit-scrollbar { height:7px; }
+  .box-cards-grid::-webkit-scrollbar-thumb { background:#ff5fa8; border-radius:50px; }
+  .box-card-item { flex:0 0 200px; width:200px; min-width:200px; flex-shrink:0; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #ff5fa8; box-shadow:0 4px 14px rgba(255,95,168,0.2); display:flex; flex-direction:column; transition:transform 0.2s; }
+  .box-card-item:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(255,95,168,0.35); }
+  .box-card-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff8fc; }
+  .box-card-info { padding:10px 12px 12px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .box-card-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.9rem; color:#d4006a; line-height:1.2; }
+  .box-card-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:auto; }
+  .box-card-precio { font-family:'Poppins',sans-serif; font-weight:800; font-size:1rem; color:#d4006a; }
+  .box-card-btn { background:#ff5fa8; color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.75rem; padding:7px 12px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .box-card-btn:hover { background:#d4006a; }
+  @media (max-width:700px) { .box-card-item { flex:0 0 160px; width:160px; } }
 </style>
 </head>
 <body>
