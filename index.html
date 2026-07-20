@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Candy Varela — Alentá con sabor ⭐⭐⭐🇦🇷</title>
+<title>Candy Varela — Dulce tentación 🍬🎀</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --celeste: #75AADB; --azul: #1a3a6e; --azul-dark: #0d2147;
-    --amarillo: #f5c518; --rosa: #e91e8c; --rosa-light: #fce4f3;
-    --gris-bg: #fff0f7; --text: #1a1a2e; --text-muted: #666;
-    --green: #22c55e; --shadow: 0 4px 20px rgba(26,58,110,0.10); --radius: 18px;
+    --celeste: #f6b9dd; --azul: #b23a72; --azul-dark: #7a1650;
+    --amarillo: #ffcf6b; --rosa: #ff5fa8; --rosa-light: #ffe3f2;
+    --gris-bg: #fff5fa; --text: #4a1a38; --text-muted: #8a6b7c;
+    --green: #22c55e; --shadow: 0 4px 20px rgba(178,58,114,0.12); --radius: 18px;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Nunito',sans-serif; background:var(--gris-bg); color:var(--text); overflow-x:hidden; }
@@ -67,24 +67,24 @@
   .hero { position:relative; overflow:hidden; }
   .slides-container { display:flex; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); }
   .slide { min-width:100%; min-height:420px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-  .slide-1 { background:linear-gradient(135deg,#0d2147 0%,#1a3a6e 40%,#75aadb 100%); }
-  .slide-2 { background:linear-gradient(135deg,#0d2147 0%,#1a3a6e 45%,#75aadb 100%); }
-  .slide-3 { background:linear-gradient(135deg,#75aadb 0%,#cfe6f7 50%,#fff 100%); }
-  .slide-3 .slide-title,.slide-3 .slide-desc,.slide-3 .slide-badge { color:#0d2147; }
-  .slide-3 .slide-badge { background:rgba(13,33,71,0.08); border-color:rgba(13,33,71,0.18); }
-  .slide-3 .slide-desc { color:#1a3a6e; }
+  .slide-1 { background:linear-gradient(135deg,#7a1650 0%,#c2467e 40%,#f6b9dd 100%); }
+  .slide-2 { background:linear-gradient(135deg,#7a1650 0%,#c2467e 45%,#f6b9dd 100%); }
+  .slide-3 { background:linear-gradient(135deg,#f6b9dd 0%,#ffe3f2 50%,#fff 100%); }
+  .slide-3 .slide-title,.slide-3 .slide-desc,.slide-3 .slide-badge { color:#7a1650; }
+  .slide-3 .slide-badge { background:rgba(122,22,80,0.08); border-color:rgba(122,22,80,0.18); }
+  .slide-3 .slide-desc { color:#b23a72; }
   .slide-3 .slide-title .highlight { color:var(--rosa); }
 
-  /* FILETEADO ESTILO TANGO / SELECCIÓN ARGENTINA */
-  .filete-frame { position:relative; border:3px double var(--amarillo); border-radius:22px; padding:26px 32px; background:rgba(13,33,71,0.18); backdrop-filter:blur(2px); }
-  .slide-3 .filete-frame { border-color:#0d2147; background:rgba(255,255,255,0.35); }
+  /* FILETEADO ESTILO GOLOSINAS PASTEL */
+  .filete-frame { position:relative; border:3px double var(--amarillo); border-radius:22px; padding:26px 32px; background:rgba(122,22,80,0.18); backdrop-filter:blur(2px); }
+  .slide-3 .filete-frame { border-color:#7a1650; background:rgba(255,255,255,0.35); }
   .filete-frame::before,.filete-frame::after { position:absolute; font-size:1.4rem; color:var(--amarillo); line-height:1; }
   .filete-frame::before { content:'✦'; top:-14px; left:-10px; }
   .filete-frame::after { content:'✦'; bottom:-14px; right:-10px; }
-  .slide-3 .filete-frame::before,.slide-3 .filete-frame::after { color:#0d2147; }
+  .slide-3 .filete-frame::before,.slide-3 .filete-frame::after { color:#7a1650; }
   .filete-corner { position:absolute; font-size:1.4rem; color:var(--amarillo); line-height:1; }
   .filete-corner.tr { top:-14px; right:-10px; } .filete-corner.bl { bottom:-14px; left:-10px; }
-  .slide-3 .filete-corner { color:#0d2147; }
+  .slide-3 .filete-corner { color:#7a1650; }
   .filete-line { width:70px; height:4px; margin:0 0 16px; border-radius:4px; background:repeating-linear-gradient(90deg,var(--celeste) 0 10px,#fff 10px 20px); position:relative; }
   .filete-line::after { content:'☀'; position:absolute; right:-22px; top:-9px; font-size:1.1rem; color:var(--amarillo); }
   .slide-bg-emoji { position:absolute; font-size:180px; opacity:0.07; right:-20px; bottom:-30px; pointer-events:none; }
@@ -159,7 +159,7 @@
   .reel-card:hover { transform:scale(1.03); box-shadow:0 12px 30px rgba(0,0,0,0.2); }
   .reel-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:70px; opacity:0.25; }
   .reel-card-1 { background:linear-gradient(160deg,#1a1a2e,#e91e8c80); }
-  .reel-card-2 { background:linear-gradient(160deg,#1a1a2e,#75aadb80); }
+  .reel-card-2 { background:linear-gradient(160deg,#1a1a2e,#f6b9dd80); }
   .reel-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; background:rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.35); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem; }
   .reel-info { position:relative; z-index:2; padding:14px; background:linear-gradient(transparent,rgba(0,0,0,0.7)); }
   .reel-views { font-size:0.7rem; color:rgba(255,255,255,0.7); font-weight:600; margin-bottom:3px; }
@@ -574,7 +574,7 @@
   .search-result-item:last-child{border-bottom:none;}
   .search-result-item:hover{background:#fce4f3;}
   .search-result-img{width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#f8f5ff;}
-  .search-result-nombre{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.85rem;color:#0d2147;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px;}
+  .search-result-nombre{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.85rem;color:#7a1650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px;}
   .search-result-precio{font-family:'Baloo 2',cursive;font-weight:800;font-size:0.82rem;color:#e91e8c;}
   .search-result-agotado{font-size:0.72rem;color:#aaa;font-weight:700;}
   .search-btn-add{background:#e91e8c;color:#fff;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.72rem;padding:7px 13px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background 0.15s;}
@@ -604,7 +604,7 @@
   <div class="top-bar-track">
     <span class="top-bar-item">📱 WhatsApp: <a href="https://wa.me/541176750220">11 7675-0220</a></span>
     <span class="top-bar-sep">·</span>
-    <span class="top-bar-item">🇦🇷 ¡Vamos Argentina! Golosinas para alentar ⭐⭐⭐</span>
+    <span class="top-bar-item">🍭 Golosinas que enamoran ✨</span>
     <span class="top-bar-sep">·</span>
     <span class="top-bar-item celeste">🚚 Envíos a todo el país</span>
     <span class="top-bar-sep">·</span>
@@ -614,7 +614,7 @@
     <span class="top-bar-sep">·</span>
     <span class="top-bar-item">📱 WhatsApp: <a href="https://wa.me/541176750220">11 7675-0220</a></span>
     <span class="top-bar-sep">·</span>
-    <span class="top-bar-item">🇦🇷 ¡Vamos Argentina! Golosinas para alentar ⭐⭐⭐</span>
+    <span class="top-bar-item">🍭 Golosinas que enamoran ✨</span>
     <span class="top-bar-sep">·</span>
     <span class="top-bar-item celeste">🚚 Envíos a todo el país</span>
     <span class="top-bar-sep">·</span>
@@ -629,7 +629,7 @@
 <header>
   <div class="header-inner">
     <button class="menu-btn" onclick="abrirDrawer()" aria-label="Menú"><span></span><span></span><span></span></button>
-    <a href="#" class="logo">🇦🇷 Candy <span>Varela</span> ⭐⭐⭐</a>
+    <a href="#" class="logo">🍬 Candy <span>Varela</span> 🎀</a>
     <div class="search-bar" id="searchBarWrapper"><span>🔍</span><input type="text" id="searchInput" placeholder="Buscar golosinas, chocolates, combos..." autocomplete="off"></div>
     <div class="header-actions">
       <a href="#" class="btn-carrito" onclick="event.preventDefault();abrirCarrito()">🛒 Carrito <div class="carrito-count">0</div></a>
@@ -658,7 +658,7 @@
     <a href="#bebidasImportadas" onclick="cerrarDrawer()"><span class="drawer-ico">🌎</span> Bebidas Importadas</a>
     <a href="#snacks" onclick="cerrarDrawer()"><span class="drawer-ico">🍟</span> Snacks</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCombosExclusivos()"><span class="drawer-ico">🎁</span> Combos Exclusivos</a>
-    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirPromos()"><span class="drawer-ico">⚽</span> Combos del Mundial</a>
+    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirPromos()"><span class="drawer-ico">🍬</span> Combos Especiales</a>
     <a href="#reels" onclick="cerrarDrawer()"><span class="drawer-ico">📸</span> Reels</a>
   </div>
 </aside>
@@ -1724,7 +1724,7 @@
         <img class="cho-img" src="img/productos/blockazo.jpg" alt="Cofler Blockazo 1kg" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
         <div class="cho-info">
           <div class="cho-nombre" style="color:#aaa;">Cofler Blockazo 1kg</div>
-          <div class="cho-desc">Bloque gigante de 1kg, edición ¡Vamos Argentina!</div>
+          <div class="cho-desc">Bloque gigante de 1kg, edición especial.</div>
           <div class="cho-row"><span class="cho-precio" style="color:#aaa;">$30.000</span><button class="cho-btn" disabled style="background:#ccc;cursor:not-allowed;color:#888;">Agotado</button></div>
         </div>
       </div>
@@ -2055,10 +2055,10 @@
   <!-- BANNERS -->
   <div class="destacados-banner">
     <a href="#" class="banner-card banner-card-1" onclick="event.preventDefault();abrirPromos()">
-      <div class="banner-bg-emoji">⚽🇦🇷</div>
-      <div class="banner-badge-small">⚽ Combo Mundial</div>
-      <h3 class="banner-title">Combo Día de Partido</h3>
-      <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Snacks + bebidas + golosinas para alentar con la barra</p>
+      <div class="banner-bg-emoji">🍬🎀</div>
+      <div class="banner-badge-small">🍬 Combo Especial</div>
+      <h3 class="banner-title">Combo Antojo Dulce</h3>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Snacks + bebidas + golosinas en combos para darte un gusto</p>
       <div class="banner-cta">Ver combo →</div>
     </a>
     <a href="#" class="banner-card banner-card-2 banner-card-neon" onclick="event.preventDefault();abrirNovedades()">
@@ -2147,7 +2147,7 @@
 
   <!-- NEWSLETTER -->
   <div class="newsletter">
-    <h3 class="newsletter-title">¡Sumate a la hinchada dulce! 🇦🇷💌</h3>
+    <h3 class="newsletter-title">¡Sumate al club dulce! 🎀💌</h3>
     <p class="newsletter-desc">Recibí los combos mundialistas y ofertas antes que nadie</p>
     <div class="newsletter-form">
       <input type="email" class="newsletter-input" placeholder="Tu email...">
@@ -2161,7 +2161,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a href="#" class="logo" style="margin-bottom:12px;display:inline-flex;">🇦🇷 Candy <span style="color:var(--amarillo)">Varela</span> ⭐⭐⭐</a>
+      <a href="#" class="logo" style="margin-bottom:12px;display:inline-flex;">🍬 Candy <span style="color:var(--amarillo)">Varela</span> 🎀</a>
       <p>Tu kiosco de confianza. Golosinas, chocolates y combos. Venta por mayor y menor. Florencio Varela, Buenos Aires.</p>
       <div class="footer-socials">
         <a href="https://instagram.com/candyvarela.ok" class="social-btn">📷</a>
@@ -2185,13 +2185,13 @@
       <div class="contact-item">🕗 Lunes a sábados de 7 a 20 hs</div>
     </div>
   </div>
-  <div class="footer-bottom">© 2025 Candy Varela · Alentá con sabor 🇦🇷⭐⭐⭐ · Todos los derechos reservados</div>
+  <div class="footer-bottom">© 2025 Candy Varela · Dulce tentación 🍬🎀 · Todos los derechos reservados</div>
 </footer>
 
 <!-- MODAL BEBIDAS -->
 <div class="modal-overlay" id="modalBebidas">
   <div class="modal">
-    <div class="modal-header" style="background:linear-gradient(135deg,#0d2147,#00b140);">
+    <div class="modal-header" style="background:linear-gradient(135deg,#7a1650,#ff5fa8);">
       <h2>🥫 Bebidas</h2>
       <button class="modal-close" onclick="cerrarCatBebidas()">✕</button>
     </div>
@@ -2741,35 +2741,23 @@
   </div>
 </div>
 
-<!-- CHAT WIDGET CON JUGADOR -->
+<!-- CHAT WIDGET CON MASCOTA DULCE -->
 <div class="chat-widget" id="chatWidget">
   <div class="jugador-container">
     <svg viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg" width="80" height="110">
       <ellipse cx="40" cy="107" rx="14" ry="3" fill="rgba(0,0,0,0.12)"/>
-      <rect x="36" y="72" width="7" height="20" rx="3" fill="#1a3a6e"/>
-      <rect x="35" y="88" width="9" height="6" rx="2" fill="#333"/>
-      <rect x="44" y="72" width="7" height="20" rx="3" fill="#1a3a6e"/>
-      <rect x="43" y="88" width="9" height="6" rx="2" fill="#333"/>
-      <rect x="28" y="45" width="24" height="28" rx="5" fill="#75AADB"/>
-      <rect x="35" y="45" width="5" height="28" fill="#fff" opacity="0.55"/>
-      <rect x="42" y="45" width="3" height="28" fill="#fff" opacity="0.35"/>
-      <text x="40" y="63" text-anchor="middle" font-size="8" font-weight="900" fill="#0d2147" font-family="Arial">10</text>
-      <rect x="20" y="47" width="9" height="6" rx="3" fill="#75AADB" transform="rotate(80 25 50)"/>
-      <rect x="51" y="47" width="9" height="6" rx="3" fill="#75AADB" transform="rotate(-70 55 50)"/>
-      <circle cx="62" cy="58" r="9" fill="#fff" stroke="#222" stroke-width="1"/>
-      <polygon points="62,50 66,53 66,59 62,62 58,59 58,53" fill="#111" opacity="0.85"/>
-      <polygon points="62,62 65,65 62,68 59,65" fill="#111" opacity="0.6"/>
-      <polygon points="53,55 56,52 58,55 56,58" fill="#111" opacity="0.5"/>
-      <polygon points="69,54 71,57 69,60 67,57" fill="#111" opacity="0.5"/>
-      <rect x="36" y="38" width="8" height="9" rx="3" fill="#f5c89a"/>
-      <ellipse cx="40" cy="28" rx="13" ry="14" fill="#f5c89a"/>
-      <ellipse cx="40" cy="17" rx="13" ry="7" fill="#3d2000"/>
-      <ellipse cx="29" cy="22" rx="5" ry="8" fill="#3d2000"/>
-      <ellipse cx="51" cy="22" rx="4" ry="6" fill="#3d2000"/>
-      <circle cx="35" cy="28" r="2.5" fill="#fff"/><circle cx="45" cy="28" r="2.5" fill="#fff"/>
-      <circle cx="36" cy="28" r="1.2" fill="#2d1000"/><circle cx="46" cy="28" r="1.2" fill="#2d1000"/>
-      <path d="M36 34 Q40 38 44 34" stroke="#c0704a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-      <text x="40" y="9" text-anchor="middle" font-size="8">⭐⭐⭐</text>
+      <rect x="37" y="58" width="6" height="44" rx="3" fill="#ffe3f2"/>
+      <circle cx="40" cy="38" r="30" fill="#ff8fc7"/>
+      <path d="M40 8 A30 30 0 0 1 68.5 23 A30 30 0 0 1 40 68 A30 30 0 0 1 11.5 23 Z" fill="#ffb8dd" opacity="0.9"/>
+      <circle cx="40" cy="38" r="30" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="7 7" opacity="0.55"/>
+      <circle cx="40" cy="38" r="19" fill="#ffd3ec"/>
+      <circle cx="40" cy="38" r="10" fill="#fff7fb"/>
+      <circle cx="34" cy="35" r="2.4" fill="#4a1a38"/><circle cx="46" cy="35" r="2.4" fill="#4a1a38"/>
+      <circle cx="35" cy="34" r="0.8" fill="#fff"/><circle cx="47" cy="34" r="0.8" fill="#fff"/>
+      <path d="M34 43 Q40 48 46 43" stroke="#c0507e" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="26" cy="30" r="2.2" fill="#ff5fa8" opacity="0.6"/>
+      <circle cx="54" cy="46" r="1.8" fill="#ff5fa8" opacity="0.6"/>
+      <text x="40" y="9" text-anchor="middle" font-size="9">✨🍬✨</text>
     </svg>
   </div>
   <div class="chat-panel" id="chatPanel">
@@ -2801,55 +2789,55 @@
 <!-- MODAL PROMOS MUNDIALISTAS -->
 <div class="modal-overlay" id="modalPromos">
   <div class="modal">
-    <div class="modal-header" style="background:linear-gradient(135deg,#0d2147,#75aadb);">
-      <h2>⚽ Combos del Mundial</h2>
+    <div class="modal-header" style="background:linear-gradient(135deg,#7a1650,#f6b9dd);">
+      <h2>🍬 Combos Especiales</h2>
       <button class="modal-close" onclick="cerrarPromos()">✕</button>
     </div>
     <div class="modal-body">
 
-      <div class="modal-subcat">🇦🇷 Promos para alentar</div>
+      <div class="modal-subcat">🎀 Promos especiales</div>
       <div class="modal-productos">
         <div class="modal-producto" style="border:2px solid var(--amarillo);">
           <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Promo Mundialista 1</div>
+            <div class="modal-producto-nombre">Combo Especial 1</div>
             <div class="modal-producto-variantes">Pringles a elección + Coca Cola 500ml</div>
           </div>
           <div class="modal-producto-precio">$8.000</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Promo Mundialista 1: Pringles + Coca 500ml',8000)">+ Agregar</button>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Combo Especial 1: Pringles + Coca 500ml',8000)">+ Agregar</button>
         </div>
         <div class="modal-producto" style="border:2px solid var(--amarillo);">
           <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Promo Mundialista 2</div>
+            <div class="modal-producto-nombre">Combo Especial 2</div>
             <div class="modal-producto-variantes">Pringles + Coca 500ml + Block + Gomitas Mogul</div>
           </div>
           <div class="modal-producto-precio">$12.000</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Promo Mundialista 2: Pringles + Coca 500ml + Block + Gomitas Mogul',12000)">+ Agregar</button>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Combo Especial 2: Pringles + Coca 500ml + Block + Gomitas Mogul',12000)">+ Agregar</button>
         </div>
         <div class="modal-producto" style="border:2px solid var(--amarillo);">
           <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Promo Mundialista 3</div>
+            <div class="modal-producto-nombre">Combo Especial 3</div>
             <div class="modal-producto-variantes">Pringles + Takis + Palitos + Lays + Coca 1L</div>
           </div>
           <div class="modal-producto-precio">$16.000</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Promo Mundialista 3: Pringles + Takis + Palitos + Lays + Coca 1L',16000)">+ Agregar</button>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Combo Especial 3: Pringles + Takis + Palitos + Lays + Coca 1L',16000)">+ Agregar</button>
         </div>
         <div class="modal-producto" style="border:2px solid var(--amarillo);">
-          <img src="img/productos/promo-pringles-mundial-coca.jpg" alt="Promo Mundialista 4" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+          <img src="img/productos/promo-pringles-mundial-coca.jpg" alt="Combo Especial 4" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
           <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Promo Mundialista 4</div>
+            <div class="modal-producto-nombre">Combo Especial 4</div>
             <div class="modal-producto-variantes">Pringles Edición Limitada Mundial + Coca-Cola Zero lata</div>
           </div>
           <div class="modal-producto-precio">$7.000</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Promo Mundialista 4: Pringles Edición Mundial + Coca Zero lata',7000)">+ Agregar</button>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Combo Especial 4: Pringles Edición Mundial + Coca Zero lata',7000)">+ Agregar</button>
         </div>
         <div class="modal-producto" style="border:2px solid var(--amarillo);">
-          <img src="img/productos/promo-nachos-maradona-coca.jpg" alt="Promo Mundialista 5" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+          <img src="img/productos/promo-nachos-maradona-coca.jpg" alt="Combo Especial 5" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
           <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Promo Mundialista 5</div>
+            <div class="modal-producto-nombre">Combo Especial 5</div>
             <div class="modal-producto-variantes">Nachos Maradona a la Napolitana + Coca-Cola lata</div>
           </div>
           <div class="modal-producto-precio">$5.000</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Promo Mundialista 5: Nachos Maradona Napolitana + Coca lata',5000)">+ Agregar</button>
+          <button class="btn-modal-agregar" onclick="agregarModal(this,'Combo Especial 5: Nachos Maradona Napolitana + Coca lata',5000)">+ Agregar</button>
         </div>
       </div>
 
@@ -2860,7 +2848,7 @@
 <!-- MODAL TRADICIONAL -->
 <div class="modal-overlay" id="modalTradicional">
   <div class="modal">
-    <div class="modal-header" style="background:linear-gradient(135deg,#e91e8c,#75aadb);">
+    <div class="modal-header" style="background:linear-gradient(135deg,#ff5fa8,#f6b9dd);">
       <h2>🍬 Tradicional</h2>
       <button class="modal-close" onclick="cerrarTradicional()">✕</button>
     </div>
