@@ -399,6 +399,55 @@
   .regaleria-box-btn.agregado { background:var(--green); }
   .regaleria-box-btn:hover { opacity:0.88; }
   @media (max-width:600px) { .regaleria-title { font-size:1.1rem; } .regaleria-box { flex:0 0 118px; } }
+
+  /* SECCIÓN EMPRENDEDORES - NEON ROSA */
+  .emprendedores-section { position:relative; background:radial-gradient(circle at 50% 0%,#2a0020,#0d0009 75%); border:2px solid #ff2fb0; border-radius:24px; padding:22px 16px 26px; margin-bottom:40px; overflow:hidden; box-shadow:0 0 14px #ff2fb0,0 0 34px rgba(255,47,176,0.5); animation:empGlow 1.8s ease-in-out infinite; }
+  @keyframes empGlow { 0%,100%{ box-shadow:0 0 14px #ff2fb0,0 0 30px rgba(255,47,176,0.5); } 50%{ box-shadow:0 0 24px #ff6ad5,0 0 54px rgba(255,106,213,0.85); } }
+  .emp-deco { position:absolute; opacity:0.45; pointer-events:none; animation:empFloat 6s ease-in-out infinite; filter:drop-shadow(0 0 6px #ff2fb0); }
+  .emp-deco.e1 { font-size:1.6rem; top:12px; left:5%; animation-delay:0s; }
+  .emp-deco.e2 { font-size:1.2rem; top:18px; right:8%; animation-delay:1s; }
+  .emp-deco.e3 { font-size:2rem; bottom:14px; left:14%; animation-delay:1.8s; }
+  .emp-deco.e4 { font-size:1.3rem; bottom:20px; right:5%; animation-delay:0.6s; }
+  @keyframes empFloat { 0%,100%{ transform:translateY(0); opacity:0.4; } 50%{ transform:translateY(-8px); opacity:0.8; } }
+  .emp-inner { position:relative; z-index:2; text-align:center; max-width:980px; margin:0 auto; }
+  .emp-badge { display:inline-flex; align-items:center; gap:5px; background:#ff2fb0; color:#fff; font-weight:800; font-size:0.7rem; padding:4px 14px; border-radius:50px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; box-shadow:0 0 10px rgba(255,47,176,0.9); }
+  .emp-title { font-family:'Poppins',sans-serif; font-weight:900; font-size:1.75rem; letter-spacing:0.02em; margin-bottom:5px; color:#fff; text-shadow:0 0 8px #ff2fb0,0 0 18px #ff6ad5,0 0 34px rgba(255,106,213,0.85); }
+  .emp-sub { color:#ffb3e6; font-size:0.86rem; font-weight:700; margin-bottom:20px; }
+  .emp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:800px) { .emp-grid { grid-template-columns:1fr; } }
+
+  .emp-card { position:relative; border-radius:20px; padding:20px 16px 18px; display:flex; flex-direction:column; align-items:center; text-align:center; overflow:hidden; transition:transform 0.25s; }
+  .emp-card:hover { transform:translateY(-6px); }
+  .emp-card-icon { font-size:2.4rem; margin-bottom:6px; filter:drop-shadow(0 0 8px currentColor); }
+  .emp-card-title { font-family:'Poppins',sans-serif; font-weight:900; font-size:1.05rem; margin-bottom:6px; letter-spacing:0.02em; }
+  .emp-card-desc { font-size:0.8rem; font-weight:700; line-height:1.4; margin-bottom:12px; opacity:0.92; }
+  .emp-card-precio { font-family:'Poppins',sans-serif; font-weight:900; font-size:1.5rem; margin-bottom:14px; }
+  .emp-card-btn { border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:10px 22px; cursor:pointer; white-space:nowrap; transition:filter 0.2s,transform 0.15s; }
+  .emp-card-btn:hover { filter:brightness(1.15); transform:scale(1.04); }
+  .emp-card-btn.agregado { background:var(--green) !important; color:#fff !important; }
+
+  /* Card Candy - gomitas de colores */
+  .emp-card.candy { background:linear-gradient(160deg,#ff5fa8 0%,#c02f7a 100%); border:2px solid #ff9fd0; box-shadow:0 0 10px rgba(255,95,168,0.6),inset 0 0 30px rgba(255,255,255,0.08); color:#fff; }
+  .emp-card.candy::before { content:'🍬'; position:absolute; font-size:5rem; opacity:0.12; top:-10px; right:-14px; transform:rotate(18deg); }
+  .emp-card.candy::after { content:'🍭'; position:absolute; font-size:3.6rem; opacity:0.1; bottom:-10px; left:-10px; transform:rotate(-15deg); }
+  .emp-card.candy .emp-card-precio { text-shadow:0 0 10px rgba(255,255,255,0.6); }
+  .emp-card.candy .emp-card-btn { background:#fff; color:#c02f7a; }
+
+  /* Card Oro - dorado brillante */
+  .emp-card.oro { background:linear-gradient(160deg,#5a3d00 0%,#1a1200 100%); border:2px solid #ffd400; box-shadow:0 0 12px rgba(255,212,0,0.65),inset 0 0 30px rgba(255,212,0,0.08); color:#ffe9a3; animation:oroShine 2.4s ease-in-out infinite; }
+  @keyframes oroShine { 0%,100%{ box-shadow:0 0 12px rgba(255,212,0,0.6),inset 0 0 30px rgba(255,212,0,0.08); } 50%{ box-shadow:0 0 20px rgba(255,212,0,0.95),inset 0 0 40px rgba(255,212,0,0.15); } }
+  .emp-card.oro::before { content:'🏆'; position:absolute; font-size:5rem; opacity:0.14; top:-12px; right:-12px; transform:rotate(15deg); }
+  .emp-card.oro::after { content:'✨'; position:absolute; font-size:3.2rem; opacity:0.16; bottom:-6px; left:-8px; }
+  .emp-card.oro .emp-card-title, .emp-card.oro .emp-card-precio { color:#ffd400; text-shadow:0 0 10px rgba(255,212,0,0.7); }
+  .emp-card.oro .emp-card-btn { background:linear-gradient(135deg,#ffd400,#ff9d00); color:#3a2400; }
+
+  /* Card Diamante - brillos celestes/blancos */
+  .emp-card.diamante { background:linear-gradient(160deg,#0d1b33 0%,#152b52 100%); border:2px solid #7fe3ff; box-shadow:0 0 14px rgba(127,227,255,0.7),inset 0 0 30px rgba(127,227,255,0.1); color:#e6faff; }
+  .emp-card.diamante::before { content:'💎'; position:absolute; font-size:5rem; opacity:0.16; top:-12px; right:-12px; transform:rotate(-12deg); }
+  .emp-card.diamante::after { content:'❄️'; position:absolute; font-size:3rem; opacity:0.14; bottom:-8px; left:-6px; }
+  .emp-card.diamante .emp-card-title, .emp-card.diamante .emp-card-precio { color:#7fe3ff; text-shadow:0 0 10px rgba(127,227,255,0.8); }
+  .emp-card.diamante .emp-card-btn { background:linear-gradient(135deg,#7fe3ff,#3a8fd0); color:#0a1a30; }
+  @media (max-width:600px) { .emp-title { font-size:1.4rem; } }
 /* SECCIÓN BOX */
   .box-section { background:linear-gradient(135deg,#ffa7d4,#ff5fa8); border-radius:24px; padding:26px 20px 30px; margin-bottom:40px; box-shadow:0 6px 24px rgba(255,95,168,0.35); }
   .box-head { text-align:center; margin-bottom:16px; color:#fff; }
@@ -659,6 +708,7 @@
     <a href="#snacks" onclick="cerrarDrawer()"><span class="drawer-ico">🍟</span> Snacks</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirCombosExclusivos()"><span class="drawer-ico">🎁</span> Combos Exclusivos</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirPromos()"><span class="drawer-ico">🍬</span> Combos Especiales</a>
+    <a href="#emprendedores" onclick="cerrarDrawer()"><span class="drawer-ico">💗</span> Emprendedores</a>
     <a href="#reels" onclick="cerrarDrawer()"><span class="drawer-ico">📸</span> Reels</a>
   </div>
 </aside>
@@ -676,6 +726,7 @@
       <a href="#snacks">Snacks</a>
       <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
       <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
+      <a href="#emprendedores" class="ofertas">💗 Emprendedores</a>
       <a href="#reels" class="reels">📸 Reels</a>
       <a href="#" class="ofertas" onclick="event.preventDefault();abrirOfertas()">🔥 Ofertas</a>
       <a href="#" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
@@ -686,6 +737,7 @@
       <a href="#snacks">Snacks</a>
       <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
       <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
+      <a href="#emprendedores" class="ofertas">💗 Emprendedores</a>
       <a href="#reels" class="reels">📸 Reels</a>
     </div>
   </div>
@@ -766,6 +818,43 @@
             <div class="regaleria-box-row"><span class="regaleria-box-precio">$8.500</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Bolsita Regalería Chocolate',8500)">+ Agregar</button></div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN EMPRENDEDORES -->
+  <div class="emprendedores-section" id="emprendedores">
+    <span class="emp-deco e1">💗</span><span class="emp-deco e2">⚡</span><span class="emp-deco e3">🍬</span><span class="emp-deco e4">💗</span>
+    <div class="emp-inner">
+      <span class="emp-badge">💼 Para revender</span>
+      <h2 class="emp-title">EMPRENDEDORES 💗</h2>
+      <p class="emp-sub">Promos mayoristas para tu emprendimiento · gomitas por bolsas</p>
+      <div class="emp-grid">
+
+        <div class="emp-card candy">
+          <div class="emp-card-icon">🍬</div>
+          <div class="emp-card-title">PROMO CANDY</div>
+          <div class="emp-card-desc">6 bolsas de 500g<br>de gomitas surtidas</div>
+          <div class="emp-card-precio">$50.000</div>
+          <button class="emp-card-btn" onclick="agregarKinder(this,'PROMO CANDY · 6 bolsas de 500g de gomitas',50000)">+ Agregar</button>
+        </div>
+
+        <div class="emp-card oro">
+          <div class="emp-card-icon">🏆</div>
+          <div class="emp-card-title">PROMO CANDY ORO</div>
+          <div class="emp-card-desc">10 bolsas de 500g<br>de gomitas surtidas</div>
+          <div class="emp-card-precio">$80.000</div>
+          <button class="emp-card-btn" onclick="agregarKinder(this,'PROMO CANDY ORO · 10 bolsas de 500g de gomitas',80000)">+ Agregar</button>
+        </div>
+
+        <div class="emp-card diamante">
+          <div class="emp-card-icon">💎</div>
+          <div class="emp-card-title">PROMO CANDY DIAMANTE</div>
+          <div class="emp-card-desc">10 bolsas de 500g + 2 bolsas de 1kg<br>de gomitas surtidas</div>
+          <div class="emp-card-precio">$100.000</div>
+          <button class="emp-card-btn" onclick="agregarKinder(this,'PROMO CANDY DIAMANTE · 10 bolsas de 500g + 2 bolsas de 1kg de gomitas',100000)">+ Agregar</button>
+        </div>
+
       </div>
     </div>
   </div>
