@@ -400,6 +400,29 @@
   .regaleria-box-btn:hover { opacity:0.88; }
   @media (max-width:600px) { .regaleria-title { font-size:1.1rem; } .regaleria-box { flex:0 0 118px; } }
 
+  .letras-section { position:relative; background:linear-gradient(135deg,var(--azul-dark),var(--rosa)); border-radius:20px; padding:14px 18px 18px; margin-bottom:40px; overflow:hidden; box-shadow:0 6px 28px rgba(178,58,114,0.35); }
+  .letras-deco { position:absolute; color:rgba(255,255,255,0.15); pointer-events:none; font-size:2rem; animation:floatDeco 7s ease-in-out infinite; }
+  .letras-deco.l1 { top:12px; left:6%; animation-delay:0s; }
+  .letras-deco.l2 { top:36px; right:12%; animation-delay:1.4s; }
+  .letras-deco.l3 { bottom:18px; left:22%; animation-delay:0.7s; }
+  .letras-deco.l4 { bottom:36px; right:7%; animation-delay:2s; }
+  .letras-inner { position:relative; z-index:2; max-width:900px; margin:0 auto; color:#fff; text-align:center; }
+  .letras-badge { display:inline-block; background:var(--amarillo); color:var(--azul-dark); font-weight:800; font-size:0.68rem; padding:3px 12px; border-radius:50px; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:6px; }
+  .letras-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.3rem; line-height:1.1; text-shadow:0 2px 12px rgba(0,0,0,0.3); margin-bottom:4px; }
+  .letras-desc { font-size:0.78rem; font-weight:600; line-height:1.35; margin-bottom:14px; opacity:0.92; }
+  .letras-cards { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+  .letras-card { flex:1 1 160px; max-width:200px; background:#fff; border-radius:16px; padding:14px 10px; display:flex; flex-direction:column; align-items:center; gap:6px; box-shadow:0 4px 14px rgba(0,0,0,0.15); transition:transform 0.2s; }
+  .letras-card:hover { transform:translateY(-5px); }
+  .letras-card-icon { font-size:2.2rem; }
+  .letras-card-nombre { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.85rem; color:var(--azul-dark); }
+  .letras-card-desc { font-size:0.68rem; color:var(--text-muted); line-height:1.3; min-height:28px; }
+  .letras-card-row { display:flex; align-items:center; justify-content:space-between; gap:6px; width:100%; margin-top:4px; }
+  .letras-card-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.85rem; color:var(--rosa); }
+  .letras-card-btn { background:linear-gradient(135deg,var(--rosa),#ff6b35); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.62rem; padding:6px 10px; cursor:pointer; white-space:nowrap; transition:opacity 0.2s; }
+  .letras-card-btn.agregado { background:var(--green); }
+  .letras-card-btn:hover { opacity:0.88; }
+  @media (max-width:600px) { .letras-title { font-size:1.1rem; } .letras-card { flex:1 1 100px; } }
+
   /* SECCIÓN EMPRENDEDORES - NEON ROSA */
   .emprendedores-section { position:relative; background:radial-gradient(circle at 50% 0%,#2a0020,#0d0009 75%); border:2px solid #ff2fb0; border-radius:24px; padding:22px 16px 26px; margin-bottom:40px; overflow:hidden; box-shadow:0 0 14px #ff2fb0,0 0 34px rgba(255,47,176,0.5); animation:empGlow 1.8s ease-in-out infinite; }
   @keyframes empGlow { 0%,100%{ box-shadow:0 0 14px #ff2fb0,0 0 30px rgba(255,47,176,0.5); } 50%{ box-shadow:0 0 24px #ff6ad5,0 0 54px rgba(255,106,213,0.85); } }
@@ -725,6 +748,7 @@
       <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
       <a href="#snacks">Snacks</a>
       <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
+      <a href="#letrasdulces">Letras Dulces</a>
       <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
       <a href="#emprendedores" class="ofertas">💗 Emprendedores</a>
       <a href="#reels" class="reels">📸 Reels</a>
@@ -736,6 +760,7 @@
       <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
       <a href="#snacks">Snacks</a>
       <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
+      <a href="#letrasdulces">Letras Dulces</a>
       <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
       <a href="#emprendedores" class="ofertas">💗 Emprendedores</a>
       <a href="#reels" class="reels">📸 Reels</a>
@@ -816,6 +841,42 @@
           <div class="regaleria-box-info">
             <div class="regaleria-box-nombre">Bolsita Chocolate</div>
             <div class="regaleria-box-row"><span class="regaleria-box-precio">$8.500</span><button class="regaleria-box-btn" onclick="agregarKinder(this,'Bolsita Regalería Chocolate',8500)">+ Agregar</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN LETRAS DULCES -->
+  <div class="letras-section" id="letrasdulces">
+    <span class="letras-deco l1">🔤</span><span class="letras-deco l2">🍬</span><span class="letras-deco l3">✨</span><span class="letras-deco l4">🌈</span>
+    <div class="letras-inner">
+      <span class="letras-badge">✨ Personalizado</span>
+      <h2 class="letras-title">Letras Dulces 🔤🍬</h2>
+      <p class="letras-desc">La inicial que quieras, rellena de las mejores golosinas. ¡El regalo más dulce y original!</p>
+      <div class="letras-cards">
+        <div class="letras-card">
+          <div class="letras-card-icon">🔤</div>
+          <div class="letras-card-info">
+            <div class="letras-card-nombre">Letra Económica</div>
+            <div class="letras-card-desc">Se rellena con gomitas y malvaviscos</div>
+            <div class="letras-card-row"><span class="letras-card-precio">$5.000</span><button class="letras-card-btn" onclick="agregarKinder(this,'Letra Dulce Económica',5000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="letras-card">
+          <div class="letras-card-icon">🔤</div>
+          <div class="letras-card-info">
+            <div class="letras-card-nombre">Letra Premium</div>
+            <div class="letras-card-desc">Se rellena con gomitas ácidas y dulces</div>
+            <div class="letras-card-row"><span class="letras-card-precio">$8.000</span><button class="letras-card-btn" onclick="agregarKinder(this,'Letra Dulce Premium',8000)">+ Agregar</button></div>
+          </div>
+        </div>
+        <div class="letras-card">
+          <div class="letras-card-icon">🔤</div>
+          <div class="letras-card-info">
+            <div class="letras-card-nombre">Letra Gold</div>
+            <div class="letras-card-desc">Incluye Rocklets y Bonobon</div>
+            <div class="letras-card-row"><span class="letras-card-precio">$10.000</span><button class="letras-card-btn" onclick="agregarKinder(this,'Letra Dulce Gold',10000)">+ Agregar</button></div>
           </div>
         </div>
       </div>
