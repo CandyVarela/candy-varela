@@ -804,6 +804,7 @@
     <a href="#chocolates" onclick="cerrarDrawer()"><span class="drawer-ico">🍫</span> Chocolates</a>
     <a href="#kinder" onclick="cerrarDrawer()"><span class="drawer-ico">🍬</span> Kinder</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirOfertas()"><span class="drawer-ico">🔥</span> Ofertas</a>
+    <a href="#mundogomitas" onclick="cerrarDrawer()"><span class="drawer-ico">🧸</span> Mundo Gomitas</a>
     <a href="#emprendedores" onclick="cerrarDrawer()"><span class="drawer-ico">💗</span> Emprendedores</a>
     <a href="#reels" onclick="cerrarDrawer()"><span class="drawer-ico">📸</span> Reels</a>
   </div>
@@ -823,6 +824,7 @@
       <a href="#" class="nav-dup" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
       <a href="#letrasdulces" class="nav-dup">Letras Dulces</a>
       <a href="#novedades" class="nav-dup">Novedades</a>
+      <a href="#mundogomitas" class="nav-dup">Mundo Gomitas</a>
       <a href="#emprendedores" class="ofertas nav-dup">💗 Emprendedores</a>
       <a href="#reels" class="reels nav-dup">📸 Reels</a>
     </div>
@@ -847,6 +849,7 @@
   <a href="#chocolates" class="cat-filter-link"><span>🍫</span> Chocolates</a>
   <a href="#kinder" class="cat-filter-link"><span>🍬</span> Kinder</a>
   <a href="#ofertas" class="cat-filter-link"><span>🔥</span> Ofertas</a>
+  <a href="#mundogomitas" class="cat-filter-link"><span>🧸</span> Mundo Gomitas</a>
   <a href="#emprendedores" class="cat-filter-link"><span>💗</span> Emprendedores</a>
   <a href="#reels"><span>📸</span> Reels</a>
 </aside>
@@ -1596,7 +1599,7 @@
         <div class="cat-card-nombre">PROMO CANDY DIAMANTE · 10 bolsas de 500g + 2 bolsas de 1kg de gomitas</div>
         <div class="cat-card-row"><span class="cat-card-precio">$100.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'PROMO CANDY DIAMANTE · 10 bolsas de 500g + 2 bolsas de 1kg de gomitas',100000)">+ Agregar</button></div>
       </div>
-      <div class="cat-card" data-cat="emprendedores">
+      <div class="cat-card" data-cat="mundogomitas">
         <img class="cat-card-img" src="img/productos/picada-dulce.jpg" alt="Picada Dulce" loading="lazy">
         <div class="cat-card-nombre">Picada Dulce</div>
         <div class="cat-card-row"><span class="cat-card-precio">$13.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Picada Dulce',13000)">+ Agregar</button></div>
@@ -4531,7 +4534,7 @@
 
   // Filtro de categorías: muestra solo los productos de la categoría elegida
   (function(){
-    const catIds = ['novedades','regaleria','bolsasmisteriosas','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas'];
+    const catIds = ['novedades','regaleria','bolsasmisteriosas','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas','mundogomitas'];
     function filtrar(cat){
       document.querySelectorAll('.cat-card').forEach(function(c){
         c.style.display = (cat==='todos' || c.getAttribute('data-cat')===cat) ? '' : 'none';
