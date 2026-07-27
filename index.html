@@ -541,6 +541,11 @@
   .hotsale-item-btn.agregado { background:var(--green); }
   @media (max-width:600px) { .hotsale-title { font-size:1.4rem; } .hotsale-item { flex:0 0 136px; width:136px; } }
 
+  /* GRID DE SECCIONES CHICAS LADO A LADO (desktop) */
+  .pair-row { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:40px; align-items:stretch; }
+  .pair-row > .mystery-section, .pair-row > .letras-section { margin-bottom:0; height:100%; }
+  @media (max-width:900px) { .pair-row { grid-template-columns:1fr; gap:0; } .pair-row > .mystery-section, .pair-row > .letras-section { margin-bottom:40px; } }
+
   /* SECCIÓN BOLSAS MISTERIOSAS */
   .mystery-section { position:relative; background:radial-gradient(circle at 50% 0%,#25062f,#0d0212 70%); border:2px solid var(--rosa); border-radius:24px; padding:26px 16px 28px; margin-bottom:40px; overflow:hidden; }
   .mystery-deco { position:absolute; font-size:1.6rem; opacity:0.35; pointer-events:none; }
@@ -877,6 +882,7 @@
     </div>
   </div>
 
+  <div class="pair-row">
   <!-- SECCIÓN BOLSAS MISTERIOSAS -->
   <div class="mystery-section">
     <span class="mystery-deco m1">🛍️</span><span class="mystery-deco m2">✨</span><span class="mystery-deco m3">💰</span><span class="mystery-deco m4">🎁</span>
@@ -943,6 +949,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- SECCIÓN EMPRENDEDORES -->
