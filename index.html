@@ -128,8 +128,22 @@
     .category-sidebar a span { font-size:1rem; }
   }
 
-  /* SECCIONES OCULTAS POR DEFECTO (se muestran desde el menú de categorías) */
-  #pairRowML, #alfajoresvirales, #snacks, #bebidasImportadas, #boxes, #chocolates, #kinder, #emprendedores, #reels { display:none; }
+  /* SECCIONES ANTIGUAS OCULTAS (reemplazadas por la grilla de catálogo) */
+  .regaleria-section, .pair-row, .viral-section, .imp-section, .snk-section, .beb-section, .box-section, .cho-section, .kinder-section, .neon-section, .emprendedores-section { display:none !important; }
+
+  /* GRILLA UNIFICADA DE CATÁLOGO */
+  .catalog-section { margin-bottom:40px; scroll-margin-top:110px; }
+  .catalog-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.3rem; margin-bottom:16px; color:#333; }
+  .catalog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); gap:14px; }
+  .cat-card { background:#fff; border-radius:14px; padding:10px; box-shadow:0 2px 10px rgba(0,0,0,0.07); display:flex; flex-direction:column; }
+  .cat-card-img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:10px; margin-bottom:8px; }
+  .cat-card-noimg { display:flex; align-items:center; justify-content:center; background:var(--rosa-light); font-size:2rem; }
+  .cat-card-nombre { font-weight:700; font-size:0.8rem; margin-bottom:8px; flex:1; color:#333; line-height:1.25; }
+  .cat-card-row { display:flex; align-items:center; justify-content:space-between; gap:6px; }
+  .cat-card-precio { font-weight:800; color:var(--rosa); font-size:0.88rem; }
+  .cat-card-btn { background:var(--rosa); color:#fff; border:none; border-radius:50px; padding:6px 11px; font-size:0.72rem; font-weight:700; cursor:pointer; white-space:nowrap; }
+  .cat-card-btn:disabled { background:#ddd; cursor:not-allowed; color:#999; }
+  .category-sidebar a.active { background:var(--rosa-light); color:var(--rosa); }
   .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
   .section-title { font-family:'Poppins',sans-serif; font-size:1.5rem; font-weight:800; color:var(--azul-dark); display:flex; align-items:center; gap:8px; }
   .section-link { color:var(--rosa); text-decoration:none; font-size:0.88rem; font-weight:700; }
@@ -823,23 +837,731 @@
 <div class="layout-wrap">
 <aside class="category-sidebar">
   <div class="category-sidebar-title">Categorías</div>
-  <a href="#" onclick="event.preventDefault();abrirOfertas()"><span>🔥</span> Ofertas</a>
+  <a href="#todos" class="cat-filter-link active"><span>🍬</span> Todos</a>
   <a href="#" onclick="event.preventDefault();abrirNovedades()"><span>✨</span> Novedades</a>
-  <a href="#regaleria"><span>🎀</span> Regalería</a>
-  <a href="#monster"><span>⚡</span> Monster</a>
-  <a href="#bolsasmisteriosas"><span>🛍️</span> Bolsas Misteriosas</a>
-  <a href="#letrasdulces"><span>🔤</span> Letras Dulces</a>
-  <a href="#alfajoresvirales"><span>🍭</span> Alfajores Virales</a>
-  <a href="#importados"><span>🌏</span> Golosinas Importadas</a>
-  <a href="#snacks"><span>🍟</span> Snacks</a>
-  <a href="#bebidasImportadas"><span>🥤</span> Bebidas Importadas</a>
-  <a href="#boxes"><span>🎁</span> Box</a>
-  <a href="#chocolates"><span>🍫</span> Chocolates</a>
-  <a href="#kinder"><span>🍬</span> Kinder</a>
-  <a href="#emprendedores"><span>💗</span> Emprendedores</a>
+  <a href="#regaleria" class="cat-filter-link"><span>🎀</span> Regalería</a>
+  <a href="#monster" class="cat-filter-link"><span>⚡</span> Monster</a>
+  <a href="#bolsasmisteriosas" class="cat-filter-link"><span>🛍️</span> Bolsas Misteriosas</a>
+  <a href="#letrasdulces" class="cat-filter-link"><span>🔤</span> Letras Dulces</a>
+  <a href="#alfajoresvirales" class="cat-filter-link"><span>🍭</span> Alfajores Virales</a>
+  <a href="#importados" class="cat-filter-link"><span>🌏</span> Golosinas Importadas</a>
+  <a href="#snacks" class="cat-filter-link"><span>🍟</span> Snacks</a>
+  <a href="#bebidasImportadas" class="cat-filter-link"><span>🥤</span> Bebidas Importadas</a>
+  <a href="#boxes" class="cat-filter-link"><span>🎁</span> Box</a>
+  <a href="#chocolates" class="cat-filter-link"><span>🍫</span> Chocolates</a>
+  <a href="#kinder" class="cat-filter-link"><span>🍬</span> Kinder</a>
+  <a href="#ofertas" class="cat-filter-link"><span>🔥</span> Ofertas</a>
+  <a href="#emprendedores" class="cat-filter-link"><span>💗</span> Emprendedores</a>
   <a href="#reels"><span>📸</span> Reels</a>
 </aside>
 <main>
+
+  <!-- GRILLA DE CATÁLOGO UNIFICADA -->
+  <div class="catalog-section" id="catalogoGrid">
+    <h2 class="catalog-title">Nuestros Productos 🍬</h2>
+    <div class="catalog-grid">
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/box-personalizado.jpg" alt="Box Regalería · Chocolates" loading="lazy">
+        <div class="cat-card-nombre">Box Regalería · Chocolates</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box Regalería · Chocolates',20000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/box-dulzura-2.jpg" alt="Box Regalería · Surtido" loading="lazy">
+        <div class="cat-card-nombre">Box Regalería · Surtido</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box Regalería · Surtido',20000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/box-dulzura-3.jpg" alt="Box Regalería · Importados" loading="lazy">
+        <div class="cat-card-nombre">Box Regalería · Importados</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box Regalería · Importados',20000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/dulzura-bolsa-1.jpg" alt="Bolsita Regalería Clásica" loading="lazy">
+        <div class="cat-card-nombre">Bolsita Regalería Clásica</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsita Regalería Clásica',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/dulzura-bolsa-3.jpg" alt="Bolsita Regalería Mix" loading="lazy">
+        <div class="cat-card-nombre">Bolsita Regalería Mix</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$6.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsita Regalería Mix',6000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/dulzura-bolsa-2.jpg" alt="Bolsita Regalería Argenta" loading="lazy">
+        <div class="cat-card-nombre">Bolsita Regalería Argenta</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$6.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsita Regalería Argenta',6500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/dulzura-bolsa-4.jpg" alt="Bolsita Regalería Premium" loading="lazy">
+        <div class="cat-card-nombre">Bolsita Regalería Premium</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsita Regalería Premium',8500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/dulzura-bolsa-5.jpg" alt="Bolsita Regalería Importada" loading="lazy">
+        <div class="cat-card-nombre">Bolsita Regalería Importada</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsita Regalería Importada',8500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/dulzura-bolsa-6.jpg" alt="Bolsita Regalería Chocolate" loading="lazy">
+        <div class="cat-card-nombre">Bolsita Regalería Chocolate</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsita Regalería Chocolate',8500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bolsasmisteriosas">
+        <img class="cat-card-img" src="img/productos/bolsa-misteriosa.jpg" alt="Bolsa Sorpresa" loading="lazy">
+        <div class="cat-card-nombre">Bolsa Sorpresa</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsa Sorpresa',10000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bolsasmisteriosas">
+        <img class="cat-card-img" src="img/productos/bolsa-misteriosa.jpg" alt="Bolsa Sorpresa Pro" loading="lazy">
+        <div class="cat-card-nombre">Bolsa Sorpresa Pro</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$15.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsa Sorpresa Pro',15000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bolsasmisteriosas">
+        <img class="cat-card-img" src="img/productos/bolsa-misteriosa.jpg" alt="Bolsa Sorpresa Premium" loading="lazy">
+        <div class="cat-card-nombre">Bolsa Sorpresa Premium</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsa Sorpresa Premium',20000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="ofertas">
+        <img class="cat-card-img" src="img/productos/gomitas-surtidas.jpg" alt="Gomitas Surtidas 300g" loading="lazy">
+        <div class="cat-card-nombre">Gomitas Surtidas 300g</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Gomitas Surtidas 300g',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="ofertas">
+        <img class="cat-card-img" src="img/productos/alfajores-guaymallen.jpg" alt="Oferta 1: 2 Capitán del Espacio simple + 1 Capitán triple" loading="lazy">
+        <div class="cat-card-nombre">Oferta 1: 2 Capitán del Espacio simple + 1 Capitán triple</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$6.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Oferta 1: 2 Capitán del Espacio simple + 1 Capitán triple',6000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="ofertas">
+        <img class="cat-card-img" src="img/productos/capitan-espacio.jpg" alt="Oferta 2: 3 Alfajores Guaymallén simple" loading="lazy">
+        <div class="cat-card-nombre">Oferta 2: 3 Alfajores Guaymallén simple</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Oferta 2: 3 Alfajores Guaymallén simple',1000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="ofertas">
+        <img class="cat-card-img" src="img/productos/takis-nacho.jpg" alt="Oferta 4: 100g gomitas + Takis" loading="lazy">
+        <div class="cat-card-nombre">Oferta 4: 100g gomitas + Takis</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$4.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Oferta 4: 100g gomitas + Takis',4000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/alfajor-matilda.jpg" alt="Alfajor Matilda" loading="lazy">
+        <div class="cat-card-nombre">Alfajor Matilda</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Alfajor Matilda',3000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/alfajor-giga.jpg" alt="Alfajor Giga by Spreen" loading="lazy">
+        <div class="cat-card-nombre">Alfajor Giga by Spreen</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Alfajor Giga by Spreen',2500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/alfajor-goat.jpg" alt="Alfajor Goat" loading="lazy">
+        <div class="cat-card-nombre">Alfajor Goat</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Alfajor Goat',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/alfachurro.jpg" alt="Alfachurro" loading="lazy">
+        <div class="cat-card-nombre">Alfachurro</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Alfachurro',2500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/alfajor-mantecol.jpg" alt="Alfajor Mantecol" loading="lazy">
+        <div class="cat-card-nombre">Alfajor Mantecol</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Alfajor Mantecol',1500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/bomba-gula.jpg" alt="Bomba Gula Extrema" loading="lazy">
+        <div class="cat-card-nombre">Bomba Gula Extrema</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bomba Gula Extrema',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/alfajor-dubai-pistacho.jpg" alt="Alfajor Dubai Pistacho" loading="lazy">
+        <div class="cat-card-nombre">Alfajor Dubai Pistacho</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Alfajor Dubai Pistacho',2500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/pescado-raul.jpg" alt="Alfajor Pescado Raúl" loading="lazy">
+        <div class="cat-card-nombre">Alfajor Pescado Raúl</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Alfajor Pescado Raúl',1000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/beldent-confitado.jpg" alt="Beldent Confitado y Relleno" loading="lazy">
+        <div class="cat-card-nombre">Beldent Confitado y Relleno</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Beldent Confitado y Relleno',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/cofler-block-gold.jpg" alt="Cofler Block Gold" loading="lazy">
+        <div class="cat-card-nombre">Cofler Block Gold</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cofler Block Gold',2500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/gomitas-pelables-mogul.jpg" alt="Gomitas Pelables Mogul" loading="lazy">
+        <div class="cat-card-nombre">Gomitas Pelables Mogul</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Gomitas Pelables Mogul',1500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="alfajoresvirales">
+        <img class="cat-card-img" src="img/productos/bombon-irlandes-felfort-cafe.jpg" alt="Bombón Irlandés Felfort de Café" loading="lazy">
+        <div class="cat-card-nombre">Bombón Irlandés Felfort de Café</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bombón Irlandés Felfort de Café',1500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/toblerone-gigante.jpg" alt="Toblerone Gigante" loading="lazy">
+        <div class="cat-card-nombre">Toblerone Gigante</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$30.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Toblerone Gigante',30000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/jelly-bubble-gum.jpg" alt="Jelly Belly Bubble Gum" loading="lazy">
+        <div class="cat-card-nombre">Jelly Belly Bubble Gum</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Jelly Belly Bubble Gum',10000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/haribo-gold.jpg" alt="Haribo Goldbears" loading="lazy">
+        <div class="cat-card-nombre">Haribo Goldbears</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$14.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Haribo Goldbears',14000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/haribo-pico-balla.jpg" alt="Haribo Pico-Balla" loading="lazy">
+        <div class="cat-card-nombre">Haribo Pico-Balla</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Haribo Pico-Balla',20000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/skittles-gomitas.jpg" alt="Skittles Gomitas" loading="lazy">
+        <div class="cat-card-nombre">Skittles Gomitas</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$9.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Skittles Gomitas',9000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/skittles-confites.jpg" alt="Skittles Confites" loading="lazy">
+        <div class="cat-card-nombre">Skittles Confites</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Skittles Confites',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/nerds.jpg" alt="Nerds" loading="lazy">
+        <div class="cat-card-nombre">Nerds</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$6.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Nerds',6000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/icebreakers.jpg" alt="Ice Breakers" loading="lazy">
+        <div class="cat-card-nombre">Ice Breakers</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$18.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Ice Breakers',18000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/jelly-beans-36.jpg" alt="Jelly Beans 36 Sabores" loading="lazy">
+        <div class="cat-card-nombre">Jelly Beans 36 Sabores</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Jelly Beans 36 Sabores',20000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/jelly-belly-rose.jpg" alt="Jelly Belly Rosé" loading="lazy">
+        <div class="cat-card-nombre">Jelly Belly Rosé</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$6.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Jelly Belly Rosé',6000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/hello-kitty-fibrones.jpg" alt="Hello Kitty Fibrones" loading="lazy">
+        <div class="cat-card-nombre">Hello Kitty Fibrones</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$25.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Hello Kitty Fibrones',25000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/mentos-coleccion.jpg" alt="Mentos Colección" loading="lazy">
+        <div class="cat-card-nombre">Mentos Colección</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$40.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Mentos Colección',40000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/super-tictac.jpg" alt="Super Tic Tac" loading="lazy">
+        <div class="cat-card-nombre">Super Tic Tac</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$40.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Super Tic Tac',40000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/oreo-lata.jpg" alt="Oreo Lata" loading="lazy">
+        <div class="cat-card-nombre">Oreo Lata</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$40.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Oreo Lata',40000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/alcancia-my-melody.jpg" alt="Alcancía My Melody" loading="lazy">
+        <div class="cat-card-nombre">Alcancía My Melody</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$45.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Alcancía My Melody',45000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/lata-pokemon.jpg" alt="Lata Pokémon" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Lata Pokémon</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$9.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/bob-esponja-huevo.jpg" alt="Bob Esponja Huevo" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Bob Esponja Huevo</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$15.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/jugo-disney.jpg" alt="Jugo Disney" loading="lazy">
+        <div class="cat-card-nombre">Jugo Disney</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Jugo Disney',1500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/pochoclos-stranger.jpg" alt="Pochoclos Stranger Things" loading="lazy">
+        <div class="cat-card-nombre">Pochoclos Stranger Things</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Pochoclos Stranger Things',10000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/pepero-stray-kids.jpg" alt="Pepero Stray Kids" loading="lazy">
+        <div class="cat-card-nombre">Pepero Stray Kids</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Pepero Stray Kids',7000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/pepero-bob.jpg" alt="Pepero Bob Esponja" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Pepero Bob Esponja</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$4.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/block-dubai-avellana.jpg" alt="Block Dubai Brasil Avellana" loading="lazy">
+        <div class="cat-card-nombre">Block Dubai Brasil Avellana</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$15.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Block Dubai Brasil Avellana',15000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/cadbury-brasil.jpg" alt="Cadbury Brasil" loading="lazy">
+        <div class="cat-card-nombre">Cadbury Brasil</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cadbury Brasil',5500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/toblerone-chico.jpg" alt="Toblerone Chico" loading="lazy">
+        <div class="cat-card-nombre">Toblerone Chico</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Toblerone Chico',10000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/milka-choco-pause.jpg" alt="Galletitas Milka Choco Pause" loading="lazy">
+        <div class="cat-card-nombre">Galletitas Milka Choco Pause</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$15.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Galletitas Milka Choco Pause',15000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/galletitas-netflix.jpg" alt="Galletitas Netflix" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Galletitas Netflix</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$8.500</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/pringles-arg-futbol.jpg" alt="Pringles Argentina Edición Limitada" loading="lazy">
+        <div class="cat-card-nombre">Pringles Argentina Edición Limitada</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Pringles Argentina Edición Limitada',5500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/pringles-cheddar-bacon.jpg" alt="Pringles Cheddar &amp; Bacon" loading="lazy">
+        <div class="cat-card-nombre">Pringles Cheddar &amp; Bacon</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Pringles Cheddar &amp; Bacon',5500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/pringles-queso.jpg" alt="Pringles Queso" loading="lazy">
+        <div class="cat-card-nombre">Pringles Queso</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Pringles Queso',5500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/lays-clasicas.jpg" alt="Lays Clásicas" loading="lazy">
+        <div class="cat-card-nombre">Lays Clásicas</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$4.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Lays Clásicas',4000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/lays-asado.jpg" alt="Lays Asado de Tira" loading="lazy">
+        <div class="cat-card-nombre">Lays Asado de Tira</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$4.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Lays Asado de Tira',4000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/lays-flaminhot.jpg" alt="Lays Flamin Hot" loading="lazy">
+        <div class="cat-card-nombre">Lays Flamin Hot</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$4.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Lays Flamin Hot',4000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/doritos-queso.jpg" alt="Doritos Queso" loading="lazy">
+        <div class="cat-card-nombre">Doritos Queso</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$4.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Doritos Queso',4000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/nachos-maradona-costillar.jpg" alt="Nachos Maradona Costillar al Asador" loading="lazy">
+        <div class="cat-card-nombre">Nachos Maradona Costillar al Asador</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Nachos Maradona Costillar al Asador',3000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/nachos-maradona-napolitana.jpg" alt="Nachos Maradona A la Napolitana" loading="lazy">
+        <div class="cat-card-nombre">Nachos Maradona A la Napolitana</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Nachos Maradona A la Napolitana',3000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/pehuamar-pizza.jpg" alt="Pehuamar Matambrito a la Pizza" loading="lazy">
+        <div class="cat-card-nombre">Pehuamar Matambrito a la Pizza</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Pehuamar Matambrito a la Pizza',3000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/takis-xplosion.jpg" alt="Takis Xplosion" loading="lazy">
+        <div class="cat-card-nombre">Takis Xplosion</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Takis Xplosion',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/takis-nacho.jpg" alt="Takis Intense Nacho" loading="lazy">
+        <div class="cat-card-nombre">Takis Intense Nacho</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Takis Intense Nacho',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/takis-ranch.jpg" alt="Takis Buckin Ranch" loading="lazy">
+        <div class="cat-card-nombre">Takis Buckin Ranch</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Takis Buckin Ranch',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/oishi-camaron.jpg" alt="Oishi Snack de Camarón" loading="lazy">
+        <div class="cat-card-nombre">Oishi Snack de Camarón</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Oishi Snack de Camarón',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/buldak-tteok.jpg" alt="Snack Coreano Buldak" loading="lazy">
+        <div class="cat-card-nombre">Snack Coreano Buldak</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Snack Coreano Buldak',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/lobster-tteok.jpg" alt="Snack Coreano Lobster Tteokbokki" loading="lazy">
+        <div class="cat-card-nombre">Snack Coreano Lobster Tteokbokki</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Snack Coreano Lobster Tteokbokki',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="snacks">
+        <img class="cat-card-img" src="img/productos/tabasco-snack.jpg" alt="Snack Tabasco" loading="lazy">
+        <div class="cat-card-nombre">Snack Tabasco</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Snack Tabasco',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/coca-cherry.jpg" alt="Coca-Cola Cherry" loading="lazy">
+        <div class="cat-card-nombre">Coca-Cola Cherry</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Coca-Cola Cherry',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/coca-lemon.jpg" alt="Coca-Cola Lemon" loading="lazy">
+        <div class="cat-card-nombre">Coca-Cola Lemon</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Coca-Cola Lemon',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/fanta-uva.jpg" alt="Fanta Uva" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Fanta Uva</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$4.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/fanta-melon.jpg" alt="Fanta Melón" loading="lazy">
+        <div class="cat-card-nombre">Fanta Melón</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Fanta Melón',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/mountain-dew.jpg" alt="Mountain Dew Voltage" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Mountain Dew Voltage</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$7.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/drpepper-vanilla.jpg" alt="Dr Pepper Vanilla Float" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Dr Pepper Vanilla Float</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$7.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/guarana.jpg" alt="Guaraná Antarctica" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Guaraná Antarctica</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$4.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/jugo-uva-verde.jpg" alt="Jugo de Uva Verde" loading="lazy">
+        <div class="cat-card-nombre">Jugo de Uva Verde</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Jugo de Uva Verde',7000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/qdol-pikachu.jpg" alt="QDOL Pokémon Pikachu" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">QDOL Pokémon Pikachu</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$7.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/qdol-squirtle.jpg" alt="QDOL Pokémon Squirtle" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">QDOL Pokémon Squirtle</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$7.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/qdol-patricio.jpg" alt="QDOL Bob Esponja Patricio" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">QDOL Bob Esponja Patricio</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$7.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/qdol-gary.jpg" alt="QDOL Bob Esponja Gary" loading="lazy">
+        <div class="cat-card-nombre">QDOL Bob Esponja Gary</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'QDOL Bob Esponja Gary',7000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="importados">
+        <img class="cat-card-img" src="img/productos/qdol-arenita.jpg" alt="QDOL Bob Esponja Arenita" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">QDOL Bob Esponja Arenita</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$7.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/energy-colapinto.jpg" alt="Energizante Franco Colapinto" loading="lazy">
+        <div class="cat-card-nombre">Energizante Franco Colapinto</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Energizante Franco Colapinto',7000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/energy-river.jpg" alt="Energizante River Plate" loading="lazy">
+        <div class="cat-card-nombre">Energizante River Plate</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Energizante River Plate',7000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/energy-darthvader.jpg" alt="Energizante Darth Vader" loading="lazy">
+        <div class="cat-card-nombre">Energizante Darth Vader</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Energizante Darth Vader',7000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/prime-orange.jpg" alt="Prime Ice Orange" loading="lazy">
+        <div class="cat-card-nombre">Prime Ice Orange</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$15.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Prime Ice Orange',15000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas">
+        <img class="cat-card-img" src="img/productos/prime-blue-chill.jpg" alt="Prime Ice Blue Chill" loading="lazy">
+        <div class="cat-card-nombre">Prime Ice Blue Chill</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$15.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Prime Ice Blue Chill',15000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="boxes">
+        <img class="cat-card-img" src="img/productos/box-vacio-1.jpg" alt="Box con Manija (para armar)" loading="lazy">
+        <div class="cat-card-nombre">Box con Manija (para armar)</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box con Manija (para armar)',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="boxes">
+        <img class="cat-card-img" src="img/productos/box-vacio-2.jpg" alt="Box Cuadrado (para armar)" loading="lazy">
+        <div class="cat-card-nombre">Box Cuadrado (para armar)</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box Cuadrado (para armar)',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/blockazo.jpg" alt="Cofler Blockazo 1kg" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Cofler Blockazo 1kg</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$30.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/milka-cookies.jpg" alt="Milka Cookies importada" loading="lazy">
+        <div class="cat-card-nombre">Milka Cookies importada</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$9.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Milka Cookies importada',9500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/milka-max-caramelo.jpg" alt="Milka Max Caramelo y Avellanas" loading="lazy">
+        <div class="cat-card-nombre">Milka Max Caramelo y Avellanas</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$24.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Milka Max Caramelo y Avellanas',24000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/milka-max-chocoswing.jpg" alt="Milka Max Choco-Swing" loading="lazy">
+        <div class="cat-card-nombre">Milka Max Choco-Swing</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$24.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Milka Max Choco-Swing',24000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/cadbury-almendras.jpg" alt="Cadbury Almendras grande" loading="lazy">
+        <div class="cat-card-nombre">Cadbury Almendras grande</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cadbury Almendras grande',7500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/cadbury-almendras.jpg" alt="Cadbury Frutilla grande" loading="lazy">
+        <div class="cat-card-nombre">Cadbury Frutilla grande</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cadbury Frutilla grande',7500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/aguila-amargo.jpg" alt="Águila Amargo 70%" loading="lazy">
+        <div class="cat-card-nombre">Águila Amargo 70%</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$6.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Águila Amargo 70%',6000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/cofler-block-300.jpg" alt="Cofler Block 300g" loading="lazy">
+        <div class="cat-card-nombre">Cofler Block 300g</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$14.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cofler Block 300g',14000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/cofler-block-170.jpg" alt="Cofler Block 170g" loading="lazy">
+        <div class="cat-card-nombre">Cofler Block 170g</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$9.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cofler Block 170g',9000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/cofler-aireado.jpg" alt="Cofler Aireado" loading="lazy">
+        <div class="cat-card-nombre">Cofler Aireado</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cofler Aireado',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/cofler-dubai.jpg" alt="Cofler Dubai Pistacho" loading="lazy">
+        <div class="cat-card-nombre">Cofler Dubai Pistacho</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cofler Dubai Pistacho',3000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/milka-dulce-leche.jpg" alt="Milka Dulce de Leche" loading="lazy">
+        <div class="cat-card-nombre">Milka Dulce de Leche</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Milka Dulce de Leche',3000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/milka-oreo.jpg" alt="Milka Oreo" loading="lazy">
+        <div class="cat-card-nombre">Milka Oreo</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Milka Oreo',3000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/shot-choco.jpg" alt="Shot Chocolate grande" loading="lazy">
+        <div class="cat-card-nombre">Shot Chocolate grande</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Shot Chocolate grande',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <img class="cat-card-img" src="img/productos/shot-blanco.jpg" alt="Shot Blanco chico" loading="lazy">
+        <div class="cat-card-nombre">Shot Blanco chico</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Shot Blanco chico',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <div class="cat-card-img cat-card-noimg">🍬</div>
+        <div class="cat-card-nombre">Bon o Bon</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bon o Bon',1000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <div class="cat-card-img cat-card-noimg">🍬</div>
+        <div class="cat-card-nombre">Tofi</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Tofi',3000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <div class="cat-card-img cat-card-noimg">🍬</div>
+        <div class="cat-card-nombre">Marroc</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Marroc',1500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <div class="cat-card-img cat-card-noimg">🍬</div>
+        <div class="cat-card-nombre">Rocklets</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Rocklets',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <div class="cat-card-img cat-card-noimg">🍬</div>
+        <div class="cat-card-nombre">Cofler Relleno</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cofler Relleno',3500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <div class="cat-card-img cat-card-noimg">🍬</div>
+        <div class="cat-card-nombre">Barras de Cereal</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Barras de Cereal',2500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="chocolates">
+        <div class="cat-card-img cat-card-noimg">🍬</div>
+        <div class="cat-card-nombre">Cofler Ghantt</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cofler Ghantt',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="kinder">
+        <img class="cat-card-img" src="img/productos/nutella-love.jpg" alt="Nutella Love" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Nutella Love</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$20.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="kinder">
+        <img class="cat-card-img" src="img/productos/duplo.jpg" alt="Duplo" loading="lazy">
+        <div class="cat-card-nombre">Duplo</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$4.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Duplo',4000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="kinder">
+        <img class="cat-card-img" src="img/productos/kinder-chocolate-barra.jpg" alt="Kinder Chocolate barra" loading="lazy">
+        <div class="cat-card-nombre">Kinder Chocolate barra</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.800</span><button class="cat-card-btn" onclick="agregarKinder(this,'Kinder Chocolate barra',1800)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="kinder">
+        <img class="cat-card-img" src="img/productos/kinder-country.jpg" alt="Kinder Country" loading="lazy">
+        <div class="cat-card-nombre">Kinder Country</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$4.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Kinder Country',4500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="kinder">
+        <img class="cat-card-img" src="img/productos/kinder-happy-hippo.jpg" alt="Kinder Happy Hippo" loading="lazy">
+        <div class="cat-card-nombre">Kinder Happy Hippo</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Kinder Happy Hippo',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="kinder">
+        <img class="cat-card-img" src="img/productos/kinder-ovo.jpg" alt="Kinder Ovo" loading="lazy">
+        <div class="cat-card-nombre">Kinder Ovo</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Kinder Ovo',20000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="kinder">
+        <img class="cat-card-img" src="img/productos/exagonal-kinder.jpg" alt="Exagonal Kinder Colección" loading="lazy">
+        <div class="cat-card-nombre">Exagonal Kinder Colección</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$30.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Exagonal Kinder Colección',30000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-brasil-1.jpg" alt="Monster Edición Limitada 1" loading="lazy">
+        <div class="cat-card-nombre">Monster Edición Limitada 1</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Edición Limitada 1',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-brasil-2.jpg" alt="Monster Edición Limitada 2" loading="lazy">
+        <div class="cat-card-nombre">Monster Edición Limitada 2</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Edición Limitada 2',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-brasil-3.jpg" alt="Monster Ripper" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Monster Ripper</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$8.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-brasil-4.jpg" alt="Monster Edición Limitada 4" loading="lazy">
+        <div class="cat-card-nombre">Monster Edición Limitada 4</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Edición Limitada 4',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-brasil-5.jpg" alt="Monster Edición Limitada 5" loading="lazy">
+        <div class="cat-card-nombre">Monster Edición Limitada 5</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Edición Limitada 5',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-europea-1.jpg" alt="Monster Europea Juiced Monarch 500ml" loading="lazy">
+        <div class="cat-card-nombre">Monster Europea Juiced Monarch 500ml</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$15.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Europea Juiced Monarch 500ml',15000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-europea-2.jpg" alt="Monster Europea Ultra Strawberry Dreams 500ml" loading="lazy">
+        <div class="cat-card-nombre">Monster Europea Ultra Strawberry Dreams 500ml</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$15.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Europea Ultra Strawberry Dreams 500ml',15000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-original.jpg" alt="Monster Original" loading="lazy">
+        <div class="cat-card-nombre">Monster Original</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Original',3500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-ultra-blanca.jpg" alt="Monster Ultra" loading="lazy">
+        <div class="cat-card-nombre">Monster Ultra</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Ultra',3500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-mango-loco.jpg" alt="Monster Mango Loco" loading="lazy">
+        <div class="cat-card-nombre">Monster Mango Loco</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Mango Loco',3500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-pipeline.jpg" alt="Monster Pipeline Punch" loading="lazy">
+        <div class="cat-card-nombre">Monster Pipeline Punch</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Pipeline Punch',3500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-peachy.jpg" alt="Monster Ultra Peachy Keen" loading="lazy">
+        <div class="cat-card-nombre">Monster Ultra Peachy Keen</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Ultra Peachy Keen',3500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-the-doctor.jpg" alt="Monster The Doctor" loading="lazy">
+        <div class="cat-card-nombre">Monster The Doctor</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster The Doctor',3500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-reserve-anana.jpg" alt="Monster Reserve Ananá" loading="lazy">
+        <div class="cat-card-nombre">Monster Reserve Ananá</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Reserve Ananá',3500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="letrasdulces">
+        <img class="cat-card-img" src="img/productos/letra-economica.jpg" alt="Letra Dulce Económica" loading="lazy">
+        <div class="cat-card-nombre">Letra Dulce Económica</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Letra Dulce Económica',5000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="letrasdulces">
+        <img class="cat-card-img" src="img/productos/letra-premium.jpg" alt="Letra Dulce Premium" loading="lazy">
+        <div class="cat-card-nombre">Letra Dulce Premium</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Letra Dulce Premium',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="letrasdulces">
+        <img class="cat-card-img" src="img/productos/letra-gold.jpg" alt="Letra Dulce Gold" loading="lazy">
+        <div class="cat-card-nombre">Letra Dulce Gold</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Letra Dulce Gold',10000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="emprendedores">
+        <div class="cat-card-img cat-card-noimg">🍬</div>
+        <div class="cat-card-nombre">PROMO CANDY · 6 bolsas de 500g de gomitas</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$50.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'PROMO CANDY · 6 bolsas de 500g de gomitas',50000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="emprendedores">
+        <div class="cat-card-img cat-card-noimg">🍬</div>
+        <div class="cat-card-nombre">PROMO CANDY ORO · 10 bolsas de 500g de gomitas</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$80.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'PROMO CANDY ORO · 10 bolsas de 500g de gomitas',80000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="emprendedores">
+        <div class="cat-card-img cat-card-noimg">🍬</div>
+        <div class="cat-card-nombre">PROMO CANDY DIAMANTE · 10 bolsas de 500g + 2 bolsas de 1kg de gomitas</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$100.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'PROMO CANDY DIAMANTE · 10 bolsas de 500g + 2 bolsas de 1kg de gomitas',100000)">+ Agregar</button></div>
+      </div>
+    </div>
+  </div>
 
   <!-- SECCIÓN REGALERÍA -->
   <div class="regaleria-section" id="regaleria" style="scroll-margin-top:120px;">
@@ -3817,33 +4539,28 @@
   document.addEventListener('click', e=>{ if(!e.target.closest('#searchBarWrapper') && !e.target.closest('#searchPanel'))_sp.style.display='none'; });
   _si.addEventListener('keydown', e=>{ if(e.key==='Escape'){_sp.style.display='none';_si.value='';} });
 
-  // Mostrar secciones ocultas al navegar desde el menú (sidebar, hamburguesa o barra superior)
+  // Filtro de categorías: muestra solo los productos de la categoría elegida
   (function(){
-    const mapaSecciones = {
-      bolsasmisteriosas: 'pairRowML',
-      letrasdulces: 'pairRowML',
-      alfajoresvirales: 'alfajoresvirales',
-      snacks: 'snacks',
-      bebidasImportadas: 'bebidasImportadas',
-      boxes: 'boxes',
-      chocolates: 'chocolates',
-      kinder: 'kinder',
-      emprendedores: 'emprendedores',
-      reels: 'reels'
-    };
+    const catIds = ['regaleria','bolsasmisteriosas','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas'];
+    function filtrar(cat){
+      document.querySelectorAll('.cat-card').forEach(function(c){
+        c.style.display = (cat==='todos' || c.getAttribute('data-cat')===cat) ? '' : 'none';
+      });
+      document.querySelectorAll('.cat-filter-link').forEach(function(l){
+        const linkCat = l.getAttribute('href').slice(1);
+        l.classList.toggle('active', linkCat===cat);
+      });
+    }
     document.addEventListener('click', function(e){
       const a = e.target.closest('a[href^="#"]');
       if(!a) return;
       const id = a.getAttribute('href').slice(1);
-      const contenedorId = mapaSecciones[id];
-      if(!contenedorId) return;
-      const cont = document.getElementById(contenedorId);
-      if(!cont) return;
-      cont.style.display = contenedorId === 'pairRowML' ? 'grid' : 'block';
-      setTimeout(function(){
-        const destino = document.getElementById(id) || cont;
-        destino.scrollIntoView({behavior:'smooth', block:'start'});
-      }, 30);
+      if(id === 'todos' || catIds.indexOf(id) !== -1){
+        e.preventDefault();
+        filtrar(id);
+        const grid = document.getElementById('catalogoGrid');
+        if(grid) grid.scrollIntoView({behavior:'smooth', block:'start'});
+      }
     });
   })();
 </script>
