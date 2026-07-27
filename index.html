@@ -62,6 +62,12 @@
   .nav-inner a:hover { background:rgba(255,255,255,0.15); text-shadow:0 0 8px #ff2fb0,0 0 16px rgba(255,47,176,0.9); box-shadow:0 0 10px rgba(255,47,176,0.7) inset; }
   .nav-inner a.ofertas { color:#1a0a2e; background:var(--amarillo); box-shadow:0 0 8px var(--amarillo),0 0 16px rgba(245,197,24,0.6); }
   .nav-inner a.reels { color:#fff; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.4); }
+  @media (max-width:768px) {
+    .nav-inner { overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .nav-inner::-webkit-scrollbar { display:none; }
+    .nav-track { animation:none !important; display:flex; }
+    .nav-dup { display:none; }
+  }
 
   /* HERO SLIDER */
   .hero { position:relative; overflow:hidden; }
@@ -805,30 +811,18 @@
 <nav>
   <div class="nav-inner">
     <div class="nav-track">
-      <a href="#" class="ofertas" onclick="event.preventDefault();abrirOfertas()">🔥 Ofertas</a>
-      <a href="#" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
-      <a href="#chocolates">Chocolates</a>
-      <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
-      <a href="#" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
-      <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
-      <a href="#snacks">Snacks</a>
-      <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
-      <a href="#letrasdulces">Letras Dulces</a>
-      <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
-      <a href="#emprendedores" class="ofertas">💗 Emprendedores</a>
-      <a href="#reels" class="reels">📸 Reels</a>
-      <a href="#" class="ofertas" onclick="event.preventDefault();abrirOfertas()">🔥 Ofertas</a>
-      <a href="#" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
-      <a href="#chocolates">Chocolates</a>
-      <a href="#" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
-      <a href="#" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
-      <a href="#" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
-      <a href="#snacks">Snacks</a>
-      <a href="#" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
-      <a href="#letrasdulces">Letras Dulces</a>
-      <a href="#" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
-      <a href="#emprendedores" class="ofertas">💗 Emprendedores</a>
-      <a href="#reels" class="reels">📸 Reels</a>
+      <a href="#" class="ofertas nav-dup" onclick="event.preventDefault();abrirOfertas()">🔥 Ofertas</a>
+      <a href="#" class="nav-dup" onclick="event.preventDefault();abrirCategoria()">Golosinas</a>
+      <a href="#chocolates" class="nav-dup">Chocolates</a>
+      <a href="#" class="nav-dup" onclick="event.preventDefault();abrirCatAlfajores()">Alfajores</a>
+      <a href="#" class="nav-dup" onclick="event.preventDefault();abrirCatGomitas()">Gomitas</a>
+      <a href="#" class="nav-dup" onclick="event.preventDefault();abrirCatBebidas()">Bebidas</a>
+      <a href="#snacks" class="nav-dup">Snacks</a>
+      <a href="#" class="nav-dup" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
+      <a href="#letrasdulces" class="nav-dup">Letras Dulces</a>
+      <a href="#" class="nav-dup" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
+      <a href="#emprendedores" class="ofertas nav-dup">💗 Emprendedores</a>
+      <a href="#reels" class="reels nav-dup">📸 Reels</a>
     </div>
   </div>
 </nav>
