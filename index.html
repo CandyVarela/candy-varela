@@ -4014,78 +4014,46 @@
     <div class="modal-body">
 
       <div class="modal-subcat">🆕 Recién llegados</div>
-      <div class="modal-productos">
-        <div class="modal-producto neon-nuevo">
-          <img src="img/productos/novedad-verde.jpg" alt="Block Dubai Style Pistacho" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre" style="color:#aaa;">Block Dubai Pistacho <span style="font-size:0.68rem;background:#ccc;color:#666;padding:2px 7px;border-radius:50px;font-weight:800;">Agotado</span></div>
-            <div class="modal-producto-variantes">Chocolate estilo Dubái relleno de pistacho</div>
-          </div>
-          <div class="modal-producto-precio" style="color:#aaa;">$6.000</div>
-          <button class="btn-modal-agregar" disabled style="background:#ccc;cursor:not-allowed;color:#888;">Agotado</button>
+      <div class="catalog-grid">
+        <div class="cat-card">
+          <img class="cat-card-img" src="img/productos/novedad-verde.jpg" alt="Block Dubai Pistacho" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+          <div class="cat-card-nombre">Block Dubai Pistacho</div>
+          <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$6.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
         </div>
-        <div class="modal-producto" style="border:2px solid var(--rosa);">
-          <img src="img/productos/beldent-confitado.jpg" alt="Beldent Confitado y Relleno" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Beldent Confitado y Relleno 🆕</div>
-            <div class="modal-producto-variantes">Frutos Rojos · Frutilla-Citrus · Sandía-Citrus</div>
-          </div>
-          <div class="modal-producto-precio">$2.000</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Beldent Confitado y Relleno',2000)">+ Agregar</button>
+        <div class="cat-card">
+          <img class="cat-card-img" src="img/productos/beldent-confitado.jpg" alt="Beldent Confitado y Relleno" loading="lazy">
+          <div class="cat-card-nombre">Beldent Confitado y Relleno 🆕</div>
+          <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarModal(this,'Beldent Confitado y Relleno',2000)">+ Agregar</button></div>
         </div>
-        <div class="modal-producto" style="border:2px solid var(--rosa);">
-          <img src="img/productos/cofler-block-gold.jpg" alt="Cofler Block Gold" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Cofler Block Gold 🆕</div>
-            <div class="modal-producto-variantes">Edición Gold</div>
-          </div>
-          <div class="modal-producto-precio">$2.500</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Cofler Block Gold',2500)">+ Agregar</button>
+        <div class="cat-card">
+          <img class="cat-card-img" src="img/productos/cofler-block-gold.jpg" alt="Cofler Block Gold" loading="lazy">
+          <div class="cat-card-nombre">Cofler Block Gold 🆕</div>
+          <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarModal(this,'Cofler Block Gold',2500)">+ Agregar</button></div>
         </div>
-        <div class="modal-producto" style="border:2px solid var(--rosa);">
-          <img src="img/productos/grajeas-harry-potter.jpg" alt="Grajeas Harry Potter" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Grajeas Harry Potter <span style="font-size:0.68rem;background:#ff2fb0;color:#fff;padding:2px 7px;border-radius:50px;font-weight:800;">¡Solo 3 unidades!</span></div>
-            <div class="modal-producto-variantes">Disponible nuevamente · stock limitado</div>
-          </div>
-          <div class="modal-producto-precio">$16.000</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Grajeas Harry Potter',16000)">+ Agregar</button>
+        <div class="cat-card">
+          <img class="cat-card-img" src="img/productos/grajeas-harry-potter.jpg" alt="Grajeas Harry Potter" loading="lazy">
+          <div class="cat-card-nombre">Grajeas Harry Potter <span style="font-size:0.62rem;background:#ff2fb0;color:#fff;padding:2px 6px;border-radius:50px;font-weight:800;">¡Solo 3!</span></div>
+          <div class="cat-card-row"><span class="cat-card-precio">$16.000</span><button class="cat-card-btn" onclick="agregarModal(this,'Grajeas Harry Potter',16000)">+ Agregar</button></div>
         </div>
-        <div class="modal-producto" style="border:2px solid var(--rosa);">
-          <img src="img/productos/gomitas-pelables-mogul.jpg" alt="Gomitas Pelables Mogul" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Gomitas Pelables Mogul 🆕</div>
-            <div class="modal-producto-variantes">A elección</div>
-          </div>
-          <div class="modal-producto-precio">$1.500</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas Pelables Mogul',1500)">+ Agregar</button>
+        <div class="cat-card">
+          <img class="cat-card-img" src="img/productos/gomitas-pelables-mogul.jpg" alt="Gomitas Pelables Mogul" loading="lazy">
+          <div class="cat-card-nombre">Gomitas Pelables Mogul 🆕</div>
+          <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarModal(this,'Gomitas Pelables Mogul',1500)">+ Agregar</button></div>
         </div>
-        <div class="modal-producto" style="border:2px solid var(--rosa);">
-          <img src="img/productos/bombon-irlandes-felfort-cafe.jpg" alt="Bombón Irlandés Felfort de Café" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Bombón Irlandés Felfort de Café 🆕</div>
-            <div class="modal-producto-variantes">Sabor café</div>
-          </div>
-          <div class="modal-producto-precio">$1.500</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bombón Irlandés Felfort de Café',1500)">+ Agregar</button>
+        <div class="cat-card">
+          <img class="cat-card-img" src="img/productos/bombon-irlandes-felfort-cafe.jpg" alt="Bombón Irlandés Felfort de Café" loading="lazy">
+          <div class="cat-card-nombre">Bombón Irlandés Felfort de Café 🆕</div>
+          <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarModal(this,'Bombón Irlandés Felfort de Café',1500)">+ Agregar</button></div>
         </div>
-        <div class="modal-producto" style="border:2px solid var(--rosa);">
-          <img src="img/productos/bonobon-chocolinas.jpg" alt="Bon o Bon Chocolinas" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Bon o Bon Chocolinas 🆕</div>
-            <div class="modal-producto-variantes">Chocolate blanco relleno con galleta y maní</div>
-          </div>
-          <div class="modal-producto-precio">$2.500</div>
-          <button class="btn-modal-agregar" onclick="agregarModal(this,'Bon o Bon Chocolinas',2500)">+ Agregar</button>
+        <div class="cat-card">
+          <img class="cat-card-img" src="img/productos/bonobon-chocolinas.jpg" alt="Bon o Bon Chocolinas" loading="lazy">
+          <div class="cat-card-nombre">Bon o Bon Chocolinas 🆕</div>
+          <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarModal(this,'Bon o Bon Chocolinas',2500)">+ Agregar</button></div>
         </div>
-        <div class="modal-producto" style="border:2px solid var(--rosa);">
-          <img src="img/productos/pinguinos-marinela.jpg" alt="Pingüinos Marinela" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
-          <div class="modal-producto-info">
-            <div class="modal-producto-nombre">Pingüinos Marinela 🆕</div>
-            <div class="modal-producto-variantes">Bizcochitos rellenos cubiertos de chocolate, x2 unidades</div>
-          </div>
-          <div class="modal-producto-precio">$7.500</div>
-          <button class="btn-modal-agregar" disabled style="background:#ccc;cursor:not-allowed;color:#888;">Agotado</button>
+        <div class="cat-card">
+          <img class="cat-card-img" src="img/productos/pinguinos-marinela.jpg" alt="Pingüinos Marinela" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+          <div class="cat-card-nombre">Pingüinos Marinela</div>
+          <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$7.500</span><button class="cat-card-btn" disabled>Agotado</button></div>
         </div>
       </div>
 
