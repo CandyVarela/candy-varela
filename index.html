@@ -114,6 +114,19 @@
 
   /* MAIN */
   main { max-width:1200px; margin:0 auto; padding:36px 20px; }
+
+  /* SIDEBAR DE CATEGORÍAS (desktop) */
+  .layout-wrap { max-width:1200px; margin:0 auto; }
+  .category-sidebar { display:none; }
+  @media (min-width:1300px) {
+    .layout-wrap { max-width:1480px; display:flex; align-items:flex-start; gap:20px; padding:0 20px; }
+    .layout-wrap main { max-width:none; flex:1; min-width:0; padding-left:0; padding-right:0; }
+    .category-sidebar { display:block; width:220px; flex-shrink:0; position:sticky; top:110px; margin-top:36px; background:#fff; border-radius:18px; padding:16px 10px; box-shadow:0 4px 20px rgba(0,0,0,0.07); max-height:calc(100vh - 130px); overflow-y:auto; }
+    .category-sidebar-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; color:#999; padding:4px 10px 10px; }
+    .category-sidebar a { display:flex; align-items:center; gap:9px; padding:9px 10px; border-radius:10px; color:#444; text-decoration:none; font-weight:700; font-size:0.88rem; transition:background 0.15s,color 0.15s; }
+    .category-sidebar a:hover { background:var(--rosa-light); color:var(--rosa); }
+    .category-sidebar a span { font-size:1rem; }
+  }
   .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
   .section-title { font-family:'Poppins',sans-serif; font-size:1.5rem; font-weight:800; color:var(--azul-dark); display:flex; align-items:center; gap:8px; }
   .section-link { color:var(--rosa); text-decoration:none; font-size:0.88rem; font-weight:700; }
@@ -804,10 +817,28 @@
 </nav>
 
 <!-- BENEFICIOS -->
+<div class="layout-wrap">
+<aside class="category-sidebar">
+  <div class="category-sidebar-title">Categorías</div>
+  <a href="#" onclick="event.preventDefault();abrirOfertas()"><span>🔥</span> Ofertas</a>
+  <a href="#" onclick="event.preventDefault();abrirNovedades()"><span>✨</span> Novedades</a>
+  <a href="#regaleria"><span>🎀</span> Regalería</a>
+  <a href="#bolsasmisteriosas"><span>🛍️</span> Bolsas Misteriosas</a>
+  <a href="#letrasdulces"><span>🔤</span> Letras Dulces</a>
+  <a href="#alfajoresvirales"><span>🍭</span> Alfajores Virales</a>
+  <a href="#importados"><span>🌏</span> Golosinas Importadas</a>
+  <a href="#snacks"><span>🍟</span> Snacks</a>
+  <a href="#bebidasImportadas"><span>🥤</span> Bebidas Importadas</a>
+  <a href="#boxes"><span>🎁</span> Box</a>
+  <a href="#chocolates"><span>🍫</span> Chocolates</a>
+  <a href="#kinder"><span>🍬</span> Kinder</a>
+  <a href="#emprendedores"><span>💗</span> Emprendedores</a>
+  <a href="#reels"><span>📸</span> Reels</a>
+</aside>
 <main>
 
   <!-- SECCIÓN REGALERÍA -->
-  <div class="regaleria-section">
+  <div class="regaleria-section" id="regaleria" style="scroll-margin-top:120px;">
     <span class="regaleria-deco d1">🎁</span><span class="regaleria-deco d2">✨</span><span class="regaleria-deco d3">🎀</span><span class="regaleria-deco d4">💜</span>
     <div class="regaleria-inner">
       <span class="regaleria-badge">✨ Edición especial</span>
@@ -884,7 +915,7 @@
 
   <div class="pair-row">
   <!-- SECCIÓN BOLSAS MISTERIOSAS -->
-  <div class="mystery-section">
+  <div class="mystery-section" id="bolsasmisteriosas" style="scroll-margin-top:120px;">
     <span class="mystery-deco m1">🛍️</span><span class="mystery-deco m2">✨</span><span class="mystery-deco m3">💰</span><span class="mystery-deco m4">🎁</span>
     <div class="mystery-inner">
       <h2 class="mystery-title">Bolsas Misteriosas Importadas</h2>
@@ -916,7 +947,7 @@
   </div>
 
   <!-- SECCIÓN LETRAS DULCES -->
-  <div class="letras-section" id="letrasdulces">
+  <div class="letras-section" id="letrasdulces" style="scroll-margin-top:120px;">
     <span class="letras-deco l1">🔤</span><span class="letras-deco l2">🍬</span><span class="letras-deco l3">✨</span><span class="letras-deco l4">🌈</span>
     <div class="letras-inner">
       <span class="letras-badge">✨ Personalizado</span>
@@ -953,7 +984,7 @@
   </div>
 
   <!-- SECCIÓN EMPRENDEDORES -->
-  <div class="emprendedores-section" id="emprendedores">
+  <div class="emprendedores-section" id="emprendedores" style="scroll-margin-top:120px;">
     <span class="emp-deco e1">💗</span><span class="emp-deco e2">⚡</span><span class="emp-deco e3">🍬</span><span class="emp-deco e4">💗</span>
     <div class="emp-inner">
       <span class="emp-badge">💼 Para revender</span>
@@ -1059,7 +1090,7 @@
   </div>
 
   <!-- SECCIÓN ALFAJORES VIRALES -->
-  <div class="viral-section">
+  <div class="viral-section" id="alfajoresvirales" style="scroll-margin-top:120px;">
     <div class="viral-head">
       <h2 class="viral-title">🍬 Alfajores <span class="rosa">Virales</span> 🍬</h2>
       <p class="viral-sub">Los que arrasan en TikTok, uno por uno 🔥 · deslizá para ver más →</p>
@@ -1248,7 +1279,7 @@
   </div>
 
   <!-- SECCIÓN IMPORTADOS -->
-  <div class="imp-section">
+  <div class="imp-section" id="importados" style="scroll-margin-top:120px;">
     <span class="imp-cloud c1">☁️</span><span class="imp-cloud c2">☁️</span>
     <div class="imp-head">
       <h2 class="imp-title">✈️ Golosinas <span class="dorado">Importadas</span></h2>
@@ -2135,7 +2166,7 @@
   </div>
 
   <!-- SECCIÓN KINDER -->
-  <div class="kinder-section">
+  <div class="kinder-section" id="kinder" style="scroll-margin-top:120px;">
     <div class="kinder-head">
       <h2 class="kinder-title">🍫 Mundo <span class="choco">Kinder</span></h2>
       <p class="kinder-sub">Lo mejor de Kinder y Ferrero, importado y a elección 😍 · deslizá para ver más →</p>
@@ -2329,7 +2360,7 @@
   </div>
 
   <!-- REELS -->
-  <div class="reels-section" id="reels">
+  <div class="reels-section" id="reels" style="scroll-margin-top:120px;">
     <div class="section-header">
       <h2 class="section-title">📸 Nuestros Reels destacados</h2>
     </div>
@@ -2375,6 +2406,7 @@
   </div>
 
 </main>
+</div>
 
 <!-- FOOTER -->
 <footer>
