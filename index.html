@@ -127,6 +127,9 @@
     .category-sidebar a:hover { background:var(--rosa-light); color:var(--rosa); }
     .category-sidebar a span { font-size:1rem; }
   }
+
+  /* SECCIONES OCULTAS POR DEFECTO (se muestran desde el menú de categorías) */
+  #pairRowML, #alfajoresvirales, #snacks, #bebidasImportadas, #boxes, #chocolates, #kinder, #emprendedores, #reels { display:none; }
   .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
   .section-title { font-family:'Poppins',sans-serif; font-size:1.5rem; font-weight:800; color:var(--azul-dark); display:flex; align-items:center; gap:8px; }
   .section-link { color:var(--rosa); text-decoration:none; font-size:0.88rem; font-weight:700; }
@@ -823,6 +826,7 @@
   <a href="#" onclick="event.preventDefault();abrirOfertas()"><span>🔥</span> Ofertas</a>
   <a href="#" onclick="event.preventDefault();abrirNovedades()"><span>✨</span> Novedades</a>
   <a href="#regaleria"><span>🎀</span> Regalería</a>
+  <a href="#monster"><span>⚡</span> Monster</a>
   <a href="#bolsasmisteriosas"><span>🛍️</span> Bolsas Misteriosas</a>
   <a href="#letrasdulces"><span>🔤</span> Letras Dulces</a>
   <a href="#alfajoresvirales"><span>🍭</span> Alfajores Virales</a>
@@ -913,7 +917,7 @@
     </div>
   </div>
 
-  <div class="pair-row">
+  <div class="pair-row" id="pairRowML">
   <!-- SECCIÓN BOLSAS MISTERIOSAS -->
   <div class="mystery-section" id="bolsasmisteriosas" style="scroll-margin-top:120px;">
     <span class="mystery-deco m1">🛍️</span><span class="mystery-deco m2">✨</span><span class="mystery-deco m3">💰</span><span class="mystery-deco m4">🎁</span>
@@ -2281,7 +2285,7 @@
   </div>
 
   <!-- GALERÍA NEÓN MONSTER -->
-  <div class="neon-section" style="border-radius:24px;margin-bottom:40px;">
+  <div class="neon-section" id="monster" style="border-radius:24px;margin-bottom:40px;scroll-margin-top:120px;">
     <h2 class="neon-title">⚡ Monster <span class="verde">Edición Limitada</span> ⚡</h2>
     <p class="neon-sub">Sabores importados que no vas a encontrar en otro lado 👀 · deslizá para ver más →</p>
     <div class="neon-gallery">
@@ -3813,6 +3817,35 @@
   document.addEventListener('click', e=>{ if(!e.target.closest('#searchBarWrapper') && !e.target.closest('#searchPanel'))_sp.style.display='none'; });
   _si.addEventListener('keydown', e=>{ if(e.key==='Escape'){_sp.style.display='none';_si.value='';} });
 
+  // Mostrar secciones ocultas al navegar desde el menú (sidebar, hamburguesa o barra superior)
+  (function(){
+    const mapaSecciones = {
+      bolsasmisteriosas: 'pairRowML',
+      letrasdulces: 'pairRowML',
+      alfajoresvirales: 'alfajoresvirales',
+      snacks: 'snacks',
+      bebidasImportadas: 'bebidasImportadas',
+      boxes: 'boxes',
+      chocolates: 'chocolates',
+      kinder: 'kinder',
+      emprendedores: 'emprendedores',
+      reels: 'reels'
+    };
+    document.addEventListener('click', function(e){
+      const a = e.target.closest('a[href^="#"]');
+      if(!a) return;
+      const id = a.getAttribute('href').slice(1);
+      const contenedorId = mapaSecciones[id];
+      if(!contenedorId) return;
+      const cont = document.getElementById(contenedorId);
+      if(!cont) return;
+      cont.style.display = contenedorId === 'pairRowML' ? 'grid' : 'block';
+      setTimeout(function(){
+        const destino = document.getElementById(id) || cont;
+        destino.scrollIntoView({behavior:'smooth', block:'start'});
+      }, 30);
+    });
+  })();
 </script>
 </body>
 </html>
