@@ -791,7 +791,7 @@
   </div>
   <div class="drawer-nav">
     <a href="#todos" onclick="cerrarDrawer()"><span class="drawer-ico">🍬</span> Todos</a>
-    <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirNovedades()"><span class="drawer-ico">✨</span> Novedades</a>
+    <a href="#novedades" onclick="cerrarDrawer()"><span class="drawer-ico">✨</span> Novedades</a>
     <a href="#regaleria" onclick="cerrarDrawer()"><span class="drawer-ico">🎀</span> Regalería</a>
     <a href="#monster" onclick="cerrarDrawer()"><span class="drawer-ico">⚡</span> Monster</a>
     <a href="#bolsasmisteriosas" onclick="cerrarDrawer()"><span class="drawer-ico">🛍️</span> Bolsas Misteriosas</a>
@@ -822,7 +822,7 @@
       <a href="#snacks" class="nav-dup">Snacks</a>
       <a href="#" class="nav-dup" onclick="event.preventDefault();abrirCombosExclusivos()">Combos</a>
       <a href="#letrasdulces" class="nav-dup">Letras Dulces</a>
-      <a href="#" class="nav-dup" onclick="event.preventDefault();abrirNovedades()">Novedades</a>
+      <a href="#novedades" class="nav-dup">Novedades</a>
       <a href="#emprendedores" class="ofertas nav-dup">💗 Emprendedores</a>
       <a href="#reels" class="reels nav-dup">📸 Reels</a>
     </div>
@@ -834,7 +834,7 @@
 <aside class="category-sidebar">
   <div class="category-sidebar-title">Categorías</div>
   <a href="#todos" class="cat-filter-link active"><span>🍬</span> Todos</a>
-  <a href="#" onclick="event.preventDefault();abrirNovedades()"><span>✨</span> Novedades</a>
+  <a href="#novedades" class="cat-filter-link"><span>✨</span> Novedades</a>
   <a href="#regaleria" class="cat-filter-link"><span>🎀</span> Regalería</a>
   <a href="#monster" class="cat-filter-link"><span>⚡</span> Monster</a>
   <a href="#bolsasmisteriosas" class="cat-filter-link"><span>🛍️</span> Bolsas Misteriosas</a>
@@ -900,6 +900,46 @@
         <img class="cat-card-img" src="img/productos/dulzura-bolsa-6.jpg" alt="Bolsita Regalería Chocolate" loading="lazy">
         <div class="cat-card-nombre">Bolsita Regalería Chocolate</div>
         <div class="cat-card-row"><span class="cat-card-precio">$8.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsita Regalería Chocolate',8500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="novedades">
+        <img class="cat-card-img" src="img/productos/novedad-verde.jpg" alt="Block Dubai Pistacho" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Block Dubai Pistacho</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$6.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="novedades">
+        <img class="cat-card-img" src="img/productos/beldent-confitado.jpg" alt="Beldent Confitado y Relleno" loading="lazy">
+        <div class="cat-card-nombre">Beldent Confitado y Relleno 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Beldent Confitado y Relleno',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="novedades">
+        <img class="cat-card-img" src="img/productos/cofler-block-gold.jpg" alt="Cofler Block Gold" loading="lazy">
+        <div class="cat-card-nombre">Cofler Block Gold 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Cofler Block Gold',2500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="novedades">
+        <img class="cat-card-img" src="img/productos/grajeas-harry-potter.jpg" alt="Grajeas Harry Potter" loading="lazy">
+        <div class="cat-card-nombre">Grajeas Harry Potter <span style="font-size:0.62rem;background:#ff2fb0;color:#fff;padding:2px 6px;border-radius:50px;font-weight:800;">¡Solo 3!</span></div>
+        <div class="cat-card-row"><span class="cat-card-precio">$16.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Grajeas Harry Potter',16000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="novedades">
+        <img class="cat-card-img" src="img/productos/gomitas-pelables-mogul.jpg" alt="Gomitas Pelables Mogul" loading="lazy">
+        <div class="cat-card-nombre">Gomitas Pelables Mogul 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Gomitas Pelables Mogul',1500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="novedades">
+        <img class="cat-card-img" src="img/productos/bombon-irlandes-felfort-cafe.jpg" alt="Bombón Irlandés Felfort de Café" loading="lazy">
+        <div class="cat-card-nombre">Bombón Irlandés Felfort de Café 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bombón Irlandés Felfort de Café',1500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="novedades">
+        <img class="cat-card-img" src="img/productos/bonobon-chocolinas.jpg" alt="Bon o Bon Chocolinas" loading="lazy">
+        <div class="cat-card-nombre">Bon o Bon Chocolinas 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bon o Bon Chocolinas',2500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="novedades">
+        <img class="cat-card-img" src="img/productos/pinguinos-marinela.jpg" alt="Pingüinos Marinela" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
+        <div class="cat-card-nombre">Pingüinos Marinela</div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$7.500</span><button class="cat-card-btn" disabled>Agotado</button></div>
       </div>
       <div class="cat-card" data-cat="bolsasmisteriosas">
         <img class="cat-card-img" src="img/productos/bolsa-misteriosa.jpg" alt="Bolsa Sorpresa" loading="lazy">
@@ -3068,7 +3108,7 @@
       <p style="color:rgba(255,255,255,0.75);font-size:0.83rem;font-weight:600;margin-bottom:14px;">Snacks + bebidas + golosinas en combos para darte un gusto</p>
       <div class="banner-cta">Ver combo →</div>
     </a>
-    <a href="#" class="banner-card banner-card-2 banner-card-neon" onclick="event.preventDefault();abrirNovedades()">
+    <a href="#novedades" class="banner-card banner-card-2 banner-card-neon">
       <div class="banner-bg-emoji">✨🆕</div>
       <div class="banner-badge-small">🆕 Recién llegados</div>
       <h3 class="banner-title">Novedades</h3>
@@ -4004,63 +4044,6 @@
   </div>
 </div>
 
-<!-- MODAL NOVEDADES -->
-<div class="modal-overlay" id="modalNovedades">
-  <div class="modal">
-    <div class="modal-header" style="background:linear-gradient(135deg,#6d0f5a,#ff2fb0);">
-      <h2>✨ Novedades</h2>
-      <button class="modal-close" onclick="cerrarNovedades()">✕</button>
-    </div>
-    <div class="modal-body">
-
-      <div class="modal-subcat">🆕 Recién llegados</div>
-      <div class="catalog-grid">
-        <div class="cat-card">
-          <img class="cat-card-img" src="img/productos/novedad-verde.jpg" alt="Block Dubai Pistacho" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
-          <div class="cat-card-nombre">Block Dubai Pistacho</div>
-          <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$6.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
-        </div>
-        <div class="cat-card">
-          <img class="cat-card-img" src="img/productos/beldent-confitado.jpg" alt="Beldent Confitado y Relleno" loading="lazy">
-          <div class="cat-card-nombre">Beldent Confitado y Relleno 🆕</div>
-          <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarModal(this,'Beldent Confitado y Relleno',2000)">+ Agregar</button></div>
-        </div>
-        <div class="cat-card">
-          <img class="cat-card-img" src="img/productos/cofler-block-gold.jpg" alt="Cofler Block Gold" loading="lazy">
-          <div class="cat-card-nombre">Cofler Block Gold 🆕</div>
-          <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarModal(this,'Cofler Block Gold',2500)">+ Agregar</button></div>
-        </div>
-        <div class="cat-card">
-          <img class="cat-card-img" src="img/productos/grajeas-harry-potter.jpg" alt="Grajeas Harry Potter" loading="lazy">
-          <div class="cat-card-nombre">Grajeas Harry Potter <span style="font-size:0.62rem;background:#ff2fb0;color:#fff;padding:2px 6px;border-radius:50px;font-weight:800;">¡Solo 3!</span></div>
-          <div class="cat-card-row"><span class="cat-card-precio">$16.000</span><button class="cat-card-btn" onclick="agregarModal(this,'Grajeas Harry Potter',16000)">+ Agregar</button></div>
-        </div>
-        <div class="cat-card">
-          <img class="cat-card-img" src="img/productos/gomitas-pelables-mogul.jpg" alt="Gomitas Pelables Mogul" loading="lazy">
-          <div class="cat-card-nombre">Gomitas Pelables Mogul 🆕</div>
-          <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarModal(this,'Gomitas Pelables Mogul',1500)">+ Agregar</button></div>
-        </div>
-        <div class="cat-card">
-          <img class="cat-card-img" src="img/productos/bombon-irlandes-felfort-cafe.jpg" alt="Bombón Irlandés Felfort de Café" loading="lazy">
-          <div class="cat-card-nombre">Bombón Irlandés Felfort de Café 🆕</div>
-          <div class="cat-card-row"><span class="cat-card-precio">$1.500</span><button class="cat-card-btn" onclick="agregarModal(this,'Bombón Irlandés Felfort de Café',1500)">+ Agregar</button></div>
-        </div>
-        <div class="cat-card">
-          <img class="cat-card-img" src="img/productos/bonobon-chocolinas.jpg" alt="Bon o Bon Chocolinas" loading="lazy">
-          <div class="cat-card-nombre">Bon o Bon Chocolinas 🆕</div>
-          <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarModal(this,'Bon o Bon Chocolinas',2500)">+ Agregar</button></div>
-        </div>
-        <div class="cat-card">
-          <img class="cat-card-img" src="img/productos/pinguinos-marinela.jpg" alt="Pingüinos Marinela" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
-          <div class="cat-card-nombre">Pingüinos Marinela</div>
-          <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$7.500</span><button class="cat-card-btn" disabled>Agotado</button></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 <!-- MODAL CARRITO -->
 <div class="modal-overlay" id="modalCarrito">
   <div class="modal">
@@ -4108,7 +4091,7 @@
 <script>
   function abrirModalCat(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function cerrarModalCat(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-  ['modalBebidas','modalGomitas','modalAlfajores','modalGolosinas','modalCombosExclusivos','modalCarrito','modalNovedades','modalAyuda','modalOfertas','modalPromos','modalTradicional'].forEach(id => {
+  ['modalBebidas','modalGomitas','modalAlfajores','modalGolosinas','modalCombosExclusivos','modalCarrito','modalAyuda','modalOfertas','modalPromos','modalTradicional'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) cerrarModalCat(id); });
   });
 
@@ -4120,8 +4103,6 @@
   function cerrarOfertas() { cerrarModalCat('modalOfertas'); }
   function abrirCombosExclusivos() { abrirModalCat('modalCombosExclusivos'); }
   function cerrarCombosExclusivos() { cerrarModalCat('modalCombosExclusivos'); }
-  function abrirNovedades() { abrirModalCat('modalNovedades'); }
-  function cerrarNovedades() { cerrarModalCat('modalNovedades'); }
 
   const AYUDA_CONTENIDO = {
     comprar: { titulo: '🛍️ Cómo comprar', html: `
@@ -4540,7 +4521,7 @@
 
   // Filtro de categorías: muestra solo los productos de la categoría elegida
   (function(){
-    const catIds = ['regaleria','bolsasmisteriosas','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas'];
+    const catIds = ['novedades','regaleria','bolsasmisteriosas','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas'];
     function filtrar(cat){
       document.querySelectorAll('.cat-card').forEach(function(c){
         c.style.display = (cat==='todos' || c.getAttribute('data-cat')===cat) ? '' : 'none';
