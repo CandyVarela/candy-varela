@@ -904,6 +904,18 @@
         <div class="cat-card-nombre">Bolsita Regalería Chocolate</div>
         <div class="cat-card-row"><span class="cat-card-precio">$8.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsita Regalería Chocolate',8500)">+ Agregar</button></div>
       </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/lata-caramelos-maradona.jpg" alt="Lata Caramelos Surtidos Maradona" loading="lazy">
+        <div class="cat-card-nombre">Lata Caramelos Surtidos Maradona 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Lata Caramelos Surtidos Maradona',8000)">+ Agregar</button></div>
+        <div style="font-size:0.68rem;color:#e91e8c;font-weight:700;margin-top:4px;">🎁 Llevando 2, el 2do va al 50%</div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/lata-chupetines-maradona.jpg" alt="Lata Chupetines Maradona" loading="lazy">
+        <div class="cat-card-nombre">Lata Chupetines Maradona 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Lata Chupetines Maradona',8000)">+ Agregar</button></div>
+        <div style="font-size:0.68rem;color:#e91e8c;font-weight:700;margin-top:4px;">🎁 Llevando 2, el 2do va al 50%</div>
+      </div>
       <div class="cat-card" data-cat="novedades">
         <img class="cat-card-img" src="img/productos/novedad-verde.jpg" alt="Block Dubai Pistacho" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
         <div class="cat-card-nombre">Block Dubai Pistacho</div>
@@ -4389,17 +4401,18 @@
   function _buildProdsFromDOM(){
     const seen = new Set();
     const out = [];
-    document.querySelectorAll('.cat-card').forEach(function(c){
-      const nombreEl = c.querySelector('.cat-card-nombre');
+    const cardSelectors = ['.cat-card','.beb-card','.box-card-item','.cho-card','.imp-card','.kinder-card','.letras-card','.snk-card','.viral-card','.mystery-card','.emp-card'];
+    document.querySelectorAll(cardSelectors.join(',')).forEach(function(c){
+      const nombreEl = c.querySelector('[class*="nombre"], [class*="title"]');
       if(!nombreEl) return;
       const nombre = nombreEl.textContent.replace(/\s+/g,' ').trim();
       if(!nombre || seen.has(nombre)) return;
       seen.add(nombre);
-      const precioEl = c.querySelector('.cat-card-precio');
+      const precioEl = c.querySelector('[class*="precio"]');
       const precio = precioEl ? (parseInt(precioEl.textContent.replace(/[^\d]/g,''),10) || 0) : 0;
-      const imgEl = c.querySelector('.cat-card-img');
-      const img = (imgEl && imgEl.tagName === 'IMG') ? imgEl.getAttribute('src') : '';
-      const btn = c.querySelector('.cat-card-btn');
+      const imgEl = c.querySelector('img');
+      const img = imgEl ? imgEl.getAttribute('src') : '';
+      const btn = c.querySelector('button[class*="btn"]');
       const agotado = !!(btn && btn.disabled);
       out.push({n:nombre, p:precio, img:img, ag:agotado});
     });
