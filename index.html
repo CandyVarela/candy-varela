@@ -149,7 +149,42 @@
     93% { opacity:0.7; }
     94% { opacity:1; }
   }
-  .promo-monster-banner { position:relative; background:radial-gradient(circle at 50% 0%,#26002b,#0a0009 78%); border:2px solid #ff2fb0; border-radius:20px; padding:16px 16px 18px; margin-bottom:40px; overflow:hidden; animation:monsterNeonPulse 2s ease-in-out infinite; }
+  .promo-monster-banner {
+    position:relative;
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.4) 0 2px, transparent 2px 30px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.35) 0 2px, transparent 2px 64px),
+      radial-gradient(circle at 12% 18%, rgba(255,47,176,0.32), transparent 42%),
+      radial-gradient(circle at 88% 78%, rgba(0,220,255,0.22), transparent 46%),
+      radial-gradient(circle at 65% 10%, rgba(180,0,255,0.28), transparent 38%),
+      radial-gradient(circle at 30% 85%, rgba(255,47,176,0.2), transparent 40%),
+      linear-gradient(160deg,#3a3a3a 0%,#242424 55%,#131313 100%);
+    border:2px solid #ff2fb0;
+    border-radius:20px;
+    padding:16px 16px 18px;
+    margin-bottom:40px;
+    overflow:hidden;
+    animation:monsterNeonPulse 2s ease-in-out infinite;
+  }
+  .promo-monster-banner::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1.4px),
+      radial-gradient(circle, rgba(255,47,176,0.6) 1.5px, transparent 2px),
+      radial-gradient(circle, rgba(0,220,255,0.5) 1.2px, transparent 1.8px);
+    background-size: 90px 90px, 130px 130px, 160px 160px;
+    background-position: 10px 20px, 60px 100px, 30px 140px;
+    opacity:0.35;
+    mix-blend-mode:screen;
+    pointer-events:none;
+  }
+  .promo-monster-banner::after {
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
+    pointer-events:none;
+  }
   .promo-monster-inner { position:relative; z-index:2; max-width:460px; margin:0 auto; text-align:center; }
   .promo-monster-tag { display:inline-block; background:#ff2fb0; color:#fff; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; padding:3px 14px; border-radius:50px; margin-bottom:8px; box-shadow:0 0 12px #ff2fb0; }
   .promo-monster-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.25rem; color:#fff; text-shadow:0 0 8px #ff2fb0,0 0 22px rgba(255,47,176,0.9),0 0 40px rgba(255,47,176,0.6); letter-spacing:0.02em; margin-bottom:3px; animation:monsterNeonFlicker 3.4s linear infinite; }
