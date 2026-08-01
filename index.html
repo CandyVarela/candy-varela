@@ -158,7 +158,7 @@
   .promo-monster-imgs { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
   .promo-monster-imgs img { width:82px; height:116px; object-fit:cover; border-radius:12px; border:2px solid #ff6fd8; box-shadow:0 0 12px rgba(255,47,176,0.7),0 0 24px rgba(255,47,176,0.4); transition:transform 0.25s; }
   .promo-monster-imgs img:hover { transform:translateY(-5px) scale(1.03); }
-  .promo-monster-btn { margin-top:14px; background:linear-gradient(135deg,#ff2fb0,#ff6fd8); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.82rem; padding:9px 24px; cursor:pointer; box-shadow:0 0 14px rgba(255,47,176,0.7); transition:opacity 0.2s; }
+  .promo-monster-btn { background:linear-gradient(135deg,#ff2fb0,#ff6fd8); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.82rem; padding:9px 20px; cursor:pointer; box-shadow:0 0 14px rgba(255,47,176,0.7); transition:opacity 0.2s; }
   .promo-monster-btn:hover { opacity:0.88; }
   @media (max-width:600px) { .promo-monster-title { font-size:1.1rem; } .promo-monster-precio { font-size:1.5rem; } .promo-monster-imgs img { width:68px; height:96px; } }
 
@@ -892,7 +892,10 @@
         <img src="img/productos/monster-brasil-4.jpg" alt="Monster Edición Limitada 4" loading="lazy">
         <img src="img/productos/monster-brasil-5.jpg" alt="Monster Edición Limitada 5" loading="lazy">
       </div>
-      <a href="#monster" class="promo-monster-btn">Ver Monster ⚡</a>
+      <div class="promo-monster-actions" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <button class="promo-monster-btn" onclick="agregarKinder(this,'Promo Monster Edición Limitada 2x',15000)">+ Agregar $15.000</button>
+        <a href="#monster" class="promo-monster-btn" style="background:transparent;border:2px solid #ff6fd8;box-shadow:none;">Ver Monster ⚡</a>
+      </div>
     </div>
   </div>
 
