@@ -138,64 +138,6 @@
   /* SECCIONES ANTIGUAS OCULTAS (reemplazadas por la grilla de catálogo) */
   .regaleria-section, .pair-row, .viral-section, .imp-section, .snk-section, .beb-section, .box-section, .cho-section, .kinder-section, .neon-section, .emprendedores-section, .hotsale-section, .promo-top { display:none !important; }
 
-  /* BANNER PROMO MONSTER NEÓN ROSA */
-  @keyframes monsterNeonPulse {
-    0%,100% { box-shadow:0 0 10px #ff2fb0,0 0 26px rgba(255,47,176,0.65),0 0 46px rgba(255,47,176,0.35); }
-    50% { box-shadow:0 0 18px #ff6fd8,0 0 40px rgba(255,111,216,0.85),0 0 70px rgba(255,47,176,0.55); }
-  }
-  @keyframes monsterNeonFlicker {
-    0%,100% { opacity:1; }
-    92% { opacity:1; }
-    93% { opacity:0.7; }
-    94% { opacity:1; }
-  }
-  .promo-monster-banner {
-    position:relative;
-    background:
-      repeating-linear-gradient(0deg, rgba(0,0,0,0.4) 0 2px, transparent 2px 30px),
-      repeating-linear-gradient(90deg, rgba(0,0,0,0.35) 0 2px, transparent 2px 64px),
-      radial-gradient(circle at 12% 18%, rgba(255,47,176,0.32), transparent 42%),
-      radial-gradient(circle at 88% 78%, rgba(0,220,255,0.22), transparent 46%),
-      radial-gradient(circle at 65% 10%, rgba(180,0,255,0.28), transparent 38%),
-      radial-gradient(circle at 30% 85%, rgba(255,47,176,0.2), transparent 40%),
-      linear-gradient(160deg,#3a3a3a 0%,#242424 55%,#131313 100%);
-    border:2px solid #ff2fb0;
-    border-radius:20px;
-    padding:16px 16px 18px;
-    margin-bottom:40px;
-    overflow:hidden;
-    animation:monsterNeonPulse 2s ease-in-out infinite;
-  }
-  .promo-monster-banner::before {
-    content:'';
-    position:absolute; inset:0;
-    background-image:
-      radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1.4px),
-      radial-gradient(circle, rgba(255,47,176,0.6) 1.5px, transparent 2px),
-      radial-gradient(circle, rgba(0,220,255,0.5) 1.2px, transparent 1.8px);
-    background-size: 90px 90px, 130px 130px, 160px 160px;
-    background-position: 10px 20px, 60px 100px, 30px 140px;
-    opacity:0.35;
-    mix-blend-mode:screen;
-    pointer-events:none;
-  }
-  .promo-monster-banner::after {
-    content:'';
-    position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
-    pointer-events:none;
-  }
-  .promo-monster-inner { position:relative; z-index:2; max-width:460px; margin:0 auto; text-align:center; }
-  .promo-monster-tag { display:inline-block; background:#ff2fb0; color:#fff; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; padding:3px 14px; border-radius:50px; margin-bottom:8px; box-shadow:0 0 12px #ff2fb0; }
-  .promo-monster-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.25rem; color:#fff; text-shadow:0 0 8px #ff2fb0,0 0 22px rgba(255,47,176,0.9),0 0 40px rgba(255,47,176,0.6); letter-spacing:0.02em; margin-bottom:3px; animation:monsterNeonFlicker 3.4s linear infinite; }
-  .promo-monster-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.7rem; color:#ff6fd8; text-shadow:0 0 10px #ff2fb0,0 0 28px rgba(255,47,176,0.85); margin-bottom:3px; }
-  .promo-monster-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.75rem; color:#ffd6f2; opacity:0.9; margin-bottom:12px; }
-  .promo-monster-imgs { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
-  .promo-monster-imgs img { width:82px; height:116px; object-fit:cover; border-radius:12px; border:2px solid #ff6fd8; box-shadow:0 0 12px rgba(255,47,176,0.7),0 0 24px rgba(255,47,176,0.4); transition:transform 0.25s; }
-  .promo-monster-imgs img:hover { transform:translateY(-5px) scale(1.03); }
-  .promo-monster-btn { background:linear-gradient(135deg,#ff2fb0,#ff6fd8); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.82rem; padding:9px 20px; cursor:pointer; box-shadow:0 0 14px rgba(255,47,176,0.7); transition:opacity 0.2s; }
-  .promo-monster-btn:hover { opacity:0.88; }
-  @media (max-width:600px) { .promo-monster-title { font-size:1.1rem; } .promo-monster-precio { font-size:1.5rem; } .promo-monster-imgs img { width:68px; height:96px; } }
 
   /* GRILLA UNIFICADA DE CATÁLOGO */
   .catalog-section { margin-bottom:40px; scroll-margin-top:110px; }
@@ -913,26 +855,6 @@
   <a href="#reels"><span>📸</span> Reels</a>
 </aside>
 <main>
-
-  <!-- PROMO MONSTER IMPORTADAS NEÓN ROSA -->
-  <div class="promo-monster-banner">
-    <div class="promo-monster-inner">
-      <span class="promo-monster-tag">⚡ Promo Monster</span>
-      <div class="promo-monster-title">MONSTER IMPORTADAS</div>
-      <div class="promo-monster-precio">2x $15.000</div>
-      <div class="promo-monster-sub">Ediciones Limitadas Importadas · 473ml</div>
-      <div class="promo-monster-imgs">
-        <img src="img/productos/monster-brasil-1.jpg" alt="Monster Edición Limitada 1" loading="lazy">
-        <img src="img/productos/monster-brasil-2.jpg" alt="Monster Edición Limitada 2" loading="lazy">
-        <img src="img/productos/monster-brasil-4.jpg" alt="Monster Edición Limitada 4" loading="lazy">
-        <img src="img/productos/monster-brasil-5.jpg" alt="Monster Edición Limitada 5" loading="lazy">
-      </div>
-      <div class="promo-monster-actions" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
-        <button class="promo-monster-btn" onclick="agregarKinder(this,'Promo Monster Edición Limitada 2x',15000)">+ Agregar $15.000</button>
-        <a href="#monster" class="promo-monster-btn" style="background:transparent;border:2px solid #ff6fd8;box-shadow:none;">Ver Monster ⚡</a>
-      </div>
-    </div>
-  </div>
 
   <!-- GRILLA DE CATÁLOGO UNIFICADA -->
   <div class="catalog-section" id="catalogoGrid">
