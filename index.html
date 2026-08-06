@@ -209,41 +209,41 @@
   }
   .promo-letras-banner {
     position:relative;
-    background:linear-gradient(120deg,#fff0f6 0%,#fff9e6 45%,#eafff2 100%);
-    border:3px dashed #ff6b9d;
+    background:linear-gradient(120deg,#ff2f92 0%,#ff8a3d 35%,#ffd23d 65%,#3ddc97 100%);
+    border:3px dashed #fff;
     border-radius:24px;
     padding:20px 16px 22px;
     margin-bottom:40px;
     overflow:hidden;
-    box-shadow:0 6px 0 #ffd1e3,0 8px 24px rgba(255,107,157,0.25);
+    box-shadow:0 6px 0 #d6006b,0 8px 26px rgba(255,47,146,0.45);
   }
   .promo-letras-banner::before {
     content:'';
     position:absolute; inset:0;
     background-image:
-      radial-gradient(circle, #ff9ec4 6px, transparent 7px),
-      radial-gradient(circle, #ffe27a 5px, transparent 6px),
-      radial-gradient(circle, #8ce8b0 6px, transparent 7px),
-      radial-gradient(circle, #b6a5ff 5px, transparent 6px),
-      radial-gradient(circle, #7ecbff 5px, transparent 6px);
+      radial-gradient(circle, rgba(255,255,255,0.9) 6px, transparent 7px),
+      radial-gradient(circle, rgba(255,255,255,0.7) 5px, transparent 6px),
+      radial-gradient(circle, rgba(255,255,255,0.9) 6px, transparent 7px),
+      radial-gradient(circle, rgba(255,255,255,0.7) 5px, transparent 6px),
+      radial-gradient(circle, rgba(255,255,255,0.9) 5px, transparent 6px);
     background-size: 140px 140px, 160px 160px, 150px 150px, 170px 170px, 130px 130px;
     background-position: 0 0, 30px 40px, 60px 10px, 90px 60px, 15px 80px;
-    opacity:0.5;
+    opacity:0.45;
     pointer-events:none;
     animation:candySprinkle 4s ease-in-out infinite;
   }
   .promo-letras-inner { position:relative; z-index:2; max-width:640px; margin:0 auto; text-align:center; }
-  .promo-letras-tag { display:inline-block; background:#ff6b9d; color:#fff; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; padding:3px 14px; border-radius:50px; margin-bottom:8px; }
-  .promo-letras-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.6rem; letter-spacing:0.02em; margin-bottom:4px; animation:candyBounce 2.4s ease-in-out infinite; background:linear-gradient(90deg,#ff6b9d,#ffb454,#8ce8b0,#7ecbff,#c77dff); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .promo-letras-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.8rem; color:#8a5a6b; opacity:0.9; margin-bottom:16px; }
+  .promo-letras-tag { display:inline-block; background:#fff; color:#ff2f92; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; padding:3px 14px; border-radius:50px; margin-bottom:8px; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
+  .promo-letras-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.7rem; letter-spacing:0.02em; margin-bottom:4px; color:#fff; text-shadow:2px 2px 0 #d6006b,0 0 18px rgba(255,255,255,0.5); animation:candyBounce 2.4s ease-in-out infinite; }
+  .promo-letras-sub { font-family:'Nunito',sans-serif; font-weight:800; font-size:0.82rem; color:#fff; text-shadow:1px 1px 3px rgba(0,0,0,0.25); opacity:0.95; margin-bottom:16px; }
   .promo-letras-items { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-  .promo-letras-item { background:#fff; border:2px solid #ffd1e3; border-radius:16px; padding:8px; width:110px; box-shadow:0 3px 0 #ffd1e3; }
+  .promo-letras-item { background:#fff; border:2px solid #fff; border-radius:16px; padding:8px; width:110px; box-shadow:0 4px 0 #d6006b,0 6px 14px rgba(0,0,0,0.2); }
   .promo-letras-item img { width:100%; height:110px; object-fit:cover; border-radius:10px; margin-bottom:6px; }
   .promo-letras-item-nombre { font-family:'Nunito',sans-serif; font-weight:800; font-size:0.68rem; color:#5a3a45; margin-bottom:2px; }
-  .promo-letras-item-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.85rem; color:#ff6b9d; margin-bottom:6px; }
-  .promo-letras-item button { width:100%; background:linear-gradient(135deg,#ff6b9d,#ffb454); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; padding:6px 4px; cursor:pointer; }
-  .promo-letras-cta { display:inline-block; margin-top:16px; background:transparent; border:2px solid #ff6b9d; color:#ff6b9d; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:8px 22px; text-decoration:none; }
-  @media (max-width:600px) { .promo-letras-title { font-size:1.3rem; } .promo-letras-item { width:92px; } .promo-letras-item img { height:92px; } }
+  .promo-letras-item-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.85rem; color:#ff2f92; margin-bottom:6px; }
+  .promo-letras-item button { width:100%; background:linear-gradient(135deg,#ff2f92,#ff8a3d); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; padding:6px 4px; cursor:pointer; }
+  .promo-letras-cta { display:inline-block; margin-top:16px; background:#fff; border:2px solid #fff; color:#ff2f92; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:8px 22px; text-decoration:none; box-shadow:0 3px 0 #d6006b; }
+  @media (max-width:600px) { .promo-letras-title { font-size:1.35rem; } .promo-letras-item { width:92px; } .promo-letras-item img { height:92px; } }
 
   /* GRILLA UNIFICADA DE CATÁLOGO */
   .catalog-section { margin-bottom:40px; scroll-margin-top:110px; }
