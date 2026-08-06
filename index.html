@@ -220,21 +220,13 @@
   .promo-letras-banner::before {
     content:'';
     position:absolute; inset:0;
-    background-image:
-      radial-gradient(circle, rgba(255,255,255,0.9) 6px, transparent 7px),
-      radial-gradient(circle, rgba(255,255,255,0.7) 5px, transparent 6px),
-      radial-gradient(circle, rgba(255,255,255,0.9) 6px, transparent 7px),
-      radial-gradient(circle, rgba(255,255,255,0.7) 5px, transparent 6px),
-      radial-gradient(circle, rgba(255,255,255,0.9) 5px, transparent 6px);
-    background-size: 140px 140px, 160px 160px, 150px 150px, 170px 170px, 130px 130px;
-    background-position: 0 0, 30px 40px, 60px 10px, 90px 60px, 15px 80px;
-    opacity:0.45;
+    background:radial-gradient(circle at 20% 15%, rgba(255,255,255,0.18), transparent 40%),radial-gradient(circle at 80% 85%, rgba(255,255,255,0.15), transparent 45%);
     pointer-events:none;
-    animation:candySprinkle 4s ease-in-out infinite;
   }
+  .letras-bear-bg { position:absolute; z-index:1; font-size:2.6rem; opacity:0.28; filter:drop-shadow(0 2px 2px rgba(0,0,0,0.15)); pointer-events:none; animation:candyBounce 3s ease-in-out infinite; }
   .promo-letras-inner { position:relative; z-index:2; max-width:640px; margin:0 auto; text-align:center; }
   .promo-letras-tag { display:inline-block; background:#fff; color:#ff2f92; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; padding:3px 14px; border-radius:50px; margin-bottom:8px; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
-  .promo-letras-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.7rem; letter-spacing:0.02em; margin-bottom:4px; color:#fff; text-shadow:2px 2px 0 #d6006b,0 0 18px rgba(255,255,255,0.5); animation:candyBounce 2.4s ease-in-out infinite; }
+  .promo-letras-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.7rem; letter-spacing:0.02em; margin-bottom:4px; color:#fff; text-shadow:2px 2px 0 #d6006b,0 0 18px rgba(255,255,255,0.5); animation:candyBounce 2.4s ease-in-out infinite; }
   .promo-letras-sub { font-family:'Nunito',sans-serif; font-weight:800; font-size:0.82rem; color:#fff; text-shadow:1px 1px 3px rgba(0,0,0,0.25); opacity:0.95; margin-bottom:16px; }
   .promo-letras-items { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
   .promo-letras-item { background:#fff; border:2px solid #fff; border-radius:16px; padding:8px; width:110px; box-shadow:0 4px 0 #d6006b,0 6px 14px rgba(0,0,0,0.2); }
@@ -988,6 +980,12 @@
 
   <!-- BANNER LETRAS DULCES ESTILO CANDY -->
   <div class="promo-letras-banner">
+    <span class="letras-bear-bg" style="top:6%;left:6%;transform:rotate(-12deg);filter:hue-rotate(0deg) drop-shadow(0 2px 2px rgba(0,0,0,0.15));">🐻</span>
+    <span class="letras-bear-bg" style="top:10%;right:8%;transform:rotate(14deg);filter:hue-rotate(90deg) drop-shadow(0 2px 2px rgba(0,0,0,0.15));font-size:2.1rem;">🐻</span>
+    <span class="letras-bear-bg" style="bottom:8%;left:12%;transform:rotate(8deg);filter:hue-rotate(200deg) drop-shadow(0 2px 2px rgba(0,0,0,0.15));font-size:2.3rem;">🐻</span>
+    <span class="letras-bear-bg" style="bottom:5%;right:14%;transform:rotate(-16deg);filter:hue-rotate(300deg) drop-shadow(0 2px 2px rgba(0,0,0,0.15));">🐻</span>
+    <span class="letras-bear-bg" style="top:45%;left:2%;transform:rotate(20deg);filter:hue-rotate(150deg) drop-shadow(0 2px 2px rgba(0,0,0,0.15));font-size:1.8rem;">🐻</span>
+    <span class="letras-bear-bg" style="top:42%;right:3%;transform:rotate(-10deg);filter:hue-rotate(45deg) drop-shadow(0 2px 2px rgba(0,0,0,0.15));font-size:1.8rem;">🐻</span>
     <div class="promo-letras-inner">
       <span class="promo-letras-tag">🍬 Regalería</span>
       <div class="promo-letras-title">LETRAS DULCES</div>
