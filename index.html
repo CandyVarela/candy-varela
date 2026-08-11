@@ -238,6 +238,45 @@
   .promo-letras-cta { display:inline-block; margin-top:16px; background:#fff; border:2px solid #fff; color:#ff2f92; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:8px 22px; text-decoration:none; box-shadow:0 3px 0 #d6006b; }
   @media (max-width:600px) { .promo-letras-title { font-size:1.35rem; } .promo-letras-item { width:92px; } .promo-letras-item img { height:92px; } }
 
+  @keyframes novedadesShimmer {
+    0%,100% { background-position:0% 50%; }
+    50% { background-position:100% 50%; }
+  }
+  @keyframes novedadesSparkle {
+    0%,100% { opacity:0.5; transform:scale(1) rotate(0deg); }
+    50% { opacity:1; transform:scale(1.25) rotate(15deg); }
+  }
+  .promo-novedades-banner {
+    position:relative;
+    background:linear-gradient(115deg,#7b2ff7 0%,#e91e8c 45%,#ff6fd8 75%,#ffd23d 100%);
+    background-size:220% 220%;
+    animation:novedadesShimmer 7s ease-in-out infinite;
+    border-radius:26px;
+    padding:22px 18px 24px;
+    margin-bottom:32px;
+    overflow:hidden;
+    box-shadow:0 8px 0 #4a0f8f,0 10px 30px rgba(123,47,247,0.4);
+  }
+  .promo-novedades-banner::before {
+    content:'✨'; position:absolute; top:12px; left:16px; font-size:1.4rem; animation:novedadesSparkle 2.2s ease-in-out infinite;
+  }
+  .promo-novedades-banner::after {
+    content:'✨'; position:absolute; bottom:14px; right:20px; font-size:1.1rem; animation:novedadesSparkle 2.6s ease-in-out infinite 0.6s;
+  }
+  .promo-novedades-inner { position:relative; z-index:2; max-width:760px; margin:0 auto; text-align:center; }
+  .promo-novedades-tag { display:inline-block; background:#fff; color:#7b2ff7; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; padding:3px 14px; border-radius:50px; margin-bottom:8px; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
+  .promo-novedades-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.75rem; letter-spacing:0.02em; margin-bottom:4px; color:#fff; text-shadow:2px 2px 0 #4a0f8f,0 0 20px rgba(255,255,255,0.5); }
+  .promo-novedades-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.82rem; color:#fff; text-shadow:1px 1px 3px rgba(0,0,0,0.25); opacity:0.95; margin-bottom:18px; }
+  .promo-novedades-items { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .promo-novedades-item { position:relative; background:#fff; border:2px solid #fff; border-radius:16px; padding:8px; width:118px; box-shadow:0 4px 0 #4a0f8f,0 6px 14px rgba(0,0,0,0.22); }
+  .promo-novedades-item img { width:100%; height:112px; object-fit:cover; border-radius:10px; margin-bottom:6px; }
+  .promo-novedades-item-nombre { font-family:'Nunito',sans-serif; font-weight:800; font-size:0.66rem; color:#4a2a5a; margin-bottom:2px; min-height:28px; }
+  .promo-novedades-item-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.85rem; color:#e91e8c; margin-bottom:6px; }
+  .promo-novedades-item-precio-old { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.68rem; color:#aaa; text-decoration:line-through; margin-right:4px; }
+  .promo-novedades-item button { width:100%; background:linear-gradient(135deg,#7b2ff7,#e91e8c); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.64rem; padding:6px 4px; cursor:pointer; }
+  .promo-novedades-oferta-badge { position:absolute; top:-8px; right:-8px; background:#ffd23d; color:#7b2ff7; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.6rem; padding:3px 8px; border-radius:50px; box-shadow:0 2px 6px rgba(0,0,0,0.25); transform:rotate(8deg); }
+  @media (max-width:600px) { .promo-novedades-title { font-size:1.35rem; } .promo-novedades-item { width:96px; } .promo-novedades-item img { height:90px; } }
+
   /* GRILLA UNIFICADA DE CATÁLOGO */
   .catalog-section { margin-bottom:40px; scroll-margin-top:110px; }
   .catalog-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.3rem; margin-bottom:16px; color:#333; }
@@ -1018,6 +1057,55 @@
   <!-- GRILLA DE CATÁLOGO UNIFICADA -->
   <div class="catalog-section" id="catalogoGrid">
     <h2 class="catalog-title">Nuestros Productos 🍬</h2>
+
+    <div class="promo-novedades-banner">
+      <div class="promo-novedades-inner">
+        <span class="promo-novedades-tag">✨ Recién llegadas</span>
+        <div class="promo-novedades-title">NOVEDADES DE LA SEMANA</div>
+        <div class="promo-novedades-sub">Lo último que llegó a Candy Varela · Edición limitada</div>
+        <div class="promo-novedades-items">
+          <div class="promo-novedades-item">
+            <img src="img/productos/tortuguita_brigadeiro.jpg" alt="Tortuguita Leite Brigadeiro" loading="lazy">
+            <div class="promo-novedades-item-nombre">Tortuguita Brigadeiro</div>
+            <div class="promo-novedades-item-precio">$2.000</div>
+            <button onclick="agregarKinder(this,'Tortuguita Leite Brigadeiro',2000)">+ Agregar</button>
+          </div>
+          <div class="promo-novedades-item">
+            <img src="img/productos/tortuguita_chocolate_blanco.jpg" alt="Tortuguita Leite Blanco Chocolate" loading="lazy">
+            <div class="promo-novedades-item-nombre">Tortuguita Blanco</div>
+            <div class="promo-novedades-item-precio">$2.000</div>
+            <button onclick="agregarKinder(this,'Tortuguita Leite Blanco Chocolate',2000)">+ Agregar</button>
+          </div>
+          <div class="promo-novedades-item">
+            <img src="img/productos/kinder_joy_stranger_things.jpg" alt="Kinder Joy Stranger Things" loading="lazy">
+            <div class="promo-novedades-item-nombre">Kinder Stranger Things</div>
+            <div class="promo-novedades-item-precio">$10.000</div>
+            <button onclick="agregarKinder(this,'Kinder Joy Stranger Things',10000)">+ Agregar</button>
+          </div>
+          <div class="promo-novedades-item">
+            <span class="promo-novedades-oferta-badge">OFERTA</span>
+            <img src="img/productos/milka-max-caramelo.jpg" alt="Milka Max" loading="lazy">
+            <div class="promo-novedades-item-nombre">Milka Max</div>
+            <div class="promo-novedades-item-precio"><span class="promo-novedades-item-precio-old">$24.000</span>$20.000</div>
+            <button onclick="agregarKinder(this,'Milka Max Caramelo y Avellanas',20000)">+ Agregar</button>
+          </div>
+          <div class="promo-novedades-item">
+            <img src="img/productos/monster-pacific-punch.jpg" alt="Monster Juice" loading="lazy">
+            <div class="promo-novedades-item-nombre">Monster Juice</div>
+            <div class="promo-novedades-item-precio">$8.000</div>
+            <button onclick="agregarKinder(this,'Monster Juice Pacific Punch',8000)">+ Agregar</button>
+          </div>
+          <div class="promo-novedades-item">
+            <img src="img/productos/pochoclos-stranger.jpg" alt="Pochoclos Stranger Things" loading="lazy">
+            <div class="promo-novedades-item-nombre">Pochoclos Stranger</div>
+            <div class="promo-novedades-item-precio">$10.000</div>
+            <button onclick="agregarKinder(this,'Pochoclos Stranger Things',10000)">+ Agregar</button>
+          </div>
+        </div>
+        <a href="#novedades" class="promo-letras-cta" style="color:#7b2ff7;box-shadow:0 3px 0 #4a0f8f;">Ver todas las novedades ✨</a>
+      </div>
+    </div>
+
     <div class="catalog-grid">
       <div class="cat-card" data-cat="regaleria">
         <img class="cat-card-img" src="img/productos/box-personalizado.jpg" alt="Box Regalería · Chocolates" loading="lazy">
