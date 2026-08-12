@@ -52,16 +52,15 @@
   .btn-carrito { background:var(--rosa); color:#fff; padding:8px 18px; border-radius:50px; font-size:0.88rem; font-weight:800; cursor:pointer; text-decoration:none; display:flex; align-items:center; gap:6px; box-shadow:0 3px 12px rgba(233,30,140,0.35); transition:transform 0.15s; white-space:nowrap; }
   .carrito-count { background:#fff; color:var(--rosa); border-radius:50%; width:20px; height:20px; font-size:0.72rem; font-weight:900; display:flex; align-items:center; justify-content:center; }
 
-  /* NAV NEON */
-  nav { background:linear-gradient(90deg,#1a0a2e,#6d0f5a,#ff2fb0,#6d0f5a,#1a0a2e); background-size:300% 100%; animation:neonMove 12s linear infinite; border-bottom:2px solid #ff2fb0; box-shadow:0 0 14px rgba(255,47,176,0.65),0 2px 10px rgba(0,0,0,0.3); }
-  @keyframes neonMove { 0%{ background-position:0% 50%; } 100%{ background-position:300% 50%; } }
+  /* NAV */
+  nav { background:var(--azul-dark); border-bottom:1px solid rgba(255,255,255,0.08); }
   .nav-inner { overflow:hidden; padding:6px 0; }
   .nav-track { display:inline-flex; align-items:center; gap:4px; white-space:nowrap; animation:navMarquee 22s linear infinite; }
   .nav-track:hover { animation-play-state:paused; }
   @keyframes navMarquee { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
-  .nav-inner a { color:#fff; text-decoration:none; font-size:0.83rem; font-weight:700; padding:9px 14px; border-radius:50px; white-space:nowrap; transition:background 0.18s,color 0.18s,box-shadow 0.18s; cursor:pointer; }
-  .nav-inner a:hover { background:rgba(255,255,255,0.15); text-shadow:0 0 8px #ff2fb0,0 0 16px rgba(255,47,176,0.9); box-shadow:0 0 10px rgba(255,47,176,0.7) inset; }
-  .nav-inner a.ofertas { color:#1a0a2e; background:var(--amarillo); box-shadow:0 0 8px var(--amarillo),0 0 16px rgba(245,197,24,0.6); }
+  .nav-inner a { color:#fff; text-decoration:none; font-size:0.83rem; font-weight:700; padding:9px 14px; border-radius:50px; white-space:nowrap; transition:background 0.18s,color 0.18s; cursor:pointer; }
+  .nav-inner a:hover { background:rgba(255,255,255,0.15); }
+  .nav-inner a.ofertas { color:#1a0a2e; background:var(--amarillo); }
   .nav-inner a.reels { color:#fff; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.4); }
   @media (max-width:768px) {
     .nav-inner { overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
@@ -140,62 +139,24 @@
   .regaleria-section, .pair-row, .viral-section, .imp-section, .snk-section, .beb-section, .box-section, .cho-section, .kinder-section, .neon-section, .emprendedores-section, .hotsale-section, .promo-top { display:none !important; }
 
 
-  /* BANNER PROMO MONSTER NEÓN ROSA */
-  @keyframes monsterNeonPulse {
-    0%,100% { box-shadow:0 0 10px #ff2fb0,0 0 26px rgba(255,47,176,0.65),0 0 46px rgba(255,47,176,0.35); }
-    50% { box-shadow:0 0 18px #ff6fd8,0 0 40px rgba(255,111,216,0.85),0 0 70px rgba(255,47,176,0.55); }
-  }
-  @keyframes monsterNeonFlicker {
-    0%,100% { opacity:1; }
-    92% { opacity:1; }
-    93% { opacity:0.7; }
-    94% { opacity:1; }
-  }
+  /* BANNER PROMO MONSTER - clean */
   .promo-monster-banner {
     position:relative;
-    background:
-      repeating-linear-gradient(0deg, rgba(0,0,0,0.4) 0 2px, transparent 2px 30px),
-      repeating-linear-gradient(90deg, rgba(0,0,0,0.35) 0 2px, transparent 2px 64px),
-      radial-gradient(circle at 12% 18%, rgba(255,47,176,0.32), transparent 42%),
-      radial-gradient(circle at 88% 78%, rgba(0,220,255,0.22), transparent 46%),
-      radial-gradient(circle at 65% 10%, rgba(180,0,255,0.28), transparent 38%),
-      radial-gradient(circle at 30% 85%, rgba(255,47,176,0.2), transparent 40%),
-      linear-gradient(160deg,#3a3a3a 0%,#242424 55%,#131313 100%);
-    border:2px solid #ff2fb0;
-    border-radius:20px;
-    padding:16px 16px 18px;
+    background:linear-gradient(135deg,var(--azul-dark),var(--azul));
+    border-radius:var(--radius);
+    padding:20px 16px 22px;
     margin-bottom:40px;
-    overflow:hidden;
-    animation:monsterNeonPulse 2s ease-in-out infinite;
-  }
-  .promo-monster-banner::before {
-    content:'';
-    position:absolute; inset:0;
-    background-image:
-      radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1.4px),
-      radial-gradient(circle, rgba(255,47,176,0.6) 1.5px, transparent 2px),
-      radial-gradient(circle, rgba(0,220,255,0.5) 1.2px, transparent 1.8px);
-    background-size: 90px 90px, 130px 130px, 160px 160px;
-    background-position: 10px 20px, 60px 100px, 30px 140px;
-    opacity:0.35;
-    mix-blend-mode:screen;
-    pointer-events:none;
-  }
-  .promo-monster-banner::after {
-    content:'';
-    position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
-    pointer-events:none;
+    box-shadow:var(--shadow);
   }
   .promo-monster-inner { position:relative; z-index:2; max-width:460px; margin:0 auto; text-align:center; }
-  .promo-monster-tag { display:inline-block; background:#ff2fb0; color:#fff; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; padding:3px 14px; border-radius:50px; margin-bottom:8px; box-shadow:0 0 12px #ff2fb0; }
-  .promo-monster-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.25rem; color:#fff; text-shadow:0 0 8px #ff2fb0,0 0 22px rgba(255,47,176,0.9),0 0 40px rgba(255,47,176,0.6); letter-spacing:0.02em; margin-bottom:3px; animation:monsterNeonFlicker 3.4s linear infinite; }
-  .promo-monster-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.7rem; color:#ff6fd8; text-shadow:0 0 10px #ff2fb0,0 0 28px rgba(255,47,176,0.85); margin-bottom:3px; }
-  .promo-monster-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.75rem; color:#ffd6f2; opacity:0.9; margin-bottom:12px; }
+  .promo-monster-tag { display:inline-block; background:var(--rosa); color:#fff; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; padding:3px 14px; border-radius:50px; margin-bottom:8px; }
+  .promo-monster-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.25rem; color:#fff; letter-spacing:0.02em; margin-bottom:3px; }
+  .promo-monster-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.7rem; color:var(--amarillo); margin-bottom:3px; }
+  .promo-monster-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.75rem; color:#ffe3f2; opacity:0.9; margin-bottom:12px; }
   .promo-monster-imgs { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
-  .promo-monster-imgs img { width:82px; height:116px; object-fit:cover; border-radius:12px; border:2px solid #ff6fd8; box-shadow:0 0 12px rgba(255,47,176,0.7),0 0 24px rgba(255,47,176,0.4); transition:transform 0.25s; }
+  .promo-monster-imgs img { width:82px; height:116px; object-fit:cover; border-radius:12px; border:2px solid rgba(255,255,255,0.3); transition:transform 0.25s; }
   .promo-monster-imgs img:hover { transform:translateY(-5px) scale(1.03); }
-  .promo-monster-btn { background:linear-gradient(135deg,#ff2fb0,#ff6fd8); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.82rem; padding:9px 20px; cursor:pointer; box-shadow:0 0 14px rgba(255,47,176,0.7); transition:opacity 0.2s; }
+  .promo-monster-btn { background:#fff; color:var(--azul-dark); border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.82rem; padding:9px 20px; cursor:pointer; transition:opacity 0.2s; }
   .promo-monster-btn:hover { opacity:0.88; }
   @media (max-width:600px) { .promo-monster-title { font-size:1.1rem; } .promo-monster-precio { font-size:1.5rem; } .promo-monster-imgs img { width:68px; height:96px; } }
 
@@ -277,6 +238,16 @@
   .promo-novedades-oferta-badge { position:absolute; top:-8px; right:-8px; background:#ffd23d; color:#7b2ff7; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.6rem; padding:3px 8px; border-radius:50px; box-shadow:0 2px 6px rgba(0,0,0,0.25); transform:rotate(8deg); }
   @media (max-width:600px) { .promo-novedades-title { font-size:1.35rem; } .promo-novedades-item { width:96px; } .promo-novedades-item img { height:90px; } }
 
+  /* MARCAS DESTACADAS */
+  .marcas-section { margin-bottom:36px; }
+  .marcas-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; text-align:center; }
+  .marcas-track { display:flex; gap:14px; overflow-x:auto; padding:2px 2px 8px; scrollbar-width:thin; }
+  .marcas-track::-webkit-scrollbar { height:5px; }
+  .marcas-track::-webkit-scrollbar-thumb { background:var(--rosa-light); border-radius:50px; }
+  .marca-chip { flex:0 0 auto; background:#fff; border:1px solid rgba(0,0,0,0.06); border-radius:14px; padding:14px 22px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 10px rgba(0,0,0,0.05); font-family:'Poppins',sans-serif; font-weight:800; font-size:0.92rem; color:var(--azul-dark); white-space:nowrap; transition:transform 0.15s,box-shadow 0.15s; }
+  .marca-chip:hover { transform:translateY(-3px); box-shadow:0 6px 16px rgba(0,0,0,0.09); }
+  @media (max-width:600px) { .marca-chip { padding:11px 16px; font-size:0.8rem; } }
+
   /* GRILLA UNIFICADA DE CATÁLOGO */
   .catalog-section { margin-bottom:40px; scroll-margin-top:110px; }
   .catalog-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.3rem; margin-bottom:16px; color:#333; }
@@ -306,9 +277,8 @@
   .banner-card { border-radius:20px; padding:28px; display:flex; flex-direction:column; justify-content:flex-end; min-height:200px; position:relative; overflow:hidden; text-decoration:none; }
   .banner-card-1 { background:linear-gradient(135deg,var(--azul-dark),var(--azul)); }
   .banner-card-2 { background:linear-gradient(135deg,#6d0f5a,#e91e8c); }
-  .banner-card-neon { cursor:pointer; border:2px solid #ff2fb0; box-shadow:0 0 6px #ff2fb0,0 0 18px rgba(255,47,176,0.7),inset 0 0 14px rgba(255,47,176,0.25); transition:transform 0.2s,box-shadow 0.2s; }
-  .banner-card-neon:hover { transform:translateY(-4px); box-shadow:0 0 10px #ff2fb0,0 0 28px rgba(255,47,176,0.95),inset 0 0 18px rgba(255,47,176,0.35); }
-  .banner-card-neon .banner-title { text-shadow:0 0 8px #ff2fb0,0 0 18px rgba(255,47,176,0.8); }
+  .banner-card-neon { cursor:pointer; transition:transform 0.2s,box-shadow 0.2s; }
+  .banner-card-neon:hover { transform:translateY(-4px); }
   .banner-bg-emoji { position:absolute; top:-10px; right:-10px; font-size:100px; opacity:0.15; pointer-events:none; }
   .banner-badge-small { background:rgba(255,255,255,0.2); color:#fff; font-size:0.7rem; font-weight:800; padding:3px 10px; border-radius:50px; width:fit-content; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em; }
   .banner-title { font-family:'Poppins',sans-serif; font-size:1.45rem; font-weight:800; color:#fff; line-height:1.2; margin-bottom:10px; }
@@ -601,14 +571,8 @@
   @media (max-width:600px) { .letras-title { font-size:1.1rem; } .letras-card { flex:1 1 100px; } }
 
   /* SECCIÓN EMPRENDEDORES - NEON ROSA */
-  .emprendedores-section { position:relative; background:radial-gradient(circle at 50% 0%,#2a0020,#0d0009 75%); border:2px solid #ff2fb0; border-radius:24px; padding:22px 16px 26px; margin-bottom:40px; overflow:hidden; box-shadow:0 0 14px #ff2fb0,0 0 34px rgba(255,47,176,0.5); animation:empGlow 1.8s ease-in-out infinite; }
-  @keyframes empGlow { 0%,100%{ box-shadow:0 0 14px #ff2fb0,0 0 30px rgba(255,47,176,0.5); } 50%{ box-shadow:0 0 24px #ff6ad5,0 0 54px rgba(255,106,213,0.85); } }
-  .emp-deco { position:absolute; opacity:0.45; pointer-events:none; animation:empFloat 6s ease-in-out infinite; filter:drop-shadow(0 0 6px #ff2fb0); }
-  .emp-deco.e1 { font-size:1.6rem; top:12px; left:5%; animation-delay:0s; }
-  .emp-deco.e2 { font-size:1.2rem; top:18px; right:8%; animation-delay:1s; }
-  .emp-deco.e3 { font-size:2rem; bottom:14px; left:14%; animation-delay:1.8s; }
-  .emp-deco.e4 { font-size:1.3rem; bottom:20px; right:5%; animation-delay:0.6s; }
-  @keyframes empFloat { 0%,100%{ transform:translateY(0); opacity:0.4; } 50%{ transform:translateY(-8px); opacity:0.8; } }
+  .emprendedores-section { position:relative; background:#fff; border:1px solid rgba(0,0,0,0.06); border-radius:24px; padding:22px 16px 26px; margin-bottom:40px; overflow:hidden; box-shadow:var(--shadow); }
+  .emp-deco { display:none; }
   .emp-inner { position:relative; z-index:2; text-align:center; max-width:980px; margin:0 auto; }
   .emp-badge { display:inline-flex; align-items:center; gap:5px; background:#ff2fb0; color:#fff; font-weight:800; font-size:0.7rem; padding:4px 14px; border-radius:50px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; box-shadow:0 0 10px rgba(255,47,176,0.9); }
   .emp-title { font-family:'Poppins',sans-serif; font-weight:900; font-size:1.75rem; letter-spacing:0.02em; margin-bottom:5px; color:#fff; text-shadow:0 0 8px #ff2fb0,0 0 18px #ff6ad5,0 0 34px rgba(255,106,213,0.85); }
@@ -627,26 +591,24 @@
   .emp-card-btn.agregado { background:var(--green) !important; color:#fff !important; }
 
   /* Card Candy - gomitas de colores */
-  .emp-card.candy { background:linear-gradient(160deg,#ff5fa8 0%,#c02f7a 100%); border:2px solid #ff9fd0; box-shadow:0 0 10px rgba(255,95,168,0.6),inset 0 0 30px rgba(255,255,255,0.08); color:#fff; }
+  .emp-card.candy { background:var(--rosa); border:1px solid rgba(0,0,0,0.04); color:#fff; }
   .emp-card.candy::before { content:'🍬'; position:absolute; font-size:5rem; opacity:0.12; top:-10px; right:-14px; transform:rotate(18deg); }
   .emp-card.candy::after { content:'🍭'; position:absolute; font-size:3.6rem; opacity:0.1; bottom:-10px; left:-10px; transform:rotate(-15deg); }
-  .emp-card.candy .emp-card-precio { text-shadow:0 0 10px rgba(255,255,255,0.6); }
   .emp-card.candy .emp-card-btn { background:#fff; color:#c02f7a; }
 
   /* Card Oro - dorado brillante */
-  .emp-card.oro { background:linear-gradient(160deg,#5a3d00 0%,#1a1200 100%); border:2px solid #ffd400; box-shadow:0 0 12px rgba(255,212,0,0.65),inset 0 0 30px rgba(255,212,0,0.08); color:#ffe9a3; animation:oroShine 2.4s ease-in-out infinite; }
-  @keyframes oroShine { 0%,100%{ box-shadow:0 0 12px rgba(255,212,0,0.6),inset 0 0 30px rgba(255,212,0,0.08); } 50%{ box-shadow:0 0 20px rgba(255,212,0,0.95),inset 0 0 40px rgba(255,212,0,0.15); } }
+  .emp-card.oro { background:var(--amarillo); border:1px solid rgba(0,0,0,0.04); color:#5a3d00; }
   .emp-card.oro::before { content:'🏆'; position:absolute; font-size:5rem; opacity:0.14; top:-12px; right:-12px; transform:rotate(15deg); }
   .emp-card.oro::after { content:'✨'; position:absolute; font-size:3.2rem; opacity:0.16; bottom:-6px; left:-8px; }
-  .emp-card.oro .emp-card-title, .emp-card.oro .emp-card-precio { color:#ffd400; text-shadow:0 0 10px rgba(255,212,0,0.7); }
-  .emp-card.oro .emp-card-btn { background:linear-gradient(135deg,#ffd400,#ff9d00); color:#3a2400; }
+  .emp-card.oro .emp-card-title, .emp-card.oro .emp-card-precio { color:#5a3d00; }
+  .emp-card.oro .emp-card-btn { background:#5a3d00; color:#ffe9a3; }
 
   /* Card Diamante - brillos celestes/blancos */
-  .emp-card.diamante { background:linear-gradient(160deg,#0d1b33 0%,#152b52 100%); border:2px solid #7fe3ff; box-shadow:0 0 14px rgba(127,227,255,0.7),inset 0 0 30px rgba(127,227,255,0.1); color:#e6faff; }
+  .emp-card.diamante { background:var(--azul-dark); border:1px solid rgba(0,0,0,0.04); color:#e6faff; }
   .emp-card.diamante::before { content:'💎'; position:absolute; font-size:5rem; opacity:0.16; top:-12px; right:-12px; transform:rotate(-12deg); }
   .emp-card.diamante::after { content:'❄️'; position:absolute; font-size:3rem; opacity:0.14; bottom:-8px; left:-6px; }
-  .emp-card.diamante .emp-card-title, .emp-card.diamante .emp-card-precio { color:#7fe3ff; text-shadow:0 0 10px rgba(127,227,255,0.8); }
-  .emp-card.diamante .emp-card-btn { background:linear-gradient(135deg,#7fe3ff,#3a8fd0); color:#0a1a30; }
+  .emp-card.diamante .emp-card-title, .emp-card.diamante .emp-card-precio { color:#7fe3ff; }
+  .emp-card.diamante .emp-card-btn { background:#7fe3ff; color:#0a1a30; }
   @media (max-width:600px) { .emp-title { font-size:1.4rem; } }
 /* SECCIÓN BOX */
   .box-section { background:linear-gradient(135deg,#ffa7d4,#ff5fa8); border-radius:24px; padding:26px 20px 30px; margin-bottom:40px; box-shadow:0 6px 24px rgba(255,95,168,0.35); }
@@ -994,7 +956,25 @@
 </aside>
 <main>
 
-  <!-- PROMO MONSTER IMPORTADAS NEÓN ROSA -->
+  <!-- MARCAS DESTACADAS -->
+  <div class="marcas-section">
+    <div class="marcas-title">Marcas Destacadas</div>
+    <div class="marcas-track">
+      <div class="marca-chip">Coca-Cola</div>
+      <div class="marca-chip">Monster</div>
+      <div class="marca-chip">Kinder</div>
+      <div class="marca-chip">Milka</div>
+      <div class="marca-chip">Nutella</div>
+      <div class="marca-chip">Skittles</div>
+      <div class="marca-chip">Kit Kat</div>
+      <div class="marca-chip">Cadbury</div>
+      <div class="marca-chip">Oreo</div>
+      <div class="marca-chip">Fanta</div>
+      <div class="marca-chip">Sprite</div>
+    </div>
+  </div>
+
+  <!-- PROMO MONSTER IMPORTADAS -->
   <div class="promo-monster-banner">
     <div class="promo-monster-inner">
       <span class="promo-monster-tag">⚡ Promo Combinable</span>
@@ -1065,10 +1045,10 @@
         <div class="promo-novedades-sub">Lo último que llegó a Candy Varela · Edición limitada</div>
         <div class="promo-novedades-items">
           <div class="promo-novedades-item">
-            <img class="img-agotado" src="img/productos/tortuguita_brigadeiro.jpg" alt="Tortuguita Leite Brigadeiro" loading="lazy">
+            <img src="img/productos/tortuguita_brigadeiro.jpg" alt="Tortuguita Leite Brigadeiro" loading="lazy">
             <div class="promo-novedades-item-nombre">Tortuguita Brigadeiro</div>
             <div class="promo-novedades-item-precio">$2.000</div>
-            <button class="btn-agotado" disabled>Agotado</button>
+            <button onclick="agregarKinder(this,'Tortuguita Leite Brigadeiro',2000)">+ Agregar</button>
           </div>
           <div class="promo-novedades-item">
             <img class="img-agotado" src="img/productos/tortuguita_chocolate_blanco.jpg" alt="Tortuguita Leite Blanco Chocolate" loading="lazy">
@@ -1215,9 +1195,9 @@
         <div class="cat-card-row"><span class="cat-card-precio">$2.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bon o Bon Chocolinas',2500)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="novedades">
-        <img class="cat-card-img img-agotado" src="img/productos/tortuguita_brigadeiro.jpg" alt="Tortuguita Leite Brigadeiro" loading="lazy">
+        <img class="cat-card-img" src="img/productos/tortuguita_brigadeiro.jpg" alt="Tortuguita Leite Brigadeiro" loading="lazy">
         <div class="cat-card-nombre">Tortuguita Leite Brigadeiro 🆕</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn btn-agotado" disabled>Agotado</button></div>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Tortuguita Leite Brigadeiro',2000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="novedades">
         <img class="cat-card-img img-agotado" src="img/productos/tortuguita_chocolate_blanco.jpg" alt="Tortuguita Leite Blanco Chocolate" loading="lazy">
