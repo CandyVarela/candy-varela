@@ -844,6 +844,35 @@
 </head>
 <body>
 
+<!-- SPLASH OREO BTS -->
+<div id="oreoSplash" onclick="cerrarOreoSplash()" style="position:fixed;inset:0;z-index:99999;background:radial-gradient(circle at 50% 40%,#2a0845 0%,#0d0221 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;animation:oreoSplashOut 0.6s ease-in 3.4s forwards;">
+  <div style="position:absolute;inset:0;pointer-events:none;">
+    <span style="position:absolute;top:10%;left:12%;font-size:2rem;animation:oreoFloat 3s ease-in-out infinite;">✨</span>
+    <span style="position:absolute;top:18%;right:14%;font-size:1.6rem;animation:oreoFloat 3.4s ease-in-out infinite 0.4s;">💜</span>
+    <span style="position:absolute;bottom:16%;left:16%;font-size:1.8rem;animation:oreoFloat 2.8s ease-in-out infinite 0.8s;">🎶</span>
+    <span style="position:absolute;bottom:22%;right:10%;font-size:2rem;animation:oreoFloat 3.2s ease-in-out infinite 1.1s;">✨</span>
+  </div>
+  <div style="font-family:'Poppins',sans-serif;font-weight:800;color:#fff;font-size:0.95rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;opacity:0;animation:oreoTextIn 0.6s ease-out 0.2s forwards;">Edición Limitada</div>
+  <img src="img/productos/oreo-bts.jpg" alt="Oreo BTS Edición Limitada" style="width:min(62vw,260px);border-radius:22px;box-shadow:0 0 50px rgba(157,78,221,0.65),0 20px 40px rgba(0,0,0,0.5);opacity:0;transform:scale(0.6) rotate(-8deg);animation:oreoPopIn 0.7s cubic-bezier(.34,1.56,.64,1) 0.15s forwards, oreoGlow 2s ease-in-out 1s infinite;">
+  <div style="font-family:'Poppins',sans-serif;font-weight:800;color:#fff;font-size:1.3rem;text-align:center;margin-top:18px;opacity:0;animation:oreoTextIn 0.6s ease-out 0.75s forwards;text-shadow:0 0 20px rgba(157,78,221,0.8);">Oreo BTS 118g 🆕</div>
+  <div style="font-family:'Poppins',sans-serif;font-weight:600;color:#e0c3fc;font-size:1rem;margin-top:4px;opacity:0;animation:oreoTextIn 0.6s ease-out 0.95s forwards;">$2.500 · Pancake acaramelado</div>
+  <div style="font-family:'Poppins',sans-serif;font-weight:500;color:rgba(255,255,255,0.5);font-size:0.75rem;margin-top:26px;opacity:0;animation:oreoTextIn 0.6s ease-out 1.3s forwards;">Tocá para continuar</div>
+</div>
+<style>
+  @keyframes oreoPopIn { 0%{ opacity:0; transform:scale(0.6) rotate(-8deg); } 100%{ opacity:1; transform:scale(1) rotate(0deg); } }
+  @keyframes oreoGlow { 0%,100%{ box-shadow:0 0 50px rgba(157,78,221,0.65),0 20px 40px rgba(0,0,0,0.5); } 50%{ box-shadow:0 0 80px rgba(157,78,221,0.95),0 20px 40px rgba(0,0,0,0.5); } }
+  @keyframes oreoTextIn { 0%{ opacity:0; transform:translateY(10px); } 100%{ opacity:1; transform:translateY(0); } }
+  @keyframes oreoFloat { 0%,100%{ transform:translateY(0); opacity:0.7; } 50%{ transform:translateY(-14px); opacity:1; } }
+  @keyframes oreoSplashOut { 0%{ opacity:1; visibility:visible; } 100%{ opacity:0; visibility:hidden; pointer-events:none; } }
+</style>
+<script>
+  function cerrarOreoSplash(){
+    var el = document.getElementById('oreoSplash');
+    if(el){ el.style.animation = 'oreoSplashOut 0.4s ease-in forwards'; setTimeout(function(){ el.remove(); }, 420); }
+  }
+  setTimeout(function(){ var el = document.getElementById('oreoSplash'); if(el) el.remove(); }, 4200);
+</script>
+
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="top-bar-track">
