@@ -238,6 +238,23 @@
   .promo-novedades-oferta-badge { position:absolute; top:-8px; right:-8px; background:#ffd23d; color:#7b2ff7; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.6rem; padding:3px 8px; border-radius:50px; box-shadow:0 2px 6px rgba(0,0,0,0.25); transform:rotate(8deg); }
   @media (max-width:600px) { .promo-novedades-title { font-size:1.35rem; } .promo-novedades-item { width:96px; } .promo-novedades-item img { height:90px; } }
 
+  /* BANNER NEON TOPLINE */
+  @keyframes toplineFlicker { 0%,100%{opacity:1;} 92%{opacity:1;} 93%{opacity:0.55;} 94%{opacity:1;} 96%{opacity:0.7;} 97%{opacity:1;} }
+  .promo-topline-neon { position:relative; background:radial-gradient(circle at 20% 20%,rgba(255,46,196,0.25),transparent 55%),radial-gradient(circle at 80% 80%,rgba(23,230,255,0.22),transparent 55%),#0a0a12; border-radius:22px; padding:26px 20px; margin-bottom:20px; overflow:hidden; border:2px solid rgba(23,230,255,0.5); box-shadow:0 0 18px rgba(23,230,255,0.35), inset 0 0 20px rgba(255,46,196,0.12); }
+  .promo-topline-neon-inner { position:relative; z-index:2; max-width:920px; margin:0 auto; display:flex; align-items:center; gap:28px; flex-wrap:wrap; justify-content:center; text-align:center; }
+  .promo-topline-neon-txt { flex:1; min-width:240px; }
+  .promo-topline-tag { display:inline-block; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.62rem; letter-spacing:0.18em; color:#17e6ff; text-shadow:0 0 6px rgba(23,230,255,0.9),0 0 16px rgba(23,230,255,0.5); margin-bottom:6px; text-transform:uppercase; }
+  .promo-topline-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:2rem; line-height:1.05; margin-bottom:4px; }
+  .promo-topline-title .nuevo { display:block; color:#39ff14; text-shadow:0 0 6px #39ff14,0 0 18px rgba(57,255,20,0.7); animation:toplineFlicker 5s infinite; }
+  .promo-topline-title .marca { display:block; color:#ff2ec4; text-shadow:0 0 8px #ff2ec4,0 0 22px rgba(255,46,196,0.75); font-size:2.3rem; }
+  .promo-topline-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.82rem; letter-spacing:0.06em; color:#ffd23f; text-shadow:0 0 8px rgba(255,210,63,0.6); margin-bottom:14px; }
+  .promo-topline-precio { display:inline-block; font-family:'Poppins',sans-serif; font-weight:800; font-size:1.6rem; color:#fff; border:2px solid #ff2ec4; border-radius:12px; padding:6px 18px; text-shadow:0 0 6px #fff,0 0 16px #ff2ec4; box-shadow:0 0 10px rgba(255,46,196,0.7), inset 0 0 10px rgba(255,46,196,0.2); margin-bottom:14px; }
+  .promo-topline-precio span { font-size:0.85rem; color:#17e6ff; text-shadow:0 0 6px rgba(23,230,255,0.8); margin-left:6px; }
+  .promo-topline-img-wrap { position:relative; flex-shrink:0; }
+  .promo-topline-img-wrap img { width:220px; height:auto; border-radius:14px; filter:drop-shadow(0 0 16px rgba(255,46,196,0.5)) drop-shadow(0 0 26px rgba(23,230,255,0.3)); }
+  .promo-topline-badge { position:absolute; top:-10px; right:-10px; background:#0a0a12; border:2px solid #39ff14; color:#39ff14; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.62rem; padding:4px 10px; border-radius:50px; box-shadow:0 0 8px rgba(57,255,20,0.7); transform:rotate(8deg); }
+  @media (max-width:600px) { .promo-topline-title { font-size:1.5rem; } .promo-topline-title .marca { font-size:1.75rem; } .promo-topline-img-wrap img { width:170px; } }
+
   /* MARCAS DESTACADAS */
   .marcas-section { margin-bottom:36px; }
   .marcas-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; text-align:center; }
@@ -1115,6 +1132,21 @@
       </div>
     </div>
 
+    <div class="promo-topline-neon">
+      <div class="promo-topline-neon-inner">
+        <div class="promo-topline-neon-txt">
+          <span class="promo-topline-tag">Candy Varela presenta</span>
+          <div class="promo-topline-title"><span class="nuevo">NUEVO</span><span class="marca">TOPLINE</span></div>
+          <div class="promo-topline-sub">EDICIÓN LIMITADA · 4 DISEÑOS COLECCIONABLES</div>
+          <div class="promo-topline-precio">$7.000<span>C/U</span></div>
+        </div>
+        <div class="promo-topline-img-wrap">
+          <span class="promo-topline-badge">4 diseños</span>
+          <img src="img/productos/topline-seven-lata.jpg" alt="Chicles Topline Seven en lata edición limitada" loading="lazy">
+        </div>
+      </div>
+    </div>
+
     <div class="catalog-grid">
       <div class="cat-card" data-cat="regaleria">
         <img class="cat-card-img" src="img/productos/box-personalizado.jpg" alt="Box Regalería · Chocolates" loading="lazy">
@@ -1187,6 +1219,11 @@
         <div class="cat-card-nombre">Lata Chupetines Maradona 🆕</div>
         <div class="cat-card-row"><span class="cat-card-precio">$6.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Lata Chupetines Maradona',6000)">+ Agregar</button></div>
         
+      </div>
+      <div class="cat-card" data-cat="novedades">
+        <img class="cat-card-img" src="img/productos/topline-seven-lata.jpg" alt="Chicles Topline Seven en lata edición limitada" loading="lazy">
+        <div class="cat-card-nombre">Chicles Topline Seven en Lata · Edición Limitada 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Chicles Topline Seven en Lata Edición Limitada',7000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="novedades">
         <img class="cat-card-img" src="img/productos/oreo-bts.jpg" alt="Oreo BTS Edición Limitada 118g" loading="lazy">
