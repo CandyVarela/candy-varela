@@ -380,7 +380,14 @@
   .btn-enviar { background:var(--green); color:#fff; border:none; border-radius:10px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:8px 14px; cursor:pointer; }
 
   /* GALERÍA NEÓN MONSTER */
-  .neon-section { background:#0a0a14; padding:46px 24px; text-align:center; overflow:hidden; }
+  .neon-section { position:relative; background:#0a0a14 radial-gradient(circle at 15% 20%,rgba(57,255,20,0.16),transparent 45%),radial-gradient(circle at 85% 15%,rgba(0,229,255,0.14),transparent 45%),radial-gradient(circle at 50% 90%,rgba(57,255,20,0.10),transparent 50%); padding:46px 24px; text-align:center; overflow:hidden; background-size:cover; }
+  .neon-section::before { content:""; position:absolute; inset:0; background-image:linear-gradient(rgba(57,255,20,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,0.06) 1px,transparent 1px); background-size:34px 34px; -webkit-mask-image:radial-gradient(circle at 50% 40%,#000 0%,transparent 75%); mask-image:radial-gradient(circle at 50% 40%,#000 0%,transparent 75%); pointer-events:none; z-index:0; }
+  .neon-m-field { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+  .neon-m-field span { position:absolute; font-family:'Poppins',sans-serif; font-weight:900; color:rgba(57,255,20,0.10); text-shadow:0 0 14px rgba(57,255,20,0.25); line-height:1; user-select:none; }
+  .neon-m-field span.cy { color:rgba(0,229,255,0.10); text-shadow:0 0 14px rgba(0,229,255,0.25); }
+  .neon-m-field span { animation:mFloat 6s ease-in-out infinite; }
+  @keyframes mFloat { 0%,100%{ transform:translateY(0) rotate(var(--r,0deg)); opacity:0.7; } 50%{ transform:translateY(-10px) rotate(var(--r,0deg)); opacity:1; } }
+  .neon-title, .neon-sub, .neon-gallery { position:relative; z-index:1; }
   .neon-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.9rem; color:#fff; margin-bottom:6px; text-shadow:0 0 8px #39ff14,0 0 18px #39ff14,0 0 32px rgba(57,255,20,0.6); letter-spacing:0.02em; }
   .neon-title .verde { color:#39ff14; }
   .neon-sub { color:rgba(255,255,255,0.55); font-size:0.9rem; font-weight:600; margin-bottom:30px; }
@@ -3876,6 +3883,20 @@
 
   <!-- GALERÍA NEÓN MONSTER -->
   <div class="neon-section" id="monster" style="border-radius:24px;margin-bottom:40px;scroll-margin-top:120px;">
+    <div class="neon-m-field" aria-hidden="true">
+      <span style="top:6%;left:4%;font-size:3.2rem;--r:-12deg;animation-delay:0s;">M</span>
+      <span style="top:14%;left:88%;font-size:2.4rem;--r:10deg;animation-delay:0.6s;" class="cy">M</span>
+      <span style="top:32%;left:18%;font-size:1.8rem;--r:6deg;animation-delay:1.2s;">M</span>
+      <span style="top:8%;left:48%;font-size:2.1rem;--r:-8deg;animation-delay:1.8s;" class="cy">M</span>
+      <span style="top:60%;left:6%;font-size:2.6rem;--r:14deg;animation-delay:0.3s;">M</span>
+      <span style="top:70%;left:92%;font-size:3rem;--r:-16deg;animation-delay:0.9s;">M</span>
+      <span style="top:46%;left:78%;font-size:1.6rem;--r:4deg;animation-delay:1.5s;" class="cy">M</span>
+      <span style="top:82%;left:34%;font-size:2.2rem;--r:-6deg;animation-delay:2.1s;">M</span>
+      <span style="top:20%;left:65%;font-size:1.4rem;--r:12deg;animation-delay:0.4s;">M</span>
+      <span style="top:88%;left:60%;font-size:2rem;--r:-10deg;animation-delay:1s;" class="cy">M</span>
+      <span style="top:2%;left:72%;font-size:1.5rem;--r:8deg;animation-delay:1.7s;">M</span>
+      <span style="top:52%;left:40%;font-size:1.3rem;--r:-4deg;animation-delay:2.4s;">M</span>
+    </div>
     <h2 class="neon-title">⚡ Monster <span class="verde">Edición Limitada</span> ⚡</h2>
     <p class="neon-sub">Sabores importados que no vas a encontrar en otro lado 👀 · deslizá para ver más →</p>
     <div class="neon-gallery">
