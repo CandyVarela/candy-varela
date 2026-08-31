@@ -238,6 +238,17 @@
   .promo-novedades-oferta-badge { position:absolute; top:-8px; right:-8px; background:#ffd23d; color:#7b2ff7; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.6rem; padding:3px 8px; border-radius:50px; box-shadow:0 2px 6px rgba(0,0,0,0.25); transform:rotate(8deg); }
   @media (max-width:600px) { .promo-novedades-title { font-size:1.35rem; } .promo-novedades-item { width:96px; } .promo-novedades-item img { height:90px; } }
 
+  /* BANNER EMPRENDEDORES - DESTACADO ARRIBA */
+  @keyframes empBannerShimmer { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
+  @keyframes empBannerGlow { 0%,100%{box-shadow:0 0 16px rgba(255,47,176,0.5),0 0 40px rgba(255,106,213,0.3);} 50%{box-shadow:0 0 28px rgba(255,47,176,0.85),0 0 60px rgba(255,106,213,0.55);} }
+  .promo-emprendedores-banner { position:relative; background:linear-gradient(120deg,#c0107a,#ff2fb0 35%,#ff6ad5 65%,#c0107a); background-size:260% 260%; animation:empBannerShimmer 8s ease-in-out infinite, empBannerGlow 3.2s ease-in-out infinite; border-radius:26px; padding:26px 18px 28px; margin-bottom:32px; overflow:hidden; border:2px solid rgba(255,255,255,0.3); }
+  .promo-emp-inner { position:relative; z-index:2; max-width:1000px; margin:0 auto; text-align:center; }
+  .promo-emp-badge { display:inline-flex; align-items:center; gap:5px; background:#fff; color:#c0107a; font-weight:800; font-size:0.7rem; padding:4px 14px; border-radius:50px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px; box-shadow:0 2px 8px rgba(0,0,0,0.2); }
+  .promo-emp-title { font-family:'Poppins',sans-serif; font-weight:900; font-size:1.7rem; letter-spacing:0.02em; margin-bottom:5px; color:#fff; text-shadow:0 0 8px rgba(255,255,255,0.5),2px 2px 0 #7a0850; }
+  .promo-emp-sub { color:#ffe0f4; font-size:0.85rem; font-weight:700; margin-bottom:18px; }
+  .promo-emp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media (max-width:800px) { .promo-emp-grid { grid-template-columns:1fr; } }
+
   /* BANNER KIT MERIENDA CHOCOLINAS - VIOLETA */
   @keyframes kmShimmer { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
   @keyframes kmGlowPulse { 0%,100%{box-shadow:0 0 20px rgba(180,60,255,0.55),0 0 50px rgba(123,47,247,0.35);} 50%{box-shadow:0 0 34px rgba(180,60,255,0.85),0 0 80px rgba(123,47,247,0.55);} }
@@ -1046,6 +1057,41 @@
       <div class="promo-km-img-wrap">
         <span class="promo-km-badge">Edición Limitada</span>
         <img src="img/productos/kit-merienda-chocolinas.jpg" alt="Kit Merienda Chocolinas Rellenas" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="promo-emprendedores-banner">
+    <div class="promo-emp-inner">
+      <span class="promo-emp-badge">💼 Para revender</span>
+      <h2 class="promo-emp-title">EMPRENDEDORES 💗</h2>
+      <p class="promo-emp-sub">Promos mayoristas para tu emprendimiento · gomitas por bolsas</p>
+      <div class="promo-emp-grid">
+
+        <div class="emp-card candy">
+          <div class="emp-card-icon">🍬</div>
+          <div class="emp-card-title">PROMO CANDY</div>
+          <div class="emp-card-desc">6 bolsas de 500g<br>de gomitas surtidas</div>
+          <div class="emp-card-precio">$57.000</div>
+          <button class="emp-card-btn" onclick="agregarKinder(this,'PROMO CANDY · 6 bolsas de 500g de gomitas',57000)">+ Agregar</button>
+        </div>
+
+        <div class="emp-card oro">
+          <div class="emp-card-icon">🏆</div>
+          <div class="emp-card-title">PROMO CANDY ORO</div>
+          <div class="emp-card-desc">10 bolsas de 500g<br>de gomitas surtidas</div>
+          <div class="emp-card-precio">$80.000</div>
+          <button class="emp-card-btn" onclick="agregarKinder(this,'PROMO CANDY ORO · 10 bolsas de 500g de gomitas',80000)">+ Agregar</button>
+        </div>
+
+        <div class="emp-card diamante">
+          <div class="emp-card-icon">💎</div>
+          <div class="emp-card-title">PROMO CANDY DIAMANTE</div>
+          <div class="emp-card-desc">10 bolsas de 500g + 2 bolsas de 1kg<br>de gomitas surtidas</div>
+          <div class="emp-card-precio">$100.000</div>
+          <button class="emp-card-btn" onclick="agregarKinder(this,'PROMO CANDY DIAMANTE · 10 bolsas de 500g + 2 bolsas de 1kg de gomitas',100000)">+ Agregar</button>
+        </div>
+
       </div>
     </div>
   </div>
