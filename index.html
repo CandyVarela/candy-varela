@@ -5154,18 +5154,6 @@
       </div>`;
     }
 
-    const descuentoCupon = calcularDescuentoCupon();
-    if (descuentoCupon > 0) {
-      html += `<div style="margin-top:16px;display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid #7b2ff7;border-radius:14px;box-shadow:0 0 10px rgba(123,47,247,0.35);background:linear-gradient(120deg,#f3e8ff,#ffe3f7);">
-        <span style="font-size:1.7rem;flex-shrink:0;">🎟️</span>
-        <div style="flex:1;min-width:0;">
-          <div style="font-family:'Poppins',sans-serif;font-weight:800;color:#7b2ff7;font-size:0.88rem;">¡Cupón CHOCOLINAS10 activado!</div>
-          <div style="font-size:0.76rem;color:var(--text-muted);font-weight:600;">-10% por llevar el Kit Merienda Chocolinas</div>
-        </div>
-        <div style="font-family:'Poppins',sans-serif;font-weight:800;color:#7b2ff7;flex-shrink:0;">-$${descuentoCupon.toLocaleString('es-AR')}</div>
-      </div>`;
-    }
-
     const sugeridos = SUGERIDOS_CARRITO.filter(p => !cartItems[p.nombre]);
     if (sugeridos.length > 0) {
       html += `<div class="modal-subcat" style="margin-top:20px;">✨ También te puede interesar</div><div class="modal-productos">`;
@@ -5182,16 +5170,11 @@
       html += '</div>';
     }
 
-    const totalFinal = cartTotal - descuentoCupon;
     html += `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:18px;border-top:1px solid rgba(0,0,0,0.08);">
-      <strong style="font-size:1.05rem;">${descuentoCupon > 0 ? `<span style="text-decoration:line-through;color:#aaa;font-size:0.78rem;margin-right:6px;">$${cartTotal.toLocaleString('es-AR')}</span>Total: $${totalFinal.toLocaleString('es-AR')}` : `Total: $${cartTotal.toLocaleString('es-AR')}`}</strong>
+      <strong style="font-size:1.05rem;">Total: $${cartTotal.toLocaleString('es-AR')}</strong>
       <button class="btn-enviar" onclick="enviarPedidoWhatsApp()">📲 Finalizar por WhatsApp</button>
     </div>`;
     cont.innerHTML = html;
-  }
-  const CUPON_TRIGGER = 'Kit Merienda Chocolinas Rellenas';
-  function calcularDescuentoCupon() {
-    return cartItems[CUPON_TRIGGER] ? Math.round(cartTotal * 0.10) : 0;
   }
   const SUGERIDOS_CARRITO = [
     { nombre:'Bonobon', variante:'Pistacho · Supreme · Tradicional', precio:1000 },
@@ -5214,13 +5197,7 @@
     for (const [nombre, info] of Object.entries(cartItems)) {
       detalle += `▪ ${nombre} x${info.cantidad}\n`;
     }
-    const descuentoCupon = calcularDescuentoCupon();
-    if (descuentoCupon > 0) {
-      const totalFinal = cartTotal - descuentoCupon;
-      detalle += `\n🎟️ Cupón CHOCOLINAS10 (-10%): -$${descuentoCupon.toLocaleString('es-AR')}\n💰 *Total con descuento: $${totalFinal.toLocaleString('es-AR')}*\n\n¿Cómo puedo abonar y coordinar el envío?`;
-    } else {
-      detalle += `\n💰 *Total: $${cartTotal.toLocaleString('es-AR')}*\n\n¿Cómo puedo abonar y coordinar el envío?`;
-    }
+    detalle += `\n💰 *Total: $${cartTotal.toLocaleString('es-AR')}*\n\n¿Cómo puedo abonar y coordinar el envío?`;
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(detalle)}`, '_blank');
   }
   document.getElementById('btnEnviarPedido').addEventListener('click', enviarPedidoWhatsApp);
