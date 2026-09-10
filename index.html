@@ -199,6 +199,33 @@
   .promo-letras-cta { display:inline-block; margin-top:16px; background:#fff; border:2px solid #fff; color:#ff2f92; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:8px 22px; text-decoration:none; box-shadow:0 3px 0 #d6006b; }
   @media (max-width:600px) { .promo-letras-title { font-size:1.35rem; } .promo-letras-item { width:92px; } .promo-letras-item img { height:92px; } }
 
+
+  /* BANNER OSITO ZOMBIE - NEON HALLOWEEN */
+  @keyframes zombieNeonFlicker {
+    0%,19%,21%,23%,54%,56%,100% { text-shadow:0 0 6px #39ff14,0 0 14px #39ff14,0 0 28px #39ff14,0 0 46px #c026ff,2px 2px 0 #0d0018; }
+    20%,22%,55% { text-shadow:0 0 2px #39ff14,2px 2px 0 #0d0018; }
+  }
+  @keyframes zombieGlowPulse {
+    0%,100% { box-shadow:0 0 18px rgba(57,255,20,0.55),0 0 38px rgba(192,38,255,0.4),0 8px 26px rgba(0,0,0,0.55); }
+    50% { box-shadow:0 0 30px rgba(57,255,20,0.85),0 0 60px rgba(192,38,255,0.65),0 8px 26px rgba(0,0,0,0.55); }
+  }
+  @keyframes zombieBearFloat {
+    0%,100% { transform:translateY(0) rotate(var(--rot,0deg)); }
+    50% { transform:translateY(-10px) rotate(var(--rot,0deg)); }
+  }
+  .promo-zombie-banner { position:relative; background:radial-gradient(circle at 25% 15%,#3a0a5c,#170027 65%); border:3px solid #39ff14; border-radius:26px; padding:26px 18px 28px; margin-bottom:32px; overflow:hidden; animation:zombieGlowPulse 2.6s ease-in-out infinite; }
+  .zombie-bear-bg { position:absolute; z-index:1; width:64px; height:86px; background-repeat:no-repeat; background-size:contain; opacity:0.55; pointer-events:none; animation:zombieBearFloat 3.2s ease-in-out infinite; filter:drop-shadow(0 0 10px currentColor); }
+  .promo-zombie-inner { position:relative; z-index:2; max-width:640px; margin:0 auto; text-align:center; }
+  .promo-zombie-tag { display:inline-block; background:#39ff14; color:#170027; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; padding:3px 14px; border-radius:50px; margin-bottom:10px; box-shadow:0 2px 10px rgba(57,255,20,0.5); }
+  .promo-zombie-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:2rem; letter-spacing:0.02em; margin-bottom:6px; color:#fff; animation:zombieNeonFlicker 3.5s infinite; }
+  .promo-zombie-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.85rem; color:#e6c9ff; opacity:0.95; margin-bottom:18px; }
+  .promo-zombie-img-wrap { display:inline-block; border-radius:18px; overflow:hidden; border:3px solid #39ff14; box-shadow:0 0 20px rgba(57,255,20,0.6),0 0 34px rgba(192,38,255,0.45); margin-bottom:16px; }
+  .promo-zombie-img-wrap img { width:190px; height:auto; display:block; }
+  .promo-zombie-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.6rem; color:#39ff14; text-shadow:0 0 10px rgba(57,255,20,0.7); margin-bottom:6px; }
+  .promo-zombie-nota { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.72rem; color:#e6c9ff; opacity:0.85; margin-bottom:16px; }
+  .promo-zombie-btn { display:inline-block; background:linear-gradient(135deg,#39ff14,#00c46a); color:#0d0018; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.88rem; padding:10px 26px; cursor:pointer; box-shadow:0 4px 0 #1a8a3f,0 6px 16px rgba(57,255,20,0.4); }
+  @media (max-width:600px) { .promo-zombie-title { font-size:1.5rem; } .promo-zombie-img-wrap img { width:150px; } }
+
   @keyframes novedadesShimmer {
     0%,100% { background-position:0% 50%; }
     50% { background-position:100% 50%; }
@@ -1141,6 +1168,26 @@
   <!-- GRILLA DE CATÁLOGO UNIFICADA -->
   <div class="catalog-section" id="catalogoGrid">
     <h2 class="catalog-title">Nuestros Productos 🍬</h2>
+
+
+    <div class="promo-zombie-banner">
+      <span class="zombie-bear-bg" style="top:8%;left:5%;--rot:-14deg;transform:rotate(-14deg);color:#39ff14;background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20130%22%3E%0A%3Cellipse%20cx%3D%2250%22%20cy%3D%2286%22%20rx%3D%2226%22%20ry%3D%2230%22%20fill%3D%22%2339ff14%22/%3E%0A%3Ccircle%20cx%3D%2221%22%20cy%3D%2272%22%20r%3D%2211%22%20fill%3D%22%2339ff14%22/%3E%0A%3Ccircle%20cx%3D%2279%22%20cy%3D%2272%22%20r%3D%2211%22%20fill%3D%22%2339ff14%22/%3E%0A%3Cellipse%20cx%3D%2226%22%20cy%3D%22118%22%20rx%3D%2211%22%20ry%3D%229%22%20fill%3D%22%2339ff14%22/%3E%0A%3Cellipse%20cx%3D%2274%22%20cy%3D%22118%22%20rx%3D%2211%22%20ry%3D%229%22%20fill%3D%22%2339ff14%22/%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2242%22%20r%3D%2224%22%20fill%3D%22%2339ff14%22/%3E%0A%3Ccircle%20cx%3D%2227%22%20cy%3D%2222%22%20r%3D%229.5%22%20fill%3D%22%2339ff14%22/%3E%0A%3Ccircle%20cx%3D%2273%22%20cy%3D%2222%22%20r%3D%229.5%22%20fill%3D%22%2339ff14%22/%3E%0A%3Cellipse%20cx%3D%2250%22%20cy%3D%2248%22%20rx%3D%229%22%20ry%3D%227%22%20fill%3D%22%2339ff14%22/%3E%0A%3Cline%20x1%3D%2240%22%20y1%3D%2236%22%20x2%3D%2246%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2246%22%20y1%3D%2236%22%20x2%3D%2240%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2254%22%20y1%3D%2236%22%20x2%3D%2260%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2260%22%20y1%3D%2236%22%20x2%3D%2254%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cpath%20d%3D%22M42%2050%20Q46%2054%2050%2050%20Q54%2054%2058%2050%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.2%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%0A%3C/svg%3E');"></span>
+      <span class="zombie-bear-bg" style="top:10%;right:6%;--rot:12deg;transform:rotate(12deg);color:#c026ff;background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20130%22%3E%0A%3Cellipse%20cx%3D%2250%22%20cy%3D%2286%22%20rx%3D%2226%22%20ry%3D%2230%22%20fill%3D%22%23c026ff%22/%3E%0A%3Ccircle%20cx%3D%2221%22%20cy%3D%2272%22%20r%3D%2211%22%20fill%3D%22%23c026ff%22/%3E%0A%3Ccircle%20cx%3D%2279%22%20cy%3D%2272%22%20r%3D%2211%22%20fill%3D%22%23c026ff%22/%3E%0A%3Cellipse%20cx%3D%2226%22%20cy%3D%22118%22%20rx%3D%2211%22%20ry%3D%229%22%20fill%3D%22%23c026ff%22/%3E%0A%3Cellipse%20cx%3D%2274%22%20cy%3D%22118%22%20rx%3D%2211%22%20ry%3D%229%22%20fill%3D%22%23c026ff%22/%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2242%22%20r%3D%2224%22%20fill%3D%22%23c026ff%22/%3E%0A%3Ccircle%20cx%3D%2227%22%20cy%3D%2222%22%20r%3D%229.5%22%20fill%3D%22%23c026ff%22/%3E%0A%3Ccircle%20cx%3D%2273%22%20cy%3D%2222%22%20r%3D%229.5%22%20fill%3D%22%23c026ff%22/%3E%0A%3Cellipse%20cx%3D%2250%22%20cy%3D%2248%22%20rx%3D%229%22%20ry%3D%227%22%20fill%3D%22%23c026ff%22/%3E%0A%3Cline%20x1%3D%2240%22%20y1%3D%2236%22%20x2%3D%2246%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2246%22%20y1%3D%2236%22%20x2%3D%2240%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2254%22%20y1%3D%2236%22%20x2%3D%2260%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2260%22%20y1%3D%2236%22%20x2%3D%2254%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cpath%20d%3D%22M42%2050%20Q46%2054%2050%2050%20Q54%2054%2058%2050%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.2%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%0A%3C/svg%3E');animation-delay:0.6s;"></span>
+      <span class="zombie-bear-bg" style="bottom:6%;left:10%;--rot:10deg;transform:rotate(10deg);width:50px;height:68px;color:#c026ff;background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20130%22%3E%0A%3Cellipse%20cx%3D%2250%22%20cy%3D%2286%22%20rx%3D%2226%22%20ry%3D%2230%22%20fill%3D%22%23c026ff%22/%3E%0A%3Ccircle%20cx%3D%2221%22%20cy%3D%2272%22%20r%3D%2211%22%20fill%3D%22%23c026ff%22/%3E%0A%3Ccircle%20cx%3D%2279%22%20cy%3D%2272%22%20r%3D%2211%22%20fill%3D%22%23c026ff%22/%3E%0A%3Cellipse%20cx%3D%2226%22%20cy%3D%22118%22%20rx%3D%2211%22%20ry%3D%229%22%20fill%3D%22%23c026ff%22/%3E%0A%3Cellipse%20cx%3D%2274%22%20cy%3D%22118%22%20rx%3D%2211%22%20ry%3D%229%22%20fill%3D%22%23c026ff%22/%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2242%22%20r%3D%2224%22%20fill%3D%22%23c026ff%22/%3E%0A%3Ccircle%20cx%3D%2227%22%20cy%3D%2222%22%20r%3D%229.5%22%20fill%3D%22%23c026ff%22/%3E%0A%3Ccircle%20cx%3D%2273%22%20cy%3D%2222%22%20r%3D%229.5%22%20fill%3D%22%23c026ff%22/%3E%0A%3Cellipse%20cx%3D%2250%22%20cy%3D%2248%22%20rx%3D%229%22%20ry%3D%227%22%20fill%3D%22%23c026ff%22/%3E%0A%3Cline%20x1%3D%2240%22%20y1%3D%2236%22%20x2%3D%2246%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2246%22%20y1%3D%2236%22%20x2%3D%2240%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2254%22%20y1%3D%2236%22%20x2%3D%2260%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2260%22%20y1%3D%2236%22%20x2%3D%2254%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cpath%20d%3D%22M42%2050%20Q46%2054%2050%2050%20Q54%2054%2058%2050%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.2%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%0A%3C/svg%3E');animation-delay:1.1s;"></span>
+      <span class="zombie-bear-bg" style="bottom:8%;right:9%;--rot:-8deg;transform:rotate(-8deg);width:50px;height:68px;color:#39ff14;background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20130%22%3E%0A%3Cellipse%20cx%3D%2250%22%20cy%3D%2286%22%20rx%3D%2226%22%20ry%3D%2230%22%20fill%3D%22%2339ff14%22/%3E%0A%3Ccircle%20cx%3D%2221%22%20cy%3D%2272%22%20r%3D%2211%22%20fill%3D%22%2339ff14%22/%3E%0A%3Ccircle%20cx%3D%2279%22%20cy%3D%2272%22%20r%3D%2211%22%20fill%3D%22%2339ff14%22/%3E%0A%3Cellipse%20cx%3D%2226%22%20cy%3D%22118%22%20rx%3D%2211%22%20ry%3D%229%22%20fill%3D%22%2339ff14%22/%3E%0A%3Cellipse%20cx%3D%2274%22%20cy%3D%22118%22%20rx%3D%2211%22%20ry%3D%229%22%20fill%3D%22%2339ff14%22/%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2242%22%20r%3D%2224%22%20fill%3D%22%2339ff14%22/%3E%0A%3Ccircle%20cx%3D%2227%22%20cy%3D%2222%22%20r%3D%229.5%22%20fill%3D%22%2339ff14%22/%3E%0A%3Ccircle%20cx%3D%2273%22%20cy%3D%2222%22%20r%3D%229.5%22%20fill%3D%22%2339ff14%22/%3E%0A%3Cellipse%20cx%3D%2250%22%20cy%3D%2248%22%20rx%3D%229%22%20ry%3D%227%22%20fill%3D%22%2339ff14%22/%3E%0A%3Cline%20x1%3D%2240%22%20y1%3D%2236%22%20x2%3D%2246%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2246%22%20y1%3D%2236%22%20x2%3D%2240%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2254%22%20y1%3D%2236%22%20x2%3D%2260%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cline%20x1%3D%2260%22%20y1%3D%2236%22%20x2%3D%2254%22%20y2%3D%2242%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%0A%3Cpath%20d%3D%22M42%2050%20Q46%2054%2050%2050%20Q54%2054%2058%2050%22%20stroke%3D%22%230d0018%22%20stroke-width%3D%222.2%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%0A%3C/svg%3E');animation-delay:1.6s;"></span>
+      <div class="promo-zombie-inner">
+        <span class="promo-zombie-tag">🎃 Edición Halloween</span>
+        <div class="promo-zombie-title">OSITO ZOMBIE 🧟</div>
+        <div class="promo-zombie-sub">Mogul Extreme · Pastillas de goma rellenas 60g · Tutti Frutti, Limón y Blueberry</div>
+        <div class="promo-zombie-img-wrap">
+          <img src="img/productos/osito-zombie.jpg" alt="Osito Zombie Mogul Extreme" loading="lazy">
+        </div>
+        <div class="promo-zombie-precio">$20.000</div>
+        <div class="promo-zombie-nota">🎲 El color del relleno es sorpresa: se asigna al azar, no se puede elegir</div>
+        <div><button class="promo-zombie-btn" onclick="agregarKinder(this,'Osito Zombie Mogul Extreme',20000)">+ Agregar</button></div>
+      </div>
+    </div>
+
 
     <div class="promo-novedades-banner">
       <div class="promo-novedades-inner">
@@ -2338,6 +2385,11 @@
         <img class="cat-card-img" src="img/productos/promo-candy-gomitas.jpg" alt="Promo Candy Diamante 10 bolsas + 2 bolsas de gomitas" loading="lazy">
         <div class="cat-card-nombre">PROMO CANDY DIAMANTE · 10 bolsas de 500g + 2 bolsas de 1kg de gomitas</div>
         <div class="cat-card-row"><span class="cat-card-precio">$100.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'PROMO CANDY DIAMANTE · 10 bolsas de 500g + 2 bolsas de 1kg de gomitas',100000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="mundogomitas">
+        <img class="cat-card-img" src="img/productos/osito-zombie.jpg" alt="Osito Zombie Mogul Extreme" loading="lazy">
+        <div class="cat-card-nombre">Osito Zombie 🧟 (color al azar)</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Osito Zombie Mogul Extreme',20000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="mundogomitas">
         <img class="cat-card-img" src="img/productos/picada-dulce.jpg" alt="Picada Dulce" loading="lazy">
