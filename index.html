@@ -763,40 +763,6 @@
   .hotsale-item-btn.agregado { background:var(--green); }
   @media (max-width:600px) { .hotsale-title { font-size:1.4rem; } .hotsale-item { flex:0 0 136px; width:136px; } }
 
-  /* GRID DE SECCIONES CHICAS LADO A LADO (desktop) */
-  .pair-row { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:40px; align-items:stretch; }
-  .pair-row > .mystery-section, .pair-row > .letras-section { margin-bottom:0; height:100%; }
-  @media (max-width:900px) { .pair-row { grid-template-columns:1fr; gap:0; } .pair-row > .mystery-section, .pair-row > .letras-section { margin-bottom:40px; } }
-
-  /* SECCIÓN BOLSAS MISTERIOSAS */
-  .mystery-section { position:relative; background:radial-gradient(circle at 50% 0%,#25062f,#0d0212 70%); border:2px solid var(--rosa); border-radius:24px; padding:26px 16px 28px; margin-bottom:40px; overflow:hidden; }
-  .mystery-deco { position:absolute; font-size:1.6rem; opacity:0.35; pointer-events:none; }
-  .mystery-deco.m1 { top:10px; left:14px; } .mystery-deco.m2 { top:10px; right:14px; } .mystery-deco.m3 { bottom:10px; left:18px; } .mystery-deco.m4 { bottom:10px; right:18px; }
-  .mystery-inner { position:relative; z-index:2; text-align:center; }
-  .mystery-badge { display:inline-flex; align-items:center; gap:5px; background:var(--rosa); color:#fff; font-weight:800; font-size:0.7rem; padding:4px 14px; border-radius:50px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; box-shadow:0 0 10px rgba(255,95,168,0.8); }
-  .mystery-title { font-family:'Poppins',sans-serif; font-weight:900; font-size:1.6rem; margin-bottom:4px; color:#fff; text-shadow:0 0 8px var(--rosa),0 0 20px rgba(255,95,168,0.7); }
-  .mystery-desc { font-size:0.82rem; color:#e7c9dc; margin-bottom:20px; }
-  .mystery-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; }
-  .mystery-card { flex:1 1 220px; max-width:240px; background:#1c0a22; border-radius:18px; overflow:hidden; padding:18px 16px 20px; display:flex; flex-direction:column; align-items:center; text-align:center; transition:transform 0.2s; }
-  .mystery-card:hover { transform:translateY(-4px); }
-  .mystery-card.tier-1 { border:2px solid var(--rosa); box-shadow:0 0 10px rgba(255,95,168,0.4); }
-  .mystery-card.tier-2 { border:2px solid var(--amarillo); box-shadow:0 0 10px rgba(245,197,24,0.4); }
-  .mystery-card.tier-3 { border:2px solid #4fc3f7; box-shadow:0 0 10px rgba(79,195,247,0.4); }
-  .mystery-card img { width:96px; height:96px; object-fit:cover; border-radius:50%; margin-bottom:12px; border:3px solid rgba(255,255,255,0.15); }
-  .mystery-card.tier-1 img { border-color:var(--rosa); }
-  .mystery-card.tier-2 img { border-color:var(--amarillo); }
-  .mystery-card.tier-3 img { border-color:#4fc3f7; }
-  .mystery-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.95rem; color:#fff; margin-bottom:4px; }
-  .mystery-card.tier-2 .mystery-nombre { color:var(--amarillo); }
-  .mystery-card.tier-3 .mystery-nombre { color:#4fc3f7; }
-  .mystery-card-desc { font-size:0.74rem; color:#cbb3c6; margin-bottom:12px; line-height:1.3; }
-  .mystery-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.3rem; color:#fff; margin-bottom:12px; }
-  .mystery-btn { background:#fff; color:#1c0a22; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.85rem; padding:9px 22px; cursor:pointer; transition:transform 0.15s; }
-  .mystery-btn:hover { transform:scale(1.05); }
-  .mystery-card.tier-2 .mystery-btn { background:var(--amarillo); }
-  .mystery-card.tier-3 .mystery-btn { background:#4fc3f7; color:#04202c; }
-  @media (max-width:600px) { .mystery-title { font-size:1.3rem; } .mystery-card { flex:1 1 100%; max-width:280px; } }
-
   /* SECCIÓN TRADICIONAL */
   .trad-section { background:linear-gradient(135deg,#ffd3e0,#d9e7ff 50%,#d6f5e3); border-radius:24px; padding:36px 24px 40px; margin-bottom:40px; box-shadow:0 6px 24px rgba(0,0,0,0.1); }
   .trad-head { text-align:center; margin-bottom:28px; }
@@ -979,7 +945,6 @@
     <a href="#novedades" onclick="cerrarDrawer()"><span class="drawer-ico">✨</span> Novedades</a>
     <a href="#regaleria" onclick="cerrarDrawer()"><span class="drawer-ico">🎀</span> Regalería</a>
     <a href="#monster" onclick="cerrarDrawer()"><span class="drawer-ico">⚡</span> Monster</a>
-    <a href="#bolsasmisteriosas" onclick="cerrarDrawer()"><span class="drawer-ico">🛍️</span> Bolsas Misteriosas</a>
     <a href="#letrasdulces" onclick="cerrarDrawer()"><span class="drawer-ico">🔤</span> Letras Dulces</a>
     <a href="#alfajoresvirales" onclick="cerrarDrawer()"><span class="drawer-ico">🍭</span> Alfajores Virales</a>
     <a href="#importados" onclick="cerrarDrawer()"><span class="drawer-ico">🌏</span> Golosinas Importadas</a>
@@ -1024,7 +989,6 @@
   <a href="#novedades" class="cat-filter-link"><span>✨</span> Novedades</a>
   <a href="#regaleria" class="cat-filter-link"><span>🎀</span> Regalería</a>
   <a href="#monster" class="cat-filter-link"><span>⚡</span> Monster</a>
-  <a href="#bolsasmisteriosas" class="cat-filter-link"><span>🛍️</span> Bolsas Misteriosas</a>
   <a href="#letrasdulces" class="cat-filter-link"><span>🔤</span> Letras Dulces</a>
   <a href="#alfajoresvirales" class="cat-filter-link"><span>🍭</span> Alfajores Virales</a>
   <a href="#importados" class="cat-filter-link"><span>🌏</span> Golosinas Importadas</a>
@@ -1456,21 +1420,6 @@
         <img class="cat-card-img" src="img/productos/pescado-raul-pandulce.jpg" alt="Pescado Raúl Pan Dulce con Chips Dulce de Leche" loading="lazy">
         <div class="cat-card-nombre">Pescado Raúl Pan Dulce con Chips Dulce de Leche 🆕</div>
         <div class="cat-card-row"><span class="cat-card-precio">$5.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Pescado Raúl Pan Dulce con Chips Dulce de Leche',5500)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="bolsasmisteriosas">
-        <img class="cat-card-img" src="img/productos/bolsa-misteriosa.jpg" alt="Bolsa Sorpresa" loading="lazy">
-        <div class="cat-card-nombre">Bolsa Sorpresa</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsa Sorpresa',10000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="bolsasmisteriosas">
-        <img class="cat-card-img" src="img/productos/bolsa-misteriosa.jpg" alt="Bolsa Sorpresa Pro" loading="lazy">
-        <div class="cat-card-nombre">Bolsa Sorpresa Pro</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$15.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsa Sorpresa Pro',15000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="bolsasmisteriosas">
-        <img class="cat-card-img" src="img/productos/bolsa-misteriosa.jpg" alt="Bolsa Sorpresa Premium" loading="lazy">
-        <div class="cat-card-nombre">Bolsa Sorpresa Premium</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Bolsa Sorpresa Premium',20000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="ofertas">
         <img class="cat-card-img" src="img/productos/gomitas-surtidas.jpg" alt="Gomitas Surtidas 300g" loading="lazy">
@@ -2649,39 +2598,6 @@
     </div>
   </div>
 
-  <div class="pair-row" id="pairRowML">
-  <!-- SECCIÓN BOLSAS MISTERIOSAS -->
-  <div class="mystery-section" id="bolsasmisteriosas" style="scroll-margin-top:120px;">
-    <span class="mystery-deco m1">🛍️</span><span class="mystery-deco m2">✨</span><span class="mystery-deco m3">💰</span><span class="mystery-deco m4">🎁</span>
-    <div class="mystery-inner">
-      <h2 class="mystery-title">Bolsas Misteriosas Importadas</h2>
-      <p class="mystery-desc">¿Querés probar cosas diferentes y compartirlo con amigos o familia? Tenemos lo ideal 🌏✨</p>
-      <div class="mystery-grid">
-        <div class="mystery-card tier-1">
-          <img src="img/productos/bolsa-misteriosa.jpg" alt="Bolsa Sorpresa" loading="lazy">
-          <div class="mystery-nombre">Bolsa Sorpresa</div>
-          <div class="mystery-card-desc">Selección sorpresa de golosinas y snacks importados</div>
-          <div class="mystery-precio">$10.000</div>
-          <button class="mystery-btn" onclick="agregarKinder(this,'Bolsa Sorpresa',10000)">+ Agregar</button>
-        </div>
-        <div class="mystery-card tier-2">
-          <img src="img/productos/bolsa-misteriosa.jpg" alt="Bolsa Sorpresa Pro" loading="lazy">
-          <div class="mystery-nombre">Bolsa Sorpresa Pro</div>
-          <div class="mystery-card-desc">Más cantidad y variedad de productos importados</div>
-          <div class="mystery-precio">$15.000</div>
-          <button class="mystery-btn" onclick="agregarKinder(this,'Bolsa Sorpresa Pro',15000)">+ Agregar</button>
-        </div>
-        <div class="mystery-card tier-3">
-          <img src="img/productos/bolsa-misteriosa.jpg" alt="Bolsa Sorpresa Premium" loading="lazy">
-          <div class="mystery-nombre">Bolsa Sorpresa Premium</div>
-          <div class="mystery-card-desc">La selección más grande, para disfrutar a pleno</div>
-          <div class="mystery-precio">$20.000</div>
-          <button class="mystery-btn" onclick="agregarKinder(this,'Bolsa Sorpresa Premium',20000)">+ Agregar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- SECCIÓN LETRAS DULCES -->
   <div class="letras-section" id="letrasdulces" style="scroll-margin-top:120px;">
     <span class="letras-deco l1">🔤</span><span class="letras-deco l2">🍬</span><span class="letras-deco l3">✨</span><span class="letras-deco l4">🌈</span>
@@ -2708,7 +2624,6 @@
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- SECCIÓN EMPRENDEDORES -->
@@ -5348,7 +5263,7 @@
   function _buildProdsFromDOM(){
     const seen = new Set();
     const out = [];
-    const cardSelectors = ['.cat-card','.beb-card','.box-card-item','.cho-card','.imp-card','.kinder-card','.letras-card','.snk-card','.viral-card','.mystery-card','.emp-card'];
+    const cardSelectors = ['.cat-card','.beb-card','.box-card-item','.cho-card','.imp-card','.kinder-card','.letras-card','.snk-card','.viral-card','.emp-card'];
     document.querySelectorAll(cardSelectors.join(',')).forEach(function(c){
       const nombreEl = c.querySelector('[class*="nombre"], [class*="title"]');
       if(!nombreEl) return;
@@ -5399,7 +5314,7 @@
 
   // Filtro de categorías: muestra solo los productos de la categoría elegida
   (function(){
-    const catIds = ['novedades','regaleria','bolsasmisteriosas','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas','mundogomitas'];
+    const catIds = ['novedades','regaleria','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas','mundogomitas'];
     function filtrar(cat){
       document.querySelectorAll('.cat-card').forEach(function(c){
         c.style.display = (cat==='todos' || c.getAttribute('data-cat')===cat) ? '' : 'none';
