@@ -860,6 +860,32 @@
   .box-card-btn { background:#ff5fa8; color:#fff; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.75rem; padding:7px 12px; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
   .box-card-btn:hover { background:#d4006a; }
   @media (max-width:700px) { .box-card-item { flex:0 0 160px; width:160px; } }
+
+  /* BANNER BOX CARRERAS */
+  .promo-racing-banner { position:relative; overflow:hidden; border-radius:24px; margin-bottom:40px; background:radial-gradient(circle at 50% 0%,#2b2b36 0%,#141419 70%); box-shadow:0 8px 28px rgba(0,0,0,0.35); padding:34px 18px 34px; }
+  .promo-racing-banner::before, .promo-racing-banner::after { content:""; position:absolute; left:0; right:0; height:16px; background:repeating-conic-gradient(#fff 0 25%, #111 0 50%) 0 0/16px 16px; }
+  .promo-racing-banner::before { top:0; } .promo-racing-banner::after { bottom:0; }
+  .racing-speed { position:absolute; height:6px; border-radius:6px; background:linear-gradient(90deg,transparent,#ff3b1f); opacity:0.55; animation:racingZoom 2.4s linear infinite; }
+  @keyframes racingZoom { 0%{transform:translateX(-120%);} 100%{transform:translateX(420%);} }
+  .promo-racing-inner { position:relative; z-index:1; text-align:center; max-width:760px; margin:0 auto; }
+  .promo-racing-tag { display:inline-block; background:#ffcc00; color:#141419; font-family:'Poppins',sans-serif; font-weight:800; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; padding:5px 16px; border-radius:50px; transform:skewX(-10deg); }
+  .promo-racing-title { font-family:'Poppins',sans-serif; font-weight:800; font-style:italic; font-size:2.4rem; line-height:1; color:#fff; margin:14px 0 6px; letter-spacing:-0.01em; text-shadow:4px 4px 0 #ff3b1f, 7px 7px 0 rgba(0,0,0,0.5); }
+  .promo-racing-title span { color:#ffcc00; }
+  .promo-racing-sub { color:rgba(255,255,255,0.8); font-weight:700; font-size:0.9rem; margin-bottom:20px; }
+  .promo-racing-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .racing-card { background:#fff; border-radius:18px; overflow:hidden; border:3px solid #ff3b1f; box-shadow:0 6px 0 #a3200b; display:flex; flex-direction:column; transition:transform 0.15s; }
+  .racing-card:hover { transform:translateY(-3px); }
+  .racing-card img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+  .racing-card-info { padding:12px 10px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .racing-card-label { font-family:'Poppins',sans-serif; font-weight:800; font-style:italic; font-size:1.05rem; color:#141419; text-transform:uppercase; }
+  .racing-card-desc { font-size:0.74rem; color:#666; font-weight:600; line-height:1.3; flex:1; }
+  .racing-card-precio { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.35rem; color:#ff3b1f; }
+  .racing-card-btn { background:#ffcc00; color:#141419; border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:800; font-size:0.82rem; padding:10px 12px; cursor:pointer; box-shadow:0 3px 0 #b38f00; }
+  .racing-card-btn:active { transform:translateY(2px); box-shadow:0 1px 0 #b38f00; }
+  .racing-card.premium { border-color:#ffcc00; box-shadow:0 6px 0 #b38f00; }
+  .racing-card.premium .racing-card-precio { color:#141419; }
+  .racing-card-badge { display:inline-block; align-self:center; background:#141419; color:#ffcc00; font-size:0.62rem; font-weight:800; padding:3px 10px; border-radius:50px; text-transform:uppercase; letter-spacing:0.06em; }
+  @media (max-width:600px){ .promo-racing-title{font-size:1.8rem;} .racing-card-label{font-size:0.92rem;} .racing-card-precio{font-size:1.15rem;} .promo-racing-grid{gap:10px;} }
 </style>
 </head>
 <body>
@@ -1008,6 +1034,40 @@
       <div class="promo-km-img-wrap">
         <span class="promo-km-badge">Edición Limitada</span>
         <img src="img/productos/kit-merienda-chocolinas.jpg" alt="Kit Merienda Chocolinas Rellenas" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- BANNER BOX CARRERAS -->
+  <div class="promo-racing-banner" id="boxcarreras" style="scroll-margin-top:120px;">
+    <span class="racing-speed" style="top:22%;left:0;width:30%;"></span>
+    <span class="racing-speed" style="top:55%;left:0;width:22%;animation-delay:0.8s;"></span>
+    <span class="racing-speed" style="top:80%;left:0;width:26%;animation-delay:1.6s;background:linear-gradient(90deg,transparent,#ffcc00);"></span>
+    <div class="promo-racing-inner">
+      <span class="promo-racing-tag">🏁 Nuevo · Ideal para regalar</span>
+      <div class="promo-racing-title">BOX <span>CARRERAS</span> 🏎️</div>
+      <div class="promo-racing-sub">Autito de colección + bebida + golosinas, en caja lista para regalar</div>
+      <div class="promo-racing-grid">
+        <div class="racing-card">
+          <img src="img/productos/box-hotwheels-basico.jpg" alt="Box Básico con autito, Pepsi y golosinas" loading="lazy">
+          <div class="racing-card-info">
+            <div class="racing-card-label">Box Básico</div>
+            <div class="racing-card-desc">Autito de colección, Pepsi, alfajor y golosinas</div>
+            <div class="racing-card-precio">$20.000</div>
+            <button class="racing-card-btn" onclick="agregarKinder(this,'Box Básico Hot Wheels',20000)">+ Agregar</button>
+          </div>
+        </div>
+        <div class="racing-card premium">
+          <img src="img/productos/box-hotwheels-premium.jpg" alt="Box Premium con autito, Monster y golosinas" loading="lazy">
+          <div class="racing-card-info">
+            <span class="racing-card-badge">⭐ Premium</span>
+            <div class="racing-card-label">Box Premium</div>
+            <div class="racing-card-desc">Autito de colección, Monster, Kinder Sorpresa y Minitorta</div>
+            <div class="racing-card-precio">$30.000</div>
+            <button class="racing-card-btn" onclick="agregarKinder(this,'Box Premium Hot Wheels',30000)">+ Agregar</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
