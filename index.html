@@ -276,7 +276,34 @@
   .catalog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); gap:14px; }
   .cat-card { background:#fff; border-radius:14px; padding:10px; box-shadow:0 2px 10px rgba(0,0,0,0.07); display:flex; flex-direction:column; }
   .cat-card-img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:10px; margin-bottom:8px; }
-  .pancho-extra { width:100%; margin-bottom:8px; padding:6px 8px; border:1.5px solid var(--rosa-light); border-radius:10px; font-family:inherit; font-size:0.72rem; font-weight:700; color:#444; background:#fff; cursor:pointer; }
+  /* MINI BANNER PANCHOS */
+  .pancho-banner { position:relative; margin:28px auto 8px; max-width:1200px; border-radius:22px; overflow:hidden; padding:22px 16px 20px; scroll-margin-top:120px;
+    background:linear-gradient(160deg,#e8322a 0%,#c4161c 100%); box-shadow:0 8px 0 #8e0f13,0 12px 26px rgba(196,22,28,0.35); }
+  .pancho-banner::before { content:""; position:absolute; left:0; right:0; bottom:0; height:34px; opacity:0.9;
+    background-image:linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%),linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%);
+    background-size:24px 24px; background-position:0 0,12px 12px; background-color:#e8322a; }
+  .pancho-mostaza { position:absolute; left:0; right:0; top:10px; height:16px; opacity:0.85; pointer-events:none; }
+  .pancho-deco { position:absolute; font-size:2.4rem; opacity:0.22; pointer-events:none; animation:panchoFloat 5s ease-in-out infinite; }
+  .pancho-deco.d1 { top:30px; left:4%; } .pancho-deco.d2 { top:60px; right:5%; animation-delay:1.2s; } .pancho-deco.d3 { bottom:50px; left:14%; animation-delay:2.1s; font-size:1.8rem; }
+  @keyframes panchoFloat { 0%,100%{ transform:translateY(0) rotate(-8deg);} 50%{ transform:translateY(-8px) rotate(8deg);} }
+  .pancho-inner { position:relative; z-index:2; text-align:center; }
+  .pancho-tag { display:inline-block; background:#ffd23f; color:#8e0f13; font-family:'Nunito',sans-serif; font-weight:900; font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase; padding:4px 14px; border-radius:50px; margin:10px 0 6px; box-shadow:0 3px 0 #c9971a; }
+  .pancho-title { font-family:'Poppins',sans-serif; font-weight:900; font-size:2rem; color:#ffd23f; letter-spacing:0.02em; text-shadow:3px 3px 0 #8e0f13; line-height:1.1; }
+  .pancho-sub { font-family:'Nunito',sans-serif; font-weight:800; font-size:0.85rem; color:#fff; margin:6px 0 16px; }
+  .pancho-sub b { color:#ffd23f; }
+  .pancho-items { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; padding-bottom:30px; }
+  .pancho-card { background:#fffaf0; border-radius:18px; padding:10px 10px 12px; width:170px; box-shadow:0 5px 0 #8e0f13,0 8px 16px rgba(0,0,0,0.2); display:flex; flex-direction:column; transition:transform 0.2s; }
+  .pancho-card:hover { transform:translateY(-4px) rotate(-1deg); }
+  .pancho-ilus { background:radial-gradient(circle at 50% 60%,#fff3c4,#ffe28a); border-radius:12px; height:96px; display:flex; align-items:center; justify-content:center; margin-bottom:8px; }
+  .pancho-ilus svg { width:88%; height:auto; }
+  .pancho-badge { display:inline-block; align-self:center; background:#c4161c; color:#ffd23f; font-weight:900; font-size:0.6rem; padding:2px 8px; border-radius:50px; margin-bottom:4px; letter-spacing:0.06em; }
+  .pancho-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.88rem; color:#5a1a12; margin-bottom:6px; line-height:1.2; }
+  .pancho-extra { width:100%; margin-bottom:8px; padding:6px 4px; text-overflow:ellipsis; border:2px solid #ffd23f; border-radius:10px; font-family:inherit; font-size:0.7rem; font-weight:800; color:#5a1a12; background:#fff; cursor:pointer; }
+  .pancho-row { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:auto; }
+  .pancho-precio { font-family:'Baloo 2',cursive; font-weight:900; font-size:1.1rem; color:#c4161c; }
+  .pancho-btn { background:linear-gradient(135deg,#ffd23f,#ffb000); color:#5a1a12; border:none; border-radius:50px; font-weight:900; font-size:0.72rem; padding:7px 12px; cursor:pointer; box-shadow:0 3px 0 #c9971a; white-space:nowrap; }
+  .pancho-btn.agregado { background:#2ecc71; color:#fff; box-shadow:0 3px 0 #1f9d55; }
+  @media (max-width:600px) { .pancho-banner { margin:20px 12px 8px; } .pancho-title { font-size:1.55rem; } .pancho-items { gap:10px; } .pancho-card { width:calc(50% - 6px); max-width:170px; } .pancho-card:last-child { width:calc(100% - 0px); max-width:220px; } }
   .cat-card-noimg { display:flex; align-items:center; justify-content:center; background:var(--rosa-light); font-size:2rem; }
   .cat-card-nombre { font-weight:700; font-size:0.8rem; margin-bottom:8px; flex:1; color:#333; line-height:1.25; }
   .cat-card-row { display:flex; align-items:center; justify-content:space-between; gap:6px; }
@@ -1138,6 +1165,79 @@
         </div>
       </div>
       <a href="#letrasdulces" class="promo-letras-cta">Ver Letras Dulces 🍭</a>
+    </div>
+  </div>
+
+  <!-- MINI BANNER PANCHOS -->
+  <div class="pancho-banner" id="panchos">
+    <svg class="pancho-mostaza" viewBox="0 0 1200 16" preserveAspectRatio="none" aria-hidden="true"><path d="M0 8 Q15 0 30 8 T60 8 T90 8 T120 8 T150 8 T180 8 T210 8 T240 8 T270 8 T300 8 T330 8 T360 8 T390 8 T420 8 T450 8 T480 8 T510 8 T540 8 T570 8 T600 8 T630 8 T660 8 T690 8 T720 8 T750 8 T780 8 T810 8 T840 8 T870 8 T900 8 T930 8 T960 8 T990 8 T1020 8 T1050 8 T1080 8 T1110 8 T1140 8 T1170 8 T1200 8" fill="none" stroke="#ffd23f" stroke-width="5" stroke-linecap="round"/></svg>
+    <span class="pancho-deco d1">🌭</span><span class="pancho-deco d2">🌭</span><span class="pancho-deco d3">🥤</span>
+    <div class="pancho-inner">
+      <span class="pancho-tag">🔥 Nuevo · Listos al toque</span>
+      <div class="pancho-title">¡PANCHOS!</div>
+      <div class="pancho-sub">Armá tu combo: sumale <b>Agua Placer +$800</b> o <b>Lata Coca-Cola +$1.800</b></div>
+      <div class="pancho-items">
+        <div class="pancho-card">
+          <div class="pancho-ilus"><svg viewBox="0 0 220 100" aria-hidden="true">
+<ellipse cx="110" cy="88" rx="81.0" ry="7" fill="rgba(0,0,0,0.12)"/>
+<path d="M25.0 52 Q19.0 26 45.0 28 L175.0 28 Q201.0 26 195.0 52 Z" fill="#d98f35"/>
+<rect x="17.0" y="34" width="186" height="26" rx="13" fill="#b8432a"/>
+<rect x="17.0" y="36" width="186" height="8" rx="4" fill="#d9634a" opacity="0.7"/>
+<path d="M25.0 50 Q110 78 195.0 50 L195.0 62 Q110 96 25.0 62 Z" fill="#e8a64a"/>
+<path d="M25.0 50 Q110 74 195.0 50" fill="none" stroke="#f6c97a" stroke-width="4" stroke-linecap="round"/>
+
+<path d="M37.0 38 q8 -8 16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0" fill="none" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
+</svg></div>
+          <span class="pancho-badge">CLÁSICO</span>
+          <div class="pancho-nombre">Super Pancho Clásico</div>
+          <select class="pancho-extra" aria-label="Sumar bebida a Super Pancho Clásico">
+            <option value="0" data-txt="">🌭 Solo el pancho</option>
+            <option value="800" data-txt=" + Agua saborizada Placer">💧 + Agua Placer ($800)</option>
+            <option value="1800" data-txt=" + Lata línea Coca-Cola">🥤 + Lata Coca-Cola ($1.800)</option>
+          </select>
+          <div class="pancho-row"><span class="pancho-precio" data-base="2000">$2.000</span><button class="pancho-btn" onclick="agregarPancho(this,'Super Pancho Clásico',2000)">+ Agregar</button></div>
+        </div>
+        <div class="pancho-card">
+          <div class="pancho-ilus"><svg viewBox="0 0 220 100" aria-hidden="true">
+<ellipse cx="110" cy="88" rx="81.0" ry="7" fill="rgba(0,0,0,0.12)"/>
+<path d="M25.0 52 Q19.0 26 45.0 28 L175.0 28 Q201.0 26 195.0 52 Z" fill="#d98f35"/>
+<rect x="17.0" y="34" width="186" height="26" rx="13" fill="#b8432a"/>
+<rect x="17.0" y="36" width="186" height="8" rx="4" fill="#d9634a" opacity="0.7"/>
+<path d="M25.0 50 Q110 78 195.0 50 L195.0 62 Q110 96 25.0 62 Z" fill="#e8a64a"/>
+<path d="M25.0 50 Q110 74 195.0 50" fill="none" stroke="#f6c97a" stroke-width="4" stroke-linecap="round"/>
+<path d="M43.0 46 Q55.0 64 67.0 48 Q81.0 66 95.0 48 Q109.0 68 123.0 48 Q137.0 66 151.0 48 Q165.0 64 179.0 48 " fill="#ffb000" stroke="#e08e00" stroke-width="2"/>
+<path d="M37.0 38 q8 -8 16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0" fill="none" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
+</svg></div>
+          <span class="pancho-badge">DOBLE CHEESE</span>
+          <div class="pancho-nombre">Pancho Doble Cheese</div>
+          <select class="pancho-extra" aria-label="Sumar bebida a Pancho Doble Cheese">
+            <option value="0" data-txt="">🌭 Solo el pancho</option>
+            <option value="800" data-txt=" + Agua saborizada Placer">💧 + Agua Placer ($800)</option>
+            <option value="1800" data-txt=" + Lata línea Coca-Cola">🥤 + Lata Coca-Cola ($1.800)</option>
+          </select>
+          <div class="pancho-row"><span class="pancho-precio" data-base="3000">$3.000</span><button class="pancho-btn" onclick="agregarPancho(this,'Pancho Doble Cheese',3000)">+ Agregar</button></div>
+        </div>
+        <div class="pancho-card">
+          <div class="pancho-ilus"><svg viewBox="0 0 220 100" aria-hidden="true">
+<ellipse cx="110" cy="88" rx="96.0" ry="7" fill="rgba(0,0,0,0.12)"/>
+<path d="M10.0 52 Q4.0 26 30.0 28 L190.0 28 Q216.0 26 210.0 52 Z" fill="#d98f35"/>
+<rect x="-8.0" y="34" width="236" height="26" rx="13" fill="#b8432a"/>
+<rect x="-8.0" y="36" width="236" height="8" rx="4" fill="#d9634a" opacity="0.7"/>
+<path d="M10.0 50 Q110 78 210.0 50 L210.0 62 Q110 96 10.0 62 Z" fill="#e8a64a"/>
+<path d="M10.0 50 Q110 74 210.0 50" fill="none" stroke="#f6c97a" stroke-width="4" stroke-linecap="round"/>
+<path d="M28.0 46 Q40.0 64 52.0 48 Q66.0 66 80.0 48 Q94.0 68 108.0 48 Q122.0 66 136.0 48 Q150.0 64 164.0 48 Q178 62 192 48" fill="#ffb000" stroke="#e08e00" stroke-width="2"/><path d="M40.0 42 Q54.0 56 68.0 44 Q82.0 58 96.0 44 Q110.0 58 124.0 44 Q138.0 58 152.0 44 Q166.0 56 180.0 44" fill="#ffd23f" stroke="#e0a800" stroke-width="2"/>
+<path d="M22.0 38 q8 -8 16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0" fill="none" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
+</svg></div>
+          <span class="pancho-badge">XL 🔥</span>
+          <div class="pancho-nombre">Pancho XL Cheese</div>
+          <select class="pancho-extra" aria-label="Sumar bebida a Pancho XL Cheese">
+            <option value="0" data-txt="">🌭 Solo el pancho</option>
+            <option value="800" data-txt=" + Agua saborizada Placer">💧 + Agua Placer ($800)</option>
+            <option value="1800" data-txt=" + Lata línea Coca-Cola">🥤 + Lata Coca-Cola ($1.800)</option>
+          </select>
+          <div class="pancho-row"><span class="pancho-precio" data-base="4000">$4.000</span><button class="pancho-btn" onclick="agregarPancho(this,'Pancho XL Cheese',4000)">+ Agregar</button></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2400,36 +2500,6 @@
         <img class="cat-card-img" src="img/productos/vaso-gomitas.jpg" alt="Vaso de Gomitas" loading="lazy">
         <div class="cat-card-nombre">Vaso de Gomitas</div>
         <div class="cat-card-row"><span class="cat-card-precio">$4.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Vaso de Gomitas',4500)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="panchos">
-        <div class="cat-card-img cat-card-noimg">🌭</div>
-        <div class="cat-card-nombre">Super Pancho Clásico 🆕</div>
-        <select class="pancho-extra" aria-label="Sumar bebida">
-          <option value="0" data-txt="">Sin bebida</option>
-          <option value="800" data-txt=" + Agua saborizada Placer">+ Agua saborizada Placer ($800)</option>
-          <option value="1800" data-txt=" + Lata línea Coca-Cola">+ Lata línea Coca-Cola ($1.800)</option>
-        </select>
-        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarPancho(this,'Super Pancho Clásico',2000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="panchos">
-        <div class="cat-card-img cat-card-noimg">🌭</div>
-        <div class="cat-card-nombre">Pancho Doble Cheese 🆕</div>
-        <select class="pancho-extra" aria-label="Sumar bebida">
-          <option value="0" data-txt="">Sin bebida</option>
-          <option value="800" data-txt=" + Agua saborizada Placer">+ Agua saborizada Placer ($800)</option>
-          <option value="1800" data-txt=" + Lata línea Coca-Cola">+ Lata línea Coca-Cola ($1.800)</option>
-        </select>
-        <div class="cat-card-row"><span class="cat-card-precio">$3.000</span><button class="cat-card-btn" onclick="agregarPancho(this,'Pancho Doble Cheese',3000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="panchos">
-        <div class="cat-card-img cat-card-noimg">🌭</div>
-        <div class="cat-card-nombre">Pancho XL Cheese 🆕</div>
-        <select class="pancho-extra" aria-label="Sumar bebida">
-          <option value="0" data-txt="">Sin bebida</option>
-          <option value="800" data-txt=" + Agua saborizada Placer">+ Agua saborizada Placer ($800)</option>
-          <option value="1800" data-txt=" + Lata línea Coca-Cola">+ Lata línea Coca-Cola ($1.800)</option>
-        </select>
-        <div class="cat-card-row"><span class="cat-card-precio">$4.000</span><button class="cat-card-btn" onclick="agregarPancho(this,'Pancho XL Cheese',4000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="chocolates">
         <img class="cat-card-img" src="img/productos/novedad-verde.jpg" alt="Block Dubai Pistacho" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
@@ -5130,18 +5200,17 @@
     setTimeout(() => { btn.textContent = '+ Agregar'; btn.classList.remove('agregado'); }, 1400);
   }
   function agregarPancho(btn, nombre, precio) {
-    const card = btn.closest('.cat-card');
+    const card = btn.closest('.pancho-card');
     const sel = card.querySelector('.pancho-extra');
     const opt = sel.options[sel.selectedIndex];
     agregarKinder(btn, nombre + opt.dataset.txt, precio + parseInt(opt.value, 10));
     sel.selectedIndex = 0;
-    card.querySelector('.cat-card-precio').textContent = '$' + precio.toLocaleString('es-AR');
+    card.querySelector('.pancho-precio').textContent = '$' + precio.toLocaleString('es-AR');
   }
   document.addEventListener('change', function(e){
     if(!e.target.classList || !e.target.classList.contains('pancho-extra')) return;
-    const card = e.target.closest('.cat-card');
-    const base = parseInt(card.querySelector('.cat-card-btn').getAttribute('onclick').match(/,(\d+)\)/)[1], 10);
-    card.querySelector('.cat-card-precio').textContent = '$' + (base + parseInt(e.target.value, 10)).toLocaleString('es-AR');
+    const el = e.target.closest('.pancho-card').querySelector('.pancho-precio');
+    el.textContent = '$' + (parseInt(el.dataset.base, 10) + parseInt(e.target.value, 10)).toLocaleString('es-AR');
   });
   function quitarDelCarrito(nombre) {
     const item = cartItems[nombre];
@@ -5378,7 +5447,7 @@
 
   // Filtro de categorías: muestra solo los productos de la categoría elegida
   (function(){
-    const catIds = ['novedades','regaleria','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas','mundogomitas','panchos'];
+    const catIds = ['novedades','regaleria','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas','mundogomitas'];
     function filtrar(cat){
       document.querySelectorAll('.cat-card').forEach(function(c){
         c.style.display = (cat==='todos' || c.getAttribute('data-cat')===cat) ? '' : 'none';
