@@ -276,6 +276,7 @@
   .catalog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); gap:14px; }
   .cat-card { background:#fff; border-radius:14px; padding:10px; box-shadow:0 2px 10px rgba(0,0,0,0.07); display:flex; flex-direction:column; }
   .cat-card-img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:10px; margin-bottom:8px; }
+  .pancho-extra { width:100%; margin-bottom:8px; padding:6px 8px; border:1.5px solid var(--rosa-light); border-radius:10px; font-family:inherit; font-size:0.72rem; font-weight:700; color:#444; background:#fff; cursor:pointer; }
   .cat-card-noimg { display:flex; align-items:center; justify-content:center; background:var(--rosa-light); font-size:2rem; }
   .cat-card-nombre { font-weight:700; font-size:0.8rem; margin-bottom:8px; flex:1; color:#333; line-height:1.25; }
   .cat-card-row { display:flex; align-items:center; justify-content:space-between; gap:6px; }
@@ -926,6 +927,7 @@
     <a href="#kinder" onclick="cerrarDrawer()"><span class="drawer-ico">🍬</span> Kinder</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirOfertas()"><span class="drawer-ico">🔥</span> Ofertas</a>
     <a href="#mundogomitas" onclick="cerrarDrawer()"><span class="drawer-ico">🧸</span> Mundo Gomitas</a>
+    <a href="#panchos" onclick="cerrarDrawer()"><span class="drawer-ico">🌭</span> Panchos</a>
     <a href="#emprendedores" onclick="cerrarDrawer()"><span class="drawer-ico">💗</span> Emprendedores</a>
     <a href="#reels" onclick="cerrarDrawer()"><span class="drawer-ico">📸</span> Reels</a>
   </div>
@@ -946,6 +948,7 @@
       <a href="#letrasdulces" class="nav-dup">Letras Dulces</a>
       <a href="#novedades" class="nav-dup">Novedades</a>
       <a href="#mundogomitas" class="nav-dup">Mundo Gomitas</a>
+      <a href="#panchos" class="nav-dup">🌭 Panchos</a>
       <a href="#emprendedores" class="ofertas nav-dup">💗 Emprendedores</a>
       <a href="#reels" class="reels nav-dup">📸 Reels</a>
     </div>
@@ -970,6 +973,7 @@
   <a href="#kinder" class="cat-filter-link"><span>🍬</span> Kinder</a>
   <a href="#ofertas" class="cat-filter-link"><span>🔥</span> Ofertas</a>
   <a href="#mundogomitas" class="cat-filter-link"><span>🧸</span> Mundo Gomitas</a>
+  <a href="#panchos" class="cat-filter-link"><span>🌭</span> Panchos</a>
   <a href="#emprendedores" class="cat-filter-link"><span>💗</span> Emprendedores</a>
   <a href="#reels"><span>📸</span> Reels</a>
 </aside>
@@ -2396,6 +2400,36 @@
         <img class="cat-card-img" src="img/productos/vaso-gomitas.jpg" alt="Vaso de Gomitas" loading="lazy">
         <div class="cat-card-nombre">Vaso de Gomitas</div>
         <div class="cat-card-row"><span class="cat-card-precio">$4.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Vaso de Gomitas',4500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="panchos">
+        <div class="cat-card-img cat-card-noimg">🌭</div>
+        <div class="cat-card-nombre">Super Pancho Clásico 🆕</div>
+        <select class="pancho-extra" aria-label="Sumar bebida">
+          <option value="0" data-txt="">Sin bebida</option>
+          <option value="800" data-txt=" + Agua saborizada Placer">+ Agua saborizada Placer ($800)</option>
+          <option value="1800" data-txt=" + Lata línea Coca-Cola">+ Lata línea Coca-Cola ($1.800)</option>
+        </select>
+        <div class="cat-card-row"><span class="cat-card-precio">$2.000</span><button class="cat-card-btn" onclick="agregarPancho(this,'Super Pancho Clásico',2000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="panchos">
+        <div class="cat-card-img cat-card-noimg">🌭</div>
+        <div class="cat-card-nombre">Pancho Doble Cheese 🆕</div>
+        <select class="pancho-extra" aria-label="Sumar bebida">
+          <option value="0" data-txt="">Sin bebida</option>
+          <option value="800" data-txt=" + Agua saborizada Placer">+ Agua saborizada Placer ($800)</option>
+          <option value="1800" data-txt=" + Lata línea Coca-Cola">+ Lata línea Coca-Cola ($1.800)</option>
+        </select>
+        <div class="cat-card-row"><span class="cat-card-precio">$3.000</span><button class="cat-card-btn" onclick="agregarPancho(this,'Pancho Doble Cheese',3000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="panchos">
+        <div class="cat-card-img cat-card-noimg">🌭</div>
+        <div class="cat-card-nombre">Pancho XL Cheese 🆕</div>
+        <select class="pancho-extra" aria-label="Sumar bebida">
+          <option value="0" data-txt="">Sin bebida</option>
+          <option value="800" data-txt=" + Agua saborizada Placer">+ Agua saborizada Placer ($800)</option>
+          <option value="1800" data-txt=" + Lata línea Coca-Cola">+ Lata línea Coca-Cola ($1.800)</option>
+        </select>
+        <div class="cat-card-row"><span class="cat-card-precio">$4.000</span><button class="cat-card-btn" onclick="agregarPancho(this,'Pancho XL Cheese',4000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="chocolates">
         <img class="cat-card-img" src="img/productos/novedad-verde.jpg" alt="Block Dubai Pistacho" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
@@ -5095,6 +5129,20 @@
     btn.textContent = '✓ Listo'; btn.classList.add('agregado');
     setTimeout(() => { btn.textContent = '+ Agregar'; btn.classList.remove('agregado'); }, 1400);
   }
+  function agregarPancho(btn, nombre, precio) {
+    const card = btn.closest('.cat-card');
+    const sel = card.querySelector('.pancho-extra');
+    const opt = sel.options[sel.selectedIndex];
+    agregarKinder(btn, nombre + opt.dataset.txt, precio + parseInt(opt.value, 10));
+    sel.selectedIndex = 0;
+    card.querySelector('.cat-card-precio').textContent = '$' + precio.toLocaleString('es-AR');
+  }
+  document.addEventListener('change', function(e){
+    if(!e.target.classList || !e.target.classList.contains('pancho-extra')) return;
+    const card = e.target.closest('.cat-card');
+    const base = parseInt(card.querySelector('.cat-card-btn').getAttribute('onclick').match(/,(\d+)\)/)[1], 10);
+    card.querySelector('.cat-card-precio').textContent = '$' + (base + parseInt(e.target.value, 10)).toLocaleString('es-AR');
+  });
   function quitarDelCarrito(nombre) {
     const item = cartItems[nombre];
     if (!item) return;
@@ -5330,7 +5378,7 @@
 
   // Filtro de categorías: muestra solo los productos de la categoría elegida
   (function(){
-    const catIds = ['novedades','regaleria','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas','mundogomitas'];
+    const catIds = ['novedades','regaleria','letrasdulces','alfajoresvirales','importados','snacks','bebidasImportadas','boxes','chocolates','kinder','monster','emprendedores','ofertas','mundogomitas','panchos'];
     function filtrar(cat){
       document.querySelectorAll('.cat-card').forEach(function(c){
         c.style.display = (cat==='todos' || c.getAttribute('data-cat')===cat) ? '' : 'none';
