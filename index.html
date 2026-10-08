@@ -154,7 +154,7 @@
   .promo-monster-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.7rem; color:var(--amarillo); margin-bottom:3px; }
   .promo-monster-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.75rem; color:#ffe3f2; opacity:0.9; margin-bottom:12px; }
   .promo-monster-imgs { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
-  .promo-monster-imgs img { width:82px; height:116px; object-fit:cover; border-radius:12px; border:2px solid rgba(255,255,255,0.3); transition:transform 0.25s; }
+  .promo-monster-imgs img { width:82px; height:116px; object-fit:contain; background:#fff; border-radius:12px; border:2px solid rgba(255,255,255,0.3); transition:transform 0.25s; }
   .promo-monster-imgs img:hover { transform:translateY(-5px) scale(1.03); }
   .promo-monster-btn { background:#fff; color:var(--azul-dark); border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.82rem; padding:9px 20px; cursor:pointer; transition:opacity 0.2s; }
   .promo-monster-btn:hover { opacity:0.88; }
@@ -192,7 +192,7 @@
   .promo-letras-sub { font-family:'Nunito',sans-serif; font-weight:800; font-size:0.82rem; color:#fff; text-shadow:1px 1px 3px rgba(0,0,0,0.25); opacity:0.95; margin-bottom:16px; }
   .promo-letras-items { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
   .promo-letras-item { background:#fff; border:2px solid #fff; border-radius:16px; padding:8px; width:110px; box-shadow:0 4px 0 #d6006b,0 6px 14px rgba(0,0,0,0.2); }
-  .promo-letras-item img { width:100%; height:110px; object-fit:cover; border-radius:10px; margin-bottom:6px; }
+  .promo-letras-item img { width:100%; height:110px; object-fit:contain; background:#fff; border-radius:10px; margin-bottom:6px; }
   .promo-letras-item-nombre { font-family:'Nunito',sans-serif; font-weight:800; font-size:0.68rem; color:#5a3a45; margin-bottom:2px; }
   .promo-letras-item-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.85rem; color:#ff2f92; margin-bottom:6px; }
   .promo-letras-item button { width:100%; background:linear-gradient(135deg,#ff2f92,#ff8a3d); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; padding:6px 4px; cursor:pointer; }
@@ -240,7 +240,7 @@
   .promo-mama-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.92rem; color:#8a1048; margin-bottom:18px; }
   .promo-mama-boxes { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
   .mama-box { background:#fff; border-radius:18px; padding:8px 8px 10px; box-shadow:0 5px 0 #f0a3c7; display:flex; flex-direction:column; position:relative; }
-  .mama-box img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:12px; }
+  .mama-box img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; border-radius:12px; }
   .mama-box.top { box-shadow:0 5px 0 #d6006b; outline:2px solid #ff5fa8; }
   .mama-box-badge { position:absolute; top:-9px; right:-6px; z-index:1; background:#d6006b; color:#fff; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.62rem; padding:3px 9px; border-radius:50px; white-space:nowrap; }
   .mama-box-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.9rem; color:#a3104f; margin-top:7px; }
@@ -276,7 +276,7 @@
   .promo-km-btn { background:#ffd23f; color:#3a0a6b; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.92rem; padding:12px 28px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,0.3); transition:transform 0.2s,opacity 0.2s; }
   .promo-km-btn:hover { transform:translateY(-2px) scale(1.03); opacity:0.92; }
   .promo-km-img-wrap { position:relative; flex-shrink:0; animation:kmFloat 4s ease-in-out infinite; }
-  .promo-km-img-wrap img { width:230px; height:230px; object-fit:cover; border-radius:18px; border:3px solid rgba(255,255,255,0.5); box-shadow:0 0 24px rgba(255,255,255,0.35),0 10px 30px rgba(0,0,0,0.35); }
+  .promo-km-img-wrap img { width:230px; height:230px; object-fit:contain; background:#fff; border-radius:18px; border:3px solid rgba(255,255,255,0.5); box-shadow:0 0 24px rgba(255,255,255,0.35),0 10px 30px rgba(0,0,0,0.35); }
   .promo-km-badge { position:absolute; top:-12px; right:-12px; background:#ffd23f; color:#3a0a6b; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.68rem; padding:5px 12px; border-radius:50px; box-shadow:0 3px 8px rgba(0,0,0,0.3); transform:rotate(8deg); }
   @media (max-width:600px) { .promo-km-title { font-size:1.6rem; } .promo-km-title .destacado { font-size:1.9rem; } .promo-km-precio { font-size:1.7rem; } .promo-km-img-wrap img { width:170px; height:170px; } }
 
@@ -312,7 +312,7 @@
   .catalog-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.3rem; margin-bottom:16px; color:#333; }
   .catalog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); gap:14px; }
   .cat-card { background:#fff; border-radius:14px; padding:10px; box-shadow:0 2px 10px rgba(0,0,0,0.07); display:flex; flex-direction:column; }
-  .cat-card-img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:10px; margin-bottom:8px; }
+  .cat-card-img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; border-radius:10px; margin-bottom:8px; }
   /* MINI BANNER PANCHOS */
   .pancho-banner { position:relative; margin:28px auto 8px; max-width:1200px; border-radius:22px; overflow:hidden; padding:22px 16px 20px; scroll-margin-top:120px;
     background:linear-gradient(160deg,#e8322a 0%,#c4161c 100%); box-shadow:0 8px 0 #8e0f13,0 12px 26px rgba(196,22,28,0.35); }
@@ -467,7 +467,7 @@
   .neon-gallery::-webkit-scrollbar-track { background:rgba(255,255,255,0.08); border-radius:50px; }
   .neon-frame { flex:0 0 190px; width:190px; scroll-snap-align:start; position:relative; border-radius:14px; overflow:hidden; aspect-ratio:3/4; border:2px solid #39ff14; box-shadow:0 0 6px #39ff14,0 0 16px rgba(57,255,20,0.6),inset 0 0 10px rgba(57,255,20,0.3); transition:transform 0.25s,box-shadow 0.25s; cursor:pointer; }
   .neon-frame:hover { transform:translateY(-6px) scale(1.03); box-shadow:0 0 12px #39ff14,0 0 28px rgba(57,255,20,0.9),inset 0 0 14px rgba(57,255,20,0.4); }
-  .neon-frame img { width:100%; height:100%; object-fit:cover; display:block; }
+  .neon-frame img { width:100%; height:100%; object-fit:contain; background:#fff; display:block; }
   .neon-badge { position:absolute; top:8px; left:8px; background:rgba(10,10,20,0.75); border:1px solid #39ff14; color:#39ff14; font-size:0.62rem; font-weight:800; padding:3px 8px; border-radius:50px; text-transform:uppercase; letter-spacing:0.04em; transition:background 0.2s,color 0.2s,border-color 0.2s; }
   .neon-badge.agregado { background:var(--green); color:#fff; border-color:var(--green); }
   .neon-add { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,0.88)); color:#39ff14; font-weight:800; font-size:0.78rem; padding:22px 6px 9px; text-align:center; text-shadow:0 0 6px rgba(57,255,20,0.8); }
@@ -492,7 +492,7 @@
   .kinder-grid::-webkit-scrollbar-track { background:rgba(226,35,26,0.12); border-radius:50px; }
   .kinder-card { flex:0 0 230px; width:230px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #e2231a; box-shadow:0 4px 14px rgba(226,35,26,0.15); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
   .kinder-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(226,35,26,0.28); }
-  .kinder-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .kinder-img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; }
   .kinder-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
   .kinder-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.98rem; color:#e2231a; line-height:1.2; }
   .kinder-desc { font-size:0.78rem; color:#7b4a21; font-weight:600; line-height:1.35; flex:1; }
@@ -518,7 +518,7 @@
   .viral-card { flex:0 0 230px; width:230px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #ff2ea6; box-shadow:0 4px 14px rgba(255,46,166,0.35); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; position:relative; }
   .viral-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(255,46,166,0.55); }
   .viral-badge { position:absolute; top:8px; left:8px; z-index:2; background:#ff2ea6; color:#fff; font-size:0.62rem; font-weight:800; padding:3px 9px; border-radius:50px; text-transform:uppercase; letter-spacing:0.04em; }
-  .viral-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .viral-img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; }
   .viral-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
   .viral-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.98rem; color:#7b0f3a; line-height:1.2; }
   .viral-desc { font-size:0.78rem; color:#666; font-weight:600; line-height:1.35; flex:1; }
@@ -543,7 +543,7 @@
   .imp-grid::-webkit-scrollbar-track { background:rgba(117,170,219,0.15); border-radius:50px; }
   .imp-card { flex:0 0 200px; width:200px; min-width:200px; flex-shrink:0; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid var(--celeste); box-shadow:0 4px 14px rgba(117,170,219,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
   .imp-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(117,170,219,0.35); }
-  .imp-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .imp-img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; }
   .imp-info { padding:10px 12px 12px; display:flex; flex-direction:column; gap:5px; flex:1; }
   .imp-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.88rem; color:var(--azul-dark); line-height:1.2; display:flex; align-items:center; gap:5px; }
   .imp-flag { font-size:0.82rem; }
@@ -574,7 +574,7 @@
   .beb-grid::-webkit-scrollbar-track { background:rgba(255,255,255,0.25); border-radius:50px; }
   .beb-card { flex:0 0 220px; width:220px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #06b6d4; box-shadow:0 4px 14px rgba(0,0,0,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
   .beb-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,0.3); }
-  .beb-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .beb-img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; }
   .beb-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
   .beb-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.95rem; color:#0e7490; line-height:1.2; }
   .beb-desc { font-size:0.78rem; color:var(--text-muted); font-weight:600; line-height:1.35; flex:1; }
@@ -599,7 +599,7 @@
   .snk-grid::-webkit-scrollbar-track { background:rgba(255,255,255,0.25); border-radius:50px; }
   .snk-card { flex:0 0 200px; width:200px; min-width:200px; flex-shrink:0; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid var(--amarillo); box-shadow:0 4px 14px rgba(0,0,0,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
   .snk-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,0.3); }
-  .snk-img { width:100%; height:150px; object-fit:cover; background:#f8f5ff; }
+  .snk-img { width:100%; height:150px; object-fit:contain; background:#f8f5ff; }
   .snk-info { padding:10px 12px 12px; display:flex; flex-direction:column; gap:5px; }
   .snk-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.95rem; color:#b91c1c; line-height:1.2; }
   .snk-desc { font-size:0.76rem; color:#bbb; font-weight:600; line-height:1.3; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
@@ -630,7 +630,7 @@
   .regaleria-boxes::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.4); border-radius:50px; }
   .regaleria-box { flex:0 0 130px; scroll-snap-align:start; background:#fff; border:2px solid rgba(245,197,24,0.5); border-radius:16px; overflow:hidden; box-shadow:0 0 10px rgba(245,197,24,0.25),0 0 22px rgba(245,197,24,0.15); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; }
   .regaleria-box:hover { transform:translateY(-5px); box-shadow:0 0 16px rgba(245,197,24,0.5),0 0 30px rgba(245,197,24,0.25); }
-  .regaleria-box img { width:100%; height:88px; object-fit:cover; }
+  .regaleria-box img { width:100%; height:88px; object-fit:contain; background:#fff; }
   .regaleria-box-info { padding:7px 9px 9px; display:flex; flex-direction:column; gap:5px; }
   .regaleria-box-nombre { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.75rem; color:#2d1860; }
   .regaleria-box-row { display:flex; align-items:center; justify-content:space-between; gap:5px; }
@@ -654,7 +654,7 @@
   .letras-card { flex:1 1 160px; max-width:200px; background:#fff; border-radius:16px; padding:14px 10px; display:flex; flex-direction:column; align-items:center; gap:6px; box-shadow:0 4px 14px rgba(0,0,0,0.15); transition:transform 0.2s; }
   .letras-card:hover { transform:translateY(-5px); }
   .letras-card-icon { font-size:2.2rem; }
-  .letras-card-img { width:100%; height:110px; object-fit:cover; border-radius:12px; }
+  .letras-card-img { width:100%; height:110px; object-fit:contain; background:#fff; border-radius:12px; }
   .letras-card-nombre { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.85rem; color:var(--azul-dark); }
   .letras-card-desc { font-size:0.68rem; color:var(--text-muted); line-height:1.3; min-height:28px; }
   .letras-card-row { display:flex; align-items:center; justify-content:space-between; gap:6px; width:100%; margin-top:4px; }
@@ -725,7 +725,7 @@
   .promo-top-grid::-webkit-scrollbar-thumb { background:#ff7ac6; border-radius:50px; }
   .promo-item { flex:0 0 200px; width:200px; min-width:200px; flex-shrink:0; background:#fff; border:2px solid #ff7ac6; border-radius:18px; overflow:hidden; box-shadow:0 4px 14px rgba(255,122,198,0.25); display:flex; flex-direction:column; transition:transform 0.2s; }
   .promo-item:hover { transform:translateY(-4px); }
-  .promo-item-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff8fc; }
+  .promo-item-img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff8fc; }
   .promo-emoji { width:100%; height:110px; display:flex; align-items:center; justify-content:center; font-size:3rem; background:#ffe2f3; }
   .promo-item-info { padding:8px 10px 10px; display:flex; flex-direction:column; gap:5px; flex:1; }
   .promo-item-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.8rem; color:#c0107a; line-height:1.15; }
@@ -760,7 +760,7 @@
   .hotsale-item.ultima-unidad { border:3px solid #ffd400; animation:ultimaUnidadPulse 1.2s ease-in-out infinite; }
   @keyframes ultimaUnidadPulse { 0%,100%{ box-shadow:0 0 8px #ffd400,0 0 16px rgba(255,212,0,0.6); } 50%{ box-shadow:0 0 16px #ffd400,0 0 34px rgba(255,212,0,1); } }
   .hotsale-item-badge.urgente { background:#e2231a; color:#fff; box-shadow:0 0 8px rgba(226,35,26,0.9); }
-  .hotsale-item img { width:100%; height:104px; object-fit:cover; }
+  .hotsale-item img { width:100%; height:104px; object-fit:contain; background:#fff; }
   .hotsale-item-emoji { width:100%; height:104px; display:flex; align-items:center; justify-content:center; font-size:2.6rem; background:linear-gradient(135deg,#3a0000,#1a0505); }
   .hotsale-item-badge { position:absolute; top:6px; left:6px; z-index:2; background:#ffd400; color:#1a0000; font-size:0.6rem; font-weight:900; padding:2px 8px; border-radius:50px; text-transform:uppercase; letter-spacing:0.03em; box-shadow:0 0 8px rgba(255,212,0,0.9); }
   .hotsale-item-info { padding:8px 9px 10px; display:flex; flex-direction:column; gap:5px; flex:1; }
@@ -810,7 +810,7 @@
   .cho-grid::-webkit-scrollbar-track { background:rgba(255,255,255,0.2); border-radius:50px; }
   .cho-card { flex:0 0 220px; width:220px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #9c6b3a; box-shadow:0 4px 14px rgba(0,0,0,0.18); display:flex; flex-direction:column; transition:transform 0.2s,box-shadow 0.2s; position:relative; }
   .cho-card:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(0,0,0,0.3); }
-  .cho-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff; }
+  .cho-img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; }
   .cho-emoji { width:100%; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; font-size:3.6rem; background:linear-gradient(135deg,#f3e2cf,#e8c9a8); }
   .cho-info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
   .cho-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.95rem; color:#5b3413; line-height:1.2; }
@@ -878,7 +878,7 @@
   .search-result-item{display:flex;align-items:center;gap:12px;padding:11px 16px;cursor:pointer;border-bottom:1px solid #f3f3f3;transition:background 0.13s;}
   .search-result-item:last-child{border-bottom:none;}
   .search-result-item:hover{background:#fce4f3;}
-  .search-result-img{width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#f8f5ff;}
+  .search-result-img{width:50px;height:50px;border-radius:10px;object-fit:contain;flex-shrink:0;background:#f8f5ff;}
   .search-result-nombre{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.85rem;color:#7a1650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px;}
   .search-result-precio{font-family:'Baloo 2',cursive;font-weight:800;font-size:0.82rem;color:#e91e8c;}
   .search-result-agotado{font-size:0.72rem;color:#aaa;font-weight:700;}
@@ -892,7 +892,7 @@
   .box-cards-grid::-webkit-scrollbar-thumb { background:#ff5fa8; border-radius:50px; }
   .box-card-item { flex:0 0 200px; width:200px; min-width:200px; flex-shrink:0; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; border:2px solid #ff5fa8; box-shadow:0 4px 14px rgba(255,95,168,0.2); display:flex; flex-direction:column; transition:transform 0.2s; }
   .box-card-item:hover { transform:translateY(-5px); box-shadow:0 10px 26px rgba(255,95,168,0.35); }
-  .box-card-img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#fff8fc; }
+  .box-card-img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff8fc; }
   .box-card-info { padding:10px 12px 12px; display:flex; flex-direction:column; gap:6px; flex:1; }
   .box-card-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.9rem; color:#d4006a; line-height:1.2; }
   .box-card-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:auto; }
@@ -915,7 +915,7 @@
   .promo-racing-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
   .racing-card { background:#fff; border-radius:18px; overflow:hidden; border:3px solid #ff3b1f; box-shadow:0 6px 0 #a3200b; display:flex; flex-direction:column; transition:transform 0.15s; }
   .racing-card:hover { transform:translateY(-3px); }
-  .racing-card img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+  .racing-card img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; display:block; }
   .racing-card-info { padding:12px 10px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
   .racing-card-label { font-family:'Poppins',sans-serif; font-weight:800; font-style:italic; font-size:1.05rem; color:#141419; text-transform:uppercase; }
   .racing-card-desc { font-size:0.74rem; color:#666; font-weight:600; line-height:1.3; flex:1; }
@@ -4375,7 +4375,7 @@
           <button class="btn-modal-agregar" onclick="agregarModal(this,'Monster Argentina',3500)">+ Agregar</button>
         </div>
         <div class="modal-producto">
-          <img src="img/productos/monster-brasil-1.jpg" alt="Monster Brasil / Chile" class="modal-producto-img" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+          <img src="img/productos/monster-brasil-1.jpg" alt="Monster Brasil / Chile" class="modal-producto-img" style="width:56px;height:56px;border-radius:10px;object-fit:contain;background:#fff;flex-shrink:0;">
           <div class="modal-producto-info">
             <div class="modal-producto-nombre">Monster Brasil / Chile</div>
             <div class="modal-producto-variantes">Importado</div>
@@ -4989,7 +4989,7 @@
           <button class="btn-modal-agregar" disabled style="background:#b0b0b0;cursor:not-allowed;">Agotado</button>
         </div>
         <div class="modal-producto" style="border:2px solid var(--amarillo);">
-          <img src="img/productos/promo-pringles-mundial-coca.jpg" alt="Combo Especial 4" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+          <img src="img/productos/promo-pringles-mundial-coca.jpg" alt="Combo Especial 4" style="width:56px;height:56px;border-radius:10px;object-fit:contain;background:#fff;flex-shrink:0;">
           <div class="modal-producto-info">
             <div class="modal-producto-nombre">Combo Especial 4</div>
             <div class="modal-producto-variantes">Pringles Edición Limitada Mundial + Coca-Cola Zero lata</div>
@@ -4998,7 +4998,7 @@
           <button class="btn-modal-agregar" onclick="agregarModal(this,'Combo Especial 4: Pringles Edición Mundial + Coca Zero lata',7000)">+ Agregar</button>
         </div>
         <div class="modal-producto" style="border:2px solid var(--amarillo);">
-          <img src="img/productos/promo-nachos-maradona-coca.jpg" alt="Combo Especial 5" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+          <img src="img/productos/promo-nachos-maradona-coca.jpg" alt="Combo Especial 5" style="width:56px;height:56px;border-radius:10px;object-fit:contain;background:#fff;flex-shrink:0;">
           <div class="modal-producto-info">
             <div class="modal-producto-nombre">Combo Especial 5</div>
             <div class="modal-producto-variantes">Nachos Maradona a la Napolitana + Coca-Cola lata</div>
@@ -5103,7 +5103,7 @@
       <div class="modal-subcat">🔥 Ofertas de la semana</div>
       <div class="modal-productos">
         <div class="modal-producto oferta-neon">
-          <img src="img/productos/gomitas-surtidas.jpg" alt="Gomitas Surtidas 300g" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+          <img src="img/productos/gomitas-surtidas.jpg" alt="Gomitas Surtidas 300g" style="width:56px;height:56px;border-radius:10px;object-fit:contain;background:#fff;flex-shrink:0;">
           <div class="modal-producto-info">
             <div class="modal-producto-nombre">Gomitas Surtidas 300g</div>
             <div class="modal-producto-variantes">Bolsa de 300g a elección</div>
@@ -5113,7 +5113,7 @@
           <button class="btn-modal-agregar" onclick="agregarModal(this,'Gomitas Surtidas 300g',5000)">+ Agregar</button>
         </div>
         <div class="modal-producto" style="border:2px solid var(--rosa);">
-          <img src="img/productos/alfajores-guaymallen.jpg" alt="Oferta 1: Capitán del Espacio" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+          <img src="img/productos/alfajores-guaymallen.jpg" alt="Oferta 1: Capitán del Espacio" style="width:56px;height:56px;border-radius:10px;object-fit:contain;background:#fff;flex-shrink:0;">
           <div class="modal-producto-info">
             <div class="modal-producto-nombre">Oferta 1</div>
             <div class="modal-producto-variantes">2 Capitán del Espacio simple + 1 Capitán triple</div>
@@ -5122,7 +5122,7 @@
           <button class="btn-modal-agregar" onclick="agregarModal(this,'Oferta 1: 2 Capitán del Espacio simple + 1 Capitán triple',6000)">+ Agregar</button>
         </div>
         <div class="modal-producto" style="border:2px solid var(--rosa);">
-          <img src="img/productos/capitan-espacio.jpg" alt="Oferta 2: Alfajores Guaymallén" style="width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+          <img src="img/productos/capitan-espacio.jpg" alt="Oferta 2: Alfajores Guaymallén" style="width:56px;height:56px;border-radius:10px;object-fit:contain;background:#fff;flex-shrink:0;">
           <div class="modal-producto-info">
             <div class="modal-producto-nombre">Oferta 2</div>
             <div class="modal-producto-variantes">3 Alfajores Guaymallén simple</div>
