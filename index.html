@@ -1276,24 +1276,6 @@
 
     <div class="catalog-grid">
       <div class="cat-card" data-cat="regaleria">
-        <img class="cat-card-img" src="img/productos/dia-madre-box1.jpg" alt="Box Día de la Madre 1" loading="lazy">
-        <div class="cat-card-nombre">Box Día de la Madre 1 💐</div>
-        <div style="font-size:0.7rem;color:#888;font-weight:700;margin:-2px 0 6px;">Golosinas + caja personalizada</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box Día de la Madre 1',20000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="regaleria">
-        <img class="cat-card-img" src="img/productos/dia-madre-box2.jpg" alt="Box Día de la Madre 2" loading="lazy">
-        <div class="cat-card-nombre">Box Día de la Madre 2 💐</div>
-        <div style="font-size:0.7rem;color:#888;font-weight:700;margin:-2px 0 6px;">Golosinas + taza + caja personalizada</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$25.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box Día de la Madre 2',25000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="regaleria">
-        <img class="cat-card-img" src="img/productos/dia-madre-box3.jpg" alt="Box Día de la Madre 3" loading="lazy">
-        <div class="cat-card-nombre">Box Día de la Madre 3 💐</div>
-        <div style="font-size:0.7rem;color:#888;font-weight:700;margin:-2px 0 6px;">Golosinas + taza + accesorio + caja personalizada</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$30.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box Día de la Madre 3',30000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="regaleria">
         <img class="cat-card-img" src="img/productos/ramo-golosinas-bordo.jpg?v=2" alt="Ramo de Golosinas" loading="lazy">
         <div class="cat-card-nombre">Ramo de Golosinas 🆕</div>
         <div style="font-size:0.7rem;color:#888;font-weight:700;margin:-2px 0 6px;">⚠️ Los productos pueden variar según stock</div>
@@ -5458,11 +5440,12 @@
   function _buildProdsFromDOM(){
     const seen = new Set();
     const out = [];
-    const cardSelectors = ['.cat-card','.beb-card','.box-card-item','.cho-card','.imp-card','.kinder-card','.letras-card','.snk-card','.viral-card','.emp-card'];
+    const cardSelectors = ['.cat-card','.beb-card','.box-card-item','.cho-card','.imp-card','.kinder-card','.letras-card','.snk-card','.viral-card','.emp-card','.mama-box'];
     document.querySelectorAll(cardSelectors.join(',')).forEach(function(c){
       const nombreEl = c.querySelector('[class*="nombre"], [class*="title"]');
       if(!nombreEl) return;
-      const nombre = nombreEl.textContent.replace(/\s+/g,' ').trim();
+      const _alt = c.classList.contains('mama-box') && c.querySelector('img') ? c.querySelector('img').alt : '';
+      const nombre = (_alt || nombreEl.textContent).replace(/\s+/g,' ').trim();
       if(!nombre || seen.has(nombre)) return;
       seen.add(nombre);
       const precioEl = c.querySelector('[class*="precio"]');
