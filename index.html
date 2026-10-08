@@ -885,6 +885,8 @@
   .search-btn-add{background:#e91e8c;color:#fff;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.72rem;padding:7px 13px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background 0.15s;}
   .search-btn-add:hover{background:#d4167e;}
   .search-btn-add:disabled{background:#ccc;cursor:not-allowed;color:#999;}
+  .search-highlight{animation:searchPulse 2.2s ease;}
+  @keyframes searchPulse{0%,60%{box-shadow:0 0 0 4px #e91e8c,0 8px 30px rgba(233,30,140,0.35);}100%{box-shadow:none;}}
   .search-no-result{padding:20px;text-align:center;color:#aaa;font-size:0.85rem;font-weight:600;}
   /* SECCIÓN BOX - cards */
   .box-cards-grid { display:flex; flex-wrap:nowrap; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 14px; scrollbar-width:thin; scrollbar-color:#ff5fa8 transparent; }
@@ -5542,12 +5544,13 @@
       if(!nombre || seen.has(nombre)) return;
       seen.add(nombre);
       const precioEl = c.querySelector('[class*="precio"]');
-      const precio = precioEl ? (parseInt(precioEl.textContent.replace(/[^\d]/g,''),10) || 0) : 0;
+      const _pm = precioEl ? precioEl.textContent.match(/\$\s*([\d.]+)/) : null;
+      const precio = _pm ? (parseInt(_pm[1].replace(/\./g,''),10) || 0) : (precioEl ? (parseInt(precioEl.textContent.replace(/[^\d]/g,''),10) || 0) : 0);
       const imgEl = c.querySelector('img');
       const img = imgEl ? imgEl.getAttribute('src') : '';
       const btn = c.querySelector('button[class*="btn"]');
       const agotado = !!(btn && btn.disabled);
-      out.push({n:nombre, p:precio, img:img, ag:agotado});
+      out.push({n:nombre, p:precio, img:img, ag:agotado, el:c});
     });
     return out;
   }
@@ -5565,7 +5568,7 @@
   _si.addEventListener('input', function(){
     const q = _norm(this.value.trim());
     if(q.length < 2){_sp.style.display='none';return;}
-    const hits = _PRODS.filter(p=>_norm(p.n).includes(q)).slice(0,9);
+    const hits = _PRODS.map((p,i)=>Object.assign({i:i},p)).filter(p=>_norm(p.n).includes(q)).slice(0,9);
     _posPanel();
     if(hits.length===0){
       _sp.innerHTML='<div class="search-no-result">😕 No encontramos ese producto</div>';
@@ -5573,9 +5576,9 @@
       _sp.innerHTML = hits.map(p=>{
         const pr = '$'+p.p.toLocaleString('es-AR');
         const im = p.img ? `<img class="search-result-img" src="${p.img}" onerror="this.style.display='none'">` : '<div class="search-result-img"></div>';
-        if(p.ag) return `<div class="search-result-item">${im}<div style="flex:1;min-width:0"><div class="search-result-nombre">${p.n}</div><div class="search-result-agotado">❌ Agotado</div></div><button class="search-btn-add" disabled>Agotado</button></div>`;
+        if(p.ag) return `<div class="search-result-item" data-i="${p.i}">${im}<div style="flex:1;min-width:0"><div class="search-result-nombre">${p.n}</div><div class="search-result-agotado">❌ Agotado</div></div><button class="search-btn-add" disabled>Agotado</button></div>`;
         const ne = p.n.replace(/'/g,"\\'");
-        return `<div class="search-result-item">${im}<div style="flex:1;min-width:0"><div class="search-result-nombre">${p.n}</div><div class="search-result-precio">${pr}</div></div><button class="search-btn-add" onclick="agregarKinder(this,'${ne}',${p.p});this.textContent='✓';this.style.background='#22c55e';setTimeout(()=>{this.textContent='+ Agregar';this.style.background='';},1400)">+ Agregar</button></div>`;
+        return `<div class="search-result-item" data-i="${p.i}">${im}<div style="flex:1;min-width:0"><div class="search-result-nombre">${p.n}</div><div class="search-result-precio">${pr}</div></div><button class="search-btn-add" onclick="agregarKinder(this,'${ne}',${p.p});this.textContent='✓';this.style.background='#22c55e';setTimeout(()=>{this.textContent='+ Agregar';this.style.background='';},1400)">+ Agregar</button></div>`;
       }).join('');
     }
     _sp.style.display='block';
@@ -5584,6 +5587,32 @@
   window.addEventListener('resize', ()=>{ if(_sp.style.display==='block') _posPanel(); });
   document.addEventListener('click', e=>{ if(!e.target.closest('#searchBarWrapper') && !e.target.closest('#searchPanel'))_sp.style.display='none'; });
   _si.addEventListener('keydown', e=>{ if(e.key==='Escape'){_sp.style.display='none';_si.value='';} });
+  // Tocar un resultado lleva al producto en el catálogo
+  _sp.addEventListener('click', function(e){
+    if(e.target.closest('button')) return;
+    const row = e.target.closest('.search-result-item');
+    if(!row) return;
+    const prod = _PRODS[+row.dataset.i];
+    if(!prod || !prod.el) return;
+    let card = prod.el;
+    if(card.classList.contains('cat-card') && card.style.display==='none'){
+      document.querySelectorAll('.cat-card').forEach(c=>{c.style.display='';});
+      document.querySelectorAll('.cat-filter-link').forEach(l=>{l.classList.toggle('active', l.getAttribute('href')==='#todos');});
+    }
+    let target = card;
+    if(target.offsetParent===null){
+      const k=t=>_norm(t).replace(/[^a-z0-9]/g,'');
+      const kn=k(prod.n);
+      const alt=_PRODS.find(p=>p.el.offsetParent!==null && (k(p.n).includes(kn)||kn.includes(k(p.n))));
+      if(alt) target=alt.el;
+      else { const b=row.querySelector('.search-btn-add:not([disabled])'); if(b) b.click(); return; }
+    }
+    _sp.style.display='none'; _si.blur();
+    card = target;
+    card.scrollIntoView({behavior:'smooth', block:'center'});
+    card.classList.remove('search-highlight'); void card.offsetWidth; card.classList.add('search-highlight');
+    setTimeout(()=>card.classList.remove('search-highlight'), 2200);
+  });
 
   // Filtro de categorías: muestra solo los productos de la categoría elegida
   (function(){
