@@ -221,6 +221,43 @@
   .promo-emp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
   @media (max-width:800px) { .promo-emp-grid { grid-template-columns:1fr; } }
 
+
+  /* BANNER DÍA DE LA MADRE */
+  .promo-mama { position:relative; overflow:hidden; border-radius:28px; margin-bottom:32px; padding:30px 22px 26px;
+    background:radial-gradient(circle at 12% 18%,#fff 0,transparent 38%),radial-gradient(circle at 90% 85%,#ffd6ea 0,transparent 45%),linear-gradient(150deg,#ffe3f0 0%,#ffc2dd 45%,#f7a8d0 100%);
+    border:2px solid #fff; box-shadow:0 10px 0 #e889b6,0 16px 36px rgba(214,0,107,0.22); }
+  .promo-mama-heart { position:absolute; bottom:-30px; color:#ff5fa8; opacity:0; pointer-events:none; animation:mamaFloat 9s linear infinite; }
+  @keyframes mamaFloat { 0%{transform:translateY(0) rotate(0);opacity:0;} 10%{opacity:0.55;} 100%{transform:translateY(-560px) rotate(25deg);opacity:0;} }
+  .promo-mama-inner { position:relative; z-index:1; display:flex; gap:28px; align-items:center; justify-content:center; flex-wrap:wrap; }
+  .promo-mama-video { position:relative; flex:0 0 auto; width:230px; border-radius:30px; padding:7px; background:#fff; box-shadow:0 8px 24px rgba(160,20,90,0.3); transform:rotate(-2deg); }
+  .promo-mama-video video { display:block; width:100%; aspect-ratio:9/16; object-fit:cover; border-radius:24px; background:#f7c6dc; }
+  .promo-mama-sound { position:absolute; bottom:18px; right:18px; background:rgba(255,255,255,0.92); border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.72rem; color:#c2185b; padding:6px 12px; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2); }
+  .promo-mama-sticker { position:absolute; top:-12px; left:-14px; z-index:2; background:#ffd23f; color:#8a1048; font-family:'Nunito',sans-serif; font-weight:900; font-size:0.7rem; padding:6px 12px; border-radius:50px; transform:rotate(-8deg); box-shadow:0 3px 0 #d4a514; }
+  .promo-mama-txt { flex:1 1 320px; max-width:560px; text-align:center; }
+  .promo-mama-tag { display:inline-block; background:#fff; color:#d6006b; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; padding:5px 16px; border-radius:50px; box-shadow:0 3px 0 #f19cc4; }
+  .promo-mama-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:2.3rem; line-height:1.05; color:#a3104f; margin:12px 0 6px; }
+  .promo-mama-title span { display:block; color:#fff; font-size:2.7rem; text-shadow:0 3px 0 #d6006b,0 6px 14px rgba(214,0,107,0.35); }
+  .promo-mama-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.92rem; color:#8a1048; margin-bottom:18px; }
+  .promo-mama-boxes { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .mama-box { background:#fff; border-radius:18px; padding:8px 8px 10px; box-shadow:0 5px 0 #f0a3c7; display:flex; flex-direction:column; position:relative; }
+  .mama-box img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:12px; }
+  .mama-box.top { box-shadow:0 5px 0 #d6006b; outline:2px solid #ff5fa8; }
+  .mama-box-badge { position:absolute; top:-9px; right:-6px; z-index:1; background:#d6006b; color:#fff; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.62rem; padding:3px 9px; border-radius:50px; white-space:nowrap; }
+  .mama-box-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.9rem; color:#a3104f; margin-top:7px; }
+  .mama-box-desc { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.7rem; color:#8c5a73; line-height:1.25; margin:3px 0 6px; flex:1; }
+  .mama-box-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.15rem; color:#d6006b; }
+  .mama-box-btn { margin-top:6px; background:linear-gradient(135deg,#ff5fa8,#d6006b); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.75rem; padding:8px 6px; cursor:pointer; }
+  .promo-mama-note { margin-top:16px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; color:#8a1048; }
+  .promo-mama-note a { color:#d6006b; }
+  @media (max-width:600px){
+    .promo-mama { padding:26px 14px 22px; }
+    .promo-mama-video { width:190px; }
+    .promo-mama-title { font-size:1.8rem; } .promo-mama-title span { font-size:2.15rem; }
+    .promo-mama-boxes { gap:7px; } .mama-box { padding:6px 6px 8px; }
+    .mama-box-nombre { font-size:0.8rem; } .mama-box-desc { font-size:0.62rem; } .mama-box-precio { font-size:1rem; }
+    .mama-box-btn { font-size:0.68rem; padding:7px 4px; }
+    .mama-box-badge { font-size:0.55rem; padding:2px 7px; right:-3px; }
+  }
   /* BANNER KIT MERIENDA CHOCOLINAS - VIOLETA */
   @keyframes kmShimmer { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
   @keyframes kmGlowPulse { 0%,100%{box-shadow:0 0 20px rgba(180,60,255,0.55),0 0 50px rgba(123,47,247,0.35);} 50%{box-shadow:0 0 34px rgba(180,60,255,0.85),0 0 80px rgba(123,47,247,0.55);} }
@@ -1011,6 +1048,47 @@
 
 
 
+  <!-- BANNER DÍA DE LA MADRE -->
+  <div class="promo-mama" id="diadelamadre" style="scroll-margin-top:120px;">
+    <span class="promo-mama-heart" style="left:6%;font-size:1.4rem;animation-delay:0s;">♥</span><span class="promo-mama-heart" style="left:22%;font-size:0.9rem;animation-delay:2.5s;">♥</span><span class="promo-mama-heart" style="left:48%;font-size:1.2rem;animation-delay:5s;">♥</span><span class="promo-mama-heart" style="left:70%;font-size:1rem;animation-delay:1.2s;">♥</span><span class="promo-mama-heart" style="left:88%;font-size:1.6rem;animation-delay:3.8s;">♥</span><span class="promo-mama-heart" style="left:36%;font-size:0.8rem;animation-delay:6.5s;">♥</span>
+    <div class="promo-mama-inner">
+      <div class="promo-mama-video">
+        <span class="promo-mama-sticker">💐 Domingo 18/10</span>
+        <video id="mamaVideo" src="img/videos/dia-madre.mp4" poster="img/videos/dia-madre-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        <button class="promo-mama-sound" onclick="(function(b){const v=document.getElementById('mamaVideo');v.muted=!v.muted;if(!v.muted)v.play();b.textContent=v.muted?'🔇 Activar sonido':'🔊 Sonido on';})(this)">🔇 Activar sonido</button>
+      </div>
+      <div class="promo-mama-txt">
+        <span class="promo-mama-tag">💗 Día de la Madre</span>
+        <div class="promo-mama-title">Regalale algo dulce<span>a mamá 💐</span></div>
+        <div class="promo-mama-sub">Box en caja personalizada con su foto y dedicatoria · Armada a mano en Candy Varela</div>
+        <div class="promo-mama-boxes">
+          <div class="mama-box">
+            <img src="img/productos/dia-madre-box1.jpg" alt="Box Día de la Madre 1" loading="lazy">
+            <div class="mama-box-nombre">Box 1</div>
+            <div class="mama-box-desc">Golosinas + caja personalizada</div>
+            <div class="mama-box-precio">$20.000</div>
+            <button class="mama-box-btn" onclick="agregarKinder(this,'Box Día de la Madre 1',20000)">+ Agregar</button>
+          </div>
+          <div class="mama-box">
+            <img src="img/productos/dia-madre-box2.jpg" alt="Box Día de la Madre 2" loading="lazy">
+            <div class="mama-box-nombre">Box 2</div>
+            <div class="mama-box-desc">Golosinas + taza + caja personalizada</div>
+            <div class="mama-box-precio">$25.000</div>
+            <button class="mama-box-btn" onclick="agregarKinder(this,'Box Día de la Madre 2',25000)">+ Agregar</button>
+          </div>
+          <div class="mama-box top"><span class="mama-box-badge">⭐ Más completa</span>
+            <img src="img/productos/dia-madre-box3.jpg" alt="Box Día de la Madre 3" loading="lazy">
+            <div class="mama-box-nombre">Box 3</div>
+            <div class="mama-box-desc">Golosinas + taza + accesorio + caja personalizada</div>
+            <div class="mama-box-precio">$30.000</div>
+            <button class="mama-box-btn" onclick="agregarKinder(this,'Box Día de la Madre 3',30000)">+ Agregar</button>
+          </div>
+        </div>
+        <div class="promo-mama-note">📸 Pedidos con anticipación · Mandanos la foto por <a href="https://wa.me/541176750220" target="_blank" rel="noopener">WhatsApp</a></div>
+      </div>
+    </div>
+  </div>
+
   <div class="promo-emprendedores-banner">
     <div class="promo-emp-inner">
       <span class="promo-emp-badge">💼 Para revender</span>
@@ -1197,6 +1275,24 @@
 
 
     <div class="catalog-grid">
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/dia-madre-box1.jpg" alt="Box Día de la Madre 1" loading="lazy">
+        <div class="cat-card-nombre">Box Día de la Madre 1 💐</div>
+        <div style="font-size:0.7rem;color:#888;font-weight:700;margin:-2px 0 6px;">Golosinas + caja personalizada</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$20.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box Día de la Madre 1',20000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/dia-madre-box2.jpg" alt="Box Día de la Madre 2" loading="lazy">
+        <div class="cat-card-nombre">Box Día de la Madre 2 💐</div>
+        <div style="font-size:0.7rem;color:#888;font-weight:700;margin:-2px 0 6px;">Golosinas + taza + caja personalizada</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$25.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box Día de la Madre 2',25000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="regaleria">
+        <img class="cat-card-img" src="img/productos/dia-madre-box3.jpg" alt="Box Día de la Madre 3" loading="lazy">
+        <div class="cat-card-nombre">Box Día de la Madre 3 💐</div>
+        <div style="font-size:0.7rem;color:#888;font-weight:700;margin:-2px 0 6px;">Golosinas + taza + accesorio + caja personalizada</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$30.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Box Día de la Madre 3',30000)">+ Agregar</button></div>
+      </div>
       <div class="cat-card" data-cat="regaleria">
         <img class="cat-card-img" src="img/productos/ramo-golosinas-bordo.jpg?v=2" alt="Ramo de Golosinas" loading="lazy">
         <div class="cat-card-nombre">Ramo de Golosinas 🆕</div>
