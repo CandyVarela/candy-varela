@@ -5370,7 +5370,7 @@
   function _norm(t){return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
   function _posPanel(){
     const r = document.getElementById('searchBarWrapper').getBoundingClientRect();
-    _sp.style.top = (r.bottom + window.scrollY + 6) + 'px';
+    _sp.style.top = (r.bottom + 6) + 'px';
     _sp.style.left = r.left + 'px';
     _sp.style.transform = 'none';
     _sp.style.width = Math.max(r.width, 340) + 'px';
@@ -5393,6 +5393,8 @@
     }
     _sp.style.display='block';
   });
+  window.addEventListener('scroll', ()=>{ if(_sp.style.display==='block') _posPanel(); }, {passive:true});
+  window.addEventListener('resize', ()=>{ if(_sp.style.display==='block') _posPanel(); });
   document.addEventListener('click', e=>{ if(!e.target.closest('#searchBarWrapper') && !e.target.closest('#searchPanel'))_sp.style.display='none'; });
   _si.addEventListener('keydown', e=>{ if(e.key==='Escape'){_sp.style.display='none';_si.value='';} });
 
