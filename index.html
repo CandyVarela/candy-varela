@@ -980,6 +980,32 @@
     .rg-float.f4, .rg-float.f5 { display:none; }
     .rg-card { flex:0 0 150px; } .rg-nombre { font-size:0.78rem; }
   }
+
+  /* OFERTAS DEL DÍA */
+  .od-section { margin:28px 0 30px; scroll-margin-top:110px; }
+  .od-banner { position:relative; overflow:hidden; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border-radius:24px; padding:26px 26px; color:#fff; background:repeating-linear-gradient(-45deg,rgba(255,255,255,0.06) 0 14px,transparent 14px 28px),linear-gradient(120deg,#e8173c 0%,#ff5f3a 55%,#ff9a3c 100%); box-shadow:0 12px 30px rgba(232,23,60,0.28); }
+  .od-burst { position:absolute; right:-18px; bottom:-40px; font-family:'Baloo 2',cursive; font-weight:800; font-size:10rem; line-height:1; color:rgba(255,255,255,0.13); transform:rotate(-12deg); pointer-events:none; }
+  .od-txt { position:relative; z-index:1; }
+  .od-kicker { display:inline-block; background:var(--amarillo); color:#7a1650; font-weight:800; font-size:0.72rem; padding:4px 12px; border-radius:50px; }
+  .od-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:2.5rem; line-height:1; margin:10px 0 4px; text-shadow:0 3px 0 rgba(0,0,0,0.12); }
+  .od-lead { font-weight:700; font-size:0.88rem; opacity:0.95; }
+  .od-timer { position:relative; z-index:1; background:rgba(0,0,0,0.18); border:1px solid rgba(255,255,255,0.3); border-radius:16px; padding:10px 18px; text-align:center; }
+  .od-timer-lbl { display:block; font-size:0.66rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; opacity:0.9; }
+  .od-timer-num { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.5rem; letter-spacing:0.04em; font-variant-numeric:tabular-nums; }
+  .od-grid { display:flex; gap:14px; overflow-x:auto; padding:16px 2px 8px; }
+  .od-card { flex:0 0 330px; display:flex; background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 6px 20px rgba(232,23,60,0.13); border:2px solid #ffd6dd; }
+  .od-img { position:relative; flex:0 0 125px; background:linear-gradient(160deg,#4b1d7a,#6f2fb0); }
+  .od-noimg { height:100%; min-height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:#fff; font-size:2.6rem; }
+  .od-noimg span { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.78rem; text-align:center; line-height:1.15; }
+  .od-img img { width:100%; height:100%; object-fit:cover; display:block; }
+  .od-badge { position:absolute; top:8px; left:8px; z-index:1; background:#e8173c; color:#fff; font-weight:800; font-size:0.62rem; padding:3px 9px; border-radius:50px; letter-spacing:0.04em; }
+  .od-info { flex:1; padding:12px 14px; display:flex; flex-direction:column; gap:6px; }
+  .od-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.92rem; color:var(--text); line-height:1.2; }
+  .od-desc { font-size:0.7rem; font-weight:700; color:#8a5a00; background:#fff6dd; border-radius:10px; padding:6px 8px; line-height:1.3; }
+  .od-row { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:auto; }
+  .od-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.35rem; color:#e8173c; }
+  .od-btn { background:linear-gradient(135deg,#e8173c,#ff5f3a); color:#fff; border:none; border-radius:50px; padding:8px 13px; font-weight:800; font-size:0.74rem; cursor:pointer; white-space:nowrap; }
+  @media (max-width:700px) { .od-banner { padding:22px 18px; } .od-title { font-size:2rem; } .od-timer { width:100%; } .od-card { flex:0 0 300px; } }
 </style>
 </head>
 <body>
@@ -1323,6 +1349,29 @@
     </div>
   </div>
 
+  <!-- SECCIÓN OFERTAS DEL DÍA -->
+  <section class="od-section" id="ofertasdia">
+    <div class="od-banner">
+      <span class="od-burst">%</span>
+      <div class="od-txt">
+        <span class="od-kicker">⏰ Solo por hoy</span>
+        <h2 class="od-title">Ofertas del día 🔥</h2>
+        <p class="od-lead">Precios especiales mientras dure el stock</p>
+      </div>
+      <div class="od-timer"><span class="od-timer-lbl">Termina en</span><span class="od-timer-num" id="odTimer">--:--:--</span></div>
+    </div>
+    <div class="od-grid">
+      <div class="od-card">
+        <div class="od-img"><span class="od-badge">PROMO</span><div class="od-noimg">🍫<span>Cadbury<br>162g</span></div></div>
+        <div class="od-info">
+          <div class="od-nombre">Chocolate Cadbury 162g</div>
+          <div class="od-desc">💡 Precio promocional: la tableta puede venir partida por el traslado. ¡Mismo sabor de siempre!</div>
+          <div class="od-row"><span class="od-precio">$10.000</span><button class="od-btn" onclick="agregarKinder(this,'Chocolate Cadbury 162g (Oferta del día)',10000)">+ Agregar</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SECCIÓN REGALERÍA (vitrina) -->
   <section class="rg-section" id="regalos">
     <div class="rg-banner">
@@ -1660,6 +1709,12 @@
         <img class="cat-card-img" src="img/productos/pescado-raul-pandulce.jpg" alt="Pescado Raúl Pan Dulce con Chips Dulce de Leche" loading="lazy">
         <div class="cat-card-nombre">Pescado Raúl Pan Dulce con Chips Dulce de Leche 🆕</div>
         <div class="cat-card-row"><span class="cat-card-precio">$5.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Pescado Raúl Pan Dulce con Chips Dulce de Leche',5500)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="ofertas">
+        <div class="cat-card-img cat-card-noimg">🍫</div>
+        <div class="cat-card-nombre">Chocolate Cadbury 162g 🔥 Oferta</div>
+        <div style="font-size:0.7rem;color:#888;font-weight:700;margin:-2px 0 6px;">Puede venir partido por el traslado</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Chocolate Cadbury 162g (Oferta del día)',10000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="ofertas">
         <img class="cat-card-img" src="img/productos/gomitas-surtidas.jpg" alt="Gomitas Surtidas 300g" loading="lazy">
@@ -5767,6 +5822,12 @@
       document.querySelectorAll('.rg-group').forEach(function(gr){ gr.style.display=(g==='todo'||gr.getAttribute('data-g')===g)?'':'none'; });
     });});
   })();
+
+  // Ofertas del día: cuenta regresiva hasta medianoche
+  (function(){ const el=document.getElementById('odTimer'); if(!el) return;
+    function t(){ const n=new Date(), f=new Date(n); f.setHours(24,0,0,0); let s=Math.max(0,Math.floor((f-n)/1000));
+      const p=x=>String(x).padStart(2,'0'); el.textContent=p(Math.floor(s/3600))+':'+p(Math.floor(s%3600/60))+':'+p(s%60); }
+    t(); setInterval(t,1000); })();
 </script>
 </body>
 </html>
