@@ -928,6 +928,58 @@
   .racing-card.premium .racing-card-precio { color:#141419; }
   .racing-card-badge { display:inline-block; align-self:center; background:#141419; color:#ffcc00; font-size:0.62rem; font-weight:800; padding:3px 10px; border-radius:50px; text-transform:uppercase; letter-spacing:0.06em; }
   @media (max-width:600px){ .promo-racing-title{font-size:1.8rem;} .racing-card-label{font-size:0.92rem;} .racing-card-precio{font-size:1.15rem;} .promo-racing-grid{gap:10px;} }
+
+  /* VITRINA REGALERÍA */
+  .rg-section { margin:28px 0 36px; scroll-margin-top:110px; }
+  .rg-banner { position:relative; overflow:hidden; border-radius:26px; padding:38px 28px 34px; background:radial-gradient(circle at 85% 15%,rgba(255,207,107,0.35),transparent 40%),radial-gradient(circle at 10% 90%,rgba(255,95,168,0.45),transparent 45%),linear-gradient(135deg,#7a1650 0%,#b23a72 55%,#ff5fa8 100%); color:#fff; box-shadow:0 12px 34px rgba(122,22,80,0.28); }
+  .rg-ribbon-v { position:absolute; top:0; bottom:0; right:110px; width:26px; background:linear-gradient(90deg,#ffcf6b,#ffe3a3,#ffcf6b); opacity:0.9; }
+  .rg-ribbon-h { position:absolute; left:0; right:0; top:46%; height:22px; background:linear-gradient(180deg,#ffcf6b,#ffe3a3,#ffcf6b); opacity:0.18; }
+  .rg-bow { position:absolute; top:-6px; right:72px; font-size:5.2rem; filter:drop-shadow(0 6px 10px rgba(0,0,0,0.25)); transform:rotate(-8deg); animation:rgSway 4s ease-in-out infinite; }
+  .rg-float { position:absolute; opacity:0.22; font-size:1.6rem; animation:rgFloat 6s ease-in-out infinite; pointer-events:none; }
+  .rg-float.f1 { left:52%; top:14%; } .rg-float.f2 { left:62%; bottom:12%; animation-delay:1.2s; font-size:1.2rem; } .rg-float.f3 { left:44%; bottom:26%; animation-delay:2.4s; font-size:1rem; } .rg-float.f4 { right:30px; bottom:22px; animation-delay:0.6s; } .rg-float.f5 { left:72%; top:30%; animation-delay:3s; font-size:1.1rem; }
+  @keyframes rgFloat { 0%,100% { transform:translateY(0) rotate(0); } 50% { transform:translateY(-10px) rotate(8deg); } }
+  @keyframes rgSway { 0%,100% { transform:rotate(-8deg); } 50% { transform:rotate(4deg); } }
+  .rg-banner-txt { position:relative; z-index:2; max-width:560px; }
+  .rg-kicker { display:inline-block; background:rgba(255,255,255,0.18); border:1px solid rgba(255,255,255,0.35); padding:5px 13px; border-radius:50px; font-weight:800; font-size:0.74rem; letter-spacing:0.02em; }
+  .rg-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:3.2rem; line-height:1; margin:12px 0 8px; text-shadow:0 3px 0 rgba(0,0,0,0.12); }
+  .rg-lead { font-weight:700; font-size:0.95rem; opacity:0.95; line-height:1.4; margin-bottom:14px; }
+  .rg-badges { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px; }
+  .rg-badges span { background:#fff; color:var(--azul-dark); font-weight:800; font-size:0.72rem; padding:5px 11px; border-radius:50px; }
+  .rg-cta { display:inline-block; background:var(--amarillo); color:var(--azul-dark); text-decoration:none; font-family:'Poppins',sans-serif; font-weight:800; font-size:0.85rem; padding:11px 20px; border-radius:50px; box-shadow:0 5px 0 #d99a2b; transition:transform .15s; }
+  .rg-cta:hover { transform:translateY(-2px); }
+  .rg-chips { display:flex; gap:8px; overflow-x:auto; padding:16px 2px 4px; scrollbar-width:none; }
+  .rg-chips::-webkit-scrollbar { display:none; }
+  .rg-chip { flex-shrink:0; background:#fff; color:var(--azul); border:2px solid var(--rosa-light); text-decoration:none; font-weight:800; font-size:0.8rem; padding:7px 14px; border-radius:50px; transition:all .15s; }
+  .rg-chip:hover { border-color:var(--rosa); }
+  .rg-chip.on { background:var(--azul); color:#fff; border-color:var(--azul); }
+  .rg-group { margin-top:20px; }
+  .rg-group-head { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .rg-group-ico { width:40px; height:40px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--rosa-light); border-radius:12px; font-size:1.25rem; }
+  .rg-group-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.05rem; color:var(--azul-dark); line-height:1.1; }
+  .rg-group-sub { font-size:0.76rem; font-weight:700; color:var(--text-muted); }
+  .rg-row-scroll { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 12px; }
+  .rg-row-scroll::-webkit-scrollbar { height:6px; } .rg-row-scroll::-webkit-scrollbar-thumb { background:var(--celeste); border-radius:50px; }
+  .rg-card { flex:0 0 180px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; border:1px solid #fde3f0; transition:transform .18s, box-shadow .18s; }
+  .rg-card:hover { transform:translateY(-3px); box-shadow:0 10px 26px rgba(178,58,114,0.2); }
+  .rg-img { position:relative; background:linear-gradient(180deg,#fff,#fff5fa); }
+  .rg-img img { width:100%; aspect-ratio:1/1; object-fit:contain; display:block; }
+  .rg-tag { position:absolute; top:8px; left:8px; background:var(--rosa); color:#fff; font-weight:800; font-size:0.62rem; padding:3px 8px; border-radius:50px; }
+  .rg-tag.off { background:#999; }
+  .rg-info { padding:10px 12px 12px; display:flex; flex-direction:column; gap:4px; flex:1; }
+  .rg-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.84rem; color:var(--text); line-height:1.2; }
+  .rg-sub { font-size:0.66rem; font-weight:700; color:var(--text-muted); line-height:1.25; }
+  .rg-row { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:auto; padding-top:6px; }
+  .rg-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.05rem; color:var(--azul); }
+  .rg-btn { background:linear-gradient(135deg,var(--rosa),var(--azul)); color:#fff; border:none; border-radius:50px; padding:7px 11px; font-weight:800; font-size:0.72rem; cursor:pointer; white-space:nowrap; }
+  .rg-btn:disabled { background:#ccc; color:#888; cursor:not-allowed; }
+  .rg-card.agotado .rg-nombre { color:#aaa; }
+  @media (max-width:700px) {
+    .rg-banner { padding:28px 18px 24px; border-radius:20px; }
+    .rg-title { font-size:2.4rem; } .rg-lead { font-size:0.84rem; }
+    .rg-bow { font-size:3.4rem; right:14px; top:-4px; } .rg-ribbon-v { right:40px; width:18px; }
+    .rg-float.f4, .rg-float.f5 { display:none; }
+    .rg-card { flex:0 0 150px; } .rg-nombre { font-size:0.78rem; }
+  }
 </style>
 </head>
 <body>
@@ -1270,6 +1322,72 @@
       </div>
     </div>
   </div>
+
+  <!-- SECCIÓN REGALERÍA (vitrina) -->
+  <section class="rg-section" id="regalos">
+    <div class="rg-banner">
+      <span class="rg-bow">🎀</span>
+      <span class="rg-float f1">🎁</span><span class="rg-float f2">💗</span><span class="rg-float f3">✨</span><span class="rg-float f4">🍫</span><span class="rg-float f5">💝</span>
+      <div class="rg-ribbon-v"></div><div class="rg-ribbon-h"></div>
+      <div class="rg-banner-txt">
+        <span class="rg-kicker">✨ Regalos dulces para cada ocasión</span>
+        <h2 class="rg-title">Regalería</h2>
+        <p class="rg-lead">Box, bolsitas y cajas de bombones listos para regalar · armados a mano en Candy Varela</p>
+        <div class="rg-badges"><span>🎁 Box armados</span><span>🛍️ Bolsitas</span><span>🍫 Bombones</span><span>💌 Con dedicatoria</span></div>
+        <a class="rg-cta" href="https://wa.me/541176750220?text=Hola!%20Quiero%20consultar%20por%20un%20regalo%20%F0%9F%8E%81" target="_blank" rel="noopener">💬 Consultá por un regalo a medida</a>
+      </div>
+    </div>
+    <div class="rg-chips"><a href="#rg-todo" class="rg-chip on" data-g="todo">Todo</a><a href="#rg-g0" class="rg-chip" data-g="g0">💐 Día de la Madre</a><a href="#rg-g1" class="rg-chip" data-g="g1">🎁 Box armados</a><a href="#rg-g2" class="rg-chip" data-g="g2">🍫 Cajas de bombones</a><a href="#rg-g3" class="rg-chip" data-g="g3">🛍️ Bolsitas</a><a href="#rg-g4" class="rg-chip" data-g="g4">✂️ Armá el tuyo</a></div>
+    <div class="rg-group" data-g="g0">
+      <div class="rg-group-head"><span class="rg-group-ico">💐</span><div><h3 class="rg-group-title">Día de la Madre</h3><p class="rg-group-sub">Caja personalizada con su foto y dedicatoria</p></div></div>
+      <div class="rg-row-scroll">
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/dia-madre-box1.jpg" alt="Box Día de la Madre 1" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Mamá 1</div><div class="rg-sub">Golosinas + caja personalizada</div><div class="rg-row"><span class="rg-precio">$20.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Día de la Madre 1',20000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/dia-madre-box2.jpg" alt="Box Día de la Madre 2" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Mamá 2</div><div class="rg-sub">Golosinas + taza + caja personalizada</div><div class="rg-row"><span class="rg-precio">$25.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Día de la Madre 2',25000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/dia-madre-box3.jpg" alt="Box Día de la Madre 3" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Mamá 3 ⭐</div><div class="rg-sub">Golosinas + taza + accesorio + caja personalizada</div><div class="rg-row"><span class="rg-precio">$30.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Día de la Madre 3',30000)">+ Agregar</button></div></div></div>
+      </div>
+    </div>
+    <div class="rg-group" data-g="g1">
+      <div class="rg-group-head"><span class="rg-group-ico">🎁</span><div><h3 class="rg-group-title">Box armados</h3><p class="rg-group-sub">Listos para regalar</p></div></div>
+      <div class="rg-row-scroll">
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/box-deluxe-importado2.jpg" alt="Box Regalería · Deluxe Importado" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Deluxe Importado</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$25.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Regalería · Deluxe Importado',25000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/box-personalizado.jpg" alt="Box Regalería · Chocolates" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Chocolates</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$20.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Regalería · Chocolates',20000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/box-dulzura-3.jpg" alt="Box Regalería · Importados" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Importados</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$20.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Regalería · Importados',20000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/box-cofler-ferrero2.jpg" alt="Box Regalería · Cofler &amp; Ferrero" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Cofler &amp; Ferrero</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$20.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Regalería · Cofler & Ferrero',20000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/box-choco-mix2.jpg" alt="Box Regalería · Choco Mix" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Choco Mix</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$15.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Regalería · Choco Mix',15000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/box-golosinas-surtidas.jpg" alt="Box Regalería · Golosinas Surtidas" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Golosinas Surtidas</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$10.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Regalería · Golosinas Surtidas',10000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/box-hotwheels-premium.jpg" alt="Box Premium 🏁" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Premium Hot Wheels 🏁</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$30.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Premium Hot Wheels',30000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/box-hotwheels-basico.jpg" alt="Box Básico 🏎️" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Básico Hot Wheels 🏎️</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$20.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Básico Hot Wheels',20000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/ramo-golosinas-bordo.jpg?v=2" alt="Ramo de Golosinas" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Ramo de Golosinas 💐</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$20.000</span><button class="rg-btn" onclick="agregarKinder(this,'Ramo de Golosinas',20000)">+ Agregar</button></div></div></div>
+      </div>
+    </div>
+    <div class="rg-group" data-g="g2">
+      <div class="rg-group-head"><span class="rg-group-ico">🍫</span><div><h3 class="rg-group-title">Cajas de bombones</h3><p class="rg-group-sub">Para quedar bien siempre</p></div></div>
+      <div class="rg-row-scroll">
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/corazon-bombones-cabsha.jpg" alt="Corazón Dulce" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Corazón Dulce (bombones)</div><div class="rg-row"><span class="rg-precio">$20.000</span><button class="rg-btn" onclick="agregarKinder(this,'Corazón Dulce',20000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/garoto-bombones.jpg" alt="Garoto Bombones Surtidos 250g" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Garoto Bombones Surtidos 250g</div><div class="rg-row"><span class="rg-precio">$8.500</span><button class="rg-btn" onclick="agregarKinder(this,'Garoto Bombones Surtidos 250g',8500)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/ferrero-rocher-t3.jpg" alt="Ferrero Rocher T3" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Ferrero Rocher T3</div><div class="rg-row"><span class="rg-precio">$5.000</span><button class="rg-btn" onclick="agregarKinder(this,'Ferrero Rocher T3',5000)">+ Agregar</button></div></div></div>
+        <div class="rg-card agotado"><div class="rg-img"><img src="img/productos/ferrero-collection.jpg" alt="Ferrero Collection 77g" loading="lazy" style="opacity:0.45;filter:grayscale(1);"><span class="rg-tag off">Agotado</span></div><div class="rg-info"><div class="rg-nombre">Ferrero Collection 77g</div><div class="rg-row"><span class="rg-precio" style="color:#aaa;">$15.000</span><button class="rg-btn" disabled>Agotado</button></div></div></div>
+        <div class="rg-card agotado"><div class="rg-img"><img src="img/productos/raffaello-confetteria.jpg" alt="Raffaello Confetteria 90g" loading="lazy" style="opacity:0.45;filter:grayscale(1);"><span class="rg-tag off">Agotado</span></div><div class="rg-info"><div class="rg-nombre">Raffaello Confetteria 90g</div><div class="rg-row"><span class="rg-precio" style="color:#aaa;">$10.000</span><button class="rg-btn" disabled>Agotado</button></div></div></div>
+      </div>
+    </div>
+    <div class="rg-group" data-g="g3">
+      <div class="rg-group-head"><span class="rg-group-ico">🛍️</span><div><h3 class="rg-group-title">Bolsitas</h3><p class="rg-group-sub">Detalles chiquitos, sonrisas grandes</p></div></div>
+      <div class="rg-row-scroll">
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/dulzura-bolsa-1.jpg" alt="Bolsita Regalería Clásica" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Bolsita Clásica</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$5.000</span><button class="rg-btn" onclick="agregarKinder(this,'Bolsita Regalería Clásica',5000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/dulzura-bolsa-3.jpg" alt="Bolsita Regalería Mix" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Bolsita Mix</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$6.000</span><button class="rg-btn" onclick="agregarKinder(this,'Bolsita Regalería Mix',6000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/dulzura-bolsa-4.jpg" alt="Bolsita Regalería Premium" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Bolsita Premium</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$8.500</span><button class="rg-btn" onclick="agregarKinder(this,'Bolsita Regalería Premium',8500)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/dulzura-bolsa-5.jpg" alt="Bolsita Regalería Importada" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Bolsita Importada</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$8.500</span><button class="rg-btn" onclick="agregarKinder(this,'Bolsita Regalería Importada',8500)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/dulzura-bolsa-6.jpg" alt="Bolsita Regalería Chocolate" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Bolsita Chocolate</div><div class="rg-sub">Los productos pueden variar según stock</div><div class="rg-row"><span class="rg-precio">$8.500</span><button class="rg-btn" onclick="agregarKinder(this,'Bolsita Regalería Chocolate',8500)">+ Agregar</button></div></div></div>
+      </div>
+    </div>
+    <div class="rg-group" data-g="g4">
+      <div class="rg-group-head"><span class="rg-group-ico">✂️</span><div><h3 class="rg-group-title">Armá el tuyo</h3><p class="rg-group-sub">Elegí la caja y sumale lo que quieras</p></div></div>
+      <div class="rg-row-scroll">
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/box-vacio-1.jpg" alt="Box con Manija (para armar)" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Caja con Manija</div><div class="rg-row"><span class="rg-precio">$2.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box con Manija (para armar)',2000)">+ Agregar</button></div></div></div>
+        <div class="rg-card"><div class="rg-img"><img src="img/productos/box-vacio-2.jpg" alt="Box Cuadrado (para armar)" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Caja Cuadrada</div><div class="rg-row"><span class="rg-precio">$2.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Cuadrado (para armar)',2000)">+ Agregar</button></div></div></div>
+      </div>
+    </div>
+  </section>
 
   <!-- GRILLA DE CATÁLOGO UNIFICADA -->
   <div class="catalog-section" id="catalogoGrid">
@@ -5637,6 +5755,17 @@
         if(grid) grid.scrollIntoView({behavior:'smooth', block:'start'});
       }
     });
+  })();
+
+  // Vitrina Regalería: chips para filtrar grupos
+  (function(){
+    const chips=document.querySelectorAll('.rg-chip');
+    chips.forEach(function(ch){ ch.addEventListener('click',function(e){
+      e.preventDefault(); e.stopPropagation();
+      const g=ch.getAttribute('data-g');
+      chips.forEach(c=>c.classList.toggle('on',c===ch));
+      document.querySelectorAll('.rg-group').forEach(function(gr){ gr.style.display=(g==='todo'||gr.getAttribute('data-g')===g)?'':'none'; });
+    });});
   })();
 </script>
 </body>
