@@ -993,11 +993,11 @@
   .od-timer-lbl { display:block; font-size:0.66rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; opacity:0.9; }
   .od-timer-num { font-family:'Poppins',sans-serif; font-weight:800; font-size:1.5rem; letter-spacing:0.04em; font-variant-numeric:tabular-nums; }
   .od-grid { display:flex; gap:14px; overflow-x:auto; padding:16px 2px 8px; }
-  .od-card { flex:0 0 330px; display:flex; background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 6px 20px rgba(232,23,60,0.13); border:2px solid #ffd6dd; }
-  .od-img { position:relative; flex:0 0 125px; background:linear-gradient(160deg,#4b1d7a,#6f2fb0); }
+  .od-card { flex:0 0 290px; display:flex; flex-direction:column; background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 6px 20px rgba(232,23,60,0.13); border:2px solid #ffd6dd; }
+  .od-img { position:relative; background:linear-gradient(180deg,#fff,#fff3f5); }
   .od-noimg { height:100%; min-height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:#fff; font-size:2.6rem; }
   .od-noimg span { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.78rem; text-align:center; line-height:1.15; }
-  .od-img img { width:100%; height:100%; object-fit:cover; display:block; }
+  .od-img img { width:100%; aspect-ratio:5/3; object-fit:contain; display:block; }
   .od-badge { position:absolute; top:8px; left:8px; z-index:1; background:#e8173c; color:#fff; font-weight:800; font-size:0.62rem; padding:3px 9px; border-radius:50px; letter-spacing:0.04em; }
   .od-info { flex:1; padding:12px 14px; display:flex; flex-direction:column; gap:6px; }
   .od-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.92rem; color:var(--text); line-height:1.2; }
@@ -1005,7 +1005,7 @@
   .od-row { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:auto; }
   .od-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.35rem; color:#e8173c; }
   .od-btn { background:linear-gradient(135deg,#e8173c,#ff5f3a); color:#fff; border:none; border-radius:50px; padding:8px 13px; font-weight:800; font-size:0.74rem; cursor:pointer; white-space:nowrap; }
-  @media (max-width:700px) { .od-banner { padding:22px 18px; } .od-title { font-size:2rem; } .od-timer { width:100%; } .od-card { flex:0 0 300px; } }
+  @media (max-width:700px) { .od-banner { padding:22px 18px; } .od-title { font-size:2rem; } .od-timer { width:100%; } .od-card { flex:0 0 280px; } }
 </style>
 </head>
 <body>
@@ -1362,11 +1362,11 @@
     </div>
     <div class="od-grid">
       <div class="od-card">
-        <div class="od-img"><span class="od-badge">PROMO</span><div class="od-noimg">🍫<span>Cadbury<br>162g</span></div></div>
+        <div class="od-img"><span class="od-badge">PROMO</span><img src="img/productos/cadbury-yoghurt-frutilla.jpg" alt="Chocolate Cadbury Yoghurt Frutilla 162g"></div>
         <div class="od-info">
-          <div class="od-nombre">Chocolate Cadbury 162g</div>
+          <div class="od-nombre">Chocolate Cadbury Yoghurt Frutilla 162g</div>
           <div class="od-desc">💡 Precio promocional: la tableta puede venir partida por el traslado. ¡Mismo sabor de siempre!</div>
-          <div class="od-row"><span class="od-precio">$10.000</span><button class="od-btn" onclick="agregarKinder(this,'Chocolate Cadbury 162g (Oferta del día)',10000)">+ Agregar</button></div>
+          <div class="od-row"><span class="od-precio">$10.000</span><button class="od-btn" onclick="agregarKinder(this,'Chocolate Cadbury Yoghurt Frutilla 162g (Oferta del día)',10000)">+ Agregar</button></div>
         </div>
       </div>
     </div>
@@ -1711,10 +1711,10 @@
         <div class="cat-card-row"><span class="cat-card-precio">$5.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Pescado Raúl Pan Dulce con Chips Dulce de Leche',5500)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="ofertas">
-        <div class="cat-card-img cat-card-noimg">🍫</div>
-        <div class="cat-card-nombre">Chocolate Cadbury 162g 🔥 Oferta</div>
+        <img class="cat-card-img" src="img/productos/cadbury-yoghurt-frutilla.jpg" alt="Chocolate Cadbury Yoghurt Frutilla 162g" loading="lazy">
+        <div class="cat-card-nombre">Chocolate Cadbury Yoghurt Frutilla 162g 🔥 Oferta</div>
         <div style="font-size:0.7rem;color:#888;font-weight:700;margin:-2px 0 6px;">Puede venir partido por el traslado</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Chocolate Cadbury 162g (Oferta del día)',10000)">+ Agregar</button></div>
+        <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Chocolate Cadbury Yoghurt Frutilla 162g (Oferta del día)',10000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="ofertas">
         <img class="cat-card-img" src="img/productos/gomitas-surtidas.jpg" alt="Gomitas Surtidas 300g" loading="lazy">
