@@ -340,7 +340,7 @@
   .pancho-precio { font-family:'Baloo 2',cursive; font-weight:900; font-size:1.1rem; color:#c4161c; }
   .pancho-btn { background:linear-gradient(135deg,#ffd23f,#ffb000); color:#5a1a12; border:none; border-radius:50px; font-weight:900; font-size:0.72rem; padding:7px 12px; cursor:pointer; box-shadow:0 3px 0 #c9971a; white-space:nowrap; }
   .pancho-btn.agregado { background:#2ecc71; color:#fff; box-shadow:0 3px 0 #1f9d55; }
-  @media (max-width:600px) { .pancho-banner { margin:20px 12px 8px; } .pancho-title { font-size:1.55rem; } .pancho-items { gap:10px; } .pancho-card { width:calc(50% - 6px); max-width:170px; } .pancho-card:last-child { width:calc(100% - 0px); max-width:220px; } }
+  @media (max-width:600px) { .pancho-banner { margin:20px 12px 8px; } .pancho-title { font-size:1.55rem; } .pancho-items { gap:10px; } .pancho-card { width:calc(50% - 6px); max-width:170px; } .pancho-card:last-child:nth-child(odd) { width:calc(100% - 0px); max-width:220px; } }
   .cat-card-noimg { display:flex; align-items:center; justify-content:center; background:var(--rosa-light); font-size:2rem; }
   .cat-card-nombre { font-weight:700; font-size:0.8rem; margin-bottom:8px; flex:1; color:#333; line-height:1.25; }
   .cat-card-row { display:flex; align-items:center; justify-content:space-between; gap:6px; }
@@ -1338,6 +1338,36 @@
             <option value="1800" data-txt=" + Lata línea Coca-Cola">🥤 + Lata Coca-Cola ($1.800)</option>
           </select>
           <div class="pancho-row"><span class="pancho-precio" data-base="4000">$4.000</span><button class="pancho-btn" onclick="agregarPancho(this,'Pancho XL Cheese',4000)">+ Agregar</button></div>
+        </div>
+        <div class="pancho-card">
+          <div class="pancho-ilus" style="background:radial-gradient(circle at 50% 60%,#ff9a3c,#6a2c91);"><svg viewBox="0 0 220 100" aria-hidden="true">
+<ellipse cx="110" cy="88" rx="81.0" ry="7" fill="rgba(0,0,0,0.25)"/>
+<path d="M25.0 52 Q19.0 26 45.0 28 L175.0 28 Q201.0 26 195.0 52 Z" fill="#1d1d22"/>
+<path d="M45 31 L175 31" stroke="#3a3a44" stroke-width="3" stroke-linecap="round"/>
+<rect x="17.0" y="34" width="186" height="26" rx="13" fill="#b8432a"/>
+<rect x="17.0" y="36" width="186" height="8" rx="4" fill="#d9634a" opacity="0.7"/>
+<path d="M25.0 50 Q110 78 195.0 50 L195.0 62 Q110 96 25.0 62 Z" fill="#141418"/>
+<path d="M25.0 50 Q110 74 195.0 50" fill="none" stroke="#3a3a44" stroke-width="4" stroke-linecap="round"/>
+<path d="M37.0 38 q8 -8 16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0" fill="none" stroke="#e01b1b" stroke-width="5" stroke-linecap="round"/>
+<g fill="#2f3fe0" stroke="#141a7a" stroke-width="1.5">
+<rect x="44" y="24" width="20" height="8" rx="4" transform="rotate(-18 54 28)"/>
+<rect x="76" y="22" width="20" height="8" rx="4" transform="rotate(14 86 26)"/>
+<rect x="104" y="25" width="20" height="8" rx="4" transform="rotate(-10 114 29)"/>
+<rect x="132" y="22" width="20" height="8" rx="4" transform="rotate(20 142 26)"/>
+<rect x="158" y="25" width="18" height="8" rx="4" transform="rotate(-16 167 29)"/>
+</g>
+<g fill="#6b7bff"><circle cx="50" cy="26" r="1.2"/><circle cx="84" cy="24" r="1.2"/><circle cx="112" cy="27" r="1.2"/><circle cx="140" cy="24" r="1.2"/><circle cx="166" cy="27" r="1.2"/></g>
+<text x="12" y="22" font-size="16">🦇</text><text x="190" y="20" font-size="16">🎃</text>
+</svg></div>
+          <span class="pancho-badge" style="background:#6a2c91;color:#ff9a3c;">🎃 HALLOWEEN</span>
+          <div class="pancho-nombre">Pancho Halloween</div>
+          <div style="font-size:0.66rem;font-weight:800;color:#8a4a30;margin:-2px 0 6px;line-height:1.2;">Pan negro, Takis y salsa picante 🌶️</div>
+          <select class="pancho-extra" aria-label="Sumar bebida a Pancho Halloween">
+            <option value="0" data-txt="">🌭 Solo el pancho</option>
+            <option value="800" data-txt=" + Agua saborizada Placer">💧 + Agua Placer ($800)</option>
+            <option value="1800" data-txt=" + Lata línea Coca-Cola">🥤 + Lata Coca-Cola ($1.800)</option>
+          </select>
+          <div class="pancho-row"><span class="pancho-precio" data-base="3500">$3.500</span><button class="pancho-btn" onclick="agregarPancho(this,'Pancho Halloween',3500)">+ Agregar</button></div>
         </div>
       </div>
     </div>
