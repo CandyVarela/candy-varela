@@ -5978,23 +5978,44 @@
 </script>
 <!-- Splash lanzamiento Takis Blue Heat -->
 <style>
-  #splashTakis{position:fixed;inset:0;z-index:99999;background:radial-gradient(circle at 50% 40%,#2b3cff 0%,#12124a 70%,#05051c 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:16px;transition:opacity .45s ease;}
-  #splashTakis.oculto{opacity:0;pointer-events:none;}
-  #splashTakis video{width:min(78vw,340px);aspect-ratio:9/16;object-fit:cover;border-radius:22px;box-shadow:0 0 0 3px #ffe600,0 18px 50px rgba(0,0,0,.55);animation:stkPop .6s cubic-bezier(.2,1.4,.4,1) both;}
-  #splashTakis .stk-tag{font-family:'Poppins',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.18em;color:#12124a;background:#ffe600;padding:6px 14px;border-radius:999px;animation:stkPop .6s .15s both;}
-  #splashTakis .stk-tit{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.6rem;color:#fff;text-align:center;line-height:1.1;animation:stkPop .6s .25s both;}
-  #splashTakis .stk-tit span{color:#ffe600;}
-  #splashTakis .stk-btns{display:flex;gap:10px;animation:stkPop .6s .35s both;}
-  #splashTakis .stk-ver{font-family:'Poppins',sans-serif;font-weight:800;border:0;border-radius:999px;padding:12px 22px;background:#ffe600;color:#12124a;font-size:1rem;cursor:pointer;}
-  #splashTakis .stk-cerrar{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:1.3rem;cursor:pointer;}
-  @keyframes stkPop{from{opacity:0;transform:scale(.85) translateY(12px);}to{opacity:1;transform:none;}}
+  #splashTakis{position:fixed;inset:0;z-index:99999;overflow:hidden;background:radial-gradient(circle at 50% 35%,#3a4bff 0%,#1a1a8a 45%,#07072a 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:16px;transition:opacity .45s ease,transform .45s ease;}
+  #splashTakis.oculto{opacity:0;transform:scale(1.08);pointer-events:none;}
+  #splashTakis::before{content:"";position:absolute;inset:-50%;background:repeating-conic-gradient(from 0deg,rgba(255,230,0,.07) 0deg 10deg,transparent 10deg 20deg);animation:stkGira 18s linear infinite;}
+  #splashTakis>*{position:relative;z-index:2;}
+  .stk-flama{position:absolute!important;bottom:-60px;z-index:1!important;font-size:2rem;opacity:.9;animation:stkSube linear infinite;filter:drop-shadow(0 0 8px #3af);}
+  #splashTakis .stk-tag{font-family:'Poppins',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.18em;color:#12124a;background:#ffe600;padding:7px 16px;border-radius:999px;box-shadow:0 0 20px rgba(255,230,0,.7);animation:stkPop .5s both,stkLate 1.2s .5s ease-in-out infinite;}
+  #splashTakis .stk-video{position:relative;width:min(72vw,320px);aspect-ratio:9/16;border-radius:24px;padding:4px;background:linear-gradient(135deg,#ffe600,#00e1ff,#ff2bd6,#ffe600);background-size:300% 300%;animation:stkPop .6s .1s cubic-bezier(.2,1.5,.4,1) both,stkBorde 3s linear infinite,stkGlow 1.4s ease-in-out infinite;}
+  #splashTakis video{width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;}
+  #splashTakis .stk-sello{position:absolute;top:-18px;right:-18px;width:78px;height:78px;border-radius:50%;background:#ff2b2b;color:#fff;font-family:'Poppins',sans-serif;font-weight:800;font-size:.72rem;line-height:1.05;display:flex;align-items:center;justify-content:center;text-align:center;transform:rotate(14deg);box-shadow:0 6px 18px rgba(0,0,0,.4);animation:stkSello .6s .9s cubic-bezier(.2,1.8,.4,1) both,stkLate 1s 1.5s infinite;}
+  #splashTakis .stk-tit{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.9rem;color:#fff;text-align:center;line-height:1.05;text-shadow:0 0 18px rgba(0,200,255,.8),0 3px 0 #12124a;animation:stkPop .6s .3s both;}
+  #splashTakis .stk-tit .am{color:#ffe600;display:inline-block;animation:stkTiembla .35s 1.2s infinite;}
+  #splashTakis .stk-precio{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.25rem;color:#12124a;background:#fff;padding:4px 14px;border-radius:10px;transform:rotate(-3deg);animation:stkPop .6s .45s both;}
+  #splashTakis .stk-ver{font-family:'Poppins',sans-serif;font-weight:800;border:0;border-radius:999px;padding:14px 28px;background:#ffe600;color:#12124a;font-size:1.05rem;cursor:pointer;box-shadow:0 6px 0 #b8a400,0 0 26px rgba(255,230,0,.6);animation:stkPop .6s .6s both,stkLate 1.1s 1.2s ease-in-out infinite;}
+  #splashTakis .stk-ver:active{transform:translateY(4px);box-shadow:0 2px 0 #b8a400;}
+  #splashTakis .stk-cerrar{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;font-size:1.3rem;cursor:pointer;z-index:3;}
+  #splashTakis .stk-flash{position:absolute;inset:0;background:#fff;z-index:4!important;pointer-events:none;animation:stkFlash .5s ease-out both;}
+  @keyframes stkPop{from{opacity:0;transform:scale(.6) translateY(20px);}to{opacity:1;transform:none;}}
+  @keyframes stkSello{from{opacity:0;transform:scale(2.5) rotate(-30deg);}to{opacity:1;transform:rotate(14deg);}}
+  @keyframes stkLate{0%,100%{scale:1;}50%{scale:1.07;}}
+  @keyframes stkTiembla{0%,100%{transform:translate(0,0) rotate(0);}25%{transform:translate(-2px,1px) rotate(-2deg);}75%{transform:translate(2px,-1px) rotate(2deg);}}
+  @keyframes stkBorde{to{background-position:300% 0;}}
+  @keyframes stkGlow{0%,100%{box-shadow:0 0 25px rgba(0,225,255,.5),0 18px 50px rgba(0,0,0,.5);}50%{box-shadow:0 0 55px rgba(0,225,255,.95),0 18px 50px rgba(0,0,0,.5);}}
+  @keyframes stkGira{to{transform:rotate(360deg);}}
+  @keyframes stkSube{from{transform:translateY(0) rotate(0);opacity:0;}10%{opacity:.9;}to{transform:translateY(-115vh) rotate(40deg);opacity:0;}}
+  @keyframes stkFlash{from{opacity:.9;}to{opacity:0;}}
+  @media (prefers-reduced-motion:reduce){#splashTakis *,#splashTakis::before{animation:none!important;}}
 </style>
 <div id="splashTakis" aria-label="Nuevo lanzamiento Takis Blue Heat">
+  <div class="stk-flash"></div>
   <button class="stk-cerrar" aria-label="Cerrar">✕</button>
-  <div class="stk-tag">NUEVO LANZAMIENTO</div>
-  <video src="img/videos/takis-blue-heat.mp4" poster="img/videos/takis-blue-heat-poster.jpg" autoplay muted playsinline preload="auto"></video>
-  <div class="stk-tit">Takis <span>Blue Heat</span> 🔥<br><span style="font-size:1.1rem">$4.000</span></div>
-  <div class="stk-btns"><button class="stk-ver">Ver producto</button></div>
+  <div class="stk-tag">⚡ NUEVO LANZAMIENTO ⚡</div>
+  <div class="stk-video">
+    <video src="img/videos/takis-blue-heat.mp4" poster="img/videos/takis-blue-heat-poster.jpg" autoplay muted playsinline preload="auto"></video>
+    <div class="stk-sello">¡YA<br>LLEGARON!</div>
+  </div>
+  <div class="stk-tit">TAKIS <span class="am">BLUE HEAT</span> 🔥</div>
+  <div class="stk-precio">Solo $4.000</div>
+  <button class="stk-ver">¡Los quiero! 🌶️</button>
 </div>
 <script>
 (function(){
@@ -6002,11 +6023,13 @@
   var visto=false; try{visto=sessionStorage.getItem('splashTakis')==='1';}catch(e){}
   if(visto){sp.remove();return;}
   document.body.style.overflow='hidden';
+  var emo=['🔥','💙','🌶️','⚡','🔥','💙'];
+  for(var k=0;k<16;k++){var f=document.createElement('div');f.className='stk-flama';f.textContent=emo[k%emo.length];f.style.left=(Math.random()*100)+'%';f.style.fontSize=(1.2+Math.random()*1.6)+'rem';f.style.animationDuration=(3.5+Math.random()*3)+'s';f.style.animationDelay=(Math.random()*3)+'s';sp.appendChild(f);}
   function cerrar(){ if(!sp.parentNode) return; sp.classList.add('oculto'); document.body.style.overflow=''; try{sessionStorage.setItem('splashTakis','1');}catch(e){} setTimeout(function(){sp.remove();},500); }
   sp.querySelector('.stk-cerrar').onclick=cerrar;
-  sp.querySelector('.stk-ver').onclick=function(){ cerrar(); var img=document.querySelector('img[alt="Takis Blue Heat"]'); var c=img&&img.closest('.cat-card'); if(c){ setTimeout(function(){ c.scrollIntoView({behavior:'smooth',block:'center'}); c.style.transition='box-shadow .3s'; c.style.boxShadow='0 0 0 3px #2b3cff'; setTimeout(function(){c.style.boxShadow='';},2500); },350); } };
-  var v=sp.querySelector('video'); v.addEventListener('ended',function(){ setTimeout(cerrar,1800); });
-  setTimeout(cerrar,9000);
+  sp.querySelector('.stk-ver').onclick=function(){ cerrar(); var img=document.querySelector('img[alt="Takis Blue Heat"]'); var c=img&&img.closest('.cat-card'); if(c){ setTimeout(function(){ c.scrollIntoView({behavior:'smooth',block:'center'}); c.style.transition='box-shadow .3s'; c.style.boxShadow='0 0 0 3px #2b3cff,0 0 25px #00e1ff'; setTimeout(function(){c.style.boxShadow='';},2500); },350); } };
+  var v=sp.querySelector('video'); v.addEventListener('ended',function(){ setTimeout(cerrar,2500); });
+  setTimeout(cerrar,10000);
 })();
 </script>
 </body>
