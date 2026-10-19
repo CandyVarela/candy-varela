@@ -34,10 +34,11 @@ function normTel(t) {
 function hoyAR() {
   return new Date(Date.now() - 3 * 3600 * 1000).toISOString().slice(0, 10);
 }
+const limpio = (v) => String(v || '').trim();
 const esAdmin = (b) =>
-  !!process.env.ADMIN_PASSWORD &&
-  b.usuario === process.env.ADMIN_USER &&
-  b.password === process.env.ADMIN_PASSWORD;
+  !!limpio(process.env.ADMIN_PASSWORD) &&
+  limpio(b.usuario).toLowerCase() === limpio(process.env.ADMIN_USER).toLowerCase() &&
+  limpio(b.password) === limpio(process.env.ADMIN_PASSWORD);
 
 async function cliente(tel) {
   const arr = (await redis('HGETALL', `club:cli:${tel}`)) || [];
@@ -115,6 +116,10 @@ export default async function handler(req, res) {
       }
 
       // ---------- ADMIN ----------
+      case 'estado': {
+        return res.json({ ok: true, db: true, admin: !!limpio(process.env.ADMIN_USER) && !!limpio(process.env.ADMIN_PASSWORD) });
+      }
+
       case 'generar': {
         if (!esAdmin(b)) return res.status(401).json({ ok: false, error: 'Usuario o contraseña incorrectos' });
         for (let i = 0; i < 10; i++) {

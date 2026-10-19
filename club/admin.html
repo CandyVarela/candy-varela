@@ -101,7 +101,7 @@ try{cred=JSON.parse(localStorage.getItem('clubAdmin')||'null');}catch(e){}
 async function api(body){
   const r=await fetch('/api/club',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...cred,...body})});
   let j={}; try{j=await r.json();}catch(e){}
-  if(r.status===401){salir();throw new Error('Sesión vencida. Ingresá de nuevo.');}
+  if(r.status===401){const login=!$('login').hidden; salir(); throw new Error(login?'Usuario o contraseña incorrectos. Revisá que sean iguales a los de Vercel (ADMIN_USER y ADMIN_PASSWORD).':'Sesión vencida. Ingresá de nuevo.');}
   if(!j.ok) throw new Error(j.error||'Algo salió mal.');
   if(j.meta) meta=j.meta;
   return j;
@@ -109,7 +109,10 @@ async function api(body){
 const err=(id,t)=>{$(id).textContent=t;$(id).hidden=!t;};
 function salir(){cred=null;try{localStorage.removeItem('clubAdmin');}catch(e){} $('app').hidden=true;$('login').hidden=false;}
 async function entrar(){
-  try{await api({action:'recientes'}).then(render);$('login').hidden=true;$('app').hidden=false;}
+  try{
+    const st=await fetch('/api/club',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'estado'})}).then(r=>r.json()).catch(()=>({}));
+    if(!st.ok){err('loginErr',st.error||'No se pudo conectar con el servidor del Club.');return;}
+    if(!st.admin){err('loginErr','Faltan ADMIN_USER y ADMIN_PASSWORD en Vercel, o falta hacer Redeploy después de crearlas.');return;}await api({action:'recientes'}).then(render);$('login').hidden=true;$('app').hidden=false;}
   catch(e){err('loginErr',e.message);}
 }
 $('bLogin').onclick=()=>{cred={usuario:$('u').value.trim(),password:$('p').value};err('loginErr','');
