@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Club Candy · Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--rosa:#ff5fa8;--fucsia:#d6006b;--vino:#a3104f;--txt:#8a1048;--suave:#ffe3f0;--menta:#2fbf8f;--bg:#fff6f9}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--txt);background:var(--bg);padding:20px 16px 40px;display:flex;justify-content:center}
+.box{width:100%;max-width:520px;display:flex;flex-direction:column;gap:16px}
+h1{font-family:'Baloo 2',cursive;font-weight:800;color:var(--vino);font-size:1.8rem;margin:0}
+h1 span{color:var(--rosa)}
+h2{font-family:'Baloo 2',cursive;font-weight:800;color:var(--vino);font-size:1.2rem;margin:0}
+.card{background:#fff;border:1px solid #f3d6e3;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px}
+label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+input{font:inherit;width:100%;padding:11px 13px;border:2px solid #f3c4da;border-radius:12px;color:var(--vino);background:var(--bg)}
+input:focus{outline:none;border-color:var(--rosa)}
+button{font:inherit;font-weight:800;border:0;border-radius:50px;padding:12px 16px;cursor:pointer;background:var(--suave);color:var(--fucsia)}
+button.pri{background:linear-gradient(135deg,var(--rosa),var(--fucsia));color:#fff;box-shadow:0 4px 0 var(--vino)}
+button.big{font-size:1.25rem;padding:18px}
+button.mint{background:var(--menta);color:#fff}
+button:disabled{opacity:.45}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1 1 120px}
+.codigo{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.codigo .num{font-family:'Baloo 2',cursive;font-weight:800;font-size:3rem;letter-spacing:.25em;color:var(--vino);line-height:1}
+#qr{background:#fff;padding:10px;border-radius:14px}
+.timer{font-weight:800;font-variant-numeric:tabular-nums}
+.timer.exp{color:#b0103f}
+.err{background:#ffe0e6;color:#b0103f;border-radius:12px;padding:10px;font-weight:800}
+.stamps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.stamps span{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-family:'Baloo 2';font-weight:800;color:#d9a3bd;border:2px dashed #f3c4da}
+.stamps span.on{background:var(--rosa);border:2px solid var(--rosa);color:#fff}
+.stamps span.gift{border-color:var(--menta);color:var(--menta)}.stamps span.gift.on{background:var(--menta);color:#fff}
+.lista{display:flex;flex-direction:column;gap:6px;max-height:340px;overflow:auto}
+.cli{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:9px 12px;border-radius:12px;background:var(--bg);text-align:left;color:var(--txt);font-weight:700}
+.cli small{display:block;font-weight:600;opacity:.75}
+.pill{font-size:.75rem;padding:3px 9px;border-radius:50px;background:var(--suave);white-space:nowrap}
+.pill.ok{background:var(--menta);color:#fff}
+.note{font-size:.8rem;opacity:.8}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>Club <span>Candy</span> · Panel</h1>
+
+  <div class="card" id="login">
+    <h2>Ingresá</h2>
+    <div><label for="u">Usuario</label><input id="u" autocomplete="username"></div>
+    <div><label for="p">Contraseña</label><input id="p" type="password" autocomplete="current-password"></div>
+    <button class="pri" id="bLogin">Entrar</button>
+    <div class="err" id="loginErr" hidden></div>
+  </div>
+
+  <div id="app" hidden style="display:flex;flex-direction:column;gap:16px">
+    <div class="card">
+      <button class="pri big" id="bGen">🍬 Generar sello</button>
+      <p class="note" style="margin:0">Usalo solo con compras de $5.000 o más. El cliente escanea el QR o carga el código en candyvarela.com.ar/club.</p>
+      <div class="codigo" id="codBox" hidden>
+        <div id="qr"></div>
+        <div class="num" id="codNum"></div>
+        <div class="timer" id="timer"></div>
+      </div>
+      <div class="err" id="genErr" hidden></div>
+    </div>
+
+    <div class="card">
+      <h2>Buscar cliente</h2>
+      <div class="row"><input id="bTel" inputmode="tel" placeholder="Celular del cliente"><button id="bBuscar" style="flex:0 0 auto">Buscar</button></div>
+      <div id="cliBox" hidden style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><b id="cNombre"></b><span class="pill" id="cCount"></span></div>
+        <div class="stamps" id="cStamps"></div>
+        <div class="row">
+          <button class="mint" id="bCanje">Canjear premio</button>
+          <button id="bMas">+1 sello</button>
+          <button id="bMenos">−1 sello</button>
+        </div>
+        <div class="note" id="cInfo"></div>
+      </div>
+      <div class="err" id="cliErr" hidden></div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center"><h2>Últimos clientes</h2><span class="pill" id="total"></span></div>
+      <div class="lista" id="lista"><div class="note">Cargando…</div></div>
+      <button id="bSalir">Cerrar sesión</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let cred=null, meta=5, actual=null, tick=null;
+try{cred=JSON.parse(localStorage.getItem('clubAdmin')||'null');}catch(e){}
+
+async function api(body){
+  const r=await fetch('/api/club',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...cred,...body})});
+  let j={}; try{j=await r.json();}catch(e){}
+  if(r.status===401){salir();throw new Error('Sesión vencida. Ingresá de nuevo.');}
+  if(!j.ok) throw new Error(j.error||'Algo salió mal.');
+  if(j.meta) meta=j.meta;
+  return j;
+}
+const err=(id,t)=>{$(id).textContent=t;$(id).hidden=!t;};
+function salir(){cred=null;try{localStorage.removeItem('clubAdmin');}catch(e){} $('app').hidden=true;$('login').hidden=false;}
+async function entrar(){
+  try{await api({action:'recientes'}).then(render);$('login').hidden=true;$('app').hidden=false;}
+  catch(e){err('loginErr',e.message);}
+}
+$('bLogin').onclick=()=>{cred={usuario:$('u').value.trim(),password:$('p').value};err('loginErr','');
+  entrar().then(()=>{if(cred)try{localStorage.setItem('clubAdmin',JSON.stringify(cred));}catch(e){}});};
+$('bSalir').onclick=salir;
+
+function render(j){
+  $('total').textContent=(j.total||0)+' clientes';
+  $('lista').innerHTML=j.lista.length?j.lista.map(c=>`<button class="cli" data-tel="${c.tel}"><span>${(c.nombre||'Sin nombre').replace(/</g,'&lt;')}<small>${c.tel}</small></span><span class="pill${c.sellos>=meta?' ok':''}">${c.sellos>=meta?'Premio listo':c.sellos+' / '+meta}</span></button>`).join(''):'<div class="note">Todavía no hay clientes. Generá el primer sello.</div>';
+}
+$('lista').onclick=e=>{const b=e.target.closest('.cli');if(!b)return;$('bTel').value=b.dataset.tel;buscar();window.scrollTo({top:$('bTel').offsetTop-80,behavior:'smooth'});};
+
+$('bGen').onclick=async()=>{
+  err('genErr','');$('bGen').disabled=true;
+  try{
+    const j=await api({action:'generar'});
+    $('codNum').textContent=j.codigo; $('codBox').hidden=false;
+    $('qr').innerHTML=''; new QRCode($('qr'),{text:location.origin+'/club/?c='+j.codigo,width:200,height:200});
+    let s=j.vence; clearInterval(tick);
+    const t=()=>{const el=$('timer'); if(s<=0){el.textContent='Código vencido. Generá otro.';el.className='timer exp';clearInterval(tick);return;}
+      el.className='timer'; el.textContent='Vence en '+Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); s--;};
+    t(); tick=setInterval(t,1000);
+  }catch(e){err('genErr',e.message);}
+  $('bGen').disabled=false;
+};
+
+function mostrar(j){
+  actual=j.tel; const c=j.cliente; err('cliErr','');
+  $('cliBox').hidden=false;
+  const s=c?c.sellos:0;
+  $('cNombre').textContent=c?(c.nombre||'Sin nombre')+' · '+j.tel:'Cliente nuevo · '+j.tel;
+  $('cCount').textContent=s+' / '+meta; $('cCount').className='pill'+(s>=meta?' ok':'');
+  let h='';for(let i=1;i<=meta;i++){const on=i<=s;h+=`<span class="${on?'on':''}${i===meta?' gift':''}">${i===meta?'🎁':(on?'✓':i)}</span>`;}
+  $('cStamps').innerHTML=h;
+  $('bCanje').disabled=s<meta; $('bMenos').disabled=s<=0;
+  $('cInfo').textContent=c?('Premios canjeados: '+c.canjes):'Todavía no sumó sellos.';
+}
+async function buscar(){try{mostrar(await api({action:'ver',tel:$('bTel').value}));}catch(e){$('cliBox').hidden=true;err('cliErr',e.message);}}
+$('bBuscar').onclick=buscar;
+async function ajustar(tipo){try{mostrar(await api({action:'ajustar',tipo,tel:actual}));render(await api({action:'recientes'}));}catch(e){err('cliErr',e.message);}}
+$('bCanje').onclick=()=>ajustar('canjear');
+$('bMas').onclick=()=>ajustar('mas');
+$('bMenos').onclick=()=>ajustar('menos');
+
+if(cred) entrar();
+</script>
+</body>
+</html>
