@@ -145,7 +145,7 @@ function mostrar(j){
   let h='';for(let i=1;i<=meta;i++){const on=i<=s;h+=`<span class="${on?'on':''}${i===meta?' gift':''}">${i===meta?'🎁':(on?'✓':i)}</span>`;}
   $('cStamps').innerHTML=h;
   $('bCanje').disabled=s<meta; $('bMenos').disabled=s<=0;
-  $('cInfo').textContent=c?('Premios canjeados: '+c.canjes):'Todavía no sumó sellos.';
+  $('cInfo').textContent=c?(['Premios canjeados: '+c.canjes,c.cumple&&('Cumple: '+c.cumple),c.email&&('Email: '+c.email)].filter(Boolean).join(' · ')):'No está registrado todavía.';
 }
 async function buscar(){try{mostrar(await api({action:'ver',tel:$('bTel').value}));}catch(e){$('cliBox').hidden=true;err('cliErr',e.message);}}
 $('bBuscar').onclick=buscar;

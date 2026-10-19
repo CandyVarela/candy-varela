@@ -50,6 +50,17 @@ button:disabled{opacity:.5}
     <p class="sub">Sumá sellos en cada compra y llevate un producto de regalo</p>
   </div>
 
+  <div class="card" id="cardAlta">
+    <div class="head"><span>Sumate al club</span><small>Gratis</small></div>
+    <div><label for="aNombre">Nombre</label><input id="aNombre" autocomplete="name" placeholder="Tu nombre y apellido"></div>
+    <div><label for="aTel">Celular</label><input id="aTel" inputmode="tel" autocomplete="tel" placeholder="Ej: 11 2345 6789"></div>
+    <div><label for="aCumple">Cumpleaños (opcional)</label><input id="aCumple" inputmode="numeric" placeholder="DD/MM · ¡te esperamos con un regalito!" maxlength="5"></div>
+    <div><label for="aEmail">Email (opcional)</label><input id="aEmail" type="email" autocomplete="email" placeholder="tu@email.com"></div>
+    <button id="bAlta">Registrarme</button>
+    <div class="msg" id="aMsg" hidden></div>
+    <div class="reglas" style="text-align:center">¿Ya estás registrado? <a href="#" id="lYa" style="color:var(--fucsia)">Cargá tu código o mirá tus sellos</a></div>
+  </div>
+
   <div class="card" id="cardSumar">
     <div>
       <label for="tel">Tu celular</label>
@@ -141,7 +152,31 @@ $('bSumar').onclick=async()=>{
   }catch(e){aviso(e.message);}
   $('bSumar').disabled=false;
 };
-if($('tel').value) $('bVer').click();
+// ---- Registro ----
+$('aCumple').addEventListener('input',e=>{let d=e.target.value.replace(/\D/g,'').slice(0,4);e.target.value=d.length>2?d.slice(0,2)+'/'+d.slice(2):d;});
+function modoRegistrado(){ $('cardAlta').hidden=true; $('cardSumar').hidden=false; }
+function modoAlta(){ $('cardAlta').hidden=false; $('cardSumar').hidden=true; }
+$('lYa').onclick=e=>{e.preventDefault();modoRegistrado();};
+$('bAlta').onclick=async()=>{
+  const m=$('aMsg'); m.hidden=true;
+  const nombre=$('aNombre').value.trim(), tel=$('aTel').value;
+  const err=t=>{m.textContent=t;m.className='msg err';m.hidden=false;};
+  if(!nombre) return err('Poné tu nombre.');
+  if(tel.replace(/\D/g,'').length<8) return err('Poné tu celular completo con código de área.');
+  $('bAlta').disabled=true;
+  try{
+    const j=await api({action:'registrar',nombre,tel,cumple:$('aCumple').value,email:$('aEmail').value});
+    try{localStorage.setItem('clubTel',tel);}catch(e){}
+    $('tel').value=tel; existe=true; $('boxNombre').hidden=true;
+    modoRegistrado();
+    aviso(j.yaEstaba?`¡Hola ${j.nombre}! Ya estabas en el club 💗`:`¡Bienvenido/a al Club Candy, ${j.nombre}! 🎉 Con tu próxima compra de $5.000 o más pedí tu código.`,true);
+    tarjeta(j.nombre,j.sellos,j.meta);
+  }catch(e){err(e.message);}
+  $('bAlta').disabled=false;
+};
+let _t=null; try{_t=localStorage.getItem('clubTel');}catch(e){}
+if(params.get('c') || (_t && !params.has('alta'))) modoRegistrado(); else modoAlta();
+if($('tel').value && $('cardAlta').hidden) $('bVer').click();
 </script>
 </body>
 </html>

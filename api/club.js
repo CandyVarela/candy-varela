@@ -44,7 +44,7 @@ async function cliente(tel) {
   const o = {};
   for (let i = 0; i < arr.length; i += 2) o[arr[i]] = arr[i + 1];
   if (!arr.length) return null;
-  return { nombre: o.nombre || '', sellos: parseInt(o.sellos || '0', 10), canjes: parseInt(o.canjes || '0', 10) };
+  return { nombre: o.nombre || '', cumple: o.cumple || '', email: o.email || '', sellos: parseInt(o.sellos || '0', 10), canjes: parseInt(o.canjes || '0', 10) };
 }
 
 async function limite(clave, max, seg) {
@@ -69,6 +69,27 @@ export default async function handler(req, res) {
         if (!tel) return res.status(400).json({ ok: false, error: 'Revisá el celular: poné el número completo con código de área.' });
         const c = await cliente(tel);
         return res.json({ ok: true, meta: META, existe: !!c, nombre: c ? c.nombre.split(' ')[0] : '', sellos: c ? c.sellos : 0 });
+      }
+
+      case 'registrar': {
+        if (await limite(`club:rl:r:${ip}`, 10, 600)) return res.status(429).json({ ok: false, error: 'Demasiados intentos. Probá en unos minutos.' });
+        const tel = normTel(b.tel);
+        const nombre = String(b.nombre || '').trim().slice(0, 40);
+        if (!nombre) return res.status(400).json({ ok: false, error: 'Poné tu nombre.' });
+        if (!tel) return res.status(400).json({ ok: false, error: 'Revisá el celular: poné el número completo con código de área.' });
+        const k = `club:cli:${tel}`;
+        const ya = await cliente(tel);
+        if (ya && ya.nombre) return res.json({ ok: true, meta: META, yaEstaba: true, nombre: ya.nombre.split(' ')[0], sellos: ya.sellos });
+        await redis('HSET', k, 'nombre', nombre);
+        const cumple = String(b.cumple || '').match(/^(\d{1,2})\/(\d{1,2})$/);
+        if (cumple && +cumple[1] >= 1 && +cumple[1] <= 31 && +cumple[2] >= 1 && +cumple[2] <= 12)
+          await redis('HSET', k, 'cumple', `${cumple[1].padStart(2, '0')}/${cumple[2].padStart(2, '0')}`);
+        const email = String(b.email || '').trim().slice(0, 80);
+        if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) await redis('HSET', k, 'email', email);
+        await redis('HSETNX', k, 'alta', Date.now());
+        await redis('HSETNX', k, 'sellos', 0);
+        await redis('ZADD', 'club:clientes', Date.now(), tel);
+        return res.json({ ok: true, meta: META, yaEstaba: false, nombre: nombre.split(' ')[0], sellos: ya ? ya.sellos : 0 });
       }
 
       case 'sumar': {
