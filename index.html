@@ -222,42 +222,27 @@
   @media (max-width:800px) { .promo-emp-grid { grid-template-columns:1fr; } }
 
 
-  /* BANNER DÍA DE LA MADRE */
-  .promo-mama { position:relative; overflow:hidden; border-radius:28px; margin-bottom:32px; padding:30px 22px 26px;
-    background:radial-gradient(circle at 12% 18%,#fff 0,transparent 38%),radial-gradient(circle at 90% 85%,#ffd6ea 0,transparent 45%),linear-gradient(150deg,#ffe3f0 0%,#ffc2dd 45%,#f7a8d0 100%);
-    border:2px solid #fff; box-shadow:0 10px 0 #e889b6,0 16px 36px rgba(214,0,107,0.22); }
-  .promo-mama-heart { position:absolute; bottom:-30px; color:#ff5fa8; opacity:0; pointer-events:none; animation:mamaFloat 9s linear infinite; }
-  @keyframes mamaFloat { 0%{transform:translateY(0) rotate(0);opacity:0;} 10%{opacity:0.55;} 100%{transform:translateY(-560px) rotate(25deg);opacity:0;} }
-  .promo-mama-inner { position:relative; z-index:1; display:flex; gap:28px; align-items:center; justify-content:center; flex-wrap:wrap; }
-  .promo-mama-video { position:relative; flex:0 0 auto; width:230px; border-radius:30px; padding:7px; background:#fff; box-shadow:0 8px 24px rgba(160,20,90,0.3); transform:rotate(-2deg); }
-  .promo-mama-video video { display:block; width:100%; aspect-ratio:9/16; object-fit:cover; border-radius:24px; background:#f7c6dc; }
-  .promo-mama-sound { position:absolute; bottom:18px; right:18px; background:rgba(255,255,255,0.92); border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.72rem; color:#c2185b; padding:6px 12px; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2); }
-  .promo-mama-sticker { position:absolute; top:-12px; left:-14px; z-index:2; background:#ffd23f; color:#8a1048; font-family:'Nunito',sans-serif; font-weight:900; font-size:0.7rem; padding:6px 12px; border-radius:50px; transform:rotate(-8deg); box-shadow:0 3px 0 #d4a514; }
-  .promo-mama-txt { flex:1 1 320px; max-width:560px; text-align:center; }
-  .promo-mama-tag { display:inline-block; background:#fff; color:#d6006b; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; padding:5px 16px; border-radius:50px; box-shadow:0 3px 0 #f19cc4; }
-  .promo-mama-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:2.3rem; line-height:1.05; color:#a3104f; margin:12px 0 6px; }
-  .promo-mama-title span { display:block; color:#fff; font-size:2.7rem; text-shadow:0 3px 0 #d6006b,0 6px 14px rgba(214,0,107,0.35); }
-  .promo-mama-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.92rem; color:#8a1048; margin-bottom:18px; }
-  .promo-mama-boxes { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
-  .mama-box { background:#fff; border-radius:18px; padding:8px 8px 10px; box-shadow:0 5px 0 #f0a3c7; display:flex; flex-direction:column; position:relative; }
-  .mama-box img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; border-radius:12px; }
-  .mama-box.top { box-shadow:0 5px 0 #d6006b; outline:2px solid #ff5fa8; }
-  .mama-box-badge { position:absolute; top:-9px; right:-6px; z-index:1; background:#d6006b; color:#fff; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.62rem; padding:3px 9px; border-radius:50px; white-space:nowrap; }
-  .mama-box-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.9rem; color:#a3104f; margin-top:7px; }
-  .mama-box-desc { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.7rem; color:#8c5a73; line-height:1.25; margin:3px 0 6px; flex:1; }
-  .mama-box-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.15rem; color:#d6006b; }
-  .mama-box-btn { margin-top:6px; background:linear-gradient(135deg,#ff5fa8,#d6006b); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.75rem; padding:8px 6px; cursor:pointer; }
-  .promo-mama-note { margin-top:16px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; color:#8a1048; }
-  .promo-mama-note a { color:#d6006b; }
-  @media (max-width:600px){
-    .promo-mama { padding:26px 14px 22px; }
-    .promo-mama-video { width:190px; }
-    .promo-mama-title { font-size:1.8rem; } .promo-mama-title span { font-size:2.15rem; }
-    .promo-mama-boxes { gap:7px; } .mama-box { padding:6px 6px 8px; }
-    .mama-box-nombre { font-size:0.8rem; } .mama-box-desc { font-size:0.62rem; } .mama-box-precio { font-size:1rem; }
-    .mama-box-btn { font-size:0.68rem; padding:7px 4px; }
-    .mama-box-badge { font-size:0.55rem; padding:2px 7px; right:-3px; }
-  }
+  /* BANNER CLUB CANDY */
+  .promo-club { position:relative; overflow:hidden; border-radius:28px; margin-bottom:32px; padding:28px 22px;
+    background:radial-gradient(circle at 10% 15%,#fff 0,transparent 35%),linear-gradient(150deg,#ffe3f0 0%,#ffc2dd 50%,#f7a8d0 100%);
+    border:2px solid #fff; box-shadow:0 10px 0 #e889b6,0 16px 36px rgba(214,0,107,0.22); scroll-margin-top:120px; }
+  .promo-club-inner { display:flex; gap:28px; align-items:center; justify-content:center; flex-wrap:wrap; }
+  .promo-club-txt { flex:1 1 300px; max-width:520px; text-align:center; }
+  .promo-club-tag { display:inline-block; background:#fff; color:#d6006b; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; padding:5px 16px; border-radius:50px; }
+  .promo-club-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:2.3rem; line-height:1.05; color:#a3104f; margin:12px 0 6px; }
+  .promo-club-title span { display:block; color:#fff; font-size:2.6rem; text-shadow:0 3px 0 #d6006b,0 6px 14px rgba(214,0,107,0.35); }
+  .promo-club-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.95rem; color:#8a1048; margin-bottom:16px; }
+  .promo-club-btn { display:inline-block; background:linear-gradient(135deg,#ff5fa8,#d6006b); color:#fff; text-decoration:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.95rem; padding:12px 26px; box-shadow:0 4px 0 #a3104f; }
+  .promo-club-btn:hover { transform:translateY(-2px); }
+  .promo-club-note { margin-top:12px; font-family:'Nunito',sans-serif; font-weight:700; font-size:0.75rem; color:#8a1048; }
+  .promo-club-card { flex:0 0 auto; width:280px; max-width:100%; background:#fff; border-radius:22px; padding:16px; box-shadow:0 8px 24px rgba(160,20,90,0.25); transform:rotate(-2deg); }
+  .promo-club-card-head { display:flex; justify-content:space-between; align-items:center; font-family:'Baloo 2',cursive; font-weight:800; color:#a3104f; font-size:1.1rem; margin-bottom:10px; }
+  .promo-club-card-head small { font-family:'Nunito',sans-serif; font-size:0.65rem; color:#d6006b; background:#ffe3f0; padding:3px 9px; border-radius:50px; }
+  .promo-club-stamps { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+  .promo-club-stamps span { aspect-ratio:1; border-radius:50%; display:grid; place-items:center; font-family:'Baloo 2',cursive; font-weight:800; font-size:0.85rem; color:#d9a3bd; border:2px dashed #f3c4da; background:#fff6f9; }
+  .promo-club-stamps span.on { background:#ff5fa8; border:2px solid #ff5fa8; color:#fff; transform:rotate(-8deg); }
+  .promo-club-stamps span.gift { border-color:#2fbf8f; color:#2fbf8f; font-size:1rem; }
+  @media (max-width:600px){ .promo-club { padding:24px 14px; } .promo-club-title { font-size:1.8rem; } .promo-club-title span { font-size:2.1rem; } .promo-club-card { width:250px; } }
   /* BANNER KIT MERIENDA CHOCOLINAS - VIOLETA */
   @keyframes kmShimmer { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
   @keyframes kmGlowPulse { 0%,100%{box-shadow:0 0 20px rgba(180,60,255,0.55),0 0 50px rgba(123,47,247,0.35);} 50%{box-shadow:0 0 34px rgba(180,60,255,0.85),0 0 80px rgba(123,47,247,0.55);} }
@@ -1103,6 +1088,7 @@
 <aside class="category-sidebar">
   <div class="category-sidebar-title">Categorías</div>
   <a href="#todos" class="cat-filter-link active"><span>🍬</span> Todos</a>
+  <a href="#clubcandy" class="cat-filter-link"><span>🍭</span> Club Candy</a>
   <a href="#novedades" class="cat-filter-link"><span>✨</span> Novedades</a>
   <a href="#regaleria" class="cat-filter-link"><span>🎀</span> Regalería</a>
   <a href="#monster" class="cat-filter-link"><span>⚡</span> Monster</a>
@@ -1126,43 +1112,19 @@
 
 
 
-  <!-- BANNER DÍA DE LA MADRE -->
-  <div class="promo-mama" id="diadelamadre" style="scroll-margin-top:120px;">
-    <span class="promo-mama-heart" style="left:6%;font-size:1.4rem;animation-delay:0s;">♥</span><span class="promo-mama-heart" style="left:22%;font-size:0.9rem;animation-delay:2.5s;">♥</span><span class="promo-mama-heart" style="left:48%;font-size:1.2rem;animation-delay:5s;">♥</span><span class="promo-mama-heart" style="left:70%;font-size:1rem;animation-delay:1.2s;">♥</span><span class="promo-mama-heart" style="left:88%;font-size:1.6rem;animation-delay:3.8s;">♥</span><span class="promo-mama-heart" style="left:36%;font-size:0.8rem;animation-delay:6.5s;">♥</span>
-    <div class="promo-mama-inner">
-      <div class="promo-mama-video">
-        <span class="promo-mama-sticker">💐 Domingo 18/10</span>
-        <video id="mamaVideo" src="img/videos/dia-madre.mp4" poster="img/videos/dia-madre-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
-        <button class="promo-mama-sound" onclick="(function(b){const v=document.getElementById('mamaVideo');v.muted=!v.muted;if(!v.muted)v.play();b.textContent=v.muted?'🔇 Activar sonido':'🔊 Sonido on';})(this)">🔇 Activar sonido</button>
+  <!-- BANNER CLUB CANDY -->
+  <div class="promo-club" id="clubcandy">
+    <div class="promo-club-inner">
+      <div class="promo-club-txt">
+        <span class="promo-club-tag">🍭 Nuevo · Club Candy</span>
+        <div class="promo-club-title">Sumá sellos,<span>ganá dulces 🎁</span></div>
+        <div class="promo-club-sub">Por cada compra te damos un sello en tu tarjeta virtual. Completás 10 sellos y te llevás un alfajor importado de regalo.</div>
+        <a class="promo-club-btn" href="https://wa.me/541176750220?text=Hola!%20Quiero%20sumarme%20al%20Club%20Candy%20%F0%9F%8D%AD" target="_blank" rel="noopener">💬 Quiero sumarme</a>
+        <div class="promo-club-note">Es gratis · Te anotamos con tu celular · Consultá tus sellos por WhatsApp cuando quieras</div>
       </div>
-      <div class="promo-mama-txt">
-        <span class="promo-mama-tag">💗 Día de la Madre</span>
-        <div class="promo-mama-title">Regalale algo dulce<span>a mamá 💐</span></div>
-        <div class="promo-mama-sub">Box en caja personalizada con su foto y dedicatoria · Armada a mano en Candy Varela</div>
-        <div class="promo-mama-boxes">
-          <div class="mama-box">
-            <img src="img/productos/dia-madre-box1.jpg" alt="Box Día de la Madre 1" loading="lazy">
-            <div class="mama-box-nombre">Box 1</div>
-            <div class="mama-box-desc">Golosinas + caja personalizada</div>
-            <div class="mama-box-precio">$20.000</div>
-            <button class="mama-box-btn" onclick="agregarKinder(this,'Box Día de la Madre 1',20000)">+ Agregar</button>
-          </div>
-          <div class="mama-box">
-            <img src="img/productos/dia-madre-box2.jpg" alt="Box Día de la Madre 2" loading="lazy">
-            <div class="mama-box-nombre">Box 2</div>
-            <div class="mama-box-desc">Golosinas + taza + caja personalizada</div>
-            <div class="mama-box-precio">$25.000</div>
-            <button class="mama-box-btn" onclick="agregarKinder(this,'Box Día de la Madre 2',25000)">+ Agregar</button>
-          </div>
-          <div class="mama-box top"><span class="mama-box-badge">⭐ Más completa</span>
-            <img src="img/productos/dia-madre-box3.jpg" alt="Box Día de la Madre 3" loading="lazy">
-            <div class="mama-box-nombre">Box 3</div>
-            <div class="mama-box-desc">Golosinas + taza + accesorio + caja personalizada</div>
-            <div class="mama-box-precio">$30.000</div>
-            <button class="mama-box-btn" onclick="agregarKinder(this,'Box Día de la Madre 3',30000)">+ Agregar</button>
-          </div>
-        </div>
-        <div class="promo-mama-note">⚠️ Los productos que contiene pueden variar según stock<br>📸 Pedidos con anticipación · Mandanos la foto por <a href="https://wa.me/541176750220" target="_blank" rel="noopener">WhatsApp</a></div>
+      <div class="promo-club-card" aria-hidden="true">
+        <div class="promo-club-card-head">Tarjeta Club Candy <small>6 / 10</small></div>
+        <div class="promo-club-stamps"><span class="on">✓</span><span class="on">✓</span><span class="on">✓</span><span class="on">✓</span><span class="on">✓</span><span class="on">✓</span><span>7</span><span>8</span><span>9</span><span class="gift">🎁</span></div>
       </div>
     </div>
   </div>
@@ -1440,15 +1402,7 @@
         <a class="rg-cta" href="https://wa.me/541176750220?text=Hola!%20Quiero%20consultar%20por%20un%20regalo%20%F0%9F%8E%81" target="_blank" rel="noopener">💬 Consultá por un regalo a medida</a>
       </div>
     </div>
-    <div class="rg-chips"><a href="#rg-todo" class="rg-chip on" data-g="todo">Todo</a><a href="#rg-g0" class="rg-chip" data-g="g0">💐 Día de la Madre</a><a href="#rg-g1" class="rg-chip" data-g="g1">🎁 Box armados</a><a href="#rg-g2" class="rg-chip" data-g="g2">🍫 Cajas de bombones</a><a href="#rg-g3" class="rg-chip" data-g="g3">🛍️ Bolsitas</a></div>
-    <div class="rg-group" data-g="g0">
-      <div class="rg-group-head"><span class="rg-group-ico">💐</span><div><h3 class="rg-group-title">Día de la Madre</h3><p class="rg-group-sub">Caja personalizada con su foto y dedicatoria</p></div></div>
-      <div class="rg-row-scroll">
-        <div class="rg-card"><div class="rg-img"><img src="img/productos/dia-madre-box1.jpg" alt="Box Día de la Madre 1" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Mamá 1</div><div class="rg-sub">Golosinas + caja personalizada</div><div class="rg-row"><span class="rg-precio">$20.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Día de la Madre 1',20000)">+ Agregar</button></div></div></div>
-        <div class="rg-card"><div class="rg-img"><img src="img/productos/dia-madre-box2.jpg" alt="Box Día de la Madre 2" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Mamá 2</div><div class="rg-sub">Golosinas + taza + caja personalizada</div><div class="rg-row"><span class="rg-precio">$25.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Día de la Madre 2',25000)">+ Agregar</button></div></div></div>
-        <div class="rg-card"><div class="rg-img"><img src="img/productos/dia-madre-box3.jpg" alt="Box Día de la Madre 3" loading="lazy"></div><div class="rg-info"><div class="rg-nombre">Box Mamá 3 ⭐</div><div class="rg-sub">Golosinas + taza + accesorio + caja personalizada</div><div class="rg-row"><span class="rg-precio">$30.000</span><button class="rg-btn" onclick="agregarKinder(this,'Box Día de la Madre 3',30000)">+ Agregar</button></div></div></div>
-      </div>
-    </div>
+    <div class="rg-chips"><a href="#rg-todo" class="rg-chip on" data-g="todo">Todo</a><a href="#rg-g1" class="rg-chip" data-g="g1">🎁 Box armados</a><a href="#rg-g2" class="rg-chip" data-g="g2">🍫 Cajas de bombones</a><a href="#rg-g3" class="rg-chip" data-g="g3">🛍️ Bolsitas</a></div>
     <div class="rg-group" data-g="g1">
       <div class="rg-group-head"><span class="rg-group-ico">🎁</span><div><h3 class="rg-group-title">Box armados</h3><p class="rg-group-sub">Listos para regalar</p></div></div>
       <div class="rg-row-scroll">
@@ -5831,7 +5785,7 @@
   function _buildProdsFromDOM(){
     const seen = new Set();
     const out = [];
-    const cardSelectors = ['.cat-card','.beb-card','.box-card-item','.cho-card','.imp-card','.kinder-card','.letras-card','.snk-card','.viral-card','.emp-card','.mama-box'];
+    const cardSelectors = ['.cat-card','.beb-card','.box-card-item','.cho-card','.imp-card','.kinder-card','.letras-card','.snk-card','.viral-card','.emp-card'];
     document.querySelectorAll(cardSelectors.join(',')).forEach(function(c){
       const nombreEl = c.querySelector('[class*="nombre"], [class*="title"]');
       if(!nombreEl) return;
