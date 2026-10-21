@@ -990,6 +990,11 @@
   .od-row { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:auto; }
   .od-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.35rem; color:#e8173c; }
   .od-btn { background:linear-gradient(135deg,#e8173c,#ff5f3a); color:#fff; border:none; border-radius:50px; padding:8px 13px; font-weight:800; font-size:0.74rem; cursor:pointer; white-space:nowrap; }
+  .od-secret .od-img { overflow:hidden; }
+  .od-secret .od-img img { filter:blur(14px) saturate(0.7); transform:scale(1.15); }
+  .od-q { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2',cursive; font-weight:800; font-size:4.5rem; color:#fff; text-shadow:0 4px 14px rgba(232,23,60,0.55); animation:odPulse 1.6s ease-in-out infinite; }
+  @keyframes odPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
+  .od-soon { background:#fff0f3; color:#e8173c; border:2px dashed #ffb3c1; border-radius:50px; padding:6px 12px; font-weight:800; font-size:0.74rem; white-space:nowrap; }
   @media (max-width:700px) { .od-banner { padding:22px 18px; } .od-title { font-size:2rem; } .od-timer { width:100%; } .od-card { flex:0 0 280px; } }
 </style>
 </head>
@@ -1338,51 +1343,43 @@
     <div class="od-banner">
       <span class="od-burst">%</span>
       <div class="od-txt">
-        <span class="od-kicker">⏰ Solo por hoy</span>
-        <h2 class="od-title">Ofertas del día 🔥</h2>
-        <p class="od-lead">Precios especiales mientras dure el stock</p>
+        <span class="od-kicker">🕵️ Próximamente</span>
+        <h2 class="od-title">Ofertas secretas 🔥</h2>
+        <p class="od-lead">Este viernes se revelan nuevas ofertas · ¿adivinás cuáles son?</p>
       </div>
-      <div class="od-timer"><span class="od-timer-lbl">Termina en</span><span class="od-timer-num" id="odTimer">--:--:--</span></div>
+      <div class="od-timer"><span class="od-timer-lbl" id="odTimerLbl">Se revelan en</span><span class="od-timer-num" id="odTimer">--d --:--:--</span></div>
     </div>
     <div class="od-grid">
-      <div class="od-card">
-        <div class="od-img"><span class="od-badge">PROMO</span><img src="img/productos/cadbury-yoghurt-frutilla.jpg" alt="Chocolate Cadbury Yoghurt Frutilla 162g"></div>
+      <div class="od-card od-secret">
+        <div class="od-img"><span class="od-badge">SECRETO</span><img src="img/productos/milka-oreo.jpg" alt="Producto sorpresa" loading="lazy"><span class="od-q">?</span></div>
         <div class="od-info">
-          <div class="od-nombre">Chocolate Cadbury Yoghurt Frutilla 162g</div>
-          <div class="od-desc">💡 Precio promocional: la tableta puede venir partida por el traslado. ¡Mismo sabor de siempre!</div>
-          <div class="od-row"><span class="od-precio">$10.000</span><button class="od-btn" onclick="agregarKinder(this,'Chocolate Cadbury Yoghurt Frutilla 162g (Oferta del día)',10000)">+ Agregar</button></div>
+          <div class="od-nombre">Producto sorpresa</div>
+          <div class="od-desc">Pista: 🍫 Chocolate con una galletita muy famosa adentro</div>
+          <div class="od-row"><span class="od-precio">$ ???</span><span class="od-soon">Viernes 🔓</span></div>
         </div>
       </div>
-      <div class="od-card">
-        <div class="od-img"><span class="od-badge">PROMO</span><img src="img/productos/felfort-chocolate-mani.jpg" alt="Chocolate Felfort con Leche y Maní"></div>
+      <div class="od-card od-secret">
+        <div class="od-img"><span class="od-badge">SECRETO</span><img src="img/productos/pringles-queso.jpg" alt="Producto sorpresa" loading="lazy"><span class="od-q">?</span></div>
         <div class="od-info">
-          <div class="od-nombre">Chocolate Felfort con Maní</div>
-          <div class="od-desc">🔥 Precio especial solo por hoy</div>
-          <div class="od-row"><span class="od-precio">$5.000</span><button class="od-btn" onclick="agregarKinder(this,'Chocolate Felfort con Maní (Oferta del día)',5000)">+ Agregar</button></div>
+          <div class="od-nombre">Producto sorpresa</div>
+          <div class="od-desc">Pista: 🥔 Viene en tubo y no podés comer solo una</div>
+          <div class="od-row"><span class="od-precio">$ ???</span><span class="od-soon">Viernes 🔓</span></div>
         </div>
       </div>
-      <div class="od-card">
-        <div class="od-img"><span class="od-badge">PROMO</span><img src="img/productos/chocolate-barrigon-leche-almendras-oferta2.jpg" alt="Chocolate Barrigón Leche y Almendras"></div>
+      <div class="od-card od-secret">
+        <div class="od-img"><span class="od-badge">SECRETO</span><img src="img/productos/monster-mango-loco.jpg" alt="Producto sorpresa" loading="lazy"><span class="od-q">?</span></div>
         <div class="od-info">
-          <div class="od-nombre">Chocolate Barrigón Leche y Almendras</div>
-          <div class="od-desc">🔥 Precio especial solo por hoy</div>
-          <div class="od-row"><span class="od-precio">$5.000</span><button class="od-btn" onclick="agregarKinder(this,'Chocolate Barrigón Leche y Almendras (Oferta del día)',5000)">+ Agregar</button></div>
+          <div class="od-nombre">Producto sorpresa</div>
+          <div class="od-desc">Pista: ⚡ Lata energética con sabor tropical</div>
+          <div class="od-row"><span class="od-precio">$ ???</span><span class="od-soon">Viernes 🔓</span></div>
         </div>
       </div>
-      <div class="od-card">
-        <div class="od-img"><span class="od-badge">PROMO</span><img src="img/productos/aguila-amargo-oferta2.jpg" alt="Chocolate Águila Grande"></div>
+      <div class="od-card od-secret">
+        <div class="od-img"><span class="od-badge">SECRETO</span><img src="img/productos/nutella-140g.jpg" alt="Producto sorpresa" loading="lazy"><span class="od-q">?</span></div>
         <div class="od-info">
-          <div class="od-nombre">Chocolate Águila Grande</div>
-          <div class="od-desc">🔥 Precio especial solo por hoy</div>
-          <div class="od-row"><span class="od-precio">$7.000</span><button class="od-btn" onclick="agregarKinder(this,'Chocolate Águila Grande (Oferta del día)',7000)">+ Agregar</button></div>
-        </div>
-      </div>
-      <div class="od-card">
-        <div class="od-img"><span class="od-badge">PROMO</span><img src="img/productos/cofler-block-300-oferta2.jpg" alt="Chocolate Cofler Block 300g"></div>
-        <div class="od-info">
-          <div class="od-nombre">Chocolate Cofler Block 300g</div>
-          <div class="od-desc">🔥 Precio especial solo por hoy</div>
-          <div class="od-row"><span class="od-precio">$15.000</span><button class="od-btn" onclick="agregarKinder(this,'Chocolate Cofler Block 300g (Oferta del día)',15000)">+ Agregar</button></div>
+          <div class="od-nombre">Producto sorpresa</div>
+          <div class="od-desc">Pista: 🌰 La crema de avellanas que todos aman</div>
+          <div class="od-row"><span class="od-precio">$ ???</span><span class="od-soon">Viernes 🔓</span></div>
         </div>
       </div>
     </div>
@@ -1755,32 +1752,6 @@
         <img class="cat-card-img" src="img/productos/pescado-raul-pandulce.jpg" alt="Pescado Raúl Pan Dulce con Chips Dulce de Leche" loading="lazy">
         <div class="cat-card-nombre">Pescado Raúl Pan Dulce con Chips Dulce de Leche 🆕</div>
         <div class="cat-card-row"><span class="cat-card-precio">$5.500</span><button class="cat-card-btn" onclick="agregarKinder(this,'Pescado Raúl Pan Dulce con Chips Dulce de Leche',5500)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="ofertas">
-        <img class="cat-card-img" src="img/productos/chocolate-barrigon-leche-almendras-oferta2-sq.jpg" alt="Chocolate Barrigón Leche y Almendras" loading="lazy">
-        <div class="cat-card-nombre">Chocolate Barrigón Leche y Almendras 🔥 Oferta</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Chocolate Barrigón Leche y Almendras (Oferta del día)',5000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="ofertas">
-        <img class="cat-card-img" src="img/productos/aguila-amargo-oferta2-sq.jpg" alt="Chocolate Águila Grande" loading="lazy">
-        <div class="cat-card-nombre">Chocolate Águila Grande 🔥 Oferta</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Chocolate Águila Grande (Oferta del día)',7000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="ofertas">
-        <img class="cat-card-img" src="img/productos/cofler-block-300-oferta2-sq.jpg" alt="Chocolate Cofler Block 300g" loading="lazy">
-        <div class="cat-card-nombre">Chocolate Cofler Block 300g 🔥 Oferta</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$15.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Chocolate Cofler Block 300g (Oferta del día)',15000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="ofertas">
-        <img class="cat-card-img" src="img/productos/felfort-chocolate-mani-sq.jpg" alt="Chocolate Felfort con Leche y Maní" loading="lazy">
-        <div class="cat-card-nombre">Chocolate Felfort con Maní 🔥 Oferta</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$5.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Chocolate Felfort con Maní (Oferta del día)',5000)">+ Agregar</button></div>
-      </div>
-      <div class="cat-card" data-cat="ofertas">
-        <img class="cat-card-img" src="img/productos/cadbury-yoghurt-frutilla.jpg" alt="Chocolate Cadbury Yoghurt Frutilla 162g" loading="lazy">
-        <div class="cat-card-nombre">Chocolate Cadbury Yoghurt Frutilla 162g 🔥 Oferta</div>
-        <div style="font-size:0.7rem;color:#888;font-weight:700;margin:-2px 0 6px;">Puede venir partido por el traslado</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Chocolate Cadbury Yoghurt Frutilla 162g (Oferta del día)',10000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="ofertas">
         <img class="cat-card-img" src="img/productos/gomitas-surtidas.jpg" alt="Gomitas Surtidas 300g" loading="lazy">
@@ -5900,11 +5871,13 @@
     });});
   })();
 
-  // Ofertas del día: cuenta regresiva hasta medianoche
-  (function(){ const el=document.getElementById('odTimer'); if(!el) return;
-    function t(){ const n=new Date(), f=new Date(n); f.setHours(24,0,0,0); let s=Math.max(0,Math.floor((f-n)/1000));
-      const p=x=>String(x).padStart(2,'0'); el.textContent=p(Math.floor(s/3600))+':'+p(Math.floor(s%3600/60))+':'+p(s%60); }
-    t(); setInterval(t,1000); })();
+  // Ofertas secretas: cuenta regresiva hasta el viernes 23/10 00:00 (hora Argentina)
+  (function(){ const el=document.getElementById('odTimer'), lbl=document.getElementById('odTimerLbl'); if(!el) return;
+    const fin=new Date('2026-10-23T00:00:00-03:00'); let iv;
+    function t(){ let s=Math.max(0,Math.floor((fin-new Date())/1000)); const p=x=>String(x).padStart(2,'0');
+      if(s<=0){ if(lbl) lbl.textContent='¡Ya es viernes!'; el.textContent='🔓 Pasá por el local'; clearInterval(iv); return; }
+      const d=Math.floor(s/86400); el.textContent=(d?d+'d ':'')+p(Math.floor(s%86400/3600))+':'+p(Math.floor(s%3600/60))+':'+p(s%60); }
+    t(); iv=setInterval(t,1000); })();
 </script>
 <!-- Splash lanzamiento Takis Blue Heat -->
 <style>
