@@ -997,6 +997,42 @@
   .od-soon { background:#fff0f3; color:#e8173c; border:2px dashed #ffb3c1; border-radius:50px; padding:6px 12px; font-weight:800; font-size:0.74rem; white-space:nowrap; }
   @media (max-width:700px) { .od-banner { padding:22px 18px; } .od-title { font-size:2rem; } .od-timer { width:100%; } .od-card { flex:0 0 280px; } }
 </style>
+<!-- HALLOWEEN START (para sacarlo: borrar todo lo que está entre HALLOWEEN START y HALLOWEEN END, acá y al final de la página) -->
+<style id="halloween">
+  :root{--rosa:#ff7a1a;--rosa-light:#ffe6cc;--celeste:#c9a7ef;--azul:#6b2fa3;--azul-dark:#2a0f45;--gris-bg:#fbf1e6;--text:#2b1240;--text-muted:#6e5a7e;--shadow:0 4px 20px rgba(107,47,163,.16)}
+  body{background:#fbf1e6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Ctext x='20' y='40' font-size='18' opacity='.13'%3E🦇%3C/text%3E%3Ctext x='100' y='120' font-size='18' opacity='.13'%3E🎃%3C/text%3E%3Ctext x='110' y='35' font-size='12' opacity='.13'%3E✦%3C/text%3E%3Ctext x='35' y='130' font-size='12' opacity='.13'%3E🕸️%3C/text%3E%3C/svg%3E")}
+  .top-bar{background:#140821}
+  .top-bar-item a{color:#ff9a3c}
+  header{background:linear-gradient(135deg,#140821 0%,#3b1361 55%,#ff6a00 130%)!important}
+  .logo::before{content:'🎃';margin-right:2px}
+  .hw-web{position:fixed;top:0;width:150px;height:150px;pointer-events:none;z-index:99;opacity:.55}
+  .hw-web.l{left:0}.hw-web.r{right:0;transform:scaleX(-1)}
+  .hw-spider{position:fixed;top:0;right:150px;z-index:99;pointer-events:none;animation:hwSpider 6s ease-in-out infinite;transform-origin:top center}
+  .hw-spider i{display:block;width:1px;height:90px;background:#2b1240;opacity:.55;margin:0 auto}
+  .hw-spider b{display:block;font-size:22px;line-height:1;margin-top:-2px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
+  @keyframes hwSpider{0%,100%{transform:translateY(-40px)}50%{transform:translateY(40px)}}
+  .hw-bat{position:fixed;z-index:98;pointer-events:none;font-size:26px;animation:hwBat linear forwards}
+  @keyframes hwBat{from{transform:translate(-60px,0) rotate(-8deg)}25%{transform:translate(25vw,-40px) rotate(6deg)}50%{transform:translate(50vw,20px) rotate(-6deg)}75%{transform:translate(75vw,-30px) rotate(6deg)}to{transform:translate(calc(100vw + 60px),0) rotate(-8deg)}}
+  #hwGhost{position:fixed;left:0;top:0;width:46px;height:54px;pointer-events:none;z-index:2147483646;opacity:0;transition:opacity .35s;will-change:transform}
+  #hwGhost.on{opacity:.92}
+  #hwGhost svg{width:100%;height:100%;animation:hwFloat 1.6s ease-in-out infinite;filter:drop-shadow(0 6px 8px rgba(43,18,64,.35))}
+  @keyframes hwFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
+  .hw-boo{position:fixed;pointer-events:none;z-index:2147483645;font:800 13px 'Poppins',sans-serif;color:#6b2fa3;animation:hwBoo .9s ease-out forwards}
+  @keyframes hwBoo{to{transform:translateY(-30px);opacity:0}}
+  .promo-club{background:radial-gradient(circle at 85% 18%,#fff6d6 0 22px,transparent 23px),radial-gradient(circle at 10% 15%,rgba(255,255,255,.08) 0,transparent 35%),linear-gradient(150deg,#1d0b33 0%,#3b1361 55%,#5a1f86 100%)!important;border-color:#ff8a2a!important;box-shadow:0 10px 0 #ff7a1a,0 16px 36px rgba(59,19,97,.35)!important}
+  .promo-club-title{color:#ffb347!important}
+  .promo-club-title span{color:#fff!important;text-shadow:0 3px 0 #ff6a00,0 6px 14px rgba(255,106,0,.4)!important}
+  .promo-club-sub,.promo-club-note{color:#efe3ff!important}
+  .promo-club-tag{color:#6b2fa3!important}
+  .promo-club-btn{background:linear-gradient(135deg,#ff9a3c,#ff6a00)!important;box-shadow:0 4px 0 #b34700!important}
+  .promo-club-btn[style*='#fff']{background:#fff!important;color:#6b2fa3!important;box-shadow:0 4px 0 #c9a7ef!important}
+  @media (max-width:600px){.promo-club{background:radial-gradient(circle at 90% 6%,#fff6d6 0 14px,transparent 15px),linear-gradient(150deg,#1d0b33 0%,#3b1361 55%,#5a1f86 100%)!important}}
+  .promo-club-stamps span.on{background:#ff7a1a!important;border-color:#ff7a1a!important}
+  .promo-emprendedores-banner{background:linear-gradient(120deg,#3b1361,#ff6a00 40%,#ff9a3c 60%,#3b1361)!important;background-size:260% 260%!important}
+  @media (max-width:700px){.hw-web{width:90px;height:90px}.hw-spider i{height:60px}}
+  @media (prefers-reduced-motion:reduce){.hw-spider,.hw-bat,#hwGhost svg{animation:none}.hw-bat{display:none}}
+</style>
+<!-- HALLOWEEN END -->
 </head>
 <body>
 
@@ -5969,5 +6005,29 @@
   setTimeout(cerrar,10000);
 })();
 </script>
+<!-- HALLOWEEN START -->
+<svg class="hw-web l" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#2b1240" stroke-width=".8"><path d="M0 0L100 30M0 0L75 75M0 0L30 100M0 0L100 0M0 0L0 100"/><path d="M22 0Q20 10 26 8Q30 18 19 22Q14 24 6 26Q8 20 0 22"/><path d="M48 0Q45 20 56 17Q62 36 40 40Q28 46 14 52Q16 42 0 46"/><path d="M76 0Q72 30 88 26Q92 54 60 60Q42 70 22 78Q24 64 0 70"/></g></svg>
+<svg class="hw-web r" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#2b1240" stroke-width=".8"><path d="M0 0L100 30M0 0L75 75M0 0L30 100M0 0L100 0M0 0L0 100"/><path d="M22 0Q20 10 26 8Q30 18 19 22Q14 24 6 26Q8 20 0 22"/><path d="M48 0Q45 20 56 17Q62 36 40 40Q28 46 14 52Q16 42 0 46"/><path d="M76 0Q72 30 88 26Q92 54 60 60Q42 70 22 78Q24 64 0 70"/></g></svg>
+<div class="hw-spider" aria-hidden="true"><i></i><b>🕷️</b></div>
+<div id="hwGhost" aria-hidden="true"><svg viewBox="0 0 46 54"><path d="M23 2C11 2 4 11 4 23v27l6-5 6 5 7-5 7 5 6-5 6 5V23C42 11 35 2 23 2z" fill="#fff" stroke="#2b1240" stroke-width="2" stroke-linejoin="round"/><ellipse cx="16" cy="21" rx="3" ry="4.2" fill="#2b1240"/><ellipse cx="30" cy="21" rx="3" ry="4.2" fill="#2b1240"/><ellipse cx="23" cy="31" rx="3.2" ry="4" fill="#2b1240"/><circle cx="11" cy="28" r="2.6" fill="#ffb3c7" opacity=".8"/><circle cx="35" cy="28" r="2.6" fill="#ffb3c7" opacity=".8"/></svg></div>
+<script>
+(function(){
+  var g=document.getElementById('hwGhost'); if(!g) return;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tx=-100,ty=-100,x=-100,y=-100,dir=1,hide;
+  function show(){g.classList.add('on');clearTimeout(hide);hide=setTimeout(function(){g.classList.remove('on')},matchMedia('(pointer:coarse)').matches?1500:4000);}
+  function move(cx,cy){if(cx<tx-1)dir=-1;else if(cx>tx+1)dir=1;tx=cx+14;ty=cy+12;show();}
+  addEventListener('mousemove',function(e){move(e.clientX,e.clientY)},{passive:true});
+  addEventListener('touchstart',function(e){var t=e.touches[0];if(t){x=t.clientX;y=t.clientY-60;move(t.clientX,t.clientY-60)}},{passive:true});
+  addEventListener('touchmove',function(e){var t=e.touches[0];if(t)move(t.clientX,t.clientY-60)},{passive:true});
+  document.addEventListener('mouseleave',function(){g.classList.remove('on')});
+  (function loop(){var k=reduce?1:.12;x+=(tx-x)*k;y+=(ty-y)*k;var tilt=Math.max(-18,Math.min(18,(tx-x)*.25));
+    g.style.transform='translate('+x+'px,'+y+'px) rotate('+tilt+'deg) scaleX('+dir+')';requestAnimationFrame(loop);})();
+  addEventListener('click',function(e){var b=document.createElement('div');b.className='hw-boo';b.textContent='¡Buu!';b.style.left=(e.clientX+10)+'px';b.style.top=(e.clientY-24)+'px';document.body.appendChild(b);setTimeout(function(){b.remove()},950);});
+  if(!reduce){function bat(){var b=document.createElement('div');b.className='hw-bat';b.textContent='🦇';b.style.top=(8+Math.random()*50)+'vh';b.style.left='0';b.style.animationDuration=(7+Math.random()*5)+'s';document.body.appendChild(b);setTimeout(function(){b.remove()},13000);}
+    setTimeout(bat,2500);setInterval(bat,14000);}
+})();
+</script>
+<!-- HALLOWEEN END -->
 </body>
 </html>

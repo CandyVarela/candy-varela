@@ -46,6 +46,20 @@ button:disabled{opacity:.5}
 .ganaste{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.4rem;color:var(--vino);text-align:center;line-height:1.2}
 .ganaste small{display:block;font-family:'Nunito';font-size:.85rem;color:var(--txt)}
 </style>
+<!-- HALLOWEEN START -->
+<style id="halloween">
+:root{--rosa:#ff7a1a;--fucsia:#ff6a00;--vino:#3b1361;--txt:#2b1240;--suave:#ffe6cc;--menta:#7b3fc4}
+body{background:radial-gradient(circle at 92% 22px,#fff6d6 0 16px,transparent 17px),linear-gradient(160deg,#1d0b33,#3b1361 55%,#5a1f86)!important}
+h1{color:#ffb347!important} h1 span{text-shadow:0 3px 0 #ff6a00!important}
+.top a,.sub{color:#efe3ff!important}
+.card{box-shadow:0 8px 0 #ff7a1a,0 14px 30px rgba(0,0,0,.3)!important}
+h1::before{content:'🎃 '}
+#hwGhost{position:fixed;left:0;top:0;width:46px;height:54px;pointer-events:none;z-index:9999;opacity:0;transition:opacity .35s}
+#hwGhost.on{opacity:.92}
+#hwGhost svg{width:100%;height:100%;animation:hwFloat 1.6s ease-in-out infinite;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
+@keyframes hwFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
+</style>
+<!-- HALLOWEEN END -->
 </head>
 <body>
 <div class="box">
@@ -227,5 +241,26 @@ let _t=null; try{_t=localStorage.getItem('clubTel');}catch(e){}
 if(params.get('c') || (_t && !params.has('alta'))) modoRegistrado(); else modoAlta();
 if($('tel').value && $('cardAlta').hidden) $('bVer').click();
 </script>
+<!-- HALLOWEEN START -->
+<div id="hwGhost" aria-hidden="true"><svg viewBox="0 0 46 54"><path d="M23 2C11 2 4 11 4 23v27l6-5 6 5 7-5 7 5 6-5 6 5V23C42 11 35 2 23 2z" fill="#fff" stroke="#2b1240" stroke-width="2" stroke-linejoin="round"/><ellipse cx="16" cy="21" rx="3" ry="4.2" fill="#2b1240"/><ellipse cx="30" cy="21" rx="3" ry="4.2" fill="#2b1240"/><ellipse cx="23" cy="31" rx="3.2" ry="4" fill="#2b1240"/><circle cx="11" cy="28" r="2.6" fill="#ffb3c7" opacity=".8"/><circle cx="35" cy="28" r="2.6" fill="#ffb3c7" opacity=".8"/></svg></div>
+<script>
+(function(){
+  var g=document.getElementById('hwGhost'); if(!g) return;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tx=-100,ty=-100,x=-100,y=-100,dir=1,hide;
+  function show(){g.classList.add('on');clearTimeout(hide);hide=setTimeout(function(){g.classList.remove('on')},matchMedia('(pointer:coarse)').matches?1500:4000);}
+  function move(cx,cy){if(cx<tx-1)dir=-1;else if(cx>tx+1)dir=1;tx=cx+14;ty=cy+12;show();}
+  addEventListener('mousemove',function(e){move(e.clientX,e.clientY)},{passive:true});
+  addEventListener('touchstart',function(e){var t=e.touches[0];if(t){x=t.clientX;y=t.clientY-60;move(t.clientX,t.clientY-60)}},{passive:true});
+  addEventListener('touchmove',function(e){var t=e.touches[0];if(t)move(t.clientX,t.clientY-60)},{passive:true});
+  document.addEventListener('mouseleave',function(){g.classList.remove('on')});
+  (function loop(){var k=reduce?1:.12;x+=(tx-x)*k;y+=(ty-y)*k;var tilt=Math.max(-18,Math.min(18,(tx-x)*.25));
+    g.style.transform='translate('+x+'px,'+y+'px) rotate('+tilt+'deg) scaleX('+dir+')';requestAnimationFrame(loop);})();
+  addEventListener('click',function(e){var b=document.createElement('div');b.className='hw-boo';b.textContent='¡Buu!';b.style.left=(e.clientX+10)+'px';b.style.top=(e.clientY-24)+'px';document.body.appendChild(b);setTimeout(function(){b.remove()},950);});
+  if(!reduce){function bat(){var b=document.createElement('div');b.className='hw-bat';b.textContent='🦇';b.style.top=(8+Math.random()*50)+'vh';b.style.left='0';b.style.animationDuration=(7+Math.random()*5)+'s';document.body.appendChild(b);setTimeout(function(){b.remove()},13000);}
+    }
+})();
+</script>
+<!-- HALLOWEEN END -->
 </body>
 </html>
