@@ -110,7 +110,8 @@ async function api(body){
   if(!j.ok) throw new Error(j.error||'Algo salió mal. Probá de nuevo.');
   return j;
 }
-function tarjeta(nombre,sellos,meta){
+function tarjeta(nombre,sellos,meta,premios){
+  premios=premios||0;
   $('cardTarjeta').hidden=false;
   $('tNombre').textContent=nombre?('Tarjeta de '+nombre):'Tu tarjeta';
   $('tCount').textContent=Math.min(sellos,meta)+' / '+meta;
@@ -118,7 +119,8 @@ function tarjeta(nombre,sellos,meta){
   let h='';for(let i=1;i<=meta;i++){const on=i<=sellos;h+=`<span class="${on?'on':''}${i===meta?' gift':''}">${i===meta?'🎁':(on?'✓':i)}</span>`;}
   $('stamps').innerHTML=h;
   const faltan=meta-sellos;
-  $('tTexto').textContent=faltan<=0?'¡Completaste la tarjeta! Pasá por el local a retirar tu regalo 🎁':`Te ${faltan===1?'falta 1 sello':'faltan '+faltan+' sellos'} para tu regalo.`;
+  const sigue=`Te ${faltan===1?'falta 1 sello':'faltan '+faltan+' sellos'} para ${premios>0?'el próximo':'tu'} regalo.`;
+  $('tTexto').textContent=premios>0?`🎁 Tenés ${premios===1?'1 regalo':premios+' regalos'} para retirar en el local. ${sigue}`:sigue;
 }
 async function chequearTel(){
   const tel=$('tel').value; if(tel.replace(/\D/g,'').length<8) return null;
@@ -131,7 +133,7 @@ $('bVer').onclick=async()=>{
   try{const j=await chequearTel(); if(!j){aviso('Poné tu celular completo con código de área.');return;}
     try{localStorage.setItem('clubTel',$('tel').value);}catch(e){}
     if(!j.existe){aviso('Todavía no tenés sellos. ¡Sumá el primero con tu próxima compra!',true);$('cardTarjeta').hidden=true;return;}
-    tarjeta(j.nombre,j.sellos,j.meta);
+    tarjeta(j.nombre,j.sellos,j.meta,j.premios);
   }catch(e){aviso(e.message);}
 };
 $('bSumar').onclick=async()=>{
@@ -146,8 +148,8 @@ $('bSumar').onclick=async()=>{
     const j=await api({action:'sumar',tel,codigo,nombre:$('nombre').value});
     try{localStorage.setItem('clubTel',tel);}catch(e){}
     $('codigo').value=''; existe=true; $('boxNombre').hidden=true;
-    aviso(j.premio?'¡Sello sumado! Completaste la tarjeta 🎉':'¡Sello sumado! 🍬',true);
-    const v=await api({action:'consultar',tel}); tarjeta(v.nombre,v.sellos,v.meta);
+    aviso(j.premio?'¡Completaste la tarjeta! 🎉 Pasá por el local a retirar tu regalo. Tu tarjeta arranca de nuevo.':'¡Sello sumado! 🍬',true);
+    const v=await api({action:'consultar',tel}); tarjeta(v.nombre,v.sellos,v.meta,v.premios);
     history.replaceState(null,'',location.pathname);
   }catch(e){aviso(e.message);}
   $('bSumar').disabled=false;
@@ -170,7 +172,7 @@ $('bAlta').onclick=async()=>{
     $('tel').value=tel; existe=true; $('boxNombre').hidden=true;
     modoRegistrado();
     aviso(j.yaEstaba?`¡Hola ${j.nombre}! Ya estabas en el club 💗`:`¡Bienvenido/a al Club Candy, ${j.nombre}! 🎉 Con tu próxima compra de $5.000 o más pedí tu código.`,true);
-    tarjeta(j.nombre,j.sellos,j.meta);
+    tarjeta(j.nombre,j.sellos,j.meta,j.premios);
   }catch(e){err(e.message);}
   $('bAlta').disabled=false;
 };

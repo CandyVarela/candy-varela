@@ -45,7 +45,16 @@ async function cliente(tel) {
   const o = {};
   for (let i = 0; i < arr.length; i += 2) o[arr[i]] = arr[i + 1];
   if (!arr.length) return null;
-  return { nombre: o.nombre || '', cumple: o.cumple || '', email: o.email || '', sellos: parseInt(o.sellos || '0', 10), canjes: parseInt(o.canjes || '0', 10) };
+  let sellos = parseInt(o.sellos || '0', 10);
+  let premios = parseInt(o.premios || '0', 10);
+  // Al llegar a la meta, la tarjeta vuelve a 0 y queda un premio pendiente de retirar.
+  if (sellos >= META) {
+    const extra = Math.floor(sellos / META);
+    await redis('HINCRBY', `club:cli:${tel}`, 'sellos', -extra * META);
+    await redis('HINCRBY', `club:cli:${tel}`, 'premios', extra);
+    sellos -= extra * META; premios += extra;
+  }
+  return { nombre: o.nombre || '', cumple: o.cumple || '', email: o.email || '', sellos, premios, canjes: parseInt(o.canjes || '0', 10) };
 }
 
 async function limite(clave, max, seg) {
@@ -69,7 +78,7 @@ export default async function handler(req, res) {
         const tel = normTel(b.tel);
         if (!tel) return res.status(400).json({ ok: false, error: 'Revisá el celular: poné el número completo con código de área.' });
         const c = await cliente(tel);
-        return res.json({ ok: true, meta: META, existe: !!c, nombre: c ? c.nombre.split(' ')[0] : '', sellos: c ? c.sellos : 0 });
+        return res.json({ ok: true, meta: META, existe: !!c, nombre: c ? c.nombre.split(' ')[0] : '', sellos: c ? c.sellos : 0, premios: c ? c.premios : 0 });
       }
 
       case 'registrar': {
@@ -110,9 +119,10 @@ export default async function handler(req, res) {
         const nombre = String(b.nombre || '').trim().slice(0, 40);
         if (nombre) await redis('HSETNX', `club:cli:${tel}`, 'nombre', nombre);
         await redis('HSETNX', `club:cli:${tel}`, 'alta', Date.now());
-        const sellos = await redis('HINCRBY', `club:cli:${tel}`, 'sellos', 1);
+        const total = await redis('HINCRBY', `club:cli:${tel}`, 'sellos', 1);
         await redis('ZADD', 'club:clientes', Date.now(), tel);
-        return res.json({ ok: true, meta: META, sellos, premio: sellos >= META });
+        const c = await cliente(tel); // si llegó a la meta, resetea la tarjeta y suma un premio
+        return res.json({ ok: true, meta: META, sellos: c.sellos, premios: c.premios, premio: total >= META });
       }
 
       // ---------- ADMIN ----------
@@ -154,8 +164,8 @@ export default async function handler(req, res) {
         const c = await cliente(tel);
         const k = `club:cli:${tel}`;
         if (b.tipo === 'canjear') {
-          if (!c || c.sellos < META) return res.status(400).json({ ok: false, error: 'Todavía no completó la tarjeta.' });
-          await redis('HINCRBY', k, 'sellos', -META);
+          if (!c || c.premios <= 0) return res.status(400).json({ ok: false, error: 'No tiene premios pendientes.' });
+          await redis('HINCRBY', k, 'premios', -1);
           await redis('HINCRBY', k, 'canjes', 1);
         } else if (b.tipo === 'mas') {
           if (b.nombre) await redis('HSETNX', k, 'nombre', String(b.nombre).slice(0, 40));
