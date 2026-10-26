@@ -11,6 +11,17 @@ const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
 const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 const META = parseInt(process.env.CLUB_META || '5', 10);
 const CODIGO_SEG = 300; // el código vence a los 5 minutos
+// Ruleta de la suerte al completar la tarjeta. "peso" = chances relativas (50/50 por defecto).
+const RULETA = [
+  { premio: 'Producto importado', peso: 1 },
+  { premio: 'Producto nacional', peso: 1 },
+];
+function tirarRuleta() {
+  const total = RULETA.reduce((a, o) => a + o.peso, 0);
+  let r = Math.random() * total;
+  for (const o of RULETA) { if ((r -= o.peso) < 0) return o.premio; }
+  return RULETA[RULETA.length - 1].premio;
+}
 
 async function redis(...cmd) {
   const r = await fetch(URL_, {
@@ -54,7 +65,9 @@ async function cliente(tel) {
     await redis('HINCRBY', `club:cli:${tel}`, 'premios', extra);
     sellos -= extra * META; premios += extra;
   }
-  return { nombre: o.nombre || '', cumple: o.cumple || '', email: o.email || '', sellos, premios, canjes: parseInt(o.canjes || '0', 10) };
+  const ganados = premios > 0 ? ((await redis('LRANGE', `club:pre:${tel}`, 0, -1)) || []) : [];
+  const sinGirar = Math.max(0, premios - ganados.length);
+  return { nombre: o.nombre || '', cumple: o.cumple || '', email: o.email || '', sellos, premios, ganados, sinGirar, canjes: parseInt(o.canjes || '0', 10) };
 }
 
 async function limite(clave, max, seg) {
@@ -78,7 +91,7 @@ export default async function handler(req, res) {
         const tel = normTel(b.tel);
         if (!tel) return res.status(400).json({ ok: false, error: 'Revisá el celular: poné el número completo con código de área.' });
         const c = await cliente(tel);
-        return res.json({ ok: true, meta: META, existe: !!c, nombre: c ? c.nombre.split(' ')[0] : '', sellos: c ? c.sellos : 0, premios: c ? c.premios : 0 });
+        return res.json({ ok: true, meta: META, existe: !!c, nombre: c ? c.nombre.split(' ')[0] : '', sellos: c ? c.sellos : 0, premios: c ? c.premios : 0, ganados: c ? c.ganados : [], sinGirar: c ? c.sinGirar : 0, opciones: RULETA.map((o) => o.premio) });
       }
 
       case 'registrar': {
@@ -100,6 +113,17 @@ export default async function handler(req, res) {
         await redis('HSETNX', k, 'sellos', 0);
         await redis('ZADD', 'club:clientes', Date.now(), tel);
         return res.json({ ok: true, meta: META, yaEstaba: false, nombre: nombre.split(' ')[0], sellos: ya ? ya.sellos : 0 });
+      }
+
+      case 'girar': {
+        if (await limite(`club:rl:g:${ip}`, 20, 600)) return res.status(429).json({ ok: false, error: 'Demasiados intentos. Probá en unos minutos.' });
+        const tel = normTel(b.tel);
+        if (!tel) return res.status(400).json({ ok: false, error: 'Revisá el celular: poné el número completo con código de área.' });
+        const c = await cliente(tel);
+        if (!c || c.sinGirar <= 0) return res.status(400).json({ ok: false, error: 'No tenés giros disponibles. ¡Completá tu tarjeta!' });
+        const resultado = tirarRuleta();
+        await redis('RPUSH', `club:pre:${tel}`, resultado);
+        return res.json({ ok: true, resultado, opciones: RULETA.map((o) => o.premio), cliente: await cliente(tel) });
       }
 
       case 'sumar': {
@@ -166,6 +190,7 @@ export default async function handler(req, res) {
         if (b.tipo === 'canjear') {
           if (!c || c.premios <= 0) return res.status(400).json({ ok: false, error: 'No tiene premios pendientes.' });
           await redis('HINCRBY', k, 'premios', -1);
+          await redis('LPOP', `club:pre:${tel}`);
           await redis('HINCRBY', k, 'canjes', 1);
         } else if (b.tipo === 'mas') {
           if (b.nombre) await redis('HSETNX', k, 'nombre', String(b.nombre).slice(0, 40));

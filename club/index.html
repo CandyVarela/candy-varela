@@ -40,6 +40,11 @@ button:disabled{opacity:.5}
 .reglas{font-size:.8rem;font-weight:700;line-height:1.5}
 .reglas li{margin-bottom:2px}
 [hidden]{display:none!important}
+.ruleta{position:relative;width:min(280px,78vw);aspect-ratio:1;margin:4px auto 0;border-radius:50%;box-shadow:0 6px 0 #e889b6}
+.ruleta svg{width:100%;height:100%;display:block;transition:transform 4.2s cubic-bezier(.17,.89,.22,1)}
+.ruleta .flecha{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:26px solid var(--vino);z-index:2}
+.ganaste{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.4rem;color:var(--vino);text-align:center;line-height:1.2}
+.ganaste small{display:block;font-family:'Nunito';font-size:.85rem;color:var(--txt)}
 </style>
 </head>
 <body>
@@ -85,12 +90,20 @@ button:disabled{opacity:.5}
     <div class="reglas" id="tTexto"></div>
   </div>
 
+  <div class="card" id="cardRuleta" hidden>
+    <div class="head"><span>Ruleta de la suerte 🎡</span><small id="rGiros"></small></div>
+    <div class="reglas" style="text-align:center">¡Completaste tu tarjeta! Girá y descubrí tu regalo.</div>
+    <div class="ruleta"><div class="flecha"></div><svg id="rueda" viewBox="-100 -100 200 200"></svg></div>
+    <button id="bGirar">¡Girar!</button>
+    <div class="ganaste" id="rRes" hidden></div>
+  </div>
+
   <div class="card reglas">
     <b>¿Cómo funciona?</b>
     <ul style="margin:0;padding-left:18px">
       <li>Con cada compra de <b>$5.000 o más</b> te damos un código en el local.</li>
       <li>Lo escaneás o lo cargás acá y sumás un sello.</li>
-      <li>Al completar <b id="rMeta">5</b> sellos te llevás un producto de regalo.</li>
+      <li>Al completar <b id="rMeta">5</b> sellos girás la ruleta de la suerte y te llevás un producto de regalo: importado o nacional.</li>
       <li>El código vence a los 5 minutos y sirve una sola vez. Máximo un sello por día.</li>
     </ul>
   </div>
@@ -110,8 +123,41 @@ async function api(body){
   if(!j.ok) throw new Error(j.error||'Algo salió mal. Probá de nuevo.');
   return j;
 }
-function tarjeta(nombre,sellos,meta,premios){
-  premios=premios||0;
+let ruletaTel=null, girando=false, giro=0;
+const SEG=['Producto importado','Producto nacional','Producto importado','Producto nacional','Producto importado','Producto nacional'];
+const COL=['#ff5fa8','#2fbf8f','#d6006b','#7fd8b6','#ff86bd','#20a77a'];
+(function dibujar(){
+  const n=SEG.length,a=360/n;let h='';
+  for(let i=0;i<n;i++){const a0=(i*a-90-a/2)*Math.PI/180,a1=((i+1)*a-90-a/2)*Math.PI/180;
+    h+=`<path d="M0 0L${96*Math.cos(a0)} ${96*Math.sin(a0)}A96 96 0 0 1 ${96*Math.cos(a1)} ${96*Math.sin(a1)}Z" fill="${COL[i]}" stroke="#fff" stroke-width="2"/>`;
+    const t=SEG[i].replace('Producto ','');
+    h+=`<text transform="rotate(${i*a}) translate(0,-56) rotate(90)" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Baloo 2,Nunito,sans-serif" font-weight="800" font-size="11">${t.toUpperCase()}</text>`;}
+  h+='<circle r="96" fill="none" stroke="#fff" stroke-width="5"/><circle r="16" fill="#fff"/><text text-anchor="middle" dominant-baseline="central" font-size="14">🍬</text>';
+  $('rueda').innerHTML=h;
+})();
+function ruleta(tel,sinGirar,ganados){
+  ruletaTel=tel; if(girando) return;
+  $('cardRuleta').hidden=!(sinGirar>0);
+  $('rGiros').textContent=sinGirar>1?sinGirar+' giros':'1 giro';
+  $('rRes').hidden=true; $('bGirar').disabled=false; $('bGirar').hidden=false;
+}
+$('bGirar').onclick=async()=>{
+  if(girando||!ruletaTel) return; girando=true; $('bGirar').disabled=true; $('rRes').hidden=true;
+  try{
+    const j=await api({action:'girar',tel:ruletaTel});
+    const idx=SEG.map((s,i)=>s===j.resultado?i:-1).filter(i=>i>=0); const i=idx[Math.floor(Math.random()*idx.length)];
+    const a=360/SEG.length; giro+=360*6+((360-i*a)-(giro%360)+360)%360+(Math.random()*a*.6-a*.3);
+    $('rueda').style.transform=`rotate(${giro}deg)`;
+    await new Promise(r=>setTimeout(r,4400));
+    $('rRes').innerHTML=`¡Ganaste un ${j.resultado.toLowerCase()}! 🎉<small>Pasá por el local a retirarlo. Mostrá esta pantalla o decí tu celular.</small>`;
+    $('rRes').hidden=false; girando=false;
+    const c=j.cliente; tarjeta(c.nombre.split(' ')[0],c.sellos,j.opciones?meta0:meta0,c.premios,c.ganados);
+    if(c.sinGirar>0){$('rGiros').textContent=c.sinGirar>1?c.sinGirar+' giros':'1 giro';$('bGirar').disabled=false;$('bGirar').textContent='¡Girar de nuevo!';}else $('bGirar').hidden=true;
+  }catch(e){girando=false;$('bGirar').disabled=false;aviso(e.message);}
+};
+let meta0=5;
+function tarjeta(nombre,sellos,meta,premios,ganados){
+  premios=premios||0; ganados=ganados||[]; meta0=meta;
   $('cardTarjeta').hidden=false;
   $('tNombre').textContent=nombre?('Tarjeta de '+nombre):'Tu tarjeta';
   $('tCount').textContent=Math.min(sellos,meta)+' / '+meta;
@@ -120,7 +166,8 @@ function tarjeta(nombre,sellos,meta,premios){
   $('stamps').innerHTML=h;
   const faltan=meta-sellos;
   const sigue=`Te ${faltan===1?'falta 1 sello':'faltan '+faltan+' sellos'} para ${premios>0?'el próximo':'tu'} regalo.`;
-  $('tTexto').textContent=premios>0?`🎁 Tenés ${premios===1?'1 regalo':premios+' regalos'} para retirar en el local. ${sigue}`:sigue;
+  const det=ganados.length?' ('+ganados.map(g=>g.replace('Producto ','')).join(', ')+')':'';
+  $('tTexto').textContent=premios>0?`🎁 Tenés ${premios===1?'1 regalo':premios+' regalos'}${det} para retirar en el local. ${sigue}`:sigue;
 }
 async function chequearTel(){
   const tel=$('tel').value; if(tel.replace(/\D/g,'').length<8) return null;
@@ -133,7 +180,7 @@ $('bVer').onclick=async()=>{
   try{const j=await chequearTel(); if(!j){aviso('Poné tu celular completo con código de área.');return;}
     try{localStorage.setItem('clubTel',$('tel').value);}catch(e){}
     if(!j.existe){aviso('Todavía no tenés sellos. ¡Sumá el primero con tu próxima compra!',true);$('cardTarjeta').hidden=true;return;}
-    tarjeta(j.nombre,j.sellos,j.meta,j.premios);
+    tarjeta(j.nombre,j.sellos,j.meta,j.premios,j.ganados); ruleta($('tel').value,j.sinGirar,j.ganados);
   }catch(e){aviso(e.message);}
 };
 $('bSumar').onclick=async()=>{
@@ -148,8 +195,8 @@ $('bSumar').onclick=async()=>{
     const j=await api({action:'sumar',tel,codigo,nombre:$('nombre').value});
     try{localStorage.setItem('clubTel',tel);}catch(e){}
     $('codigo').value=''; existe=true; $('boxNombre').hidden=true;
-    aviso(j.premio?'¡Completaste la tarjeta! 🎉 Pasá por el local a retirar tu regalo. Tu tarjeta arranca de nuevo.':'¡Sello sumado! 🍬',true);
-    const v=await api({action:'consultar',tel}); tarjeta(v.nombre,v.sellos,v.meta,v.premios);
+    aviso(j.premio?'¡Completaste la tarjeta! 🎉 Girá la ruleta para descubrir tu regalo.':'¡Sello sumado! 🍬',true);
+    const v=await api({action:'consultar',tel}); tarjeta(v.nombre,v.sellos,v.meta,v.premios,v.ganados); ruleta(tel,v.sinGirar,v.ganados); if(v.sinGirar>0) $('cardRuleta').scrollIntoView({behavior:'smooth'});
     history.replaceState(null,'',location.pathname);
   }catch(e){aviso(e.message);}
   $('bSumar').disabled=false;

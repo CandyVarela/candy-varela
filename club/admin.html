@@ -148,7 +148,7 @@ function mostrar(j){
   let h='';for(let i=1;i<=meta;i++){const on=i<=s;h+=`<span class="${on?'on':''}${i===meta?' gift':''}">${i===meta?'🎁':(on?'✓':i)}</span>`;}
   $('cStamps').innerHTML=h;
   const pr=c?c.premios:0; $('bCanje').disabled=pr<=0; $('bCanje').textContent=pr>0?('Canjear premio ('+pr+')'):'Canjear premio'; $('bMenos').disabled=s<=0;
-  $('cInfo').textContent=c?([c.premios>0&&('🎁 Premios pendientes: '+c.premios),'Premios canjeados: '+c.canjes,c.cumple&&('Cumple: '+c.cumple),c.email&&('Email: '+c.email)].filter(Boolean).join(' · ')):'No está registrado todavía.';
+  $('cInfo').textContent=c?([c.premios>0&&('🎁 Premios pendientes: '+c.premios+(c.ganados&&c.ganados.length?' ('+c.ganados.join(', ')+')':'')+(c.sinGirar>0?' · '+c.sinGirar+' sin girar la ruleta':'')),'Premios canjeados: '+c.canjes,c.cumple&&('Cumple: '+c.cumple),c.email&&('Email: '+c.email)].filter(Boolean).join(' · ')):'No está registrado todavía.';
 }
 async function buscar(){try{mostrar(await api({action:'ver',tel:$('bTel').value}));}catch(e){$('cliBox').hidden=true;err('cliErr',e.message);}}
 $('bBuscar').onclick=buscar;
