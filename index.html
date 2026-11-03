@@ -1515,6 +1515,11 @@
         
       </div>
       <div class="cat-card" data-cat="novedades">
+        <img class="cat-card-img" src="img/productos/monster-aussie-lemonade.jpg" alt="Monster Aussie Style Lemonade" loading="lazy">
+        <div class="cat-card-nombre">Monster Aussie Style Lemonade 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Aussie Lemonade',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="novedades">
         <img class="cat-card-img" src="img/productos/lucas-muecas.jpg" alt="Lucas Muecas" loading="lazy">
         <div class="cat-card-nombre">Lucas Muecas · Paleta con Chile (México) 🆕</div>
         <div class="cat-card-row"><span class="cat-card-precio">$6.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Lucas Muecas',6000)">+ Agregar</button></div>
@@ -2771,6 +2776,11 @@
         <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$40.000</span><button class="cat-card-btn" disabled>Agotado</button></div>
       </div>
       <div class="cat-card" data-cat="monster">
+        <img class="cat-card-img" src="img/productos/monster-aussie-lemonade.jpg" alt="Monster Aussie Style Lemonade" loading="lazy">
+        <div class="cat-card-nombre">Monster Aussie Style Lemonade 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Aussie Lemonade',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="monster">
         <img class="cat-card-img" src="img/productos/monster-brasil-1.jpg" alt="Monster Brasil Ultra Peachy Keen" loading="lazy">
         <div class="cat-card-nombre">Monster Brasil Ultra Peachy Keen</div>
         <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Brasil Ultra Peachy Keen',7000)">+ Agregar</button></div>
@@ -2783,7 +2793,7 @@
       <div class="cat-card" data-cat="monster">
         <img class="cat-card-img" src="img/productos/monster-brasil-3.jpg" alt="Monster Ripper" loading="lazy">
         <div class="cat-card-nombre">Monster Ripper</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Ripper',7000)">+ Agregar</button></div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Ripper',8000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="monster">
         <img class="cat-card-img" src="img/productos/monster-brasil-4.jpg" alt="Monster Brasil Juice Rio Punch" loading="lazy">
@@ -4537,7 +4547,7 @@
     <div class="neon-gallery">
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-1.jpg" alt="Monster Brasil Ultra Peachy Keen" loading="lazy"><div class="neon-add">Ultra Peachy Keen · + Agregar $7.000</div></div>
       <div class="neon-frame"><span class="neon-badge" style="background:#b0b0b0;border-color:#b0b0b0;color:#fff;">Agotado</span><img class="img-agotado" src="img/productos/monster-brasil-2.jpg" alt="Monster Brasil Absolutely Zero (agotado)" loading="lazy"><div class="neon-add" style="color:#b0b0b0;text-shadow:none;">Absolutely Zero · Agotado</div></div>
-      <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-3.jpg" alt="Monster Ripper" loading="lazy"><div class="neon-add">Ripper · + Agregar $7.000</div></div>
+      <div class="neon-frame" data-precio="8000" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-3.jpg" alt="Monster Ripper" loading="lazy"><div class="neon-add">Ripper · + Agregar $8.000</div></div>
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-4.jpg" alt="Monster Brasil Juice Rio Punch" loading="lazy"><div class="neon-add">Juice Rio Punch · + Agregar $7.000</div></div>
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-5.jpg" alt="Monster Brasil Ultra Fiesta Mango" loading="lazy"><div class="neon-add">Ultra Fiesta Mango · + Agregar $7.000</div></div>
       <div class="neon-frame" onclick="agregarMonsterNeon(this)"><span class="neon-badge">Limited</span><img src="img/productos/monster-brasil-6.jpg" alt="Monster Brasil Ultra Strawberry Dreams" loading="lazy"><div class="neon-add">Ultra Strawberry Dreams · + Agregar $7.000</div></div>
@@ -5599,7 +5609,7 @@
   }
   function agregarMonsterNeon(frame) {
     const nombre = (frame.querySelector('img')||{}).alt || 'Monster Brasil';
-    const precio = 7000;
+    const precio = parseInt(frame.dataset.precio, 10) || 7000;
     cartCount++; cartTotal += precio;
     if (!cartItems[nombre]) cartItems[nombre] = { cantidad: 0, precio };
     cartItems[nombre].cantidad++;
