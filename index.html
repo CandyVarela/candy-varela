@@ -1165,7 +1165,7 @@
         <div class="rd-title">¡Girá y ganá un 5% OFF!</div>
         <p class="rd-sub">Tocá el chupetín del centro. Si sale el 5% OFF, mostrá la pantalla en el local al pagar.</p>
         <div class="rd-result" id="rdResult" aria-live="polite"></div>
-        <div class="rd-note">Un giro por día · Válido para una compra en el local</div>
+        <div class="rd-note">¡2 giros por día! · Válido para una compra en el local</div>
       </div>
       <div class="rd-wheel">
         <svg class="rd-pointer" viewBox="0 0 46 62" aria-hidden="true"><path d="M23 60 L6 26 A19 19 0 1 1 40 26 Z" fill="#ffd45e" stroke="#e8457c" stroke-width="4" stroke-linejoin="round"/><circle cx="23" cy="20" r="7" fill="#fffaf3"/></svg>
@@ -6091,8 +6091,9 @@
 /* RULETA DULCE */
 (function(){
   const cv=document.getElementById('rdCanvas'); if(!cv) return;
-  const PRIZES=[{l:'5% OFF',win:true}].concat(Array(7).fill({l:'Seguís participando'}));
-  const COLORS=['#e8457c','#7fd8c4','#ffd45e','#b48ef0','#ff9fc2','#7fd8c4','#ffd45e','#b48ef0'];
+  const WIN={l:'5% OFF',win:true}, NO={l:'Seguís participando'};
+  const PRIZES=[WIN,NO,NO,WIN,NO,NO,WIN,NO,NO];
+  const COLORS=['#e8457c','#7fd8c4','#ffd45e','#e8457c','#b48ef0','#7fd8c4','#e8457c','#ffd45e','#b48ef0'];
   const N=PRIZES.length, SEG=360/N, ctx=cv.getContext('2d'), R=cv.width/2;
   function draw(){
     ctx.clearRect(0,0,cv.width,cv.height);
@@ -6115,33 +6116,58 @@
   const KEY='cv_ruleta_v1', hoy=new Date().toLocaleDateString('es-AR');
   function leer(){ try{ return JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ return null; } }
   function guardar(v){ try{ localStorage.setItem(KEY,JSON.stringify(v)); }catch(e){} }
-  function mostrar(win,fecha){
-    out.className='rd-result'+(win?' win':'');
-    out.innerHTML = win ? '¡Ganaste 5% de descuento! 🍭<small>Mostrá esta pantalla al pagar · '+fecha+'</small>'
+  const MAX_GIROS=2;
+  function estado(){ const p=leer(); return (p && p.d===hoy) ? {d:hoy,n:p.n||1,w:!!p.w} : {d:hoy,n:0,w:false}; }
+  function quedan(e){ return e.w ? 0 : MAX_GIROS-e.n; }
+  function mostrar(e){
+    const q=quedan(e);
+    out.className='rd-result'+(e.w?' win':'');
+    out.innerHTML = e.w ? '¡Ganaste 5% de descuento! 🍭<small>Mostrá esta pantalla al pagar · '+e.d+'</small>'
+                  : q>0 ? 'Seguís participando<small>¡Te queda 1 giro más hoy! Tocá GIRAR otra vez 🍬</small>'
                         : 'Seguís participando<small>Volvé mañana para girar de nuevo 🍬</small>';
+    btn.disabled = q<=0;
   }
-  const prev=leer();
-  if(prev && prev.d===hoy){ btn.disabled=true; mostrar(prev.w,prev.d); }
+  const prev=estado();
+  if(prev.n>0) mostrar(prev);
   let rot=0, girando=false;
   btn.addEventListener('click',function(){
     if(girando) return;
-    const p=leer(); if(p && p.d===hoy){ btn.disabled=true; mostrar(p.w,p.d); return; }
+    const e=estado(); if(quedan(e)<=0){ mostrar(e); return; }
     girando=true; btn.disabled=true; out.className='rd-result'; out.textContent='Girando…';
     const idx=Math.floor(Math.random()*N), jit=(Math.random()-.5)*SEG*.7;
     const target=360-((idx+.5)*SEG+jit), cur=((rot%360)+360)%360;
     rot+=360*6+((target-cur+360)%360);
     cv.style.transform='rotate('+rot+'deg)';
-    const win=!!PRIZES[idx].win; guardar({d:hoy,w:win});
+    const win=!!PRIZES[idx].win; const nuevo={d:hoy,n:e.n+1,w:win}; guardar(nuevo);
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setTimeout(function(){ girando=false; mostrar(win,hoy); if(win && !reduced) confeti(); }, reduced?50:5300);
+    setTimeout(function(){ girando=false; mostrar(nuevo); if(win && !reduced) explosionDulces(); }, reduced?50:5300);
   });
-  function confeti(){
+  function explosionDulces(){
+    const DULCES=['🍬','🍭','🍫','🍩','🧁','🍪','🍡','🍓','🍒','🍦','🎉','✨'];
     const cc=document.createElement('canvas'); cc.className='rd-confetti'; document.body.appendChild(cc);
-    cc.width=innerWidth; cc.height=innerHeight; const x=cc.getContext('2d');
-    const bits=Array.from({length:110},()=>({x:innerWidth/2,y:innerHeight/2,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,r:4+Math.random()*6,c:COLORS[Math.floor(Math.random()*N)]}));
-    (function t(){ x.clearRect(0,0,cc.width,cc.height); let vivo=false;
-      bits.forEach(b=>{b.vy+=.35;b.x+=b.vx;b.y+=b.vy;if(b.y<cc.height+20)vivo=true;x.fillStyle=b.c;x.beginPath();x.arc(b.x,b.y,b.r,0,7);x.fill();});
-      if(vivo) requestAnimationFrame(t); else cc.remove(); })();
+    const dpr=Math.min(window.devicePixelRatio||1,2), W=innerWidth, H=innerHeight;
+    cc.width=W*dpr; cc.height=H*dpr; cc.style.width=W+'px'; cc.style.height=H+'px';
+    const x=cc.getContext('2d'); x.scale(dpr,dpr); x.textAlign='center'; x.textBaseline='middle';
+    const rc=cv.getBoundingClientRect(), ox=rc.left+rc.width/2, oy=rc.top+rc.height/2;
+    const bits=[];
+    function rafaga(n,fuerza){ for(let i=0;i<n;i++){ const ang=Math.random()*Math.PI*2, v=fuerza*(.45+Math.random()*.75);
+      bits.push({x:ox,y:oy,vx:Math.cos(ang)*v,vy:Math.sin(ang)*v-4,s:22+Math.random()*26,rot:Math.random()*6,vr:(Math.random()-.5)*.35,e:DULCES[Math.floor(Math.random()*DULCES.length)],a:1}); } }
+    rafaga(70,12); setTimeout(()=>rafaga(45,10),260); setTimeout(()=>rafaga(35,8),560);
+    let flash=1, t0=performance.now();
+    if(navigator.vibrate){ try{navigator.vibrate([60,40,90]);}catch(e){} }
+    (function loop(now){
+      x.clearRect(0,0,W,H);
+      if(flash>0){ const r=(1-flash)*Math.max(W,H)*.6+40;
+        const g=x.createRadialGradient(ox,oy,0,ox,oy,r); g.addColorStop(0,'rgba(255,250,243,'+(.85*flash)+')'); g.addColorStop(.6,'rgba(255,159,194,'+(.45*flash)+')'); g.addColorStop(1,'rgba(255,159,194,0)');
+        x.fillStyle=g; x.beginPath(); x.arc(ox,oy,r,0,7); x.fill();
+        x.strokeStyle='rgba(232,69,124,'+flash+')'; x.lineWidth=8*flash+1; x.beginPath(); x.arc(ox,oy,r*.8,0,7); x.stroke();
+        flash-=.035; }
+      let vivo=false;
+      bits.forEach(b=>{ b.vy+=.22; b.vx*=.99; b.x+=b.vx; b.y+=b.vy; b.rot+=b.vr;
+        if(now-t0>2600) b.a-=.02;
+        if(b.y<H+60 && b.a>0){ vivo=true; x.save(); x.globalAlpha=Math.max(b.a,0); x.translate(b.x,b.y); x.rotate(b.rot); x.font=b.s+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; x.fillText(b.e,0,0); x.restore(); } });
+      if(vivo || flash>0) requestAnimationFrame(loop); else cc.remove();
+    })(t0);
   }
 })();
 </script>
