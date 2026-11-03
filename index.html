@@ -222,6 +222,28 @@
   @media (max-width:800px) { .promo-emp-grid { grid-template-columns:1fr; } }
 
 
+  /* RULETA DULCE (5% OFF) */
+  .rd-section { position:relative; overflow:hidden; border-radius:28px; margin-bottom:32px; padding:28px 18px; background:repeating-linear-gradient(135deg,#fff1f6 0 22px,#ffe2ee 22px 44px); border:3px dashed #ff9fc2; }
+  .rd-inner { display:flex; gap:28px; align-items:center; justify-content:center; flex-wrap:wrap; }
+  .rd-txt { flex:1 1 280px; max-width:440px; text-align:center; }
+  .rd-tag { display:inline-block; background:#fff; color:#d6006b; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; padding:5px 16px; border-radius:50px; }
+  .rd-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:2.3rem; line-height:1.05; color:#d6006b; margin:12px 0 6px; text-shadow:3px 3px 0 #ffd45e; }
+  .rd-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.95rem; color:#8a1048; margin:0 0 10px; }
+  .rd-result { min-height:3.2em; font-family:'Baloo 2',cursive; font-weight:800; font-size:1.4rem; line-height:1.15; color:#8a1048; }
+  .rd-result.win { color:#d6006b; }
+  .rd-result small { display:block; font-family:'Nunito',sans-serif; font-weight:700; font-size:0.85rem; color:#8a1048; margin-top:4px; }
+  .rd-note { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.72rem; color:#8a1048; opacity:.8; }
+  .rd-wheel { position:relative; width:min(84vw,340px); aspect-ratio:1; max-width:100%; flex:0 0 auto; }
+  .rd-rim { position:absolute; inset:0; border-radius:50%; background:repeating-conic-gradient(#e8457c 0 7.5deg,#fffaf3 7.5deg 15deg); box-shadow:0 8px 0 #c9346a,0 16px 26px rgba(90,30,58,.22); }
+  .rd-wheel canvas { position:absolute; inset:4.5%; width:91%; height:91%; border-radius:50%; transition:transform 5.2s cubic-bezier(.12,.75,.12,1); }
+  .rd-pointer { position:absolute; left:50%; top:-12px; transform:translateX(-50%); width:40px; height:54px; z-index:3; filter:drop-shadow(0 4px 0 #c9346a); }
+  .rd-spin { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:27%; aspect-ratio:1; border-radius:50%; border:4px solid #fffaf3; background:repeating-conic-gradient(#e8457c 0 30deg,#fffaf3 30deg 60deg); cursor:pointer; z-index:2; padding:0; box-shadow:0 4px 0 #c9346a,0 8px 14px rgba(90,30,58,.3); transition:transform .15s; }
+  .rd-spin span { display:grid; place-items:center; width:64%; height:64%; margin:auto; border-radius:50%; background:#e8457c; color:#fffaf3; font-family:'Baloo 2',cursive; font-weight:800; font-size:1rem; }
+  .rd-spin:hover:not(:disabled) { transform:translate(-50%,-50%) scale(1.05); }
+  .rd-spin:disabled { cursor:default; filter:saturate(.6); }
+  .rd-confetti { position:fixed; inset:0; pointer-events:none; z-index:9999; }
+  @media (max-width:600px){ .rd-title { font-size:1.9rem; } }
+  @media (prefers-reduced-motion: reduce){ .rd-wheel canvas { transition-duration:.01s; } }
   /* BANNER CLUB CANDY */
   .promo-club { position:relative; overflow:hidden; border-radius:28px; margin-bottom:32px; padding:28px 22px;
     background:radial-gradient(circle at 10% 15%,#fff 0,transparent 35%),linear-gradient(150deg,#ffe3f0 0%,#ffc2dd 50%,#f7a8d0 100%);
@@ -1094,6 +1116,7 @@
   <div class="category-sidebar-title">Categorías</div>
   <a href="#todos" class="cat-filter-link active"><span>🍬</span> Todos</a>
   <a href="#clubcandy" class="cat-filter-link"><span>🍭</span> Club Candy</a>
+  <a href="#ruleta" class="cat-filter-link"><span>🎡</span> Ruleta Dulce</a>
   <a href="#novedades" class="cat-filter-link"><span>✨</span> Novedades</a>
   <a href="#regaleria" class="cat-filter-link"><span>🎀</span> Regalería</a>
   <a href="#monster" class="cat-filter-link"><span>⚡</span> Monster</a>
@@ -1133,6 +1156,25 @@
       </div>
     </div>
   </div>
+
+  <!-- RULETA DULCE -->
+  <section class="rd-section" id="ruleta">
+    <div class="rd-inner">
+      <div class="rd-txt">
+        <span class="rd-tag">🎡 Ruleta dulce</span>
+        <div class="rd-title">¡Girá y ganá un 5% OFF!</div>
+        <p class="rd-sub">Tocá el chupetín del centro. Si sale el 5% OFF, mostrá la pantalla en el local al pagar.</p>
+        <div class="rd-result" id="rdResult" aria-live="polite"></div>
+        <div class="rd-note">Un giro por día · Válido para una compra en el local</div>
+      </div>
+      <div class="rd-wheel">
+        <svg class="rd-pointer" viewBox="0 0 46 62" aria-hidden="true"><path d="M23 60 L6 26 A19 19 0 1 1 40 26 Z" fill="#ffd45e" stroke="#e8457c" stroke-width="4" stroke-linejoin="round"/><circle cx="23" cy="20" r="7" fill="#fffaf3"/></svg>
+        <div class="rd-rim"></div>
+        <canvas id="rdCanvas" width="700" height="700" aria-label="Ruleta de premios"></canvas>
+        <button class="rd-spin" id="rdSpin" aria-label="Girar la ruleta"><span>GIRAR</span></button>
+      </div>
+    </div>
+  </section>
 
   <!-- SECCIÓN REGALERÍA (vitrina) -->
   <section class="rg-section" id="regalos">
@@ -6044,6 +6086,64 @@
       if(s<=0){ if(lbl) lbl.textContent='¡Ya es viernes!'; el.textContent='🔓 Pasá por el local'; clearInterval(iv); return; }
       const d=Math.floor(s/86400); el.textContent=(d?d+'d ':'')+p(Math.floor(s%86400/3600))+':'+p(Math.floor(s%3600/60))+':'+p(s%60); }
     t(); iv=setInterval(t,1000); })();
+</script>
+<script>
+/* RULETA DULCE */
+(function(){
+  const cv=document.getElementById('rdCanvas'); if(!cv) return;
+  const PRIZES=[{l:'5% OFF',win:true}].concat(Array(7).fill({l:'Seguís participando'}));
+  const COLORS=['#e8457c','#7fd8c4','#ffd45e','#b48ef0','#ff9fc2','#7fd8c4','#ffd45e','#b48ef0'];
+  const N=PRIZES.length, SEG=360/N, ctx=cv.getContext('2d'), R=cv.width/2;
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    for(let i=0;i<N;i++){
+      const a0=(i*SEG-90)*Math.PI/180, a1=((i+1)*SEG-90)*Math.PI/180;
+      ctx.save(); ctx.beginPath(); ctx.moveTo(R,R); ctx.arc(R,R,R,a0,a1); ctx.closePath();
+      ctx.fillStyle=COLORS[i]; ctx.fill(); ctx.clip();
+      ctx.strokeStyle='rgba(255,255,255,.28)'; ctx.lineWidth=12;
+      for(let r=55;r<R;r+=42){ctx.beginPath();ctx.arc(R,R,r,a0,a1);ctx.stroke();}
+      ctx.restore();
+      ctx.beginPath(); ctx.moveTo(R,R); ctx.lineTo(R+R*Math.cos(a0),R+R*Math.sin(a0)); ctx.strokeStyle='#fffaf3'; ctx.lineWidth=5; ctx.stroke();
+      ctx.save(); ctx.translate(R,R); ctx.rotate((a0+a1)/2); ctx.textAlign='right'; ctx.textBaseline='middle';
+      if(PRIZES[i].win){ ctx.font="800 58px 'Baloo 2',sans-serif"; ctx.lineWidth=8; ctx.strokeStyle='#5a1e3a'; ctx.fillStyle='#fffaf3'; ctx.strokeText('5% OFF',R-30,2); ctx.fillText('5% OFF',R-30,2); }
+      else { ctx.font="800 30px 'Nunito',sans-serif"; ctx.fillStyle='#5a1e3a'; ctx.fillText('Seguís',R-34,-16); ctx.fillText('participando',R-34,18); }
+      ctx.restore();
+    }
+  }
+  draw(); if(document.fonts) document.fonts.ready.then(draw);
+  const btn=document.getElementById('rdSpin'), out=document.getElementById('rdResult');
+  const KEY='cv_ruleta_v1', hoy=new Date().toLocaleDateString('es-AR');
+  function leer(){ try{ return JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ return null; } }
+  function guardar(v){ try{ localStorage.setItem(KEY,JSON.stringify(v)); }catch(e){} }
+  function mostrar(win,fecha){
+    out.className='rd-result'+(win?' win':'');
+    out.innerHTML = win ? '¡Ganaste 5% de descuento! 🍭<small>Mostrá esta pantalla al pagar · '+fecha+'</small>'
+                        : 'Seguís participando<small>Volvé mañana para girar de nuevo 🍬</small>';
+  }
+  const prev=leer();
+  if(prev && prev.d===hoy){ btn.disabled=true; mostrar(prev.w,prev.d); }
+  let rot=0, girando=false;
+  btn.addEventListener('click',function(){
+    if(girando) return;
+    const p=leer(); if(p && p.d===hoy){ btn.disabled=true; mostrar(p.w,p.d); return; }
+    girando=true; btn.disabled=true; out.className='rd-result'; out.textContent='Girando…';
+    const idx=Math.floor(Math.random()*N), jit=(Math.random()-.5)*SEG*.7;
+    const target=360-((idx+.5)*SEG+jit), cur=((rot%360)+360)%360;
+    rot+=360*6+((target-cur+360)%360);
+    cv.style.transform='rotate('+rot+'deg)';
+    const win=!!PRIZES[idx].win; guardar({d:hoy,w:win});
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(function(){ girando=false; mostrar(win,hoy); if(win && !reduced) confeti(); }, reduced?50:5300);
+  });
+  function confeti(){
+    const cc=document.createElement('canvas'); cc.className='rd-confetti'; document.body.appendChild(cc);
+    cc.width=innerWidth; cc.height=innerHeight; const x=cc.getContext('2d');
+    const bits=Array.from({length:110},()=>({x:innerWidth/2,y:innerHeight/2,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,r:4+Math.random()*6,c:COLORS[Math.floor(Math.random()*N)]}));
+    (function t(){ x.clearRect(0,0,cc.width,cc.height); let vivo=false;
+      bits.forEach(b=>{b.vy+=.35;b.x+=b.vx;b.y+=b.vy;if(b.y<cc.height+20)vivo=true;x.fillStyle=b.c;x.beginPath();x.arc(b.x,b.y,b.r,0,7);x.fill();});
+      if(vivo) requestAnimationFrame(t); else cc.remove(); })();
+  }
+})();
 </script>
 </body>
 </html>
