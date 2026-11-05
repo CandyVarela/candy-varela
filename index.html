@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Candy Varela — Dulce tentación 🍬🎀</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --celeste: #f6b9dd; --azul: #b23a72; --azul-dark: #7a1650;
@@ -1102,6 +1102,43 @@
   @keyframes odPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
   .od-soon { background:#fff0f3; color:#e8173c; border:2px dashed #ffb3c1; border-radius:50px; padding:6px 12px; font-weight:800; font-size:0.74rem; white-space:nowrap; }
   @media (max-width:700px) { .od-banner { padding:22px 18px; } .od-title { font-size:2rem; } .od-timer { width:100%; } .od-card { flex:0 0 280px; } }
+
+  /* ===== ESTILO LIMPIO (tipo Tina&Co) con detalles rosa ===== */
+  body { background:#f4f4f4; color:#3f3d38; font-family:'Instrument Sans','Nunito',sans-serif; }
+  .top-bar { background:#fff; color:#3f3d38; border-bottom:1px solid #ececec; font-weight:600; }
+  .top-bar-item a { color:#d6006b; } .top-bar-item.celeste { color:#d6006b; } .top-bar-sep { color:#ccc; }
+  header { background:#f4f4f4; box-shadow:none; border-bottom:1px solid #e6e6e6; padding:16px 24px 12px; }
+  .logo { color:#1a1a1a; font-weight:800; } .logo span { color:#e91e8c; }
+  .menu-btn { background:#fff; border:1px solid #e2e2e2; } .menu-btn span { background:#1a1a1a; }
+  .search-bar { background:#fff; border:1px solid #e2e2e2; border-radius:10px; }
+  .search-bar input { color:#3f3d38; font-family:'Instrument Sans',sans-serif; } .search-bar input::placeholder { color:#9a9a9a; }
+  .btn-cuenta { background:#fff; border:1px solid #e2e2e2; color:#3f3d38; }
+  .btn-carrito { background:#fff; color:#3f3d38; border:1px solid #e2e2e2; box-shadow:none; }
+  .carrito-count { background:#e91e8c; color:#fff; }
+  nav { background:#f4f4f4; border-bottom:1px solid #e6e6e6; }
+  .nav-inner a { color:#3f3d38; text-transform:uppercase; font-family:'Instrument Sans',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.02em; border-radius:8px; }
+  .nav-inner a:hover { background:transparent; color:#d6006b; }
+  .nav-inner a.ofertas { background:transparent; color:#d6006b; }
+  .nav-inner a.reels { background:transparent; border:none; color:#3f3d38; }
+  @media (min-width:1024px){
+    .category-sidebar { background:transparent; box-shadow:none; border-radius:0; padding:0 6px; }
+    .category-sidebar-title { font-family:'Instrument Sans',sans-serif; font-size:1.15rem; color:#3f3d38; text-transform:none; letter-spacing:0; font-weight:500; }
+    .category-sidebar a { text-transform:uppercase; font-family:'Instrument Sans',sans-serif; font-weight:500; font-size:0.8rem; color:#3f3d38; padding:7px 10px; }
+    .category-sidebar a span { display:none; }
+  }
+  .category-sidebar a:hover, .category-sidebar a.active { background:transparent; color:#d6006b; }
+  .catalog-title { font-family:'Instrument Sans',sans-serif; font-weight:500; font-size:1.6rem; color:#3f3d38; text-transform:uppercase; letter-spacing:0.01em; }
+  .catalog-grid { grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:16px; }
+  .cat-card { border-radius:20px; padding:14px; box-shadow:none; border:1px solid #ececec; transition:box-shadow .2s, transform .2s; }
+  .cat-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); transform:translateY(-2px); }
+  .cat-card-img { border-radius:12px; margin-bottom:12px; }
+  .cat-card-nombre { font-family:'Instrument Sans',sans-serif; font-weight:400; font-size:0.88rem; color:#3f3d38; margin-bottom:10px; }
+  .cat-card:not(:has(.btn-agotado)) .cat-card-nombre::before { content:"En Stock"; display:block; width:fit-content; margin-bottom:8px; background:#e7f3e5; color:#3d7a35; font-weight:700; font-size:0.66rem; padding:3px 10px; border-radius:50px; }
+  .cat-card-row { flex-direction:column; align-items:stretch; gap:12px; }
+  .cat-card-precio { font-family:'Instrument Sans',sans-serif; color:#1a1a1a; font-weight:700; font-size:1.05rem; }
+  .cat-card-btn { background:#ececec; color:#1a1a1a; border-radius:50px; padding:10px 12px; font-family:'Instrument Sans',sans-serif; font-weight:500; font-size:0.88rem; transition:background .15s,color .15s; }
+  .cat-card-btn:hover:not(:disabled) { background:#e91e8c; color:#fff; }
+  .cat-card-btn:disabled { background:#f2f2f2; color:#aaa; }
 </style>
 </head>
 <body>
