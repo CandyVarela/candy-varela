@@ -244,6 +244,22 @@
   .rd-confetti { position:fixed; inset:0; pointer-events:none; z-index:9999; }
   @media (max-width:600px){ .rd-title { font-size:1.9rem; } }
   @media (prefers-reduced-motion: reduce){ .rd-wheel canvas { transition-duration:.01s; } }
+
+  /* MINI CUADRADITOS PROMOS */
+  .pt-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:560px; margin:0 auto 24px; }
+  .pt-tile { aspect-ratio:1; border:none; border-radius:20px; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px; text-align:center; font-family:'Nunito',sans-serif; color:#fff; box-shadow:0 4px 0 rgba(0,0,0,0.15),0 8px 18px rgba(160,20,90,0.18); transition:transform .15s, box-shadow .15s; }
+  .pt-tile:hover { transform:translateY(-3px); }
+  .pt-tile.on { outline:3px solid #ffd45e; outline-offset:2px; }
+  .pt-ico { font-size:2.2rem; line-height:1; }
+  .pt-name { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.05rem; line-height:1.05; }
+  .pt-sub { font-weight:700; font-size:0.68rem; opacity:.92; line-height:1.2; }
+  .pt-club { background:linear-gradient(135deg,#ff8cc0,#d6006b); }
+  .pt-ruleta { background:linear-gradient(135deg,#ffb347,#e8457c); }
+  .pt-regalos { background:linear-gradient(135deg,#b23a72,#7a1650); }
+  .pt-panel { display:none; }
+  .pt-panel.open { display:block; animation:ptIn .25s ease; }
+  @keyframes ptIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+  @media (max-width:600px){ .pt-row { gap:9px; } .pt-ico { font-size:1.8rem; } .pt-name { font-size:0.92rem; } .pt-sub { font-size:0.6rem; } }
   /* BANNER CLUB CANDY */
   .promo-club { position:relative; overflow:hidden; border-radius:28px; margin-bottom:32px; padding:28px 22px;
     background:radial-gradient(circle at 10% 15%,#fff 0,transparent 35%),linear-gradient(150deg,#ffe3f0 0%,#ffc2dd 50%,#f7a8d0 100%);
@@ -1173,8 +1189,15 @@
 
 
 
+  <!-- MINI CUADRADITOS PROMOS -->
+  <div class="pt-row">
+    <button class="pt-tile pt-club" data-pt="clubcandy"><span class="pt-ico">🍭</span><span class="pt-name">Club Candy</span><span class="pt-sub">Sumá sellos</span></button>
+    <button class="pt-tile pt-ruleta" data-pt="ruleta"><span class="pt-ico">🎡</span><span class="pt-name">Ruleta</span><span class="pt-sub">Ganá 5% OFF</span></button>
+    <button class="pt-tile pt-regalos" data-pt="regalos"><span class="pt-ico">🎀</span><span class="pt-name">Regalería</span><span class="pt-sub">Box y bolsitas</span></button>
+  </div>
+
   <!-- BANNER CLUB CANDY -->
-  <div class="promo-club" id="clubcandy">
+  <div class="promo-club pt-panel" id="clubcandy">
     <div class="promo-club-inner">
       <div class="promo-club-txt">
         <span class="promo-club-tag">🍭 Nuevo · Club Candy</span>
@@ -1191,7 +1214,7 @@
   </div>
 
   <!-- RULETA DULCE -->
-  <section class="rd-section" id="ruleta">
+  <section class="rd-section pt-panel" id="ruleta">
     <div class="rd-inner">
       <div class="rd-txt">
         <span class="rd-tag">🎡 Ruleta dulce</span>
@@ -1210,7 +1233,7 @@
   </section>
 
   <!-- SECCIÓN REGALERÍA (vitrina) -->
-  <section class="rg-section" id="regalos">
+  <section class="rg-section pt-panel" id="regalos">
     <div class="rg-banner">
       <span class="rg-bow">🎀</span>
       <span class="rg-float f1">🎁</span><span class="rg-float f2">💗</span><span class="rg-float f3">✨</span><span class="rg-float f4">🍫</span><span class="rg-float f5">💝</span>
@@ -6272,6 +6295,29 @@
       if(vivo || flash>0) requestAnimationFrame(loop); else cc.remove();
     })(t0);
   }
+})();
+</script>
+<script>
+(function(){
+  var ids=['clubcandy','ruleta','regalos'];
+  function abrir(id,scroll){
+    ids.forEach(function(x){
+      var el=document.getElementById(x); if(!el) return;
+      var on = (x===id) && !(el.classList.contains('open') && !scroll);
+      el.classList.toggle('open',on);
+      var t=document.querySelector('.pt-tile[data-pt="'+x+'"]'); if(t) t.classList.toggle('on',on);
+    });
+    var el=document.getElementById(id);
+    if(el && el.classList.contains('open')) setTimeout(function(){ el.scrollIntoView({behavior:'smooth',block:'start'}); },60);
+  }
+  document.querySelectorAll('.pt-tile').forEach(function(b){ b.addEventListener('click',function(){ abrir(b.dataset.pt,false); }); });
+  document.addEventListener('click',function(e){
+    var a=e.target.closest && e.target.closest('a[href^="#"]'); if(!a) return;
+    var h=a.getAttribute('href').slice(1); if(h==='regaleria') h='regalos';
+    if(ids.indexOf(h)>-1){ e.preventDefault(); abrir(h,true); }
+  });
+  var h=location.hash.slice(1); if(h==='regaleria') h='regalos';
+  if(ids.indexOf(h)>-1) abrir(h,true);
 })();
 </script>
 </body>
