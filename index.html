@@ -1155,6 +1155,10 @@
   .rd-section .rd-spin span { background:#e8457c !important; color:#fffaf3 !important; }
   .neon-section .neon-add { color:#fff !important; background:linear-gradient(transparent,rgba(0,0,0,0.78)) !important; }
   .neon-section .neon-frame { overflow:hidden; }
+  .pancho-aviso { display:block; background:#2b1a3d; color:#ff9a3c; font-size:0.68rem; font-weight:800; border-radius:10px; padding:6px 8px; margin:0 0 6px; line-height:1.25; }
+  .pancho-banner .pancho-card:has(.btn-agotado) .pancho-precio { color:#aaa !important; }
+  .pancho-banner .pancho-card:has(.btn-agotado) .pancho-extra { opacity:.5; }
+  .pancho-banner .btn-agotado, .pancho-banner .btn-agotado:hover { background:#f2f2f2 !important; color:#aaa !important; cursor:not-allowed; }
 </style>
 </head>
 <body>
@@ -1598,7 +1602,7 @@
           <div class="pancho-row"><span class="pancho-precio" data-base="4000">$4.000</span><button class="pancho-btn" onclick="agregarPancho(this,'Pancho XL Cheese',4000)">+ Agregar</button></div>
         </div>
         <div class="pancho-card">
-          <div class="pancho-ilus" style="background:radial-gradient(circle at 50% 60%,#ff9a3c,#6a2c91);"><svg viewBox="0 0 220 100" aria-hidden="true">
+          <div class="pancho-ilus" style="opacity:0.45;filter:grayscale(1);" style="background:radial-gradient(circle at 50% 60%,#ff9a3c,#6a2c91);"><svg viewBox="0 0 220 100" aria-hidden="true">
 <ellipse cx="110" cy="88" rx="81.0" ry="7" fill="rgba(0,0,0,0.25)"/>
 <path d="M25.0 52 Q19.0 26 45.0 28 L175.0 28 Q201.0 26 195.0 52 Z" fill="#1d1d22"/>
 <path d="M45 31 L175 31" stroke="#3a3a44" stroke-width="3" stroke-linecap="round"/>
@@ -1619,13 +1623,14 @@
 </svg></div>
           <span class="pancho-badge" style="background:#6a2c91;color:#ff9a3c;">🎃 HALLOWEEN</span>
           <div class="pancho-nombre">Pancho Halloween</div>
+          <span class="pancho-aviso">🎃 Edición especial solo por Halloween · ¡Gracias por elegirlo!</span>
           <div style="font-size:0.66rem;font-weight:800;color:#8a4a30;margin:-2px 0 6px;line-height:1.2;">Pan negro, Takis y salsa picante 🌶️</div>
-          <select class="pancho-extra" aria-label="Sumar bebida a Pancho Halloween">
+          <select class="pancho-extra" aria-label="Sumar bebida a Pancho Halloween" disabled>
             <option value="0" data-txt="">🌭 Solo el pancho</option>
             <option value="800" data-txt=" + Agua saborizada Placer">💧 + Agua Placer ($800)</option>
             <option value="1800" data-txt=" + Lata línea Coca-Cola">🥤 + Lata Coca-Cola ($1.800)</option>
           </select>
-          <div class="pancho-row"><span class="pancho-precio" data-base="3500">$3.500</span><button class="pancho-btn" onclick="agregarPancho(this,'Pancho Halloween',3500)">+ Agregar</button></div>
+          <div class="pancho-row"><span class="pancho-precio" data-base="3500" style="color:#aaa;">$3.500</span><button class="pancho-btn btn-agotado" disabled style="background:#ddd;color:#999;cursor:not-allowed;">Agotado</button></div>
         </div>
       </div>
     </div>
