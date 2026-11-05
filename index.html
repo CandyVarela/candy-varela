@@ -245,8 +245,22 @@
   @media (max-width:600px){ .rd-title { font-size:1.9rem; } }
   @media (prefers-reduced-motion: reduce){ .rd-wheel canvas { transition-duration:.01s; } }
 
+
+  /* MINI BANNER CLUB CANDY */
+  .cc-mini { display:flex; align-items:center; gap:12px; max-width:680px; margin:0 auto 12px; padding:10px 14px; border-radius:16px; background:linear-gradient(135deg,#ff8cc0,#d6006b); color:#fff; box-shadow:0 4px 0 rgba(0,0,0,0.12),0 6px 16px rgba(160,20,90,0.18); scroll-margin-top:120px; }
+  .cc-mini-ico { font-size:1.8rem; line-height:1; flex-shrink:0; }
+  .cc-mini-txt { flex:1; min-width:0; font-family:'Nunito',sans-serif; }
+  .cc-mini-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:1.05rem; line-height:1.1; }
+  .cc-mini-sub { font-weight:700; font-size:0.72rem; opacity:.95; line-height:1.25; }
+  .cc-mini-dots { display:flex; gap:3px; margin-top:4px; }
+  .cc-mini-dots i { width:13px; height:13px; border-radius:50%; background:rgba(255,255,255,0.35); font-style:normal; font-size:0.5rem; display:grid; place-items:center; }
+  .cc-mini-dots i.on { background:#fff; } .cc-mini-dots i.gift { background:#ffd45e; }
+  .cc-mini-btns { display:flex; flex-direction:column; gap:5px; flex-shrink:0; }
+  .cc-mini-btns a { text-decoration:none; text-align:center; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.72rem; padding:6px 12px; border-radius:50px; white-space:nowrap; }
+  .cc-mini-btns .a1 { background:#fff; color:#d6006b; } .cc-mini-btns .a2 { background:rgba(255,255,255,0.18); color:#fff; border:1px solid rgba(255,255,255,0.6); }
+  @media (min-width:601px){ .cc-mini-btns { flex-direction:row; } }
   /* MINI CUADRADITOS PROMOS */
-  .pt-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:680px; margin:0 auto 24px; }
+  .pt-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:560px; margin:0 auto 24px; }
   .pt-tile { aspect-ratio:1; border:none; border-radius:20px; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px; text-align:center; font-family:'Nunito',sans-serif; color:#fff; box-shadow:0 4px 0 rgba(0,0,0,0.15),0 8px 18px rgba(160,20,90,0.18); transition:transform .15s, box-shadow .15s; }
   .pt-tile:hover { transform:translateY(-3px); }
   .pt-tile.on { outline:3px solid #ffd45e; outline-offset:2px; }
@@ -1190,16 +1204,25 @@
 
 
 
+  <!-- MINI BANNER CLUB CANDY -->
+  <div class="cc-mini" id="clubcandy">
+    <span class="cc-mini-ico">🍭</span>
+    <div class="cc-mini-txt">
+      <div class="cc-mini-title">Club Candy 🎁</div>
+      <div class="cc-mini-sub">Compras de $5.000+ suman un sello. Con 5, te llevás un regalo.</div>
+      <div class="cc-mini-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="gift">🎁</i></div>
+    </div>
+    <div class="cc-mini-btns"><a class="a1" href="/club/?alta=1">Sumarme</a><a class="a2" href="/club/">Mi tarjeta</a></div>
+  </div>
   <!-- MINI CUADRADITOS PROMOS -->
   <div class="pt-row">
-    <button class="pt-tile pt-club" data-pt="clubcandy"><span class="pt-ico">🍭</span><span class="pt-name">Club Candy</span><span class="pt-sub">Sumá sellos</span></button>
     <button class="pt-tile pt-ruleta" data-pt="ruleta"><span class="pt-ico">🎡</span><span class="pt-name">Ruleta</span><span class="pt-sub">Ganá 5% OFF</span></button>
     <button class="pt-tile pt-regalos" data-pt="regalos"><span class="pt-ico">🎀</span><span class="pt-name">Regalería</span><span class="pt-sub">Box y bolsitas</span></button>
     <button class="pt-tile pt-emp" data-pt="promoemp"><span class="pt-ico">💼</span><span class="pt-name">Mayorista</span><span class="pt-sub">Para revender</span></button>
   </div>
 
   <!-- BANNER CLUB CANDY -->
-  <div class="promo-club pt-panel" id="clubcandy">
+  <div class="promo-club" style="display:none">
     <div class="promo-club-inner">
       <div class="promo-club-txt">
         <span class="promo-club-tag">🍭 Nuevo · Club Candy</span>
@@ -6312,7 +6335,7 @@
 </script>
 <script>
 (function(){
-  var ids=['clubcandy','ruleta','regalos','promoemp'];
+  var ids=['ruleta','regalos','promoemp'];
   function alias(h){ return h==='regaleria'?'regalos':(h==='emprendedores'?'promoemp':h); }
   function abrir(id,scroll){
     ids.forEach(function(x){
