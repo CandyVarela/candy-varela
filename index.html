@@ -246,6 +246,7 @@
   @media (prefers-reduced-motion: reduce){ .rd-wheel canvas { transition-duration:.01s; } }
 
 
+
   /* MINI BANNER CLUB CANDY */
   .cc-mini { display:flex; align-items:center; gap:12px; max-width:680px; margin:0 auto 12px; padding:10px 14px; border-radius:16px; background:linear-gradient(135deg,#ff8cc0,#d6006b); color:#fff; box-shadow:0 4px 0 rgba(0,0,0,0.12),0 6px 16px rgba(160,20,90,0.18); scroll-margin-top:120px; }
   .cc-mini-ico { font-size:1.8rem; line-height:1; flex-shrink:0; }
@@ -296,6 +297,28 @@
   .promo-club-stamps span.on { background:#ff5fa8; border:2px solid #ff5fa8; color:#fff; transform:rotate(-8deg); }
   .promo-club-stamps span.gift { border-color:#2fbf8f; color:#2fbf8f; font-size:1rem; }
   @media (max-width:600px){ .promo-club { padding:24px 14px; } .promo-club-title { font-size:1.8rem; } .promo-club-title span { font-size:2.1rem; } .promo-club-card { width:250px; } }
+  /* CLUB CANDY MÁS LLAMATIVO */
+  .promo-club { background:linear-gradient(120deg,#ff4fa3,#ff8cc0,#d6006b,#ff4fa3); background-size:300% 300%; animation:pcBg 9s ease-in-out infinite; border:3px solid #fff; box-shadow:0 10px 0 #a3104f,0 18px 40px rgba(214,0,107,0.35); }
+  @keyframes pcBg { 0%,100% { background-position:0% 50%; } 50% { background-position:100% 50%; } }
+  .promo-club-inner { position:relative; z-index:2; }
+  .promo-club-tag { background:#ffd45e; color:#a3104f; animation:pcPulse 1.8s ease-in-out infinite; }
+  .promo-club-title { color:#fff; text-shadow:0 3px 0 #a3104f; font-size:2.5rem; }
+  .promo-club-title span { color:#ffd45e; text-shadow:0 3px 0 #a3104f,0 6px 16px rgba(0,0,0,0.25); font-size:2.9rem; }
+  .promo-club-sub, .promo-club-note { color:#fff; }
+  .promo-club-btn { background:#fff; color:#d6006b; box-shadow:0 4px 0 #a3104f; animation:pcPulse 2.2s ease-in-out infinite; }
+  .promo-club-card { animation:pcBob 3.5s ease-in-out infinite; box-shadow:0 12px 30px rgba(90,0,45,0.35); }
+  .promo-club-stamps span.on { animation:pcStamp 2.4s ease-in-out infinite; }
+  .promo-club-stamps span.on:nth-child(2) { animation-delay:.2s; } .promo-club-stamps span.on:nth-child(3) { animation-delay:.4s; }
+  .pc-shine { position:absolute; top:0; left:-60%; width:40%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,255,255,0.45),transparent); transform:skewX(-20deg); animation:pcShine 4.5s ease-in-out infinite; z-index:1; pointer-events:none; }
+  .pc-f { position:absolute; z-index:1; font-size:1.6rem; opacity:.55; pointer-events:none; animation:pcFloat 6s ease-in-out infinite; }
+  .pc-f.f1 { top:10%; left:4%; } .pc-f.f2 { top:14%; right:8%; animation-delay:1s; } .pc-f.f3 { bottom:12%; left:9%; animation-delay:2s; } .pc-f.f4 { bottom:16%; right:4%; animation-delay:.5s; } .pc-f.f5 { top:48%; left:46%; animation-delay:3s; font-size:1.1rem; }
+  @keyframes pcShine { 0% { left:-60%; } 60%,100% { left:130%; } }
+  @keyframes pcFloat { 0%,100% { transform:translateY(0) rotate(0); } 50% { transform:translateY(-12px) rotate(10deg); } }
+  @keyframes pcPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.06); } }
+  @keyframes pcBob { 0%,100% { transform:rotate(-3deg) translateY(0); } 50% { transform:rotate(2deg) translateY(-8px); } }
+  @keyframes pcStamp { 0%,100% { transform:rotate(-8deg) scale(1); } 50% { transform:rotate(-8deg) scale(1.15); } }
+  @media (max-width:600px){ .promo-club-title { font-size:2rem; } .promo-club-title span { font-size:2.3rem; } }
+  @media (prefers-reduced-motion: reduce){ .promo-club, .promo-club *, .pc-shine, .pc-f { animation:none !important; } }
   /* BANNER KIT MERIENDA CHOCOLINAS - VIOLETA */
   @keyframes kmShimmer { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
   @keyframes kmGlowPulse { 0%,100%{box-shadow:0 0 20px rgba(180,60,255,0.55),0 0 50px rgba(123,47,247,0.35);} 50%{box-shadow:0 0 34px rgba(180,60,255,0.85),0 0 80px rgba(123,47,247,0.55);} }
@@ -1204,25 +1227,9 @@
 
 
 
-  <!-- MINI BANNER CLUB CANDY -->
-  <div class="cc-mini" id="clubcandy">
-    <span class="cc-mini-ico">🍭</span>
-    <div class="cc-mini-txt">
-      <div class="cc-mini-title">Club Candy 🎁</div>
-      <div class="cc-mini-sub">Compras de $5.000+ suman un sello. Con 5, te llevás un regalo.</div>
-      <div class="cc-mini-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="gift">🎁</i></div>
-    </div>
-    <div class="cc-mini-btns"><a class="a1" href="/club/?alta=1">Sumarme</a><a class="a2" href="/club/">Mi tarjeta</a></div>
-  </div>
-  <!-- MINI CUADRADITOS PROMOS -->
-  <div class="pt-row">
-    <button class="pt-tile pt-ruleta" data-pt="ruleta"><span class="pt-ico">🎡</span><span class="pt-name">Ruleta</span><span class="pt-sub">Ganá 5% OFF</span></button>
-    <button class="pt-tile pt-regalos" data-pt="regalos"><span class="pt-ico">🎀</span><span class="pt-name">Regalería</span><span class="pt-sub">Box y bolsitas</span></button>
-    <button class="pt-tile pt-emp" data-pt="promoemp"><span class="pt-ico">💼</span><span class="pt-name">Mayorista</span><span class="pt-sub">Para revender</span></button>
-  </div>
-
   <!-- BANNER CLUB CANDY -->
-  <div class="promo-club" style="display:none">
+  <div class="promo-club" id="clubcandy">
+    <span class="pc-shine" aria-hidden="true"></span><span class="pc-f f1" aria-hidden="true">🍬</span><span class="pc-f f2" aria-hidden="true">✨</span><span class="pc-f f3" aria-hidden="true">🍭</span><span class="pc-f f4" aria-hidden="true">💗</span><span class="pc-f f5" aria-hidden="true">⭐</span>
     <div class="promo-club-inner">
       <div class="promo-club-txt">
         <span class="promo-club-tag">🍭 Nuevo · Club Candy</span>
@@ -1236,6 +1243,13 @@
         <div class="promo-club-stamps"><span class="on">✓</span><span class="on">✓</span><span class="on">✓</span><span>4</span><span class="gift">🎁</span></div>
       </div>
     </div>
+  </div>
+
+  <!-- MINI CUADRADITOS PROMOS -->
+  <div class="pt-row">
+    <button class="pt-tile pt-ruleta" data-pt="ruleta"><span class="pt-ico">🎡</span><span class="pt-name">Ruleta</span><span class="pt-sub">Ganá 5% OFF</span></button>
+    <button class="pt-tile pt-regalos" data-pt="regalos"><span class="pt-ico">🎀</span><span class="pt-name">Regalería</span><span class="pt-sub">Box y bolsitas</span></button>
+    <button class="pt-tile pt-emp" data-pt="promoemp"><span class="pt-ico">💼</span><span class="pt-name">Mayorista</span><span class="pt-sub">Para revender</span></button>
   </div>
 
   <!-- RULETA DULCE -->
