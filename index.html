@@ -321,6 +321,36 @@
   .cat-card { background:#fff; border-radius:14px; padding:10px; box-shadow:0 2px 10px rgba(0,0,0,0.07); display:flex; flex-direction:column; }
   .cat-card-img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; border-radius:10px; margin-bottom:8px; }
   /* MINI BANNER PANCHOS */
+  /* SECCIÓN YERBAS */
+  .yerba-banner { position:relative; margin:28px auto 8px; max-width:1200px; border-radius:22px; overflow:hidden; padding:22px 16px 26px; scroll-margin-top:120px;
+    background:linear-gradient(160deg,#5aa63c 0%,#2f7a2a 100%); box-shadow:0 8px 0 #1e5220,0 12px 26px rgba(47,122,42,0.35); }
+  .yerba-deco { position:absolute; font-size:2.2rem; opacity:0.2; pointer-events:none; animation:yerbaFloat 6s ease-in-out infinite; }
+  .yerba-deco.d1 { top:24px; left:4%; } .yerba-deco.d2 { top:70px; right:5%; animation-delay:1.5s; } .yerba-deco.d3 { bottom:40px; left:10%; animation-delay:2.6s; font-size:1.7rem; } .yerba-deco.d4 { bottom:60px; right:12%; animation-delay:3.4s; font-size:1.6rem; }
+  @keyframes yerbaFloat { 0%,100%{ transform:translateY(0) rotate(-10deg);} 50%{ transform:translateY(-10px) rotate(10deg);} }
+  .yerba-inner { position:relative; z-index:2; text-align:center; }
+  .yerba-mate { width:120px; height:130px; margin:0 auto 4px; display:block; animation:mateWobble 2.6s ease-in-out infinite; transform-origin:50% 92%; }
+  @keyframes mateWobble { 0%,100%{ transform:rotate(-4deg);} 50%{ transform:rotate(4deg) translateY(-3px);} }
+  .yerba-mate .vapor { animation:mateVapor 2.4s ease-in-out infinite; opacity:0; }
+  .yerba-mate .vapor.v2 { animation-delay:0.8s; } .yerba-mate .vapor.v3 { animation-delay:1.6s; }
+  @keyframes mateVapor { 0%{ opacity:0; transform:translateY(8px) scale(0.6);} 40%{ opacity:0.9;} 100%{ opacity:0; transform:translateY(-16px) scale(1.1);} }
+  .yerba-mate .ojo { animation:mateBlink 4s infinite; transform-origin:center; transform-box:fill-box; }
+  @keyframes mateBlink { 0%,92%,100%{ transform:scaleY(1);} 95%{ transform:scaleY(0.1);} }
+  .yerba-mate .corazon { animation:mateLatido 1.3s ease-in-out infinite; transform-origin:center; transform-box:fill-box; }
+  @keyframes mateLatido { 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.25);} }
+  .yerba-tag { display:inline-block; background:#ffe9a8; color:#1e5220; font-family:'Nunito',sans-serif; font-weight:900; font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase; padding:4px 12px; border-radius:50px; margin-bottom:6px; }
+  .yerba-title { font-family:'Poppins',sans-serif; font-weight:900; font-size:2rem; color:#ffe9a8; letter-spacing:0.02em; text-shadow:3px 3px 0 #1e5220; line-height:1.1; }
+  .yerba-sub { font-family:'Nunito',sans-serif; font-weight:800; font-size:0.85rem; color:#fff; margin:6px 0 16px; }
+  .yerba-items { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .yerba-card { background:#fffdf3; border-radius:18px; padding:10px 10px 12px; width:170px; box-shadow:0 5px 0 #1e5220,0 8px 16px rgba(0,0,0,0.2); display:flex; flex-direction:column; transition:transform .2s; }
+  .yerba-card:hover { transform:translateY(-4px) rotate(-1deg); }
+  .yerba-card img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:12px; margin-bottom:8px; background:#fff; }
+  .yerba-nombre { font-family:'Poppins',sans-serif; font-weight:800; font-size:0.85rem; color:#1e5220; margin-bottom:2px; line-height:1.2; }
+  .yerba-desc { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.68rem; color:#6b8f5e; margin-bottom:8px; }
+  .yerba-row { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:auto; }
+  .yerba-precio { font-family:'Baloo 2',cursive; font-weight:900; font-size:1.1rem; color:#2f7a2a; }
+  .yerba-btn { background:linear-gradient(135deg,#ffe9a8,#ffd166); color:#1e5220; border:none; border-radius:50px; font-weight:900; font-size:0.72rem; padding:7px 12px; cursor:pointer; box-shadow:0 3px 0 #c9a23a; }
+  .yerba-btn.agregado { background:#2ecc71; color:#fff; box-shadow:0 3px 0 #1f9d55; }
+  @media (max-width:600px) { .yerba-banner { margin:20px 12px 8px; } .yerba-title { font-size:1.55rem; } .yerba-items { gap:10px; } .yerba-card { width:calc(50% - 6px); max-width:170px; } }
   .pancho-banner { position:relative; margin:28px auto 8px; max-width:1200px; border-radius:22px; overflow:hidden; padding:22px 16px 20px; scroll-margin-top:120px;
     background:linear-gradient(160deg,#e8322a 0%,#c4161c 100%); box-shadow:0 8px 0 #8e0f13,0 12px 26px rgba(196,22,28,0.35); }
   .pancho-banner::before { content:""; position:absolute; left:0; right:0; bottom:0; height:34px; opacity:0.9;
@@ -1082,6 +1112,7 @@
     <a href="#kinder" onclick="cerrarDrawer()"><span class="drawer-ico">🍬</span> Kinder</a>
     <a href="#" onclick="event.preventDefault();cerrarDrawer();abrirOfertas()"><span class="drawer-ico">🔥</span> Ofertas</a>
     <a href="#mundogomitas" onclick="cerrarDrawer()"><span class="drawer-ico">🧸</span> Mundo Gomitas</a>
+    <a href="#yerbas" onclick="cerrarDrawer()"><span class="drawer-ico">🧉</span> Yerbas</a>
     <a href="#panchos" onclick="cerrarDrawer()"><span class="drawer-ico">🌭</span> Panchos</a>
     <a href="#emprendedores" onclick="cerrarDrawer()"><span class="drawer-ico">💗</span> Emprendedores</a>
     <a href="#reels" onclick="cerrarDrawer()"><span class="drawer-ico">📸</span> Reels</a>
@@ -1103,6 +1134,7 @@
       <a href="#letrasdulces" class="nav-dup">Letras Dulces</a>
       <a href="#novedades" class="nav-dup">Novedades</a>
       <a href="#mundogomitas" class="nav-dup">Mundo Gomitas</a>
+      <a href="#yerbas" class="nav-dup">🧉 Yerbas</a>
       <a href="#panchos" class="nav-dup">🌭 Panchos</a>
       <a href="#emprendedores" class="ofertas nav-dup">💗 Emprendedores</a>
       <a href="#reels" class="reels nav-dup">📸 Reels</a>
@@ -1129,6 +1161,7 @@
   <a href="#kinder" class="cat-filter-link"><span>🍬</span> Kinder</a>
   <a href="#ofertas" class="cat-filter-link"><span>🔥</span> Ofertas</a>
   <a href="#mundogomitas" class="cat-filter-link"><span>🧸</span> Mundo Gomitas</a>
+  <a href="#yerbas" class="cat-filter-link"><span>🧉</span> Yerbas</a>
   <a href="#panchos" class="cat-filter-link"><span>🌭</span> Panchos</a>
   <a href="#emprendedores" class="cat-filter-link"><span>💗</span> Emprendedores</a>
   <a href="#reels"><span>📸</span> Reels</a>
@@ -1321,6 +1354,56 @@
         </div>
       </div>
       <a href="#letrasdulces" class="promo-letras-cta">Ver Letras Dulces 🍭</a>
+    </div>
+  </div>
+
+  <!-- SECCIÓN YERBAS -->
+  <div class="yerba-banner" id="yerbas">
+    <span class="yerba-deco d1">🌿</span><span class="yerba-deco d2">🧉</span><span class="yerba-deco d3">🍃</span><span class="yerba-deco d4">🌿</span>
+    <div class="yerba-inner">
+      <svg class="yerba-mate" viewBox="0 0 120 130" aria-hidden="true">
+        <path class="vapor" d="M52 30 q-6 -8 0 -16 q6 -8 0 -16" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+        <path class="vapor v2" d="M64 30 q-6 -8 0 -16 q6 -8 0 -16" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+        <path class="vapor v3" d="M40 34 q-5 -7 0 -14 q5 -7 0 -14" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+        <rect x="74" y="4" width="7" height="52" rx="3.5" transform="rotate(18 78 30)" fill="#d9d9d9" stroke="#9a9a9a" stroke-width="1.5"/>
+        <ellipse cx="60" cy="122" rx="38" ry="6" fill="rgba(0,0,0,0.18)"/>
+        <path d="M22 52 Q16 112 60 120 Q104 112 98 52 Z" fill="#c98a4b"/>
+        <path d="M22 52 Q16 112 60 120 Q40 108 34 52 Z" fill="#b5763a" opacity="0.6"/>
+        <ellipse cx="60" cy="52" rx="38" ry="10" fill="#8a5a2b"/>
+        <ellipse cx="60" cy="52" rx="32" ry="7" fill="#7bc043"/>
+        <circle cx="50" cy="51" r="2" fill="#5a9a2f"/><circle cx="68" cy="53" r="2.2" fill="#5a9a2f"/><circle cx="60" cy="49" r="1.6" fill="#a3d977"/>
+        <rect x="22" y="60" width="76" height="8" fill="#ffd166" opacity="0.9"/>
+        <ellipse class="ojo" cx="47" cy="84" rx="4.5" ry="6" fill="#3b2412"/>
+        <ellipse class="ojo" cx="73" cy="84" rx="4.5" ry="6" fill="#3b2412"/>
+        <circle cx="48.5" cy="82" r="1.6" fill="#fff"/><circle cx="74.5" cy="82" r="1.6" fill="#fff"/>
+        <ellipse cx="38" cy="95" rx="6" ry="3.5" fill="#ff8fa3" opacity="0.75"/>
+        <ellipse cx="82" cy="95" rx="6" ry="3.5" fill="#ff8fa3" opacity="0.75"/>
+        <path d="M53 95 Q60 102 67 95" fill="none" stroke="#3b2412" stroke-width="3" stroke-linecap="round"/>
+        <path class="corazon" d="M96 30 c-4 -6 -12 -2 -8 5 l8 7 l8 -7 c4 -7 -4 -11 -8 -5 z" fill="#ff5c8a"/>
+      </svg>
+      <span class="yerba-tag">🧉 Nuevo · Para tu mate</span>
+      <div class="yerba-title">YERBAS</div>
+      <div class="yerba-sub">Yerba Mate Canarias 500g · elegí tu sabor</div>
+      <div class="yerba-items">
+        <div class="yerba-card">
+          <img src="img/productos/yerba-canarias-original.jpg" alt="Yerba Mate Canarias Original 500g" loading="lazy">
+          <div class="yerba-nombre">Yerba Canarias Original</div>
+          <div class="yerba-desc">Tradicional · 500g</div>
+          <div class="yerba-row"><span class="yerba-precio">$7.000</span><button class="yerba-btn" onclick="agregarKinder(this,'Yerba Canarias Original 500g',7000)">+ Agregar</button></div>
+        </div>
+        <div class="yerba-card">
+          <img src="img/productos/yerba-canarias-suave.jpg" alt="Yerba Mate Canarias Suave 500g" loading="lazy">
+          <div class="yerba-nombre">Yerba Canarias Suave</div>
+          <div class="yerba-desc">Tradicional · 500g</div>
+          <div class="yerba-row"><span class="yerba-precio">$7.000</span><button class="yerba-btn" onclick="agregarKinder(this,'Yerba Canarias Suave 500g',7000)">+ Agregar</button></div>
+        </div>
+        <div class="yerba-card">
+          <img src="img/productos/yerba-canarias-serena.jpg" alt="Yerba Mate Canarias Serena 500g" loading="lazy">
+          <div class="yerba-nombre">Yerba Canarias Serena</div>
+          <div class="yerba-desc">Compuesta con hierbas · 500g</div>
+          <div class="yerba-row"><span class="yerba-precio">$7.000</span><button class="yerba-btn" onclick="agregarKinder(this,'Yerba Canarias Serena 500g',7000)">+ Agregar</button></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2070,6 +2153,21 @@
         <img class="cat-card-img img-agotado" src="img/productos/rasta-mini-alfajores-negros.jpg" alt="Rasta Mini 6 Alfajores Negros" loading="lazy">
         <div class="cat-card-nombre">Rasta Mini 6 Alfajores Negros 🆕</div>
         <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$6.000</span><button class="cat-card-btn btn-agotado" disabled>Agotado</button></div>
+      </div>
+      <div class="cat-card" data-cat="yerbas">
+        <img class="cat-card-img" src="img/productos/yerba-canarias-original.jpg" alt="Yerba Mate Canarias Original 500g" loading="lazy">
+        <div class="cat-card-nombre">Yerba Canarias Original 500g 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Yerba Canarias Original 500g',7000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="yerbas">
+        <img class="cat-card-img" src="img/productos/yerba-canarias-suave.jpg" alt="Yerba Mate Canarias Suave 500g" loading="lazy">
+        <div class="cat-card-nombre">Yerba Canarias Suave 500g 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Yerba Canarias Suave 500g',7000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="yerbas">
+        <img class="cat-card-img" src="img/productos/yerba-canarias-serena.jpg" alt="Yerba Mate Canarias Serena 500g" loading="lazy">
+        <div class="cat-card-nombre">Yerba Canarias Serena 500g 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Yerba Canarias Serena 500g',7000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="importados">
         <img class="cat-card-img" src="img/productos/tial-minecraft-jugo.jpg" alt="Jugo Tial Minecraft 200ml · Frutilla, Uva y Naranja" loading="lazy">
