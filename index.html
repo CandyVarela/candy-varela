@@ -6429,5 +6429,25 @@
   if(ids.indexOf(h)>-1) abrir(h,true);
 })();
 </script>
+<script>
+/* Productos en stock primero, agotados al final */
+(function(){
+  var SEL=['.cat-card','.rg-card','.pancho-card','.yerba-card','.od-card','.letras-card','.neon-frame','.emp-card','.imp-card','.cho-card','.beb-card','.snk-card','.kinder-card','.viral-card','.box-card-item','.promo-letras-item'];
+  function agotado(c){
+    if(c.classList.contains('agotado')) return true;
+    if(c.querySelector('.btn-agotado,.img-agotado,.rg-tag.off')) return true;
+    var b=c.querySelector('button'); return !!(b && b.disabled && /agotado/i.test(b.textContent));
+  }
+  SEL.forEach(function(sel){
+    var parents=new Set(); document.querySelectorAll(sel).forEach(function(c){ if(c.parentElement) parents.add(c.parentElement); });
+    parents.forEach(function(par){
+      var cards=[].filter.call(par.children,function(c){ return c.matches(sel); });
+      var sin=cards.filter(agotado); if(!sin.length || sin.length===cards.length) return;
+      var ultimo=cards[cards.length-1], ref=ultimo.nextSibling;
+      sin.forEach(function(c){ par.insertBefore(c, ref); });
+    });
+  });
+})();
+</script>
 </body>
 </html>
