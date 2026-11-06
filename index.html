@@ -197,6 +197,14 @@
   .promo-letras-item-precio { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.85rem; color:#ff2f92; margin-bottom:6px; }
   .promo-letras-item button { width:100%; background:linear-gradient(135deg,#ff2f92,#ff8a3d); color:#fff; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.65rem; padding:6px 4px; cursor:pointer; }
   .promo-letras-cta { display:inline-block; margin-top:16px; background:#fff; border:2px solid #fff; color:#ff2f92; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.8rem; padding:8px 22px; text-decoration:none; box-shadow:0 3px 0 #d6006b; }
+  .pla-wrap { margin-top:16px; }
+  .pla-titulo { font-family:'Instrument Sans','Poppins',sans-serif; font-weight:600; font-size:0.9rem; color:#1a1a1a; margin-bottom:8px; }
+  .pla-strip { display:flex; gap:8px; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 2px 6px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .pla-strip::-webkit-scrollbar { display:none; }
+  .pla-foto { flex:0 0 96px; aspect-ratio:4/5; border-radius:12px; overflow:hidden; scroll-snap-align:start; cursor:pointer; background:#f5f5f5; }
+  .pla-foto img { width:100%; height:100%; object-fit:cover; display:block; }
+  .pla-hint { font-family:'Nunito',sans-serif; font-size:0.7rem; color:#999 !important; margin-top:2px; }
+  @media (min-width:700px) { .pla-foto { flex-basis:130px; } .pla-strip { justify-content:center; flex-wrap:wrap; overflow:visible; } }
   @media (max-width:600px) { .promo-letras-title { font-size:1.35rem; } .promo-letras-item { width:92px; } .promo-letras-item img { height:92px; } }
 
 
@@ -1501,6 +1509,11 @@
           <div class="promo-letras-item-precio">$10.000</div>
           <button onclick="agregarKinder(this,'Letra Dulce Premium',10000)">+ Agregar</button>
         </div>
+      </div>
+      <div class="pla-wrap">
+        <div class="pla-titulo">📸 Nuestros trabajos</div>
+        <div class="pla-strip"><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(0)" aria-label="Ver foto 1"><img src="img/letras/album-01.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(1)" aria-label="Ver foto 2"><img src="img/letras/album-02.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(2)" aria-label="Ver foto 3"><img src="img/letras/album-03.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(3)" aria-label="Ver foto 4"><img src="img/letras/album-04.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(4)" aria-label="Ver foto 5"><img src="img/letras/album-05.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(5)" aria-label="Ver foto 6"><img src="img/letras/album-06.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(6)" aria-label="Ver foto 7"><img src="img/letras/album-07.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(7)" aria-label="Ver foto 8"><img src="img/letras/album-08.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(8)" aria-label="Ver foto 9"><img src="img/letras/album-09.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(9)" aria-label="Ver foto 10"><img src="img/letras/album-10.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(10)" aria-label="Ver foto 11"><img src="img/letras/album-11.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(11)" aria-label="Ver foto 12"><img src="img/letras/album-12.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(12)" aria-label="Ver foto 13"><img src="img/letras/album-13.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(13)" aria-label="Ver foto 14"><img src="img/letras/album-14.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div></div>
+        <div class="pla-hint">Deslizá para ver más 👉</div>
       </div>
       <a href="#letrasdulces" class="promo-letras-cta">Ver Letras Dulces 🍭</a>
     </div>
