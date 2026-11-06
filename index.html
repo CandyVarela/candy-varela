@@ -204,7 +204,7 @@
   .pla-foto { flex:0 0 96px; aspect-ratio:4/5; border-radius:12px; overflow:hidden; scroll-snap-align:start; cursor:pointer; background:#f5f5f5; }
   .pla-foto img { width:100%; height:100%; object-fit:cover; display:block; }
   .pla-hint { font-family:'Nunito',sans-serif; font-size:0.7rem; color:#999 !important; margin-top:2px; }
-  @media (min-width:700px) { .pla-foto { flex-basis:130px; } .pla-strip { justify-content:center; flex-wrap:wrap; overflow:visible; } }
+  @media (min-width:700px) { .pla-foto { flex-basis:130px; } }
   @media (max-width:600px) { .promo-letras-title { font-size:1.35rem; } .promo-letras-item { width:92px; } .promo-letras-item img { height:92px; } }
 
 
@@ -1205,6 +1205,16 @@
   .mxn-btn{display:inline-block;border:2px solid #39ff14;color:#39ff14;text-decoration:none;font-weight:900;font-size:.85rem;padding:9px 24px;border-radius:50px;box-shadow:0 0 10px rgba(57,255,20,.6),inset 0 0 8px rgba(57,255,20,.3)}
   .mxn-btn:hover{background:#39ff14;color:#041004}
   @media (max-width:600px){.mxn-title{font-size:1.35rem}.mxn-card{flex-basis:118px}.mxn-card img{height:130px}}
+  /* CARRUSEL NUESTROS TRABAJOS */
+  .car-wrap{position:relative}
+  .car-wrap .pla-strip,.car-wrap .letras-album-strip{scrollbar-width:none;scroll-behavior:smooth}
+  .car-wrap .letras-album-strip::-webkit-scrollbar{display:none}
+  .car-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:32px;height:32px;border-radius:50%;border:none;background:rgba(255,255,255,.92);color:#e91e8c;font-size:1.3rem;font-weight:900;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;padding:0}
+  .car-arrow.prev{left:-4px}.car-arrow.next{right:-4px}
+  .car-arrow:hover{background:#e91e8c;color:#fff}
+  .car-dots{display:flex;justify-content:center;gap:5px;margin-top:6px}
+  .car-dots span{width:6px;height:6px;border-radius:50%;background:#f3c1dc;transition:all .2s}
+  .car-dots span.on{background:#e91e8c;width:16px;border-radius:4px}
 </style>
 </head>
 <body>
@@ -1513,7 +1523,7 @@
       <div class="pla-wrap">
         <div class="pla-titulo">📸 Nuestros trabajos</div>
         <div class="pla-strip"><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(0)" aria-label="Ver foto 1"><img src="img/letras/album-01.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(1)" aria-label="Ver foto 2"><img src="img/letras/album-02.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(2)" aria-label="Ver foto 3"><img src="img/letras/album-03.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(3)" aria-label="Ver foto 4"><img src="img/letras/album-04.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(4)" aria-label="Ver foto 5"><img src="img/letras/album-05.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(5)" aria-label="Ver foto 6"><img src="img/letras/album-06.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(6)" aria-label="Ver foto 7"><img src="img/letras/album-07.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(7)" aria-label="Ver foto 8"><img src="img/letras/album-08.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(8)" aria-label="Ver foto 9"><img src="img/letras/album-09.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(9)" aria-label="Ver foto 10"><img src="img/letras/album-10.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(10)" aria-label="Ver foto 11"><img src="img/letras/album-11.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(11)" aria-label="Ver foto 12"><img src="img/letras/album-12.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(12)" aria-label="Ver foto 13"><img src="img/letras/album-13.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div><div class="pla-foto" role="button" tabindex="0" onclick="abrirAlbumLetras(13)" aria-label="Ver foto 14"><img src="img/letras/album-14.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></div></div>
-        <div class="pla-hint">Deslizá para ver más 👉</div>
+        
       </div>
       <a href="#letrasdulces" class="promo-letras-cta">Ver Letras Dulces 🍭</a>
     </div>
@@ -6558,6 +6568,34 @@ window.abrirAlbumLetras=function(k){i=k;document.getElementById('letrasLbImg').s
 window.cerrarAlbumLetras=function(){document.getElementById('letrasLightbox').classList.remove('open');};
 window.moverAlbumLetras=function(d){i=(i+d+N)%N;document.getElementById('letrasLbImg').src=src(i);};
 document.addEventListener('keydown',function(e){var lb=document.getElementById('letrasLightbox');if(!lb||!lb.classList.contains('open'))return;if(e.key==='Escape')cerrarAlbumLetras();if(e.key==='ArrowRight')moverAlbumLetras(1);if(e.key==='ArrowLeft')moverAlbumLetras(-1);});})();
+</script>
+<script>
+(function(){
+  function initCarrusel(strip){
+    if(!strip||strip.dataset.car) return; strip.dataset.car=1;
+    const wrap=document.createElement('div'); wrap.className='car-wrap';
+    strip.parentNode.insertBefore(wrap,strip); wrap.appendChild(strip);
+    const prev=document.createElement('button'), next=document.createElement('button');
+    prev.className='car-arrow prev'; prev.innerHTML='‹'; prev.setAttribute('aria-label','Anterior');
+    next.className='car-arrow next'; next.innerHTML='›'; next.setAttribute('aria-label','Siguiente');
+    wrap.appendChild(prev); wrap.appendChild(next);
+    const dots=document.createElement('div'); dots.className='car-dots'; wrap.after(dots);
+    const n=strip.children.length;
+    for(let k=0;k<n;k++){ dots.appendChild(document.createElement('span')); }
+    const paso=()=>{ const c=strip.children[0]; return c ? c.getBoundingClientRect().width+8 : 120; };
+    const mover=d=>{ const max=strip.scrollWidth-strip.clientWidth; if(d>0&&strip.scrollLeft>=max-4) strip.scrollTo({left:0}); else if(d<0&&strip.scrollLeft<=4) strip.scrollTo({left:max}); else strip.scrollBy({left:d*paso()}); };
+    prev.onclick=e=>{e.stopPropagation();mover(-1);pausa();}; next.onclick=e=>{e.stopPropagation();mover(1);pausa();};
+    const marcar=()=>{ const idx=Math.round(strip.scrollLeft/paso()); [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===Math.min(idx,n-1))); };
+    strip.addEventListener('scroll',marcar,{passive:true}); marcar();
+    let t=null, quieto=0;
+    const play=()=>{ clearInterval(t); t=setInterval(()=>{ if(Date.now()>quieto && !document.hidden) mover(1); },3000); };
+    const pausa=()=>{ quieto=Date.now()+6000; };
+    ['touchstart','mousedown','wheel'].forEach(ev=>strip.addEventListener(ev,pausa,{passive:true}));
+    play();
+  }
+  const go=()=>document.querySelectorAll('.pla-strip,.letras-album-strip').forEach(initCarrusel);
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',go); else go();
+})();
 </script>
 </body>
 </html>
