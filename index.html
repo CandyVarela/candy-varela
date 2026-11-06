@@ -754,6 +754,21 @@
   .letras-card-btn.agregado { background:var(--green); }
   .letras-card-btn:hover { opacity:0.88; }
   @media (max-width:600px) { .letras-title { font-size:1.1rem; } .letras-card { flex:1 1 100px; } }
+  .letras-album { margin-top:18px; text-align:left; }
+  .letras-album-title { font-family:'Baloo 2',cursive; font-weight:800; font-size:0.95rem; color:#1a1a1a; margin-bottom:8px; text-align:center; }
+  .letras-album-strip { display:flex; gap:8px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px; -webkit-overflow-scrolling:touch; }
+  .letras-album-item { flex:0 0 120px; aspect-ratio:4/5; border:none; padding:0; border-radius:12px; overflow:hidden; scroll-snap-align:start; cursor:pointer; background:#f5f5f5 !important; box-shadow:none !important; }
+  .letras-section .letras-album-strip .letras-album-item, .letras-section .letras-album-strip .letras-album-item:hover { background:#f5f5f5 !important; border:none !important; border-radius:12px !important; padding:0 !important; }
+  .letras-album-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.2s; }
+  .letras-album-item:hover img { transform:scale(1.04); }
+  .letras-lightbox { position:fixed; inset:0; background:rgba(0,0,0,0.88); display:none; align-items:center; justify-content:center; z-index:2147483000; padding:16px; }
+  .letras-lightbox.open { display:flex; }
+  .letras-lightbox img { max-width:100%; max-height:86vh; border-radius:14px; }
+  .letras-lb-close, .letras-lb-nav { position:absolute; background:rgba(255,255,255,0.18); color:#fff; border:none; border-radius:50px; font-size:1.4rem; width:42px; height:42px; cursor:pointer; }
+  .letras-lb-close { top:14px; right:14px; font-size:1rem; }
+  .letras-lb-nav.prev { left:10px; top:50%; transform:translateY(-50%); }
+  .letras-lb-nav.next { right:10px; top:50%; transform:translateY(-50%); }
+  @media (min-width:700px) { .letras-album-item { flex-basis:150px; } }
 
   /* SECCIÓN EMPRENDEDORES - NEON ROSA */
   .emprendedores-section { position:relative; background:#fff; border:1px solid rgba(0,0,0,0.06); border-radius:24px; padding:22px 16px 26px; margin-bottom:40px; overflow:hidden; box-shadow:var(--shadow); }
@@ -1475,13 +1490,13 @@
       <div class="promo-letras-sub">Elegí tu letra y rellenala con caramelos, gomitas o chocolates</div>
       <div class="promo-letras-items">
         <div class="promo-letras-item">
-          <img src="img/productos/letra-economica.jpg" alt="Letra Dulce Económica" loading="lazy">
+          <img src="img/productos/letra-economica.jpg?v=2" alt="Letra Dulce Económica" loading="lazy">
           <div class="promo-letras-item-nombre">Económica</div>
           <div class="promo-letras-item-precio">$7.000</div>
           <button onclick="agregarKinder(this,'Letra Dulce Económica',7000)">+ Agregar</button>
         </div>
         <div class="promo-letras-item">
-          <img src="img/productos/letra-premium.jpg" alt="Letra Dulce Premium" loading="lazy">
+          <img src="img/productos/letra-premium.jpg?v=2" alt="Letra Dulce Premium" loading="lazy">
           <div class="promo-letras-item-nombre">Premium</div>
           <div class="promo-letras-item-precio">$10.000</div>
           <button onclick="agregarKinder(this,'Letra Dulce Premium',10000)">+ Agregar</button>
@@ -3327,12 +3342,12 @@
         <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$25.000</span><button class="cat-card-btn btn-agotado" disabled>Agotado</button></div>
       </div>
       <div class="cat-card" data-cat="letrasdulces">
-        <img class="cat-card-img" src="img/productos/letra-economica.jpg" alt="Letra Dulce Económica" loading="lazy">
+        <img class="cat-card-img" src="img/productos/letra-economica.jpg?v=2" alt="Letra Dulce Económica" loading="lazy">
         <div class="cat-card-nombre">Letra Dulce Económica</div>
         <div class="cat-card-row"><span class="cat-card-precio">$7.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Letra Dulce Económica',7000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="letrasdulces">
-        <img class="cat-card-img" src="img/productos/letra-premium.jpg" alt="Letra Dulce Premium" loading="lazy">
+        <img class="cat-card-img" src="img/productos/letra-premium.jpg?v=2" alt="Letra Dulce Premium" loading="lazy">
         <div class="cat-card-nombre">Letra Dulce Premium</div>
         <div class="cat-card-row"><span class="cat-card-precio">$10.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Letra Dulce Premium',10000)">+ Agregar</button></div>
       </div>
@@ -3638,23 +3653,33 @@
       <p class="letras-desc">La inicial que quieras, rellena de las mejores golosinas. ¡El regalo más dulce y original! No dudes en consultar, ¡la tuya la podés armar como quieras!</p>
       <div class="letras-cards">
         <div class="letras-card">
-          <img class="letras-card-img" src="img/productos/letra-economica.jpg" alt="Letra Económica" loading="lazy">
+          <img class="letras-card-img" src="img/productos/letra-economica.jpg?v=2" alt="Letra Económica" loading="lazy">
           <div class="letras-card-info">
             <div class="letras-card-nombre">Letra Económica</div>
-            <div class="letras-card-desc">Se rellena con gomitas y malvaviscos</div>
+            <div class="letras-card-desc">Letra rellena de gomitas</div>
             <div class="letras-card-row"><span class="letras-card-precio">$7.000</span><button class="letras-card-btn" onclick="agregarKinder(this,'Letra Dulce Económica',7000)">+ Agregar</button></div>
           </div>
         </div>
         <div class="letras-card">
-          <img class="letras-card-img" src="img/productos/letra-premium.jpg" alt="Letra Premium" loading="lazy">
+          <img class="letras-card-img" src="img/productos/letra-premium.jpg?v=2" alt="Letra Premium" loading="lazy">
           <div class="letras-card-info">
             <div class="letras-card-nombre">Letra Premium</div>
-            <div class="letras-card-desc">Se rellena con gomitas ácidas y dulces</div>
+            <div class="letras-card-desc">Letra con gomitas, caja y decoración</div>
             <div class="letras-card-row"><span class="letras-card-precio">$10.000</span><button class="letras-card-btn" onclick="agregarKinder(this,'Letra Dulce Premium',10000)">+ Agregar</button></div>
           </div>
         </div>
       </div>
+      <div class="letras-album">
+        <div class="letras-album-title">📸 Nuestros trabajos</div>
+        <div class="letras-album-strip"><button class="letras-album-item" onclick="abrirAlbumLetras(0)" aria-label="Ver foto 1"><img src="img/letras/album-01.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(1)" aria-label="Ver foto 2"><img src="img/letras/album-02.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(2)" aria-label="Ver foto 3"><img src="img/letras/album-03.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(3)" aria-label="Ver foto 4"><img src="img/letras/album-04.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(4)" aria-label="Ver foto 5"><img src="img/letras/album-05.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(5)" aria-label="Ver foto 6"><img src="img/letras/album-06.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(6)" aria-label="Ver foto 7"><img src="img/letras/album-07.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(7)" aria-label="Ver foto 8"><img src="img/letras/album-08.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(8)" aria-label="Ver foto 9"><img src="img/letras/album-09.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(9)" aria-label="Ver foto 10"><img src="img/letras/album-10.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(10)" aria-label="Ver foto 11"><img src="img/letras/album-11.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(11)" aria-label="Ver foto 12"><img src="img/letras/album-12.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(12)" aria-label="Ver foto 13"><img src="img/letras/album-13.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button><button class="letras-album-item" onclick="abrirAlbumLetras(13)" aria-label="Ver foto 14"><img src="img/letras/album-14.jpg" alt="Letra dulce hecha en Candy Varela" loading="lazy"></button></div>
+      </div>
     </div>
+  </div>
+  <div class="letras-lightbox" id="letrasLightbox" onclick="if(event.target===this)cerrarAlbumLetras()">
+    <button class="letras-lb-close" onclick="cerrarAlbumLetras()" aria-label="Cerrar">✕</button>
+    <button class="letras-lb-nav prev" onclick="moverAlbumLetras(-1)" aria-label="Anterior">‹</button>
+    <img id="letrasLbImg" src="" alt="Letra dulce">
+    <button class="letras-lb-nav next" onclick="moverAlbumLetras(1)" aria-label="Siguiente">›</button>
   </div>
 
   <!-- SECCIÓN EMPRENDEDORES -->
@@ -6514,5 +6539,12 @@
     <button class="pg-btn pg-alt" onclick="enviarPedidoFinal('efectivo')">💵 Prefiero pagar en efectivo al retirar</button>
   </div>
 </div>
+<script>
+(function(){var i=0,N=14;function src(k){return 'img/letras/album-'+String(k+1).padStart(2,'0')+'.jpg';}
+window.abrirAlbumLetras=function(k){i=k;document.getElementById('letrasLbImg').src=src(i);document.getElementById('letrasLightbox').classList.add('open');};
+window.cerrarAlbumLetras=function(){document.getElementById('letrasLightbox').classList.remove('open');};
+window.moverAlbumLetras=function(d){i=(i+d+N)%N;document.getElementById('letrasLbImg').src=src(i);};
+document.addEventListener('keydown',function(e){var lb=document.getElementById('letrasLightbox');if(!lb||!lb.classList.contains('open'))return;if(e.key==='Escape')cerrarAlbumLetras();if(e.key==='ArrowRight')moverAlbumLetras(1);if(e.key==='ArrowLeft')moverAlbumLetras(-1);});})();
+</script>
 </body>
 </html>
