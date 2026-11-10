@@ -4903,6 +4903,176 @@
     </div>
   </div>
 
+<!-- ===== CALCULADORA DE ENVÍO ===== -->
+<style>
+  .env-wrap{max-width:560px;margin:28px auto;padding:0 16px;font-family:'Nunito',sans-serif;color:var(--text)}
+  .env-card{background:#fff;border:2px solid var(--rosa);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px;overflow:hidden}
+  .env-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.25rem;text-align:center;color:var(--azul-dark)}
+  .env-sub{text-align:center;color:var(--text-muted);font-size:.9rem;margin:4px 0 18px}
+  .env-step{margin-bottom:18px}
+  .env-step-h{display:flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:10px}
+  .env-num{width:26px;height:26px;border-radius:50%;background:var(--rosa-light);color:var(--rosa);display:grid;place-items:center;font-size:.8rem;font-weight:800;flex-shrink:0;transition:.25s}
+  .env-step.ok .env-num{background:var(--green);color:#fff}
+  .env-select{width:100%;padding:12px 14px;border:2px solid var(--rosa-light);border-radius:12px;font:600 .95rem 'Nunito',sans-serif;color:var(--text);background:var(--gris-bg);outline:none}
+  .env-select:focus{border-color:var(--rosa)}
+  .env-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .env-opts.dos{grid-template-columns:repeat(2,1fr)}
+  .env-opt{border:2px solid var(--rosa-light);background:var(--gris-bg);border-radius:14px;padding:10px 6px;text-align:center;cursor:pointer;transition:.15s;font-family:inherit;color:var(--text)}
+  .env-opt:hover{border-color:var(--celeste)}
+  .env-opt.sel{border-color:var(--rosa);background:var(--rosa-light);transform:translateY(-2px)}
+  .env-opt-ico{font-size:1.6rem;display:block}
+  .env-opt-t{font-weight:800;font-size:.85rem;display:block;margin-top:2px}
+  .env-opt-d{font-size:.72rem;color:var(--text-muted);display:block;line-height:1.25;margin-top:2px}
+  .env-btn{width:100%;border:0;border-radius:50px;padding:14px;background:var(--rosa);color:#fff;font:800 1rem 'Poppins',sans-serif;cursor:pointer;box-shadow:0 3px 12px rgba(233,30,140,.35);transition:.15s}
+  .env-btn:disabled{background:#e9c9da;box-shadow:none;cursor:not-allowed}
+  .env-btn:not(:disabled):active{transform:scale(.98)}
+  /* simulador */
+  .env-sim{display:none;margin-top:18px}
+  .env-sim.on{display:block}
+  .env-road{position:relative;height:92px;background:linear-gradient(#fff5fa 0 58%,#6b5560 58% 100%);border-radius:14px;overflow:hidden}
+  .env-road::after{content:'';position:absolute;left:0;right:0;top:76%;height:3px;background:repeating-linear-gradient(90deg,#fff 0 18px,transparent 18px 34px);animation:envLines .5s linear infinite;animation-play-state:paused}
+  .env-sim.moving .env-road::after{animation-play-state:running}
+  @keyframes envLines{to{background-position:-34px 0}}
+  .env-pin{position:absolute;top:8px;font-size:.7rem;font-weight:800;color:var(--azul-dark);text-align:center;line-height:1.1}
+  .env-pin b{display:block;font-size:1.2rem}
+  .env-pin.o{left:8px}.env-pin.d{right:8px}
+  .env-truck{position:absolute;left:4%;top:28px;font-size:2.6rem;transform:scaleX(-1);transition:left 2.6s cubic-bezier(.45,.05,.4,1)}
+  .env-sim.moving .env-truck{animation:envBump .3s ease-in-out infinite alternate}
+  @keyframes envBump{to{top:25px}}
+  .env-status{text-align:center;font-weight:700;font-size:.9rem;margin:10px 0 0;min-height:1.3em;color:var(--azul)}
+  .env-bar{height:8px;background:var(--rosa-light);border-radius:8px;margin-top:8px;overflow:hidden}
+  .env-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rosa),var(--amarillo));transition:width 2.6s cubic-bezier(.45,.05,.4,1)}
+  /* resultado */
+  .env-res{display:none;margin-top:16px;background:var(--gris-bg);border:2px dashed var(--rosa);border-radius:16px;padding:16px;text-align:center;animation:envPop .4s ease}
+  .env-res.on{display:block}
+  @keyframes envPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+  .env-precio{font-family:'Poppins',sans-serif;font-weight:800;font-size:2rem;color:var(--rosa)}
+  .env-info{font-size:.85rem;color:var(--text-muted);margin:2px 0 12px}
+  .env-wa{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;text-decoration:none;font:800 .92rem 'Poppins',sans-serif;padding:11px 20px;border-radius:50px}
+  .env-nota{font-size:.72rem;color:var(--text-muted);margin-top:10px;line-height:1.4}
+  @media (max-width:380px){.env-opt-d{display:none}}
+</style>
+
+<section class="env-wrap" id="calcular-envio">
+  <div class="env-card">
+    <div class="env-title">🚚 Calculá tu envío</div>
+    <div class="env-sub">Por Correo Argentino · en 3 pasitos</div>
+
+    <div class="env-step" id="envS1">
+      <div class="env-step-h"><span class="env-num">1</span>📍 ¿A dónde lo mandamos?</div>
+      <select class="env-select" id="envProv" onchange="envCheck()">
+        <option value="">Elegí tu provincia…</option>
+      </select>
+    </div>
+
+    <div class="env-step" id="envS2">
+      <div class="env-step-h"><span class="env-num">2</span>📦 ¿Qué tan grande es tu pedido?</div>
+      <div class="env-opts" id="envTam">
+        <button type="button" class="env-opt" data-v="chico"><span class="env-opt-ico">🍬</span><span class="env-opt-t">Chico</span><span class="env-opt-d">Unos snacks o golosinas</span></button>
+        <button type="button" class="env-opt" data-v="mediano"><span class="env-opt-ico">🎁</span><span class="env-opt-t">Mediano</span><span class="env-opt-d">Una caja de regalo o varias bebidas</span></button>
+        <button type="button" class="env-opt" data-v="grande"><span class="env-opt-ico">📦</span><span class="env-opt-t">Grande</span><span class="env-opt-d">Pedido grande o mayorista</span></button>
+      </div>
+    </div>
+
+    <div class="env-step" id="envS3">
+      <div class="env-step-h"><span class="env-num">3</span>🏠 ¿Cómo lo recibís?</div>
+      <div class="env-opts dos" id="envMod">
+        <button type="button" class="env-opt" data-v="sucursal"><span class="env-opt-ico">🏤</span><span class="env-opt-t">Retiro en sucursal</span><span class="env-opt-d">Lo buscás en el Correo más cercano</span></button>
+        <button type="button" class="env-opt" data-v="domicilio"><span class="env-opt-ico">🏡</span><span class="env-opt-t">A domicilio</span><span class="env-opt-d">Te lo llevan a tu casa</span></button>
+      </div>
+    </div>
+
+    <button class="env-btn" id="envGo" disabled onclick="envSimular()">Calcular envío</button>
+
+    <div class="env-sim" id="envSim">
+      <div class="env-road">
+        <div class="env-pin o"><b>🍭</b>Candy<br>Varela</div>
+        <div class="env-pin d"><b>📍</b><span id="envDest">Destino</span></div>
+        <div class="env-truck" id="envTruck">🚚</div>
+      </div>
+      <div class="env-bar"><i id="envBar"></i></div>
+      <div class="env-status" id="envStatus"></div>
+    </div>
+
+    <div class="env-res" id="envRes">
+      <div style="font-weight:700;font-size:.9rem">Tu envío cuesta aprox.</div>
+      <div class="env-precio" id="envPrecio">$0</div>
+      <div class="env-info" id="envInfo"></div>
+      <a class="env-wa" id="envWa" href="#" target="_blank" rel="noopener">💬 Confirmar por WhatsApp</a>
+      <div class="env-nota">Precio estimado. El valor final depende del peso y medidas exactas de tu pedido. Te lo confirmamos por WhatsApp antes de despachar.</div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  /* ====== EDITAR ACÁ LAS TARIFAS ====== */
+  var ENV_TARIFAS = {
+    amba:      { chico:{sucursal:8000, domicilio:9500}, mediano:{sucursal:11000, domicilio:13500}, grande:{sucursal:16000, domicilio:19500}, dias:'2 a 4' },
+    bsas:      { chico:{sucursal:10000, domicilio:11500}, mediano:{sucursal:13500, domicilio:16000}, grande:{sucursal:19500, domicilio:23500}, dias:'3 a 5' },
+    centro:    { chico:{sucursal:11500, domicilio:13500}, mediano:{sucursal:16000, domicilio:19000}, grande:{sucursal:23000, domicilio:27500}, dias:'4 a 6' },
+    norte:     { chico:{sucursal:13000, domicilio:15500}, mediano:{sucursal:18500, domicilio:22000}, grande:{sucursal:26500, domicilio:31500}, dias:'5 a 8' },
+    patagonia: { chico:{sucursal:15500, domicilio:18500}, mediano:{sucursal:21500, domicilio:25500}, grande:{sucursal:31500, domicilio:37000}, dias:'6 a 9' }
+  };
+  var ENV_PROV = [
+    ['CABA','amba'],['Gran Buenos Aires','amba'],['Buenos Aires (interior)','bsas'],
+    ['Córdoba','centro'],['Santa Fe','centro'],['Entre Ríos','centro'],['La Pampa','centro'],
+    ['Mendoza','norte'],['San Juan','norte'],['San Luis','norte'],['La Rioja','norte'],['Catamarca','norte'],
+    ['Tucumán','norte'],['Santiago del Estero','norte'],['Salta','norte'],['Jujuy','norte'],
+    ['Corrientes','norte'],['Misiones','norte'],['Chaco','norte'],['Formosa','norte'],
+    ['Neuquén','patagonia'],['Río Negro','patagonia'],['Chubut','patagonia'],['Santa Cruz','patagonia'],['Tierra del Fuego','patagonia']
+  ];
+  var WA = '541176750220';
+  /* ==================================== */
+
+  var sel = document.getElementById('envProv');
+  ENV_PROV.forEach(function(p,i){ var o=document.createElement('option'); o.value=i; o.textContent=p[0]; sel.appendChild(o); });
+  var st = { tam:null, mod:null };
+  function grupo(id,key){
+    document.querySelectorAll('#'+id+' .env-opt').forEach(function(b){
+      b.onclick=function(){ document.querySelectorAll('#'+id+' .env-opt').forEach(function(x){x.classList.remove('sel')}); b.classList.add('sel'); st[key]=b.dataset.v; envCheck(); };
+    });
+  }
+  grupo('envTam','tam'); grupo('envMod','mod');
+
+  window.envCheck = function(){
+    document.getElementById('envS1').classList.toggle('ok', sel.value!=='');
+    document.getElementById('envS2').classList.toggle('ok', !!st.tam);
+    document.getElementById('envS3').classList.toggle('ok', !!st.mod);
+    document.getElementById('envGo').disabled = !(sel.value!=='' && st.tam && st.mod);
+    document.getElementById('envRes').classList.remove('on');
+  };
+
+  var fmt = function(n){ return '$' + n.toLocaleString('es-AR'); };
+  var corriendo = false;
+  window.envSimular = function(){
+    if (corriendo) return; corriendo = true;
+    var prov = ENV_PROV[sel.value], z = ENV_TARIFAS[prov[1]], precio = z[st.tam][st.mod];
+    var sim = document.getElementById('envSim'), truck = document.getElementById('envTruck'),
+        bar = document.getElementById('envBar'), status = document.getElementById('envStatus'), res = document.getElementById('envRes');
+    document.getElementById('envDest').textContent = prov[0];
+    res.classList.remove('on');
+    truck.style.transition='none'; bar.style.transition='none'; truck.style.left='4%'; bar.style.width='0';
+    sim.classList.add('on','moving');
+    void truck.offsetWidth;
+    truck.style.transition=''; bar.style.transition='';
+    var msgs = ['📦 Armando tu paquete…','🚚 Saliendo de Florencio Varela…','🛣️ En camino a '+prov[0]+'…','✅ ¡Llegó!'];
+    status.textContent = msgs[0];
+    setTimeout(function(){ status.textContent = msgs[1]; truck.style.left='calc(100% - 7.5rem)'; bar.style.width='100%'; }, 500);
+    setTimeout(function(){ status.textContent = msgs[2]; }, 1700);
+    setTimeout(function(){
+      status.textContent = msgs[3]; sim.classList.remove('moving'); corriendo = false;
+      document.getElementById('envPrecio').textContent = precio ? fmt(precio) : 'A consultar';
+      document.getElementById('envInfo').textContent = 'Llega en ' + z.dias + ' días hábiles · ' + (st.mod==='sucursal'?'retiro en sucursal':'a domicilio');
+      var txt = '¡Hola Candy! 🍭 Quiero coordinar un envío por Correo Argentino:\n📍 ' + prov[0] + '\n📦 Pedido ' + st.tam + '\n🏠 ' + (st.mod==='sucursal'?'Retiro en sucursal':'A domicilio') + (precio ? '\n💲 Estimado: ' + fmt(precio) : '');
+      document.getElementById('envWa').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(txt);
+      res.classList.add('on');
+    }, 3200);
+  };
+})();
+</script>
+<!-- ===== FIN CALCULADORA DE ENVÍO ===== -->
+
 </main>
 </div>
 
