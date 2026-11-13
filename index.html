@@ -349,6 +349,31 @@
   .promo-km-badge { position:absolute; top:-12px; right:-12px; background:#ffd23f; color:#3a0a6b; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.68rem; padding:5px 12px; border-radius:50px; box-shadow:0 3px 8px rgba(0,0,0,0.3); transform:rotate(8deg); }
   @media (max-width:600px) { .promo-km-title { font-size:1.6rem; } .promo-km-title .destacado { font-size:1.9rem; } .promo-km-precio { font-size:1.7rem; } .promo-km-img-wrap img { width:170px; height:170px; } }
 
+  /* BANNER PRODUCTO DESTACADO - DORADO */
+  @keyframes pdGold { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
+  @keyframes pdShine { 0%{left:-60%;} 60%,100%{left:130%;} }
+  @keyframes pdTwinkle { 0%,100%{opacity:0;transform:scale(0.5) rotate(0deg);} 50%{opacity:1;transform:scale(1.2) rotate(25deg);} }
+  @keyframes pdFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+  .promo-dest { position:relative; overflow:hidden; border-radius:26px; padding:5px; margin-bottom:32px; background:linear-gradient(120deg,#8a6116,#f7d774,#fff3b0,#d4a93c,#8a6116,#f7d774); background-size:300% 300%; animation:pdGold 6s ease-in-out infinite; box-shadow:0 10px 34px rgba(180,130,30,0.45); }
+  .promo-dest-in { position:relative; overflow:hidden; border-radius:22px; background:radial-gradient(circle at 75% 40%,#3b2a12 0%,#1c1309 55%,#120c05 100%); padding:32px 24px; }
+  .promo-dest-in::before { content:''; position:absolute; top:0; left:-60%; width:40%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,230,150,0.18),transparent); transform:skewX(-20deg); animation:pdShine 4.5s ease-in-out infinite; pointer-events:none; }
+  .pd-star { position:absolute; color:#f7d774; pointer-events:none; animation:pdTwinkle 2.6s ease-in-out infinite; text-shadow:0 0 10px rgba(247,215,116,0.9); }
+  .pd-star.s1 { top:14px; left:20px; font-size:1.4rem; } .pd-star.s2 { bottom:18px; left:44%; font-size:1rem; animation-delay:.8s; } .pd-star.s3 { top:22px; right:28px; font-size:1.1rem; animation-delay:1.4s; } .pd-star.s4 { bottom:26px; right:18px; font-size:1.5rem; animation-delay:.4s; }
+  .promo-dest-inner { position:relative; z-index:2; max-width:900px; margin:0 auto; display:flex; align-items:center; gap:30px; flex-wrap:wrap; justify-content:center; text-align:center; }
+  .promo-dest-txt { flex:1; min-width:260px; }
+  .promo-dest-tag { display:inline-block; background:linear-gradient(90deg,#b8862b,#f7d774,#fff3b0,#f7d774,#b8862b); color:#3a2606; font-family:'Nunito',sans-serif; font-weight:900; font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; padding:6px 18px; border-radius:50px; margin-bottom:12px; box-shadow:0 0 16px rgba(247,215,116,0.6); }
+  .promo-dest-title { font-family:'Poppins',sans-serif; font-weight:800; font-size:2rem; line-height:1.1; margin-bottom:6px; background:linear-gradient(180deg,#fff7d1,#f7d774 45%,#c8952f); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .promo-dest-sub { font-family:'Nunito',sans-serif; font-weight:700; font-size:0.9rem; color:#ead9b0; margin-bottom:14px; }
+  .promo-dest-precio { display:inline-block; font-family:'Baloo 2',cursive; font-weight:800; font-size:2.3rem; color:#fff3b0; border:2px solid #f7d774; border-radius:14px; padding:4px 24px; margin-bottom:16px; text-shadow:0 0 12px rgba(247,215,116,0.8); box-shadow:inset 0 0 14px rgba(247,215,116,0.25),0 0 14px rgba(247,215,116,0.35); }
+  .promo-dest-btns { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .promo-dest-btn { background:linear-gradient(180deg,#fff3b0,#f7d774 50%,#d4a93c); color:#3a2606; border:none; border-radius:50px; font-family:'Nunito',sans-serif; font-weight:800; font-size:0.9rem; padding:11px 22px; cursor:pointer; box-shadow:0 4px 0 #8a6116,0 6px 16px rgba(0,0,0,0.35); transition:transform .2s; }
+  .promo-dest-btn:hover { transform:translateY(-2px); }
+  .promo-dest-btn.agregado { background:#fff; }
+  .promo-dest-img { position:relative; flex-shrink:0; animation:pdFloat 4s ease-in-out infinite; }
+  .promo-dest-img img { width:240px; height:240px; object-fit:cover; border-radius:18px; border:3px solid #f7d774; box-shadow:0 0 26px rgba(247,215,116,0.55),0 10px 30px rgba(0,0,0,0.5); }
+  .promo-dest-badge { position:absolute; top:-12px; right:-12px; background:linear-gradient(180deg,#fff3b0,#f7d774,#c8952f); color:#3a2606; font-family:'Nunito',sans-serif; font-weight:900; font-size:0.7rem; padding:6px 12px; border-radius:50px; box-shadow:0 3px 10px rgba(0,0,0,0.4); transform:rotate(8deg); }
+  @media (max-width:600px) { .promo-dest-title { font-size:1.55rem; } .promo-dest-precio { font-size:1.9rem; } .promo-dest-img img { width:190px; height:190px; } }
+
   /* BANNER NEON TOPLINE */
   @keyframes toplineFlicker { 0%,100%{opacity:1;} 92%{opacity:1;} 93%{opacity:0.55;} 94%{opacity:1;} 96%{opacity:0.7;} 97%{opacity:1;} }
   .promo-topline-neon { position:relative; background:radial-gradient(circle at 20% 20%,rgba(255,46,196,0.25),transparent 55%),radial-gradient(circle at 80% 80%,rgba(23,230,255,0.22),transparent 55%),#0a0a12; border-radius:22px; padding:26px 20px; margin-bottom:20px; overflow:hidden; border:2px solid rgba(23,230,255,0.5); box-shadow:0 0 18px rgba(23,230,255,0.35), inset 0 0 20px rgba(255,46,196,0.12); }
@@ -1358,6 +1383,29 @@
       <div class="promo-club-card" aria-hidden="true">
         <div class="promo-club-card-head">Tarjeta Club Candy <small>3 / 5</small></div>
         <div class="promo-club-stamps"><span class="on">✓</span><span class="on">✓</span><span class="on">✓</span><span>4</span><span class="gift">🎁</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANNER PRODUCTO DESTACADO (dorado) -->
+  <div class="promo-dest" id="destacado">
+    <div class="promo-dest-in">
+      <span class="pd-star s1" aria-hidden="true">✦</span><span class="pd-star s2" aria-hidden="true">✧</span><span class="pd-star s3" aria-hidden="true">✦</span><span class="pd-star s4" aria-hidden="true">✧</span>
+      <div class="promo-dest-inner">
+        <div class="promo-dest-txt">
+          <span class="promo-dest-tag">⭐ Producto Destacado ⭐</span>
+          <div class="promo-dest-title">Starbucks Frappuccino</div>
+          <div class="promo-dest-sub">Importado de Corea · 281 ml · Sabores Coffee y Caramel</div>
+          <div class="promo-dest-precio">$8.000</div>
+          <div class="promo-dest-btns">
+            <button class="promo-dest-btn" onclick="agregarKinder(this,'Starbucks Frappuccino Coffee',8000);setTimeout(()=>this.textContent='+ Agregar Coffee',1450)">+ Agregar Coffee</button>
+            <button class="promo-dest-btn" onclick="agregarKinder(this,'Starbucks Frappuccino Caramel',8000);setTimeout(()=>this.textContent='+ Agregar Caramel',1450)">+ Agregar Caramel</button>
+          </div>
+        </div>
+        <div class="promo-dest-img">
+          <img src="img/productos/starbucks-frappuccino-destacado.jpg" alt="Starbucks Frappuccino Coffee y Caramel (Corea)" loading="lazy">
+          <span class="promo-dest-badge">👑 DESTACADO</span>
+        </div>
       </div>
     </div>
   </div>
@@ -2562,6 +2610,16 @@
         <img class="cat-card-img" src="img/productos/starbucks-frappuccino-mocha.jpg" alt="Starbucks Frappuccino Mocha 281ml (Corea)" loading="lazy">
         <div class="cat-card-nombre">Starbucks Frappuccino Mocha 281ml (Corea) 🆕</div>
         <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Starbucks Frappuccino Mocha',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas" data-nov="1">
+        <img class="cat-card-img" src="img/productos/starbucks-frappuccino-coffee.jpg" alt="Starbucks Frappuccino Coffee 281ml (Corea)" loading="lazy">
+        <div class="cat-card-nombre">Starbucks Frappuccino Coffee 281ml (Corea) 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Starbucks Frappuccino Coffee',8000)">+ Agregar</button></div>
+      </div>
+      <div class="cat-card" data-cat="bebidasImportadas" data-nov="1">
+        <img class="cat-card-img" src="img/productos/starbucks-frappuccino-caramel.jpg" alt="Starbucks Frappuccino Caramel 281ml (Corea)" loading="lazy">
+        <div class="cat-card-nombre">Starbucks Frappuccino Caramel 281ml (Corea) 🆕</div>
+        <div class="cat-card-row"><span class="cat-card-precio">$8.000</span><button class="cat-card-btn" onclick="agregarKinder(this,'Starbucks Frappuccino Caramel',8000)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="bebidasImportadas">
         <img class="cat-card-img" src="img/productos/baggio-pronto-multifruta-1l.jpg" alt="Baggio Pronto Multifruta 1 L" loading="lazy">
