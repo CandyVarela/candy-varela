@@ -1393,7 +1393,9 @@
   <!-- CLUB CANDY BOX: inscripción membresía mensual -->
   <style>
   .cbx{margin:18px auto 8px;max-width:1100px;padding:0 14px}
-  .cbx-box{background:#fff;border:2px solid #e91e8c;border-radius:22px;padding:22px 18px;box-shadow:0 6px 24px rgba(233,30,140,.12)}
+  .cbx-box{background:#fff;border:2.5px solid #ff4fb3;border-radius:22px;padding:22px 18px;box-shadow:0 0 6px #ff4fb3,0 0 16px rgba(255,79,179,.75),0 0 36px rgba(255,79,179,.45),inset 0 0 10px rgba(255,79,179,.25);animation:cbxNeon 2.4s ease-in-out infinite}
+  @keyframes cbxNeon{0%,100%{box-shadow:0 0 6px #ff4fb3,0 0 16px rgba(255,79,179,.75),0 0 36px rgba(255,79,179,.45),inset 0 0 10px rgba(255,79,179,.25)}50%{box-shadow:0 0 4px #ff4fb3,0 0 10px rgba(255,79,179,.55),0 0 22px rgba(255,79,179,.3),inset 0 0 6px rgba(255,79,179,.18)}}
+  @media (prefers-reduced-motion:reduce){.cbx-box{animation:none}}
   .cbx-tag{display:inline-block;background:#fff0f7;color:#e91e8c;font-weight:800;font-size:.78rem;padding:6px 12px;border-radius:50px;margin-bottom:8px}
   .cbx h2{margin:0 0 6px;font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(1.5rem,4vw,2.1rem);color:#3f3d38}
   .cbx h2 span{color:#e91e8c}
