@@ -1390,6 +1390,158 @@
 </aside>
 <main>
 
+  <!-- CLUB CANDY BOX: inscripción membresía mensual -->
+  <style>
+  .cbx{margin:18px auto 8px;max-width:1100px;padding:0 14px}
+  .cbx-box{background:#fff;border:2px solid #e91e8c;border-radius:22px;padding:22px 18px;box-shadow:0 6px 24px rgba(233,30,140,.12)}
+  .cbx-tag{display:inline-block;background:#fff0f7;color:#e91e8c;font-weight:800;font-size:.78rem;padding:6px 12px;border-radius:50px;margin-bottom:8px}
+  .cbx h2{margin:0 0 6px;font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(1.5rem,4vw,2.1rem);color:#3f3d38}
+  .cbx h2 span{color:#e91e8c}
+  .cbx-sub{margin:0 0 16px;color:#6b6760;font-size:.95rem;line-height:1.5}
+  .cbx-cd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#fff8e1;border-radius:14px;padding:12px 14px;margin-bottom:16px}
+  .cbx-cd-lbl{font-weight:800;font-size:.85rem;color:#3f3d38;flex:1 1 180px}
+  .cbx-cd-nums{display:flex;gap:6px}
+  .cbx-cd-nums div{background:#fff;border-radius:10px;min-width:54px;padding:6px 4px;text-align:center;box-shadow:0 2px 0 rgba(0,0,0,.06)}
+  .cbx-cd-nums b{display:block;font-size:1.35rem;color:#e91e8c;font-family:'Poppins',sans-serif;line-height:1.1}
+  .cbx-cd-nums small{font-size:.65rem;color:#888;font-weight:700;text-transform:uppercase}
+  .cbx-planes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px}
+  .cbx-plan{text-align:left;font:inherit;cursor:pointer;border:2px solid #eee;border-radius:16px;padding:16px;background:#fff;display:flex;flex-direction:column;gap:6px;transition:border-color .15s,background .15s}
+  .cbx-plan.plata{background:linear-gradient(135deg,#fafafa,#eceff3)}
+  .cbx-plan.oro{background:linear-gradient(135deg,#fffaf0,#ffe9b3)}
+  .cbx-plan.sel{border-color:#e91e8c;box-shadow:0 0 0 3px rgba(233,30,140,.15)}
+  .cbx-plan:disabled{opacity:.5;cursor:not-allowed}
+  .cbx-plan-nom{font-family:'Poppins',sans-serif;font-weight:900;font-size:1.2rem;color:#3f3d38}
+  .cbx-plan-desc{font-size:.86rem;color:#6b6760;line-height:1.45}
+  .cbx-plan-precio{font-weight:900;color:#e91e8c}
+  .cbx-cupos{font-size:.8rem;font-weight:800;color:#3f3d38}
+  .cbx-dots{display:flex;gap:4px}
+  .cbx-dots i{width:14px;height:14px;border-radius:50%;background:#e91e8c}
+  .cbx-dots i.off{background:#ddd}
+  .cbx-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;align-items:end}
+  .cbx-form label{display:flex;flex-direction:column;gap:4px;font-size:.78rem;font-weight:800;color:#3f3d38}
+  .cbx-form input{font:inherit;font-size:1rem;padding:12px 14px;border:2px solid #f3c1dc;border-radius:12px;color:#3f3d38;background:#fff}
+  .cbx-form input:focus{outline:none;border-color:#e91e8c}
+  .cbx-btn{font:inherit;font-weight:900;font-size:1rem;border:none;border-radius:50px;padding:14px;cursor:pointer;background:#e91e8c;color:#fff;min-height:48px}
+  .cbx-btn:disabled{background:#d9a3c0;cursor:not-allowed}
+  .cbx-msg{margin-top:12px;font-weight:800;font-size:.92rem;border-radius:12px;padding:12px 14px}
+  .cbx-msg.err{background:#ffeef0;color:#b3261e}
+  .cbx-msg.ok{background:#e8f8ef;color:#1e7a46}
+  </style>
+  <section class="cbx" id="candybox">
+    <div class="cbx-box">
+      <span class="cbx-tag">🎁 Nuevo · Membresía mensual · Solo 10 cupos</span>
+      <h2>Club <span>Candy Box</span></h2>
+      <p class="cbx-sub">Todos los meses, una caja con golosinas virales e importadas en la puerta de tu casa, con envío sin cargo. Elegí tu membresía y reservá tu lugar.</p>
+
+      <div class="cbx-cd" id="cbxCd">
+        <div class="cbx-cd-lbl" id="cbxCdLbl">⏳ La inscripción abre el lunes 16 de noviembre a las 17 hs</div>
+        <div class="cbx-cd-nums">
+          <div><b id="cbxD">0</b><small>días</small></div>
+          <div><b id="cbxH">00</b><small>horas</small></div>
+          <div><b id="cbxM">00</b><small>min</small></div>
+          <div><b id="cbxS">00</b><small>seg</small></div>
+        </div>
+      </div>
+
+      <div class="cbx-planes">
+        <button type="button" class="cbx-plan plata" id="cbxPlata" onclick="cbxElegir('plata')">
+          <span class="cbx-plan-nom">🥈 Plata</span>
+          <span class="cbx-plan-desc" id="cbxDescPlata"></span>
+          <span class="cbx-plan-precio" id="cbxPrecioPlata"></span>
+          <span class="cbx-cupos" id="cbxQuedanPlata">5 cupos</span>
+          <span class="cbx-dots" id="cbxDotsPlata"></span>
+        </button>
+        <button type="button" class="cbx-plan oro" id="cbxOro" onclick="cbxElegir('oro')">
+          <span class="cbx-plan-nom">🥇 Oro</span>
+          <span class="cbx-plan-desc" id="cbxDescOro"></span>
+          <span class="cbx-plan-precio" id="cbxPrecioOro"></span>
+          <span class="cbx-cupos" id="cbxQuedanOro">5 cupos</span>
+          <span class="cbx-dots" id="cbxDotsOro"></span>
+        </button>
+      </div>
+
+      <form class="cbx-form" id="cbxForm" onsubmit="event.preventDefault();cbxAnotar()">
+        <label>Nombre y apellido<input id="cbxNombre" autocomplete="name" placeholder="Ej: Sofía Gómez" required></label>
+        <label>WhatsApp<input id="cbxTel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej: 11 2345-6789" required></label>
+        <button class="cbx-btn" id="cbxBtn" type="submit" disabled>Abre mañana a las 17 hs</button>
+      </form>
+      <div class="cbx-msg" id="cbxMsg" hidden></div>
+    </div>
+  </section>
+  <script>
+  (function(){
+    // Editá acá precio y descripción de cada membresía
+    const CBX_PLANES = {
+      plata: { desc: 'La caja mensual con una selección de golosinas virales e importadas.', precio: '' },
+      oro:   { desc: 'La caja más completa: más productos y sorpresas exclusivas.', precio: '' }
+    };
+    let apertura = Date.UTC(2026,10,16,20,0,0), offset = 0, plan = null, quedan = {plata:5,oro:5}, cupos = {plata:5,oro:5}, listo = false;
+    const $ = id => document.getElementById(id);
+    const cap = s => s[0].toUpperCase()+s.slice(1);
+    ['plata','oro'].forEach(p => { $('cbxDesc'+cap(p)).textContent = CBX_PLANES[p].desc; const pr = $('cbxPrecio'+cap(p)); pr.textContent = CBX_PLANES[p].precio; pr.hidden = !CBX_PLANES[p].precio; });
+    function pintarCupos(){
+      ['plata','oro'].forEach(p => {
+        const q = quedan[p], t = cupos[p];
+        $('cbxQuedan'+cap(p)).textContent = q > 0 ? `Quedan ${q} de ${t} cupos` : 'Cupos agotados';
+        $('cbxDots'+cap(p)).innerHTML = Array.from({length:t},(_,i)=>`<i class="${i < q ? '' : 'off'}"></i>`).join('');
+        $('cbx'+cap(p)).disabled = q <= 0;
+        if (q <= 0 && plan === p) { plan = null; $('cbx'+cap(p)).classList.remove('sel'); }
+      });
+    }
+    function abierto(){ return Date.now() + offset >= apertura; }
+    function actualizarBtn(){
+      const b = $('cbxBtn');
+      if (listo) { b.disabled = true; b.textContent = '✅ Ya estás anotado'; return; }
+      if (!abierto()) { b.disabled = true; b.textContent = 'Abre el lunes 16 a las 17 hs'; return; }
+      if (quedan.plata + quedan.oro <= 0) { b.disabled = true; b.textContent = 'Cupos agotados'; return; }
+      b.disabled = !plan; b.textContent = plan ? `Anotarme en ${cap(plan)}` : 'Elegí Plata u Oro';
+    }
+    function tick(){
+      const ms = apertura - (Date.now() + offset);
+      if (ms <= 0) {
+        $('cbxCdLbl').textContent = '🎉 ¡Inscripción abierta! Elegí tu membresía y anotate';
+        $('cbxCd').querySelector('.cbx-cd-nums').style.display = 'none';
+      } else {
+        const s = Math.floor(ms/1000);
+        $('cbxD').textContent = Math.floor(s/86400);
+        $('cbxH').textContent = String(Math.floor(s%86400/3600)).padStart(2,'0');
+        $('cbxM').textContent = String(Math.floor(s%3600/60)).padStart(2,'0');
+        $('cbxS').textContent = String(s%60).padStart(2,'0');
+      }
+      actualizarBtn();
+    }
+    function msg(t, tipo){ const m = $('cbxMsg'); m.textContent = t; m.className = 'cbx-msg ' + tipo; m.hidden = !t; }
+    window.cbxElegir = function(p){
+      if (quedan[p] <= 0) return;
+      plan = p;
+      $('cbxPlata').classList.toggle('sel', p === 'plata');
+      $('cbxOro').classList.toggle('sel', p === 'oro');
+      actualizarBtn();
+    };
+    window.cbxAnotar = async function(){
+      if (!plan || !abierto()) return;
+      const b = $('cbxBtn'); b.disabled = true; b.textContent = 'Anotando…'; msg('', 'ok');
+      try {
+        const r = await fetch('/api/candybox', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'anotar', plan, nombre: $('cbxNombre').value, tel: $('cbxTel').value})});
+        const j = await r.json();
+        if (j.quedan) { quedan = j.quedan; pintarCupos(); }
+        if (!j.ok) { msg(j.error || 'No se pudo anotar. Probá de nuevo.', 'err'); }
+        else {
+          listo = true;
+          msg(`🎉 ¡Listo, ${$('cbxNombre').value.trim().split(' ')[0]}! Reservaste tu lugar en Club Candy Box ${cap(j.plan)}. Te escribimos por WhatsApp para confirmar.`, 'ok');
+          try { localStorage.setItem('cbxAnotado', j.plan); } catch(e) {}
+        }
+      } catch(e) { msg('No se pudo conectar. Revisá tu internet y probá de nuevo.', 'err'); }
+      actualizarBtn();
+    };
+    try { if (localStorage.getItem('cbxAnotado')) { listo = true; msg('✅ Ya reservaste tu lugar en Club Candy Box. Te escribimos por WhatsApp.', 'ok'); } } catch(e) {}
+    pintarCupos(); tick(); setInterval(tick, 1000);
+    fetch('/api/candybox', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'estado'})})
+      .then(r => r.json()).then(j => { if (!j.ok) return; apertura = j.apertura; offset = j.ahora - Date.now(); quedan = j.quedan; cupos = j.cupos; pintarCupos(); tick(); })
+      .catch(() => {});
+  })();
+  </script>
+
 
 
 
