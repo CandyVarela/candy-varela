@@ -5745,7 +5745,7 @@
   </div>
   <div class="carrito-flotante" id="carritoFlotante" style="display:none;">
     <div><span id="carritoResumen">🛒 0 productos · <strong>$0</strong></span></div>
-    <button class="btn-enviar" id="btnEnviarPedido">✅ Finalizar compra</button>
+    <button class="btn-enviar" id="btnEnviarPedido">💳 Pagar pedido</button>
   </div>
   <div class="chat-bubble" onclick="toggleChat()">
     <div class="chat-close" onclick="event.stopPropagation();document.getElementById('chatWidget').style.display='none'">✕</div>
@@ -6182,8 +6182,14 @@
 
     html += `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:18px;border-top:1px solid rgba(0,0,0,0.08);">
       <strong style="font-size:1.05rem;">Total: $${cartTotal.toLocaleString('es-AR')}</strong>
-      <button class="btn-enviar" onclick="enviarPedidoWhatsApp()">✅ Finalizar compra</button>
-    </div>`;
+    </div>
+    <div class="cart-pago">
+      <div class="cart-pago-tit">💳 Pagá ahora por transferencia</div>
+      <div class="cart-pago-row"><div><span class="cart-pago-lbl">Alias</span><b>${PAGO.alias}</b></div><button class="pg-copy-c" onclick="copiarPago('${PAGO.alias}',this)">Copiar alias</button></div>
+      <div class="cart-pago-row"><div><span class="cart-pago-lbl">Titular</span><b>${PAGO.titular}</b> · ${PAGO.banco}</div></div>
+      <div class="cart-pago-row"><div><span class="cart-pago-lbl">Monto</span><b>$${cartTotal.toLocaleString('es-AR')}</b></div><button class="pg-copy-c" onclick="copiarPago('${cartTotal}',this)">Copiar monto</button></div>
+    </div>
+    <button class="btn-enviar" style="width:100%;margin-top:12px;padding:14px;font-size:1rem;" onclick="enviarPedidoWhatsApp()">✅ Confirmar compra</button>`;
     cont.innerHTML = html;
   }
   const SUGERIDOS_CARRITO = [
@@ -6224,6 +6230,12 @@
     const tick = () => { const m = Math.floor(seg/60), s2 = seg%60; el.textContent = `${m}:${String(s2).padStart(2,'0')}`; if (seg > 0) seg--; };
     tick(); timerPago = setInterval(tick, 1000);
   }
+  function cambiarEntrega() {
+    const envio = document.querySelector('input[name="pgEntrega"]:checked').value === 'envio';
+    document.getElementById('pgPasosEnvio').style.display = envio ? '' : 'none';
+    document.getElementById('pgPasosRetiro').style.display = envio ? 'none' : '';
+    document.querySelector('#modalPago .pg-total span').textContent = envio ? 'Total productos (+ envío)' : 'Total a transferir';
+  }
   function cerrarPago() {
     document.getElementById('modalPago').classList.remove('open');
     document.body.style.overflow = '';
@@ -6238,9 +6250,9 @@
     let detalle = `🛒 *Pedido #${pedidoNro}*\n\n`;
     for (const [nombre, info] of Object.entries(cartItems)) detalle += `▪ ${nombre} x${info.cantidad}\n`;
     detalle += `\n💰 *Total: $${cartTotal.toLocaleString('es-AR')}*\n\n`;
-    detalle += metodo === 'transferencia'
-      ? `✅ Ya transferí al alias *${PAGO.alias}*. Te adjunto el comprobante 👇`
-      : `💵 Prefiero pagar en efectivo al retirar. ¿Cuándo puedo pasar?`;
+    if (metodo === 'transferencia') detalle += `🏪 Retiro en el local\n✅ Ya transferí al alias *${PAGO.alias}*. Te adjunto el comprobante 👇`;
+    else if (metodo === 'envio') detalle += `📦 Quiero envío por Correo Argentino.\nMi código postal es: `;
+    else detalle += `💵 Pago en efectivo al retirar. ¿Cuándo puedo pasar?`;
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(detalle)}`, '_blank');
     cerrarPago();
   }
@@ -6514,6 +6526,18 @@
 #modalPago .pg-btn{display:block;width:100%;border:none;border-radius:50px;padding:13px;font-weight:900;font-size:.98rem;cursor:pointer;margin-bottom:8px}
 #modalPago .pg-main{background:#25d366;color:#fff}
 #modalPago .pg-alt{background:#f3f3f3;color:#555;font-size:.85rem;padding:10px}
+#modalPago .pg-entrega{display:flex;gap:8px;margin-bottom:12px}
+#modalPago .pg-entrega label{flex:1;border:2px solid #f3c1dc;border-radius:12px;padding:10px 8px;font-weight:700;font-size:.85rem;cursor:pointer;display:flex;align-items:center;gap:6px}
+#modalPago .pg-entrega label:has(input:checked){border-color:#e91e8c;background:#fff0f7}
+#modalPago .pg-pasos{margin:0 0 12px;padding-left:20px;font-size:.85rem;line-height:1.6}
+#modalPago .pg-link{display:block;width:100%;background:none;border:none;color:#888;text-decoration:underline;font-size:.8rem;padding:6px;cursor:pointer}
+.cart-pago{background:#fff0f7;border:1.5px solid #f3c1dc;border-radius:14px;padding:12px 14px;margin-top:14px}
+.cart-pago-tit{font-weight:900;color:#e91e8c;margin-bottom:6px}
+.cart-pago-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;font-size:.9rem}
+.cart-pago-row+.cart-pago-row{border-top:1px solid rgba(233,30,140,.15)}
+.cart-pago-lbl{display:block;font-size:.72rem;color:#888}
+.pg-copy-c{background:#e91e8c;color:#fff;border:none;border-radius:50px;padding:6px 12px;font-weight:800;font-size:.75rem;cursor:pointer;white-space:nowrap}
+.pg-copy-c.ok{background:#2e9d5b}
 </style>
 <div id="modalPago" onclick="if(event.target===this)cerrarPago()">
   <div class="pg-box">
@@ -6528,8 +6552,20 @@
       <div class="pg-row"><div><span class="pg-lbl">Billetera</span><span class="pg-val">Mercado Pago</span></div></div>
     </div>
     <div class="pg-timer">⏳ Te reservamos el pedido por <b id="pagoTimer">30:00</b> min</div>
-    <button class="pg-btn pg-main" onclick="enviarPedidoFinal('transferencia')">📲 Ya transferí — enviar comprobante</button>
-    <button class="pg-btn pg-alt" onclick="enviarPedidoFinal('efectivo')">💵 Prefiero pagar en efectivo al retirar</button>
+    <div class="pg-lbl" style="margin-bottom:6px;font-weight:800;color:#3f3d38;font-size:.85rem">¿Cómo lo recibís?</div>
+    <div class="pg-entrega">
+      <label><input type="radio" name="pgEntrega" value="retiro" checked onchange="cambiarEntrega()"> 🏪 Retiro en el local</label>
+      <label><input type="radio" name="pgEntrega" value="envio" onchange="cambiarEntrega()"> 📦 Envío por Correo</label>
+    </div>
+    <div id="pgPasosRetiro">
+      <ol class="pg-pasos"><li>Transferí el total al alias de arriba.</li><li>Tocá el botón verde y mandanos el comprobante.</li><li>¡Listo! Te avisamos cuando esté para retirar.</li></ol>
+      <button class="pg-btn pg-main" onclick="enviarPedidoFinal('transferencia')">📲 Ya transferí — enviar comprobante</button>
+    </div>
+    <div id="pgPasosEnvio" style="display:none">
+      <ol class="pg-pasos"><li>Mandanos el pedido con tu código postal.</li><li>Te pasamos el costo del envío.</li><li>Transferís productos + envío y te lo despachamos.</li></ol>
+      <button class="pg-btn pg-main" onclick="enviarPedidoFinal('envio')">📦 Pedir envío por WhatsApp</button>
+    </div>
+    <button class="pg-link" onclick="enviarPedidoFinal('efectivo')">¿Pagás en efectivo en el local? Avisanos acá</button>
   </div>
 </div>
 <script>
