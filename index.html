@@ -1423,6 +1423,8 @@
   .cbx-form input:focus{outline:none;border-color:#e91e8c}
   .cbx-btn{font:inherit;font-weight:900;font-size:1rem;border:none;border-radius:50px;padding:14px;cursor:pointer;background:#e91e8c;color:#fff;min-height:48px}
   .cbx-btn:disabled{background:#d9a3c0;cursor:not-allowed}
+  .cbx-envio{background:#e8f8ef;color:#1e5e3a;border-radius:12px;padding:10px 14px;font-size:.88rem;margin-bottom:14px;line-height:1.45}
+  .cbx-plan-precio{font-size:1.15rem}
   .cbx-msg{margin-top:12px;font-weight:800;font-size:.92rem;border-radius:12px;padding:12px 14px}
   .cbx-msg.err{background:#ffeef0;color:#b3261e}
   .cbx-msg.ok{background:#e8f8ef;color:#1e7a46}
@@ -1431,7 +1433,7 @@
     <div class="cbx-box">
       <span class="cbx-tag">🎁 Nuevo · Membresía mensual · Solo 10 cupos</span>
       <h2>Club <span>Candy Box</span></h2>
-      <p class="cbx-sub">Todos los meses, una caja con golosinas virales e importadas en la puerta de tu casa, con envío sin cargo. Elegí tu membresía y reservá tu lugar.</p>
+      <p class="cbx-sub">Todos los meses, una caja con golosinas virales e importadas en la puerta de tu casa. Elegí tu membresía y reservá tu lugar.</p>
 
       <div class="cbx-cd" id="cbxCd">
         <div class="cbx-cd-lbl" id="cbxCdLbl">⏳ La inscripción abre el lunes 16 de noviembre a las 17 hs</div>
@@ -1460,6 +1462,8 @@
         </button>
       </div>
 
+      <div class="cbx-envio">🚚 <b>Envío sin cargo en Florencio Varela.</b> Fuera de Florencio Varela, el envío se abona aparte.</div>
+
       <form class="cbx-form" id="cbxForm" onsubmit="event.preventDefault();cbxAnotar()">
         <label>Nombre y apellido<input id="cbxNombre" autocomplete="name" placeholder="Ej: Sofía Gómez" required></label>
         <label>WhatsApp<input id="cbxTel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej: 11 2345-6789" required></label>
@@ -1472,8 +1476,8 @@
   (function(){
     // Editá acá precio y descripción de cada membresía
     const CBX_PLANES = {
-      plata: { desc: 'La caja mensual con una selección de golosinas virales e importadas.', precio: '' },
-      oro:   { desc: 'La caja más completa: más productos y sorpresas exclusivas.', precio: '' }
+      plata: { desc: 'La caja mensual con una selección de golosinas virales e importadas.', precio: '$20.000 / mes' },
+      oro:   { desc: 'La caja más completa: más productos y sorpresas exclusivas.', precio: '$30.000 / mes' }
     };
     let apertura = Date.UTC(2026,10,16,20,0,0), offset = 0, plan = null, quedan = {plata:5,oro:5}, cupos = {plata:5,oro:5}, listo = false;
     const $ = id => document.getElementById(id);
