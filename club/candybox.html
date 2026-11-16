@@ -78,7 +78,7 @@ let miembros=[];
 function rr(x,X,Y,w,h,r){x.beginPath();x.roundRect(X,Y,w,h,r);}
 async function tarjeta(i){
   const c=miembros[i], oro=c.plan==='oro', num=String(i+1).padStart(2,'0');
-  try{await Promise.all([document.fonts.load("800 80px 'Baloo 2'"),document.fonts.load("800 30px Nunito")]);}catch(e){}
+  try{await Promise.all([document.fonts.load("800 80px 'Baloo 2'"),document.fonts.load("800 30px Nunito"),document.fonts.load("700 30px Nunito")]);}catch(e){}
   const W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');
   let g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#ff5fa8');g.addColorStop(.55,'#d6006b');g.addColorStop(1,'#a3104f');x.fillStyle=g;x.fillRect(0,0,W,H);
   x.font='70px serif';x.globalAlpha=.25;[['🍬',90,170],['🍭',930,240],['✨',120,1180],['💗',940,1200],['⭐',540,110]].forEach(([e,a,b])=>x.fillText(e,a,b));x.globalAlpha=1;
@@ -92,9 +92,9 @@ async function tarjeta(i){
   x.font="800 74px 'Baloo 2'";x.fillText('Club Candy Box',cx+60,cy+180);
   x.font="800 40px Nunito";x.fillText(oro?'🥇 MIEMBRO ORO':'🥈 MIEMBRO PLATA',cx+60,cy+250);
   x.textAlign='right';x.font="800 120px 'Baloo 2'";x.fillText('#'+num,cx+cw-60,cy+ch-70);
-  x.textAlign='left';let n=c.nombre.trim();x.font="800 64px 'Baloo 2'";while(x.measureText(n).width>cw-380&&n.length>3)n=n.slice(0,-1);if(n!==c.nombre.trim())n=n.trim()+'…';
+  x.textAlign='left';let n=c.nombre.trim(),fs=64;x.font=`800 ${fs}px 'Baloo 2'`;while(x.measureText(n).width>cw-370&&fs>40){fs-=2;x.font=`800 ${fs}px 'Baloo 2'`;}if(x.measureText(n).width>cw-370)while(x.measureText(n+'…').width>cw-370&&n.length>3)n=n.slice(0,-1).trim();if(n!==c.nombre.trim())n+='…';
   x.fillText(n,cx+60,cy+ch-110);
-  x.font="700 30px Nunito";x.globalAlpha=.8;x.fillText('Miembro fundador · Noviembre 2026',cx+60,cy+ch-60);x.globalAlpha=1;
+  x.font="700 27px Nunito";x.globalAlpha=.8;x.fillText('Miembro fundador · Noviembre 2026',cx+60,cy+ch-60);x.globalAlpha=1;
   x.fillStyle='#fff';x.textAlign='center';x.font="800 64px 'Baloo 2'";x.fillText('¡Gracias por ser parte! 💖',W/2,1010);
   x.font="700 38px Nunito";x.fillText('Uno de los 10 primeros miembros',W/2,1075);
   x.font="800 34px Nunito";x.globalAlpha=.9;x.fillText('candyvarela.com.ar',W/2,1250);x.globalAlpha=1;
