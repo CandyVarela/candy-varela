@@ -79,10 +79,23 @@ export default async function handler(req, res) {
         return res.json({ ok: true, plan, quedan: await quedan() });
       }
 
+      case 'espera': {
+        if (await limite(`candybox:rl:${ip}`, 8, 600)) return res.status(429).json({ ok: false, error: 'Demasiados intentos. Probá en unos minutos.' });
+        const nombre = limpio(b.nombre).slice(0, 80);
+        const tel = normTel(b.tel);
+        if (nombre.split(/\s+/).length < 2) return res.status(400).json({ ok: false, error: 'Poné tu nombre y apellido.' });
+        if (!tel) return res.status(400).json({ ok: false, error: 'Revisá el WhatsApp: poné el número completo con código de área.' });
+        if (await redis('EXISTS', `candybox:tel:${tel}`)) return res.status(409).json({ ok: false, error: 'Ese número ya es miembro del Club Candy Box 💖' });
+        const nuevo = await redis('SET', `candybox:esp:${tel}`, '1', 'NX');
+        if (nuevo !== 'OK') return res.status(409).json({ ok: false, error: 'Ese número ya está en la lista de espera. ¡Te avisamos!' });
+        await redis('RPUSH', 'candybox:espera', JSON.stringify({ nombre, tel, fecha: Date.now() }));
+        return res.json({ ok: true });
+      }
+
       case 'lista': {
         if (!esAdmin(b)) return res.status(401).json({ ok: false, error: 'Usuario o contraseña incorrectos' });
-        const arr = (await redis('LRANGE', 'candybox:lista', 0, -1)) || [];
-        return res.json({ ok: true, lista: arr.map((s) => JSON.parse(s)), quedan: await quedan(), cupos: CUPOS });
+        const [arr, esp] = await Promise.all([redis('LRANGE', 'candybox:lista', 0, -1), redis('LRANGE', 'candybox:espera', 0, -1)]);
+        return res.json({ ok: true, lista: (arr || []).map((s) => JSON.parse(s)), espera: (esp || []).map((s) => JSON.parse(s)), quedan: await quedan(), cupos: CUPOS });
       }
 
       default:

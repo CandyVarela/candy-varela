@@ -1495,17 +1495,19 @@
       });
     }
     function abierto(){ return Date.now() + offset >= apertura; }
+    const agotado = () => quedan.plata + quedan.oro <= 0;
+    let enEspera = false;
     function actualizarBtn(){
       const b = $('cbxBtn');
       if (listo) { b.disabled = true; b.textContent = '✅ Ya estás anotado'; return; }
       if (!abierto()) { b.disabled = true; b.textContent = 'Abre el lunes 16 a las 17 hs'; return; }
-      if (quedan.plata + quedan.oro <= 0) { b.disabled = true; b.textContent = 'Cupos agotados'; return; }
+      if (agotado()) { b.disabled = enEspera; b.textContent = enEspera ? '✅ Estás en la lista de espera' : '🔔 Anotarme en la lista de espera'; return; }
       b.disabled = !plan; b.textContent = plan ? `Anotarme en ${cap(plan)}` : 'Elegí Plata u Oro';
     }
     function tick(){
       const ms = apertura - (Date.now() + offset);
       if (ms <= 0) {
-        $('cbxCdLbl').textContent = '🎉 ¡Inscripción abierta! Elegí tu membresía y anotate';
+        $('cbxCdLbl').textContent = agotado() ? '💖 ¡Cupos llenos! Gracias a todos. Dejá tus datos y te avisamos primero cuando se libere un lugar o abra el próximo mes.' : '🎉 ¡Inscripción abierta! Elegí tu membresía y anotate';
         $('cbxCd').querySelector('.cbx-cd-nums').style.display = 'none';
       } else {
         const s = Math.floor(ms/1000);
@@ -1525,6 +1527,7 @@
       actualizarBtn();
     };
     window.cbxAnotar = async function(){
+      if (abierto() && agotado() && !listo) return cbxEspera();
       if (!plan || !abierto()) return;
       const b = $('cbxBtn'); b.disabled = true; b.textContent = 'Anotando…'; msg('', 'ok');
       try {
@@ -1540,6 +1543,21 @@
       } catch(e) { msg('No se pudo conectar. Revisá tu internet y probá de nuevo.', 'err'); }
       actualizarBtn();
     };
+    async function cbxEspera(){
+      const b = $('cbxBtn'); b.disabled = true; b.textContent = 'Anotando…'; msg('', 'ok');
+      try {
+        const r = await fetch('/api/candybox', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'espera', nombre: $('cbxNombre').value, tel: $('cbxTel').value})});
+        const j = await r.json();
+        if (!j.ok) msg(j.error || 'No se pudo anotar. Probá de nuevo.', 'err');
+        else {
+          enEspera = true;
+          msg(`🔔 ¡Listo, ${$('cbxNombre').value.trim().split(' ')[0]}! Estás en la lista de espera. Te avisamos por WhatsApp antes que a nadie.`, 'ok');
+          try { localStorage.setItem('cbxEspera', '1'); } catch(e) {}
+        }
+      } catch(e) { msg('No se pudo conectar. Revisá tu internet y probá de nuevo.', 'err'); }
+      actualizarBtn();
+    }
+    try { if (localStorage.getItem('cbxEspera')) { enEspera = true; } } catch(e) {}
     try { if (localStorage.getItem('cbxAnotado')) { listo = true; msg('✅ Ya reservaste tu lugar en Club Candy Box. Te escribimos por WhatsApp.', 'ok'); } } catch(e) {}
     pintarCupos(); tick(); setInterval(tick, 1000);
     fetch('/api/candybox', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'estado'})})

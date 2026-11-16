@@ -26,6 +26,13 @@ button{font:inherit;font-weight:800;border:0;border-radius:50px;padding:12px 16p
 .pill{font-size:.75rem;font-weight:800;padding:4px 10px;border-radius:50px;white-space:nowrap}
 .pill.oro{background:#ffe9b3;color:#7a5200}.pill.plata{background:#eceff3;color:#4a5260}
 a.wa{background:#25d366;color:#fff;text-decoration:none;font-weight:800;border-radius:50px;padding:8px 12px;font-size:.8rem;white-space:nowrap}
+h2{font-family:'Baloo 2',cursive;font-weight:800;color:var(--vino);font-size:1.25rem;margin:6px 0 0}
+.tj{white-space:nowrap;border:0;border-radius:50px;padding:7px 12px;font-size:.8rem;background:#fff0f7;color:var(--fucsia);box-shadow:none}
+.modal{position:fixed;inset:0;background:rgba(60,0,30,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:9}
+.modal .in{background:#fff;border-radius:20px;padding:14px;max-width:420px;width:100%;display:flex;flex-direction:column;gap:10px}
+.modal img{width:100%;border-radius:14px}
+.modal small{text-align:center;font-size:.78rem}
+.modal .alt{background:#fff;color:var(--fucsia);border:2px solid #f3c4da}
 </style>
 </head>
 <body>
@@ -40,6 +47,8 @@ a.wa{background:#25d366;color:#fff;text-decoration:none;font-weight:800;border-r
   <div id="app" class="app" hidden>
     <div class="stats"><div><b id="qPlata">–</b>Plata libres</div><div><b id="qOro">–</b>Oro libres</div><div><b id="nTotal">–</b>Anotados</div></div>
     <div class="card" id="lista"></div>
+    <h2>🔔 Lista de espera <span id="nEsp"></span></h2>
+    <div class="card" id="espera"></div>
     <button id="bAct">Actualizar</button>
   </div>
 </div>
@@ -51,14 +60,51 @@ async function cargar(){
   const r=await fetch('/api/candybox',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'lista',...cred})});
   const j=await r.json().catch(()=>({}));
   if(!j.ok) throw new Error(j.error||'No se pudo cargar.');
+  miembros=j.lista;
   $('qPlata').textContent=j.quedan.plata; $('qOro').textContent=j.quedan.oro; $('nTotal').textContent=j.lista.length;
   $('lista').innerHTML=j.lista.length?j.lista.map(c=>{
     const f=new Date(c.fecha).toLocaleString('es-AR',{timeZone:'America/Argentina/Buenos_Aires',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
     const txt=encodeURIComponent(`¡Hola ${c.nombre.split(' ')[0]}! Te escribimos de Candy Varela 🍬 Reservaste tu lugar en Club Candy Box ${c.plan==='oro'?'Oro':'Plata'}.`);
-    return `<div class="row"><div><strong>${esc(c.nombre)}</strong><small>${c.tel} · ${f}</small></div><span class="pill ${c.plan}">${c.plan==='oro'?'🥇 Oro':'🥈 Plata'}</span><a class="wa" target="_blank" href="https://wa.me/549${c.tel}?text=${txt}">WhatsApp</a></div>`;
+    return `<div class="row"><div><strong>${esc(c.nombre)}</strong><small>${c.tel} · ${f}</small></div><span class="pill ${c.plan}">${c.plan==='oro'?'🥇 Oro':'🥈 Plata'}</span><button class="tj" data-i="${miembros.indexOf(c)}">🪪 Tarjeta</button><a class="wa" target="_blank" href="https://wa.me/549${c.tel}?text=${txt}">WhatsApp</a></div>`;
   }).join(''):'<div>Todavía no hay anotados.</div>';
+  const esp=j.espera||[]; $('nEsp').textContent=`(${esp.length})`;
+  $('espera').innerHTML=esp.length?esp.map(c=>{
+    const txt=encodeURIComponent(`¡Hola ${c.nombre.split(' ')[0]}! Te escribimos de Candy Varela 🍬 Te anotaste en la lista de espera del Club Candy Box y ¡se liberó un lugar! ¿Lo querés?`);
+    return `<div class="row"><div><strong>${esc(c.nombre)}</strong><small>${c.tel}</small></div><a class="wa" target="_blank" href="https://wa.me/549${c.tel}?text=${txt}">WhatsApp</a></div>`;
+  }).join(''):'<div>Nadie en espera todavía.</div>';
   $('login').hidden=true; $('app').hidden=false;
 }
+let miembros=[];
+function rr(x,X,Y,w,h,r){x.beginPath();x.roundRect(X,Y,w,h,r);}
+async function tarjeta(i){
+  const c=miembros[i], oro=c.plan==='oro', num=String(i+1).padStart(2,'0');
+  try{await Promise.all([document.fonts.load("800 80px 'Baloo 2'"),document.fonts.load("800 30px Nunito")]);}catch(e){}
+  const W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');
+  let g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#ff5fa8');g.addColorStop(.55,'#d6006b');g.addColorStop(1,'#a3104f');x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.font='70px serif';x.globalAlpha=.25;[['🍬',90,170],['🍭',930,240],['✨',120,1180],['💗',940,1200],['⭐',540,110]].forEach(([e,a,b])=>x.fillText(e,a,b));x.globalAlpha=1;
+  const cx=110,cy=300,cw=860,ch=560;x.save();x.shadowColor='rgba(60,0,30,.45)';x.shadowBlur=50;x.shadowOffsetY=20;
+  g=x.createLinearGradient(cx,cy,cx+cw,cy+ch);
+  if(oro){g.addColorStop(0,'#8a6116');g.addColorStop(.35,'#f7d774');g.addColorStop(.55,'#fff3b0');g.addColorStop(.75,'#d4a93c');g.addColorStop(1,'#8a6116');}
+  else{g.addColorStop(0,'#8e949c');g.addColorStop(.35,'#e9ecf0');g.addColorStop(.55,'#ffffff');g.addColorStop(.75,'#c4c9d0');g.addColorStop(1,'#7c828a');}
+  x.fillStyle=g;rr(x,cx,cy,cw,ch,40);x.fill();x.restore();
+  const tc=oro?'#3a2606':'#2c3138';x.fillStyle=tc;x.textAlign='left';
+  x.font="800 34px Nunito";x.fillText('CANDY VARELA',cx+60,cy+90);
+  x.font="800 74px 'Baloo 2'";x.fillText('Club Candy Box',cx+60,cy+180);
+  x.font="800 40px Nunito";x.fillText(oro?'🥇 MIEMBRO ORO':'🥈 MIEMBRO PLATA',cx+60,cy+250);
+  x.textAlign='right';x.font="800 120px 'Baloo 2'";x.fillText('#'+num,cx+cw-60,cy+ch-70);
+  x.textAlign='left';let n=c.nombre.trim();x.font="800 64px 'Baloo 2'";while(x.measureText(n).width>cw-380&&n.length>3)n=n.slice(0,-1);if(n!==c.nombre.trim())n=n.trim()+'…';
+  x.fillText(n,cx+60,cy+ch-110);
+  x.font="700 30px Nunito";x.globalAlpha=.8;x.fillText('Miembro fundador · Noviembre 2026',cx+60,cy+ch-60);x.globalAlpha=1;
+  x.fillStyle='#fff';x.textAlign='center';x.font="800 64px 'Baloo 2'";x.fillText('¡Gracias por ser parte! 💖',W/2,1010);
+  x.font="700 38px Nunito";x.fillText('Uno de los 10 primeros miembros',W/2,1075);
+  x.font="800 34px Nunito";x.globalAlpha=.9;x.fillText('candyvarela.com.ar',W/2,1250);x.globalAlpha=1;
+  const url=cv.toDataURL('image/png'),fn=`tarjeta-candybox-${num}.png`;
+  const m=document.createElement('div');m.className='modal';
+  m.innerHTML=`<div class="in"><img src="${url}" alt="Tarjeta"><button id="tShare">📤 Compartir / WhatsApp</button><a id="tDl" download="${fn}" href="${url}"><button class="alt" style="width:100%">⬇️ Descargar</button></a><button class="alt" id="tX">Cerrar</button><small>En el celu también podés mantener apretada la imagen para guardarla.</small></div>`;
+  document.body.appendChild(m);m.onclick=e=>{if(e.target===m)m.remove();};m.querySelector('#tX').onclick=()=>m.remove();
+  m.querySelector('#tShare').onclick=async()=>{try{const b=await (await fetch(url)).blob(),f=new File([b],fn,{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]}))await navigator.share({files:[f]});else m.querySelector('#tDl').click();}catch(e){}};
+}
+document.addEventListener('click',e=>{const b=e.target.closest('.tj');if(b)tarjeta(+b.dataset.i);});
 function entrar(){ $('err').hidden=true; cargar().then(()=>{try{localStorage.setItem('clubAdmin',JSON.stringify(cred));}catch(e){}}).catch(e=>{$('err').textContent=e.message;$('err').hidden=false;$('app').hidden=true;$('login').hidden=false;}); }
 $('bLogin').onclick=()=>{cred={usuario:$('u').value.trim(),password:$('p').value};entrar();};
 $('bAct').onclick=entrar;
