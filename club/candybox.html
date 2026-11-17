@@ -50,6 +50,15 @@ h2{font-family:'Baloo 2',cursive;font-weight:800;color:var(--vino);font-size:1.2
     <h2>🔔 Lista de espera <span id="nEsp"></span></h2>
     <div class="card" id="espera"></div>
     <button id="bAct">Actualizar</button>
+    <div class="card">
+      <h2 style="margin:0">➕ Agregar miembro (excepción)</h2>
+      <small style="font-size:.78rem">No usa los cupos de la web.</small>
+      <label>Nombre y apellido<input id="aNom"></label>
+      <label>WhatsApp (opcional)<input id="aTel" type="tel" inputmode="tel"></label>
+      <label>Plan<select id="aPlan" style="font:inherit;padding:11px 13px;border:2px solid #f3c4da;border-radius:12px;color:var(--vino);background:var(--bg)"><option value="plata">🥈 Plata</option><option value="oro">🥇 Oro</option></select></label>
+      <button id="bAdd">Agregar</button>
+      <div class="err" id="aErr" hidden></div>
+    </div>
   </div>
 </div>
 <script>
@@ -65,7 +74,7 @@ async function cargar(){
   $('lista').innerHTML=j.lista.length?j.lista.map(c=>{
     const f=new Date(c.fecha).toLocaleString('es-AR',{timeZone:'America/Argentina/Buenos_Aires',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
     const txt=encodeURIComponent(`¡Hola ${c.nombre.split(' ')[0]}! Te escribimos de Candy Varela 🍬 Reservaste tu lugar en Club Candy Box ${c.plan==='oro'?'Oro':'Plata'}.`);
-    return `<div class="row"><div><strong>${esc(c.nombre)}</strong><small>${c.tel} · ${f}</small></div><span class="pill ${c.plan}">${c.plan==='oro'?'🥇 Oro':'🥈 Plata'}</span><button class="tj" data-i="${miembros.indexOf(c)}">🪪 Tarjeta</button><a class="wa" target="_blank" href="https://wa.me/549${c.tel}?text=${txt}">WhatsApp</a></div>`;
+    return `<div class="row"><div><strong>${esc(c.nombre)}</strong><small>${c.tel||'sin número'} · ${f}</small></div><span class="pill ${c.plan}">${c.plan==='oro'?'🥇 Oro':'🥈 Plata'}</span><button class="tj" data-i="${miembros.indexOf(c)}">🪪 Tarjeta</button>${c.tel?`<a class="wa" target="_blank" href="https://wa.me/549${c.tel}?text=${txt}">WhatsApp</a>`:''}</div>`;
   }).join(''):'<div>Todavía no hay anotados.</div>';
   const esp=j.espera||[]; $('nEsp').textContent=`(${esp.length})`;
   $('espera').innerHTML=esp.length?esp.map(c=>{
@@ -96,7 +105,7 @@ async function tarjeta(i){
   x.fillText(n,cx+60,cy+ch-110);
   x.font="700 27px Nunito";x.globalAlpha=.8;x.fillText('Miembro fundador · Noviembre 2026',cx+60,cy+ch-60);x.globalAlpha=1;
   x.fillStyle='#fff';x.textAlign='center';x.font="800 64px 'Baloo 2'";x.fillText('¡Gracias por ser parte! 💖',W/2,1010);
-  x.font="700 38px Nunito";x.fillText('Uno de los 10 primeros miembros',W/2,1075);
+  x.font="700 38px Nunito";x.fillText(i<10?'Uno de los 10 primeros miembros':(c.nombre.trim().split(' ')[0].endsWith('a')?'Bienvenida':'Bienvenido')+' al Club Candy Box',W/2,1075);
   x.font="800 34px Nunito";x.globalAlpha=.9;x.fillText('candyvarela.com.ar',W/2,1250);x.globalAlpha=1;
   const url=cv.toDataURL('image/png'),fn=`tarjeta-candybox-${num}.png`;
   const m=document.createElement('div');m.className='modal';
@@ -108,6 +117,14 @@ document.addEventListener('click',e=>{const b=e.target.closest('.tj');if(b)tarje
 function entrar(){ $('err').hidden=true; cargar().then(()=>{try{localStorage.setItem('clubAdmin',JSON.stringify(cred));}catch(e){}}).catch(e=>{$('err').textContent=e.message;$('err').hidden=false;$('app').hidden=true;$('login').hidden=false;}); }
 $('bLogin').onclick=()=>{cred={usuario:$('u').value.trim(),password:$('p').value};entrar();};
 $('bAct').onclick=entrar;
+$('bAdd').onclick=async()=>{
+  $('aErr').hidden=true;const b=$('bAdd');b.disabled=true;b.textContent='Agregando…';
+  try{const r=await fetch('/api/candybox',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'agregar',...cred,nombre:$('aNom').value,tel:$('aTel').value,plan:$('aPlan').value})});
+    const j=await r.json().catch(()=>({}));if(!j.ok)throw new Error(j.error||'No se pudo agregar.');
+    $('aNom').value='';$('aTel').value='';await cargar();
+  }catch(e){$('aErr').textContent=e.message;$('aErr').hidden=false;}
+  b.disabled=false;b.textContent='Agregar';
+};
 if(cred) entrar();
 </script>
 </body>

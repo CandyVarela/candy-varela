@@ -92,6 +92,18 @@ export default async function handler(req, res) {
         return res.json({ ok: true });
       }
 
+      case 'agregar': {
+        // Alta manual por el admin (excepciones): no usa ni cambia los cupos de la web.
+        if (!esAdmin(b)) return res.status(401).json({ ok: false, error: 'Usuario o contraseña incorrectos' });
+        const plan = b.plan === 'oro' ? 'oro' : 'plata';
+        const nombre = limpio(b.nombre).slice(0, 80);
+        const tel = normTel(b.tel) || '';
+        if (!nombre) return res.status(400).json({ ok: false, error: 'Poné el nombre.' });
+        if (tel && (await redis('SET', `candybox:tel:${tel}`, plan, 'NX')) !== 'OK') return res.status(409).json({ ok: false, error: 'Ese número ya está anotado.' });
+        await redis('RPUSH', 'candybox:lista', JSON.stringify({ nombre, tel, plan, fecha: Date.now(), manual: true }));
+        return res.json({ ok: true });
+      }
+
       case 'lista': {
         if (!esAdmin(b)) return res.status(401).json({ ok: false, error: 'Usuario o contraseña incorrectos' });
         const [arr, esp] = await Promise.all([redis('LRANGE', 'candybox:lista', 0, -1), redis('LRANGE', 'candybox:espera', 0, -1)]);
