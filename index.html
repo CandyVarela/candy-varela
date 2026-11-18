@@ -1277,6 +1277,83 @@
 </style>
 </head>
 <body>
+<!-- INTRO VARELA CITY -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+#vcIntro{position:fixed;inset:0;z-index:99999;overflow:hidden;background:#0c0318;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s}
+#vcIntro.out{opacity:0;visibility:hidden}
+#vcIntro .i-sky{position:absolute;inset:0;background:linear-gradient(180deg,#0c0318 0%,#2e0b52 22%,#8a2380 45%,#ec4f7c 63%,#ff8f4a 78%,#ffc861 92%);opacity:0;animation:iFade 1.6s .2s forwards}
+#vcIntro .i-stars{position:absolute;inset:0 0 50% 0;background-image:radial-gradient(1.5px 1.5px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 25% 8%,#fff,transparent),radial-gradient(1.5px 1.5px at 44% 26%,#fff,transparent),radial-gradient(1px 1px at 63% 12%,#fff,transparent),radial-gradient(1.5px 1.5px at 82% 22%,#fff,transparent),radial-gradient(1px 1px at 92% 6%,#fff,transparent);animation:iTw 2s infinite alternate}
+#vcIntro .i-sun{position:absolute;left:50%;bottom:24%;width:min(62vw,380px);aspect-ratio:1;transform:translate(-50%,60%);border-radius:50%;background:linear-gradient(180deg,#fff27a 0%,#ffb347 45%,#ff2f92 100%);box-shadow:0 0 90px rgba(255,120,90,.9);-webkit-mask:repeating-linear-gradient(180deg,#000 0 14px,transparent 14px 18px);mask:repeating-linear-gradient(180deg,#000 0 14px,transparent 14px 18px);animation:iSun 2.4s .4s cubic-bezier(.2,.8,.2,1) forwards;opacity:0}
+#vcIntro .i-ground{position:absolute;left:0;right:0;bottom:0;height:24%;background:#16051f;border-top:2px solid #ff5fa8;box-shadow:0 -4px 30px rgba(255,47,146,.6);overflow:hidden;perspective:300px}
+#vcIntro .i-grid{position:absolute;left:-50%;right:-50%;top:0;height:200%;transform:rotateX(60deg);transform-origin:top;background-image:linear-gradient(rgba(255,95,168,.7) 2px,transparent 2px),linear-gradient(90deg,rgba(255,95,168,.7) 2px,transparent 2px);background-size:60px 40px;animation:iGrid 1s linear infinite}
+#vcIntro svg.i-palm{position:absolute;bottom:20%;fill:#14041c;transform-origin:bottom center}
+#vcIntro .i-palm.l{left:-30px;width:min(40vw,230px);height:auto;animation:iSway 4s ease-in-out infinite,iInL 1.4s .3s both}
+#vcIntro .i-palm.r{right:-30px;width:min(34vw,200px);height:auto;transform:scaleX(-1);animation:iInR 1.4s .3s both}
+#vcIntro .i-car{position:absolute;bottom:calc(24% - 6px);left:-160px;width:140px;fill:#0a0210;filter:drop-shadow(0 0 6px #ff2f92);animation:iCar 3.2s 1.2s cubic-bezier(.45,.05,.4,1) forwards}
+#vcIntro .i-bar{position:absolute;left:0;right:0;height:0;background:#000;z-index:5;animation:iBar 1s .1s forwards}
+#vcIntro .i-bar.t{top:0}#vcIntro .i-bar.b{bottom:0}
+#vcIntro .i-txt{position:relative;z-index:4;text-align:center;margin-top:-18vh;padding:0 16px}
+#vcIntro .i-kick{display:inline-block;font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;letter-spacing:.3em;color:#fff;background:#ff2f92;padding:5px 14px;border-radius:50px;box-shadow:0 0 18px #ff2f92;opacity:0;animation:iUp .7s 1.6s forwards}
+#vcIntro .i-t1{display:block;font-family:'Anton',Impact,sans-serif;font-size:clamp(3.2rem,15vw,7.5rem);line-height:.9;color:#fff;letter-spacing:.04em;-webkit-text-stroke:2px #2a0838;text-shadow:5px 5px 0 #2a0838,9px 9px 0 #ff2f92;opacity:0;transform:scale(2.2);animation:iSlam .55s 2s cubic-bezier(.2,1.4,.4,1) forwards}
+#vcIntro .i-t2{display:block;font-family:'Pacifico',cursive;font-size:clamp(2rem,9vw,4rem);color:#ffe9f4;transform:rotate(-7deg);margin-top:-.15em;text-shadow:0 0 6px #ff4fa8,0 0 18px #ff2f92,0 0 40px #ff2f92;opacity:0;animation:iNeon 1.2s 2.5s forwards}
+#vcIntro .i-sub{margin-top:14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;color:#fff;opacity:0;animation:iUp .7s 3.1s forwards}
+#vcIntro .i-cta{margin-top:18px;display:inline-block;background:linear-gradient(90deg,#ff8f4a,#ff2f92);color:#fff;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;padding:12px 30px;cursor:pointer;box-shadow:0 0 22px rgba(255,47,146,.8);opacity:0;animation:iUp .7s 3.4s forwards,iPulse 1.4s 4.1s infinite}
+#vcIntro .i-skip{position:absolute;z-index:6;right:14px;bottom:14px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.75rem;padding:7px 14px;cursor:pointer}
+#vcIntro .i-flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:3;pointer-events:none;animation:iFlash .5s 2.05s}
+@keyframes iFade{to{opacity:1}}
+@keyframes iTw{to{opacity:.4}}
+@keyframes iSun{to{opacity:1;transform:translate(-50%,8%)}}
+@keyframes iGrid{to{background-position:0 40px}}
+@keyframes iSway{0%,100%{rotate:0deg}50%{rotate:2.5deg}}
+@keyframes iInL{from{translate:-120% 0}to{translate:0 0}}
+@keyframes iInR{from{translate:120% 0}to{translate:0 0}}
+@keyframes iCar{to{left:calc(100% + 160px)}}
+@keyframes iBar{to{height:9vh}}
+@keyframes iUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes iSlam{to{opacity:1;transform:scale(1)}}
+@keyframes iNeon{0%{opacity:0}10%{opacity:1}15%{opacity:.2}25%{opacity:1}30%{opacity:.4}40%,100%{opacity:1}}
+@keyframes iPulse{50%{transform:scale(1.06)}}
+@keyframes iFlash{30%{opacity:.7}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){#vcIntro *{animation-duration:.01s!important;animation-delay:0s!important}}
+</style>
+<div id="vcIntro" aria-hidden="true">
+  <div class="i-sky"></div><div class="i-stars"></div><div class="i-sun"></div>
+  <svg class="i-palm l" viewBox="0 0 150 240"><path d="M78 240c-4-60-2-110 8-150l6 1c-9 40-10 90-6 149z"/><path d="M88 92c-20-24-52-30-80-20 26-2 50 6 74 26zM88 92c-8-30-30-50-60-56 22 10 40 30 54 58zM88 92c10-30 34-46 62-46-26 8-44 24-56 50zM88 92c22-14 50-12 62 4-20-8-42-6-60 2zM88 92c-14-6-40 4-56 26 18-14 38-20 54-20zM88 92c4-22 2-46-12-66 18 18 22 42 18 66z"/></svg>
+  <svg class="i-palm r" viewBox="0 0 150 240"><path d="M78 240c-4-60-2-110 8-150l6 1c-9 40-10 90-6 149z"/><path d="M88 92c-20-24-52-30-80-20 26-2 50 6 74 26zM88 92c-8-30-30-50-60-56 22 10 40 30 54 58zM88 92c10-30 34-46 62-46-26 8-44 24-56 50zM88 92c22-14 50-12 62 4-20-8-42-6-60 2zM88 92c-14-6-40 4-56 26 18-14 38-20 54-20z"/></svg>
+  <div class="i-ground"><div class="i-grid"></div></div>
+  <svg class="i-car" viewBox="0 0 140 40"><path d="M6 30c0-6 4-9 12-10l22-3 18-10c4-2 8-3 14-3h22c6 0 10 2 14 6l8 8 14 2c4 1 6 3 6 7v5H6z"/><circle cx="34" cy="33" r="7"/><circle cx="106" cy="33" r="7"/></svg>
+  <div class="i-flash"></div>
+  <div class="i-bar t"></div><div class="i-bar b"></div>
+  <div class="i-txt">
+    <span class="i-kick">CANDY VARELA PRESENTA</span>
+    <span class="i-t1">VARELA CITY</span>
+    <span class="i-t2">Promos</span>
+    <div class="i-sub">🌴 Exclusivas comprando por la web</div>
+    <button class="i-cta" id="vcIntroGo">Ver promos 🌅</button>
+  </div>
+  <button class="i-skip" id="vcIntroSkip">Saltar ›</button>
+</div>
+<script>
+(function(){
+  var el=document.getElementById('vcIntro'); if(!el) return;
+  var seen=false; try{seen=sessionStorage.getItem('vcIntroSeen')==='1';}catch(e){}
+  if(seen){el.remove();return;}
+  document.documentElement.style.overflow='hidden';
+  var t;
+  function close(goPromos){
+    clearTimeout(t); el.classList.add('out'); document.documentElement.style.overflow='';
+    try{sessionStorage.setItem('vcIntroSeen','1');}catch(e){}
+    if(goPromos){var p=document.getElementById('promosweb'); if(p) setTimeout(function(){p.scrollIntoView({behavior:'smooth',block:'start'});},300);}
+    setTimeout(function(){el.remove();},900);
+  }
+  document.getElementById('vcIntroGo').onclick=function(){close(true);};
+  document.getElementById('vcIntroSkip').onclick=function(){close(false);};
+  t=setTimeout(function(){close(false);},7000);
+})();
+</script>
+<!-- /INTRO VARELA CITY -->
+
 
 <!-- TOP BAR -->
 <div class="top-bar">
