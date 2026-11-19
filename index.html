@@ -411,7 +411,7 @@
   .vaso-banner { position:relative; max-width:1200px; border-radius:24px; overflow:hidden; scroll-margin-top:120px; isolation:isolate;
     background:linear-gradient(120deg,#8e0a12,#e41e2b 30%,#ff3b3b 50%,#e41e2b 70%,#8e0a12); background-size:250% 250%;
     animation:vasoBg 6s ease-in-out infinite, vasoGlow 2.4s ease-in-out infinite;
-    border:3px solid #fff; display:flex; align-items:center; gap:22px; padding:20px 22px; }
+    border:3px solid #fff; display:flex; align-items:center; justify-content:center; gap:40px; padding:20px 22px; }
   @keyframes vasoBg { 0%,100%{ background-position:0% 50%;} 50%{ background-position:100% 50%;} }
   @keyframes vasoGlow { 0%,100%{ box-shadow:0 0 0 4px #e41e2b,0 10px 30px rgba(228,30,43,0.45);} 50%{ box-shadow:0 0 0 4px #ff6b6b,0 10px 44px rgba(255,59,59,0.8);} }
   .vaso-banner::before { content:""; position:absolute; top:0; bottom:0; width:40%; left:-60%; z-index:1; pointer-events:none;
@@ -434,13 +434,13 @@
   .vaso-sello b { font-size:1.05rem; }
   @keyframes vasoSello { 0%,100%{ transform:rotate(14deg) scale(1);} 50%{ transform:rotate(8deg) scale(1.12);} }
   @keyframes vasoFloat { 0%,100%{ transform:rotate(-3deg) translateY(0);} 50%{ transform:rotate(2deg) translateY(-7px);} }
-  .vaso-info { position:relative; z-index:2; flex:1; color:#fff; }
+  .vaso-info { position:relative; z-index:2; flex:0 1 auto; color:#fff; text-align:center; }
   .vaso-tag { display:inline-block; background:#ffd23f; color:#8e0a12; font-family:'Nunito',sans-serif; font-weight:900; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; padding:5px 14px; border-radius:50px; margin-bottom:8px; box-shadow:0 3px 0 #c9971a; animation:vasoTag 1s steps(2) infinite; }
   @keyframes vasoTag { 50%{ background:#fff; } }
   .vaso-title { font-family:'Anton','Poppins',sans-serif; font-weight:900; font-size:2.6rem; line-height:1; letter-spacing:0.02em; text-transform:uppercase; text-shadow:3px 3px 0 #6b070d, 0 0 18px rgba(255,255,255,0.35); }
   .vaso-sub { font-family:'Nunito',sans-serif; font-weight:800; font-size:0.95rem; margin:8px 0 14px; }
   .vaso-sub b { color:#ffd23f; }
-  .vaso-row { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .vaso-row { display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; }
   .vaso-precio { font-family:'Anton','Baloo 2',sans-serif; font-size:2.2rem; color:#8e0a12; background:#fff; padding:2px 18px; border-radius:14px; box-shadow:0 5px 0 #6b070d; transform:rotate(-3deg); animation:vasoPrecio 1.4s ease-in-out infinite; }
   @keyframes vasoPrecio { 0%,100%{ transform:rotate(-3deg) scale(1);} 50%{ transform:rotate(-3deg) scale(1.08);} }
   .vaso-btn { background:linear-gradient(135deg,#ffd23f,#ffb000); color:#6b070d; border:none; border-radius:50px; font-weight:900; font-size:0.95rem; padding:12px 22px; cursor:pointer; box-shadow:0 5px 0 #c9971a; transition:transform .15s; }
