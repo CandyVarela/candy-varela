@@ -1330,82 +1330,7 @@
 </style>
 </head>
 <body>
-<!-- INTRO VARELA CITY -->
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap" rel="stylesheet">
-<style>
-#vcIntro{position:fixed;inset:0;z-index:99999;overflow:hidden;background:#0c0318;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s}
-#vcIntro.out{opacity:0;visibility:hidden}
-#vcIntro .i-sky{position:absolute;inset:0;background:linear-gradient(180deg,#0c0318 0%,#2e0b52 22%,#8a2380 45%,#ec4f7c 63%,#ff8f4a 78%,#ffc861 92%);opacity:0;animation:iFade 1.6s .2s forwards}
-#vcIntro .i-stars{position:absolute;inset:0 0 50% 0;background-image:radial-gradient(1.5px 1.5px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 25% 8%,#fff,transparent),radial-gradient(1.5px 1.5px at 44% 26%,#fff,transparent),radial-gradient(1px 1px at 63% 12%,#fff,transparent),radial-gradient(1.5px 1.5px at 82% 22%,#fff,transparent),radial-gradient(1px 1px at 92% 6%,#fff,transparent);animation:iTw 2s infinite alternate}
-#vcIntro .i-sun{position:absolute;left:50%;bottom:24%;width:min(62vw,380px);aspect-ratio:1;transform:translate(-50%,60%);border-radius:50%;background:linear-gradient(180deg,#fff27a 0%,#ffb347 45%,#ff2f92 100%);box-shadow:0 0 90px rgba(255,120,90,.9);-webkit-mask:repeating-linear-gradient(180deg,#000 0 14px,transparent 14px 18px);mask:repeating-linear-gradient(180deg,#000 0 14px,transparent 14px 18px);animation:iSun 2.4s .4s cubic-bezier(.2,.8,.2,1) forwards;opacity:0}
-#vcIntro .i-ground{position:absolute;left:0;right:0;bottom:0;height:24%;background:#16051f;border-top:2px solid #ff5fa8;box-shadow:0 -4px 30px rgba(255,47,146,.6);overflow:hidden;perspective:300px}
-#vcIntro .i-grid{position:absolute;left:-50%;right:-50%;top:0;height:200%;transform:rotateX(60deg);transform-origin:top;background-image:linear-gradient(rgba(255,95,168,.7) 2px,transparent 2px),linear-gradient(90deg,rgba(255,95,168,.7) 2px,transparent 2px);background-size:60px 40px;animation:iGrid 1s linear infinite}
-#vcIntro svg.i-palm{position:absolute;bottom:20%;fill:#14041c;transform-origin:bottom center}
-#vcIntro .i-palm.l{left:-30px;width:min(40vw,230px);height:auto;animation:iSway 4s ease-in-out infinite,iInL 1.4s .3s both}
-#vcIntro .i-palm.r{right:-30px;width:min(34vw,200px);height:auto;transform:scaleX(-1);animation:iInR 1.4s .3s both}
-#vcIntro .i-car{position:absolute;bottom:calc(24% - 6px);left:-160px;width:140px;fill:#0a0210;filter:drop-shadow(0 0 6px #ff2f92);animation:iCar 3.2s 1.2s cubic-bezier(.45,.05,.4,1) forwards}
-#vcIntro .i-bar{position:absolute;left:0;right:0;height:0;background:#000;z-index:5;animation:iBar 1s .1s forwards}
-#vcIntro .i-bar.t{top:0}#vcIntro .i-bar.b{bottom:0}
-#vcIntro .i-txt{position:relative;z-index:4;text-align:center;margin-top:-18vh;padding:0 16px}
-#vcIntro .i-kick{display:inline-block;font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;letter-spacing:.3em;color:#fff;background:#ff2f92;padding:5px 14px;border-radius:50px;box-shadow:0 0 18px #ff2f92;opacity:0;animation:iUp .7s 1.6s forwards}
-#vcIntro .i-t1{display:block;font-family:'Anton',Impact,sans-serif;font-size:clamp(3.2rem,15vw,7.5rem);line-height:.9;color:#fff;letter-spacing:.04em;-webkit-text-stroke:2px #2a0838;text-shadow:5px 5px 0 #2a0838,9px 9px 0 #ff2f92;opacity:0;transform:scale(2.2);animation:iSlam .55s 2s cubic-bezier(.2,1.4,.4,1) forwards}
-#vcIntro .i-t2{display:block;font-family:'Pacifico',cursive;font-size:clamp(2rem,9vw,4rem);color:#ffe9f4;transform:rotate(-7deg);margin-top:-.15em;text-shadow:0 0 6px #ff4fa8,0 0 18px #ff2f92,0 0 40px #ff2f92;opacity:0;animation:iNeon 1.2s 2.5s forwards}
-#vcIntro .i-sub{margin-top:14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;color:#fff;opacity:0;animation:iUp .7s 3.1s forwards}
-#vcIntro .i-cta{margin-top:18px;display:inline-block;background:linear-gradient(90deg,#ff8f4a,#ff2f92);color:#fff;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;padding:12px 30px;cursor:pointer;box-shadow:0 0 22px rgba(255,47,146,.8);opacity:0;animation:iUp .7s 3.4s forwards,iPulse 1.4s 4.1s infinite}
-#vcIntro .i-skip{position:absolute;z-index:6;right:14px;bottom:14px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.75rem;padding:7px 14px;cursor:pointer}
-#vcIntro .i-flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:3;pointer-events:none;animation:iFlash .5s 2.05s}
-@keyframes iFade{to{opacity:1}}
-@keyframes iTw{to{opacity:.4}}
-@keyframes iSun{to{opacity:1;transform:translate(-50%,8%)}}
-@keyframes iGrid{to{background-position:0 40px}}
-@keyframes iSway{0%,100%{rotate:0deg}50%{rotate:2.5deg}}
-@keyframes iInL{from{translate:-120% 0}to{translate:0 0}}
-@keyframes iInR{from{translate:120% 0}to{translate:0 0}}
-@keyframes iCar{to{left:calc(100% + 160px)}}
-@keyframes iBar{to{height:9vh}}
-@keyframes iUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-@keyframes iSlam{to{opacity:1;transform:scale(1)}}
-@keyframes iNeon{0%{opacity:0}10%{opacity:1}15%{opacity:.2}25%{opacity:1}30%{opacity:.4}40%,100%{opacity:1}}
-@keyframes iPulse{50%{transform:scale(1.06)}}
-@keyframes iFlash{30%{opacity:.7}100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){#vcIntro *{animation-duration:.01s!important;animation-delay:0s!important}}
-</style>
-<div id="vcIntro" aria-hidden="true">
-  <div class="i-sky"></div><div class="i-stars"></div><div class="i-sun"></div>
-  <svg class="i-palm l" viewBox="0 0 150 240"><path d="M78 240c-4-60-2-110 8-150l6 1c-9 40-10 90-6 149z"/><path d="M88 92c-20-24-52-30-80-20 26-2 50 6 74 26zM88 92c-8-30-30-50-60-56 22 10 40 30 54 58zM88 92c10-30 34-46 62-46-26 8-44 24-56 50zM88 92c22-14 50-12 62 4-20-8-42-6-60 2zM88 92c-14-6-40 4-56 26 18-14 38-20 54-20zM88 92c4-22 2-46-12-66 18 18 22 42 18 66z"/></svg>
-  <svg class="i-palm r" viewBox="0 0 150 240"><path d="M78 240c-4-60-2-110 8-150l6 1c-9 40-10 90-6 149z"/><path d="M88 92c-20-24-52-30-80-20 26-2 50 6 74 26zM88 92c-8-30-30-50-60-56 22 10 40 30 54 58zM88 92c10-30 34-46 62-46-26 8-44 24-56 50zM88 92c22-14 50-12 62 4-20-8-42-6-60 2zM88 92c-14-6-40 4-56 26 18-14 38-20 54-20z"/></svg>
-  <div class="i-ground"><div class="i-grid"></div></div>
-  <svg class="i-car" viewBox="0 0 140 40"><path d="M6 30c0-6 4-9 12-10l22-3 18-10c4-2 8-3 14-3h22c6 0 10 2 14 6l8 8 14 2c4 1 6 3 6 7v5H6z"/><circle cx="34" cy="33" r="7"/><circle cx="106" cy="33" r="7"/></svg>
-  <div class="i-flash"></div>
-  <div class="i-bar t"></div><div class="i-bar b"></div>
-  <div class="i-txt">
-    <span class="i-kick">CANDY VARELA PRESENTA</span>
-    <span class="i-t1">VARELA CITY</span>
-    <span class="i-t2">Promos</span>
-    <div class="i-sub">🌴 Exclusivas comprando por la web</div>
-    <button class="i-cta" id="vcIntroGo">Ver promos 🌅</button>
-  </div>
-  <button class="i-skip" id="vcIntroSkip">Saltar ›</button>
-</div>
-<script>
-(function(){
-  var el=document.getElementById('vcIntro'); if(!el) return;
-  var seen=false; try{seen=sessionStorage.getItem('vcIntroSeen')==='1';}catch(e){}
-  if(seen){el.remove();return;}
-  document.documentElement.style.overflow='hidden';
-  var t;
-  function close(goPromos){
-    clearTimeout(t); el.classList.add('out'); document.documentElement.style.overflow='';
-    try{sessionStorage.setItem('vcIntroSeen','1');}catch(e){}
-    if(goPromos){var p=document.getElementById('promosweb'); if(p) setTimeout(function(){p.scrollIntoView({behavior:'smooth',block:'start'});},300);}
-    setTimeout(function(){el.remove();},900);
-  }
-  document.getElementById('vcIntroGo').onclick=function(){close(true);};
-  document.getElementById('vcIntroSkip').onclick=function(){close(false);};
-  t=setTimeout(function(){close(false);},7000);
-})();
-</script>
-<!-- /INTRO VARELA CITY -->
+
 
 
 <!-- TOP BAR -->
@@ -1458,7 +1383,6 @@
     <a href="#todos" onclick="cerrarDrawer()"><span class="drawer-ico">🍬</span> Todos</a>
     <a href="#novedades" onclick="cerrarDrawer()"><span class="drawer-ico">✨</span> Novedades</a>
     <a href="#regaleria" onclick="cerrarDrawer()"><span class="drawer-ico">🎀</span> Regalería</a>
-    <a href="#promosweb" onclick="cerrarDrawer()"><span class="drawer-ico">🌴</span> Promos Web</a>
     <a href="#monster" onclick="cerrarDrawer()"><span class="drawer-ico">⚡</span> Monster</a>
     <a href="#letrasdulces" onclick="cerrarDrawer()"><span class="drawer-ico">🔤</span> Letras Dulces</a>
     <a href="#alfajoresvirales" onclick="cerrarDrawer()"><span class="drawer-ico">🍭</span> Alfajores Virales</a>
@@ -1505,7 +1429,6 @@
   <a href="#clubcandy" class="cat-filter-link"><span>🍭</span> Club Candy</a>
   <a href="#novedades" class="cat-filter-link"><span>✨</span> Novedades</a>
   <a href="#regaleria" class="cat-filter-link"><span>🎀</span> Regalería</a>
-  <a href="#promosweb" class="cat-filter-link"><span>🌴</span> Promos Web</a>
   <a href="#monster" class="cat-filter-link"><span>⚡</span> Monster</a>
   <a href="#letrasdulces" class="cat-filter-link"><span>🔤</span> Letras Dulces</a>
   <a href="#alfajoresvirales" class="cat-filter-link"><span>🍭</span> Alfajores Virales</a>
@@ -1539,125 +1462,6 @@
     </div>
   </div>
 
-  <!-- PROMOS VARELA CITY (estilo sunset retro) -->
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap" rel="stylesheet">
-  <style>
-  .vc-wrap{position:relative;overflow:hidden;border-radius:22px;margin-bottom:32px;background:#120422;box-shadow:0 10px 34px rgba(155,42,134,.35)}
-  .vc-hero{position:relative;height:300px;overflow:hidden;background:linear-gradient(180deg,#140726 0%,#3d1263 24%,#9b2a86 48%,#ec4f7c 68%,#ff8f4a 84%,#ffc861 100%)}
-  .vc-stars{position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 12% 14%,#fff,transparent),radial-gradient(1px 1px at 32% 8%,#fff,transparent),radial-gradient(1.5px 1.5px at 58% 18%,#fff,transparent),radial-gradient(1px 1px at 78% 10%,#fff,transparent),radial-gradient(1px 1px at 90% 22%,#fff,transparent),radial-gradient(1px 1px at 44% 26%,#fff,transparent);opacity:.8;animation:vcTw 3s ease-in-out infinite alternate}
-  @keyframes vcTw{to{opacity:.35}}
-  .vc-sun{position:absolute;left:50%;bottom:-70px;width:250px;height:250px;transform:translateX(-50%);border-radius:50%;background:linear-gradient(180deg,#fff27a 0%,#ffb347 45%,#ff4f8b 100%);box-shadow:0 0 60px rgba(255,140,90,.8);-webkit-mask:linear-gradient(#000 0 0) top/100% 52% no-repeat,repeating-linear-gradient(180deg,#000 0 13px,transparent 13px 19px);mask:linear-gradient(#000 0 0) top/100% 52% no-repeat,repeating-linear-gradient(180deg,#000 0 13px,transparent 13px 19px)}
-  .vc-sea{position:absolute;z-index:1;left:0;right:0;bottom:0;height:46px;background:linear-gradient(180deg,rgba(60,10,80,.82),#1a0630);border-top:2px solid rgba(255,214,120,.6)}
-  .vc-palm{position:absolute;z-index:1;bottom:20px;width:150px;height:240px;fill:#16051f}
-  .vc-palm.l{left:-28px;transform-origin:bottom center;animation:vcSway 5s ease-in-out infinite}
-  .vc-palm.r{right:-30px;transform:scaleX(-1);width:130px;height:210px}
-  .vc-palm.r2{right:58px;transform:scaleX(-1);width:80px;height:130px;opacity:.85}
-  @keyframes vcSway{0%,100%{transform:rotate(0)}50%{transform:rotate(-2.5deg)}}
-  .vc-head{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 14px 40px;z-index:2}
-  .vc-kick{display:inline-block;background:#ff2f92;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 14px;border-radius:50px;box-shadow:0 0 14px rgba(255,47,146,.8);margin-bottom:8px}
-  .vc-title{margin:0;font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:4.2rem;line-height:.9;letter-spacing:.03em;color:#fff;-webkit-text-stroke:2px #2a0838;text-shadow:4px 4px 0 #2a0838,7px 7px 0 #ff2f92}
-  .vc-script{display:block;font-family:'Pacifico',cursive;font-size:2rem;color:#ffe9f4;transform:rotate(-6deg);margin-top:-6px;text-shadow:0 0 6px #ff4fa8,0 0 16px #ff2f92,0 0 30px #ff2f92;animation:vcNeon 3.5s infinite}
-  @keyframes vcNeon{0%,16%,20%,70%,72%,100%{opacity:1}18%,71%{opacity:.5}}
-  .vc-sub{margin:10px 0 0;font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;color:#fff;background:rgba(20,6,38,.55);padding:5px 12px;border-radius:50px}
-  .vc-body{position:relative;background:linear-gradient(180deg,#1a0630,#120422);padding:18px 14px 20px;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-  .vc-card{position:relative;background:linear-gradient(160deg,rgba(255,79,139,.16),rgba(80,30,140,.22));border:1.5px solid rgba(255,120,180,.55);border-radius:18px;padding:14px 12px 14px;text-align:center;color:#fff;box-shadow:inset 0 0 18px rgba(255,79,139,.12)}
-  .vc-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#ff8f4a,#ff2f92);font-family:'Nunito',sans-serif;font-weight:900;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:3px 12px;border-radius:0 0 10px 10px;white-space:nowrap}
-  .vc-name{font-family:'Anton',Impact,sans-serif;font-size:1.45rem;letter-spacing:.04em;margin:12px 0 8px;line-height:1;text-shadow:2px 2px 0 #ff2f92}
-  .vc-imgs{display:flex;justify-content:center;align-items:flex-end;gap:6px;margin-bottom:10px;min-height:110px}
-  .vc-imgs img{height:108px;width:auto;max-width:74px;object-fit:contain;border-radius:8px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
-  .vc-imgs img.sm{height:84px;max-width:44px}
-  .vc-imgs .vc-plus{font-family:'Anton',sans-serif;font-size:1.6rem;color:#ffc861;align-self:center}
-  .vc-sel{display:block;width:100%;margin:0 0 7px;background:#2a0b44;color:#fff;border:1.5px solid rgba(255,200,97,.55);border-radius:10px;padding:8px 10px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem}
-  .vc-lbl{display:block;text-align:left;font-family:'Nunito',sans-serif;font-weight:800;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#ffc861;margin:2px 2px 3px}
-  .vc-price{font-family:'Anton',Impact,sans-serif;font-size:2.1rem;line-height:1;margin:6px 0 8px;background:linear-gradient(180deg,#fff27a,#ff8f4a);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(2px 2px 0 #7a1650)}
-  .vc-price small{font-size:.9rem}
-  .vc-add{width:100%;background:linear-gradient(90deg,#ff8f4a,#ff2f92);color:#fff;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.85rem;padding:10px 0;cursor:pointer;box-shadow:0 0 14px rgba(255,47,146,.55);transition:transform .15s}
-  .vc-add:hover{transform:scale(1.03)}
-  .vc-add.agregado{background:#3ddc97;box-shadow:0 0 14px rgba(61,220,151,.6)}
-  .vc-split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .vc-split > div{background:rgba(20,6,38,.45);border-radius:14px;padding:8px 8px 10px}
-  .vc-split h4{margin:2px 0 4px;font-family:'Pacifico',cursive;font-weight:400;font-size:1.05rem;color:#ffe9f4;text-shadow:0 0 8px #ff2f92}
-  .vc-split .vc-price{font-size:1.7rem}
-  .vc-split .vc-imgs{min-height:88px}
-  .vc-foot{text-align:center;font-family:'Nunito',sans-serif;font-weight:700;font-size:.72rem;color:#d9b8ff;padding:0 14px 16px}
-  .vc-split .vc-sel{font-size:.72rem;padding:7px 4px}
-  @media (max-width:600px){.vc-hero{height:260px}.vc-title{font-size:3.4rem}.vc-script{font-size:1.7rem}.vc-sun{width:200px;height:200px;bottom:-56px}.vc-palm.l{width:120px;height:200px}.vc-palm.r{width:105px;height:170px}.vc-palm.r2{display:none}}
-  </style>
-  <div class="vc-wrap" id="promosweb">
-    <div class="vc-hero">
-      <div class="vc-stars"></div>
-      <div class="vc-sun"></div>
-      <svg class="vc-palm l" viewBox="0 0 150 240" aria-hidden="true"><path d="M78 240c-4-60-2-110 8-150l6 1c-9 40-10 90-6 149z"/><path d="M88 92c-20-24-52-30-80-20 26-2 50 6 74 26zM88 92c-8-30-30-50-60-56 22 10 40 30 54 58zM88 92c10-30 34-46 62-46-26 8-44 24-56 50zM88 92c22-14 50-12 62 4-20-8-42-6-60 2zM88 92c-14-6-40 4-56 26 18-14 38-20 54-20zM88 92c4-22 2-46-12-66 18 18 22 42 18 66z"/></svg>
-      <svg class="vc-palm r" viewBox="0 0 150 240" aria-hidden="true"><path d="M78 240c-4-60-2-110 8-150l6 1c-9 40-10 90-6 149z"/><path d="M88 92c-20-24-52-30-80-20 26-2 50 6 74 26zM88 92c-8-30-30-50-60-56 22 10 40 30 54 58zM88 92c10-30 34-46 62-46-26 8-44 24-56 50zM88 92c22-14 50-12 62 4-20-8-42-6-60 2zM88 92c-14-6-40 4-56 26 18-14 38-20 54-20zM88 92c4-22 2-46-12-66 18 18 22 42 18 66z"/></svg>
-      <svg class="vc-palm r2" viewBox="0 0 150 240" aria-hidden="true"><path d="M78 240c-4-60-2-110 8-150l6 1c-9 40-10 90-6 149z"/><path d="M88 92c-20-24-52-30-80-20 26-2 50 6 74 26zM88 92c-8-30-30-50-60-56 22 10 40 30 54 58zM88 92c10-30 34-46 62-46-26 8-44 24-56 50zM88 92c22-14 50-12 62 4-20-8-42-6-60 2zM88 92c-14-6-40 4-56 26 18-14 38-20 54-20z"/></svg>
-      <div class="vc-sea"></div>
-      <div class="vc-head">
-        <span class="vc-kick">🌴 Exclusivo web</span>
-        <h2 class="vc-title">PROMOS</h2>
-        <span class="vc-script">Varela City</span>
-        <p class="vc-sub">Válidas solo comprando por candyvarela.com.ar</p>
-      </div>
-    </div>
-    <div class="vc-body">
-      <!-- PROMO 1 -->
-      <div class="vc-card">
-        <span class="vc-badge">Combo doble</span>
-        <div class="vc-name">ARGENTINA + IMPORTADA</div>
-        <div class="vc-imgs"><img src="img/productos/monster-original.jpg" alt="Monster Argentina" loading="lazy"><span class="vc-plus">+</span><img src="img/productos/monster-ultra-violet.jpg" alt="Monster Importada" loading="lazy"></div>
-        <label class="vc-lbl">🇦🇷 Monster Argentina</label>
-        <select class="vc-sel" data-vc="arg"><option>Tradicional</option><option>Ultra Blanca</option><option>Mango Loco</option><option>Ananá</option><option>Ultra Dreams Frutilla</option><option>Sandía</option></select>
-        <label class="vc-lbl">✈️ Monster Importada</label>
-        <select class="vc-sel" data-vc="imp"><option>Peachy Durazno</option><option>Ultra Dreams Zero Frutilla</option><option>Pacific Punch</option><option>Khaotic</option><option>Ultra Violeta</option><option>Absolutely</option><option>Ultra Fiesta Mango</option></select>
-        <div class="vc-price">$10.000</div>
-        <button class="vc-add" onclick="vcAgregar(this,'Promo Monster Argentina + Importada',10000)">+ Agregar promo</button>
-      </div>
-      <!-- PROMO 2 -->
-      <div class="vc-card">
-        <span class="vc-badge">Combo snack</span>
-        <div class="vc-name">MONSTER + LAY'S</div>
-        <div class="vc-imgs"><img class="sm" src="img/productos/monster-original.jpg" alt="Monster Original" loading="lazy"><img class="sm" src="img/productos/monster-the-doctor.jpg" alt="Monster The Doctor" loading="lazy"><img class="sm" src="img/productos/monster-mango-loco.jpg" alt="Monster Mango Loco" loading="lazy"><span class="vc-plus">+</span><img src="img/productos/lays-jamon-serrano.jpg" alt="Lay's Jamón Serrano" loading="lazy"></div>
-        <label class="vc-lbl">🇦🇷 Elegí tu Monster</label>
-        <select class="vc-sel" data-vc="arg"><option>Tradicional</option><option>Ultra Blanca</option><option>Mango Loco</option><option>Ananá</option><option>Ultra Dreams Frutilla</option><option>Sandía</option></select>
-        <label class="vc-lbl">🥔 Papas</label>
-        <select class="vc-sel" data-vc="fijo" disabled><option>Lay's Jamón Serrano</option></select>
-        <div class="vc-price">$7.000</div>
-        <button class="vc-add" onclick="vcAgregar(this,'Promo Monster + Lays Jamón Serrano',7000)">+ Agregar promo</button>
-      </div>
-      <!-- PROMO 3 -->
-      <div class="vc-card">
-        <span class="vc-badge">Precio web</span>
-        <div class="vc-name">MONSTER SUELTA</div>
-        <div class="vc-split">
-          <div>
-            <h4>Argentina</h4>
-            <div class="vc-imgs"><img class="sm" src="img/productos/monster-pipeline.jpg" alt="Monster Pipeline Punch" loading="lazy"><img class="sm" src="img/productos/monster-mango-loco.jpg" alt="Monster Mango Loco" loading="lazy"></div>
-            <select class="vc-sel" data-vc="arg"><option>Tradicional</option><option>Ultra Blanca</option><option>Mango Loco</option><option>Ananá</option><option>Ultra Dreams Frutilla</option><option>Sandía</option></select>
-            <div class="vc-price">$3.500</div>
-            <button class="vc-add" onclick="vcAgregar(this,'Promo Monster Argentina',3500)">+ Agregar</button>
-          </div>
-          <div>
-            <h4>Importada</h4>
-            <div class="vc-imgs"><img class="sm" src="img/productos/monster-pacific-punch.jpg" alt="Monster Pacific Punch" loading="lazy"><img class="sm" src="img/productos/monster-zero-sugar-import.jpg" alt="Monster Zero Sugar" loading="lazy"></div>
-            <select class="vc-sel" data-vc="imp"><option>Peachy Durazno</option><option>Ultra Dreams Zero Frutilla</option><option>Pacific Punch</option><option>Khaotic</option><option>Ultra Violeta</option><option>Absolutely</option><option>Ultra Fiesta Mango</option></select>
-            <div class="vc-price">$6.500</div>
-            <button class="vc-add" onclick="vcAgregar(this,'Promo Monster Importada',6500)">+ Agregar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="vc-foot">🌅 Promos válidas comprando por la web · Hasta agotar stock</div>
-  </div>
-  <script>
-  function vcAgregar(btn, nombre, precio){
-    var box = btn.parentElement;
-    var sels = box.querySelectorAll('select.vc-sel:not([disabled])');
-    var sab = Array.prototype.map.call(sels, function(s){ return s.value; });
-    var full = nombre + (sab.length ? ' (' + sab.join(' + ') + ')' : '');
-    agregarKinder(btn, full, precio);
-    var txt = btn.dataset.txt || (btn.dataset.txt = '+ ' + btn.textContent.replace(/^\+\s*/,''));
-    setTimeout(function(){ btn.textContent = txt; }, 1420);
-  }
-  </script>
 
   <!-- CLUB CANDY BOX: inscripción membresía mensual -->
   <style>
