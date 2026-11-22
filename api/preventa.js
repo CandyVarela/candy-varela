@@ -7,6 +7,9 @@ const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
 const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
 const STOCK = 12;
+// Latas reservadas/pagadas en efectivo en el local (se descuentan del stock online).
+const EN_LOCAL = 1;
+const DISPONIBLE = STOCK - EN_LOCAL;
 const K = 'preventa:lando';
 
 async function redis(...cmd) {
@@ -32,7 +35,7 @@ const esAdmin = (b) =>
 
 async function quedan() {
   const v = parseInt((await redis('GET', `${K}:vendidas`)) || '0', 10);
-  return Math.max(0, STOCK - v);
+  return Math.max(0, DISPONIBLE - v);
 }
 
 export default async function handler(req, res) {
@@ -49,15 +52,15 @@ export default async function handler(req, res) {
       case 'reservar': {
         if (await limite(`${K}:rl:${ip}`, 6, 600)) return res.status(429).json({ ok: false, error: 'Demasiados intentos. Probá en unos minutos.' });
         const cant = Math.floor(Number(b.cantidad));
-        if (!(cant >= 1 && cant <= STOCK)) return res.status(400).json({ ok: false, error: 'Cantidad inválida.' });
+        if (!(cant >= 1 && cant <= DISPONIBLE)) return res.status(400).json({ ok: false, error: 'Cantidad inválida.' });
         const n = await redis('INCRBY', `${K}:vendidas`, cant);
-        if (n > STOCK) {
+        if (n > DISPONIBLE) {
           await redis('DECRBY', `${K}:vendidas`, cant);
           const q = await quedan();
           return res.status(409).json({ ok: false, quedan: q, error: q > 0 ? `Solo quedan ${q} unidades en preventa.` : '¡Se agotó la preventa!' });
         }
         await redis('RPUSH', `${K}:pedidos`, JSON.stringify({ pedido: limpio(b.pedido).slice(0, 20), cantidad: cant, fecha: Date.now() }));
-        return res.json({ ok: true, quedan: Math.max(0, STOCK - n) });
+        return res.json({ ok: true, quedan: Math.max(0, DISPONIBLE - n) });
       }
 
       case 'lista': {
@@ -70,7 +73,7 @@ export default async function handler(req, res) {
         // Admin: fija cuántas unidades se vendieron (ej. para liberar una reserva que no se pagó).
         if (!esAdmin(b)) return res.status(401).json({ ok: false, error: 'Usuario o contraseña incorrectos' });
         const v = Math.floor(Number(b.vendidas));
-        if (!(v >= 0 && v <= STOCK)) return res.status(400).json({ ok: false, error: 'Número inválido.' });
+        if (!(v >= 0 && v <= DISPONIBLE)) return res.status(400).json({ ok: false, error: 'Número inválido.' });
         await redis('SET', `${K}:vendidas`, v);
         return res.json({ ok: true, quedan: await quedan() });
       }
