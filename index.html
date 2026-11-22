@@ -1362,6 +1362,10 @@
   .ln-can img{width:100%;height:auto;display:block;filter:drop-shadow(0 10px 22px rgba(198,255,0,.35));transform:rotate(8deg);animation:lnFloat 3.2s ease-in-out infinite}
   @keyframes lnFloat{50%{transform:rotate(5deg) translateY(-8px)}}
   .ln-can .ln-new{position:absolute;top:-6px;left:-14px;background:#fff;color:#0b0b0b;font-family:'Anton',sans-serif;font-size:.85rem;line-height:1;padding:6px 8px;border-radius:4px;transform:rotate(-10deg);text-transform:uppercase;z-index:3}
+  .ln-pista{position:absolute;inset:10px;border:2px dashed rgba(198,255,0,.22);border-radius:16px;pointer-events:none;z-index:1}
+  .ln-auto{position:absolute;left:0;top:0;width:46px;height:20px;margin:-10px 0 0 -23px;pointer-events:none;z-index:3;will-change:transform;filter:drop-shadow(0 3px 4px rgba(0,0,0,.6))}
+  .ln-auto svg{width:100%;height:100%;display:block}
+  @media(max-width:600px){.ln-auto{width:36px;height:16px;margin:-8px 0 0 -18px}}
   @media(min-width:700px){.ln-can{width:108px;margin-right:60px}.ln-inner{padding:24px 24px 22px}}
   @media(max-width:380px){.ln-can{width:72px}.ln-btn{font-size:1.05rem;padding:11px 16px}}
 </style>
@@ -1375,6 +1379,16 @@
     </g>
     <g fill="#c6ff00" opacity=".9"><path d="M770 0 L800 0 L800 30 Z"/><path d="M745 260 L800 205 L800 260 Z"/></g>
   </svg>
+  <div class="ln-pista" aria-hidden="true"></div>
+  <div class="ln-auto" id="lnAuto" aria-hidden="true"><svg viewBox="0 0 46 20">
+    <rect x="9" y="0" width="8" height="5" rx="1.5" fill="#111"/><rect x="9" y="15" width="8" height="5" rx="1.5" fill="#111"/>
+    <rect x="31" y="1" width="7" height="4" rx="1.5" fill="#111"/><rect x="31" y="15" width="7" height="4" rx="1.5" fill="#111"/>
+    <rect x="1" y="3" width="5" height="14" rx="1" fill="#c6ff00"/>
+    <path d="M5 8 L20 6 L34 8 L45 9.3 L45 10.7 L34 12 L20 14 L5 12 Z" fill="#ff8000"/>
+    <rect x="40" y="4" width="4" height="12" rx="1" fill="#c6ff00"/>
+    <ellipse cx="22" cy="10" rx="4" ry="2.6" fill="#111"/><circle cx="22" cy="10" r="1.6" fill="#c6ff00"/>
+    <path d="M10 10 H34" stroke="#c6ff00" stroke-width="1.2"/>
+  </svg></div>
   <div class="ln-inner">
     <div class="ln-txt">
       <span class="ln-tag"><i></i> Preventa exclusiva</span>
@@ -1414,6 +1428,48 @@
     setTimeout(()=>{ btn.classList.remove('ok'); btn.innerHTML = 'Preventa <small>$15.000</small>'; }, 1400);
   }
   document.addEventListener('DOMContentLoaded', cargarPreventaLando);
+  // Mini auto F1 dando vueltas por el borde del banner
+  (function(){
+    const ban=document.getElementById('preventaLando'), car=document.getElementById('lnAuto');
+    if(!ban||!car) return;
+    const I=11, R=16, VEL=170; let s=0, last=0, visible=true;
+    function pos(W,H,d){
+      const w=W-2*I-2*R, h=H-2*I-2*R, arc=Math.PI*R/2, L=2*w+2*h+4*arc;
+      d=((d%L)+L)%L;
+      const segs=[[w,'r'],[arc,'c1'],[h,'d'],[arc,'c2'],[w,'l'],[arc,'c3'],[h,'u'],[arc,'c4']];
+      for(const [len,k] of segs){
+        if(d<=len){
+          const t=len?d/len:0, a=t*Math.PI/2;
+          switch(k){
+            case 'r': return [I+R+d, I, 0];
+            case 'c1': return [W-I-R+R*Math.sin(a), I+R-R*Math.cos(a), a];
+            case 'd': return [W-I, I+R+d, Math.PI/2];
+            case 'c2': return [W-I-R+R*Math.cos(a), H-I-R+R*Math.sin(a), Math.PI/2+a];
+            case 'l': return [W-I-R-d, H-I, Math.PI];
+            case 'c3': return [I+R-R*Math.sin(a), H-I-R+R*Math.cos(a), Math.PI+a];
+            case 'u': return [I, H-I-R-d, 1.5*Math.PI];
+            case 'c4': return [I+R-R*Math.cos(a), I+R-R*Math.sin(a), 1.5*Math.PI+a];
+          }
+        }
+        d-=len;
+      }
+      return [I+R, I, 0];
+    }
+    function dibujar(){
+      const p=pos(ban.clientWidth, ban.clientHeight, s);
+      car.style.transform='translate('+p[0]+'px,'+p[1]+'px) rotate('+p[2]+'rad)';
+    }
+    function loop(t){
+      if(last) s+=Math.min(t-last,50)/1000*VEL;
+      last=t; dibujar();
+      if(visible) requestAnimationFrame(loop); else last=0;
+    }
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ s=60; dibujar(); window.addEventListener('resize',dibujar); return; }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(e=>{ const v=e[0].isIntersecting; if(v&&!visible){visible=true;requestAnimationFrame(loop);} visible=v; }).observe(ban);
+    }
+    requestAnimationFrame(loop);
+  })();
 </script>
 
 
