@@ -1755,7 +1755,7 @@
         <div class="mxn-card"><img src="img/productos/monster-mango-loco.jpg" alt="Monster Mango Loco" loading="lazy"><div class="mxn-name">Monster Mango Loco</div><div class="mxn-price">$3.800</div><button class="mxn-add" onclick="agregarKinder(this,'Monster Mango Loco',3800)">+ Agregar</button></div>
         <div class="mxn-card"><img src="img/productos/monster-pipeline.jpg" alt="Monster Pipeline Punch" loading="lazy"><div class="mxn-name">Monster Pipeline Punch</div><div class="mxn-price">$3.800</div><button class="mxn-add" onclick="agregarKinder(this,'Monster Pipeline Punch',3800)">+ Agregar</button></div>
         <div class="mxn-card"><img src="img/productos/monster-peachy.jpg" alt="Monster Ultra Peachy Keen" loading="lazy"><div class="mxn-name">Monster Ultra Peachy Keen</div><div class="mxn-price">$3.800</div><button class="mxn-add" onclick="agregarKinder(this,'Monster Ultra Peachy Keen',3800)">+ Agregar</button></div>
-        <div class="mxn-card"><img src="img/productos/monster-the-doctor.jpg" alt="Monster The Doctor" loading="lazy"><div class="mxn-name">Monster The Doctor</div><div class="mxn-price">$3.800</div><button class="mxn-add" onclick="agregarKinder(this,'Monster The Doctor',3800)">+ Agregar</button></div>
+        <div class="mxn-card"><img class="img-agotado" src="img/productos/monster-the-doctor.jpg" alt="Monster The Doctor" loading="lazy" style="opacity:0.45;filter:grayscale(1);"><div class="mxn-name">Monster The Doctor</div><div class="mxn-price" style="color:#aaa;">$3.800</div><button class="mxn-add btn-agotado" disabled style="background:#ccc;color:#888;box-shadow:none;cursor:not-allowed;">Agotado</button></div>
         <div class="mxn-card"><img src="img/productos/monster-reserve-anana.jpg" alt="Monster Reserve Ananá" loading="lazy"><div class="mxn-name">Monster Reserve Ananá</div><div class="mxn-price">$3.800</div><button class="mxn-add" onclick="agregarKinder(this,'Monster Reserve Ananá',3800)">+ Agregar</button></div>
         <div class="mxn-card"><img src="img/productos/monster-ultra-violet.jpg" alt="Monster Ultra Violet" loading="lazy"><div class="mxn-name">Monster Ultra Violet</div><div class="mxn-price">$7.000</div><button class="mxn-add" onclick="agregarKinder(this,'Monster Ultra Violet',7000)">+ Agregar</button></div>
         <div class="mxn-card"><img src="img/productos/monster-pacific-punch.jpg" alt="Monster Juice Pacific Punch" loading="lazy"><div class="mxn-name">Monster Juice Pacific Punch</div><div class="mxn-price">$7.000</div><button class="mxn-add" onclick="agregarKinder(this,'Monster Juice Pacific Punch',7000)">+ Agregar</button></div>
@@ -3421,9 +3421,9 @@
         <div class="cat-card-row"><span class="cat-card-precio">$3.800</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster Ultra Peachy Keen',3800)">+ Agregar</button></div>
       </div>
       <div class="cat-card" data-cat="monster">
-        <img class="cat-card-img" src="img/productos/monster-the-doctor.jpg" alt="Monster The Doctor" loading="lazy">
+        <img class="cat-card-img img-agotado" src="img/productos/monster-the-doctor.jpg" alt="Monster The Doctor" loading="lazy" style="opacity:0.45;filter:grayscale(1);">
         <div class="cat-card-nombre">Monster The Doctor</div>
-        <div class="cat-card-row"><span class="cat-card-precio">$3.800</span><button class="cat-card-btn" onclick="agregarKinder(this,'Monster The Doctor',3800)">+ Agregar</button></div>
+        <div class="cat-card-row"><span class="cat-card-precio" style="color:#aaa;">$3.800</span><button class="cat-card-btn btn-agotado" disabled>Agotado</button></div>
       </div>
       <div class="cat-card" data-cat="monster">
         <img class="cat-card-img" src="img/productos/monster-reserve-anana.jpg" alt="Monster Reserve Ananá" loading="lazy">
@@ -5131,7 +5131,7 @@
       <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster Mango Loco',3800,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-mango-loco.jpg" alt="Monster Mango Loco" loading="lazy"><div class="neon-add">Mango Loco · + Agregar $3.800</div></div>
       <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster Pipeline Punch',3800,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-pipeline.jpg" alt="Monster Pipeline Punch" loading="lazy"><div class="neon-add">Pipeline Punch · + Agregar $3.800</div></div>
       <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster Ultra Peachy Keen',3800,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-peachy.jpg" alt="Monster Ultra Peachy Keen" loading="lazy"><div class="neon-add">Peachy Keen · + Agregar $3.800</div></div>
-      <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster The Doctor',3800,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-the-doctor.jpg" alt="Monster The Doctor" loading="lazy"><div class="neon-add">The Doctor · + Agregar $3.800</div></div>
+      <div class="neon-frame"><span class="neon-badge" style="background:#b0b0b0;border-color:#b0b0b0;color:#fff;">Agotado</span><img class="img-agotado" src="img/productos/monster-the-doctor.jpg" alt="Monster The Doctor (agotado)" loading="lazy"><div class="neon-add" style="color:#b0b0b0;text-shadow:none;">Agotado</div></div>
       <div class="neon-frame" onclick="agregarMonsterGen(this,'Monster Reserve Ananá',3800,'Monster')"><span class="neon-badge">Monster</span><img src="img/productos/monster-reserve-anana.jpg" alt="Monster Reserve Ananá" loading="lazy"><div class="neon-add">Reserve Ananá · + Agregar $3.800</div></div>
     </div>
   </div>
