@@ -1395,7 +1395,7 @@
       <h2 class="ln-title"><span class="a">Lando</span><span class="b">Norris</span></h2>
       <div class="ln-sub"><b>NEW</b> Monster Zero Sugar · 500 ml</div>
       <div class="ln-stock">
-        <div class="ln-stock-row"><span>⚡ Stock limitado</span><span id="lnQuedanTxt">Quedan 12 de 12</span></div>
+        <div class="ln-stock-row"><span>⚡ Stock limitado</span><span id="lnQuedanTxt">Quedan 8 de 15</span></div>
         <div class="ln-bar"><div id="lnBar"></div></div>
       </div>
       <button class="ln-btn" id="lnBtn" onclick="agregarPreventaLando(this)">Preventa <small>$15.000</small></button>
@@ -1405,7 +1405,7 @@
   </div>
 </section>
 <script>
-  const PREVENTA_LANDO = { nombre:'Preventa Monster Lando Norris', precio:15000, stock:12, quedan:11 };
+  const PREVENTA_LANDO = { nombre:'Preventa Monster Lando Norris', precio:15000, stock:15, quedan:8 };
   function pintarPreventaLando(){
     const p = PREVENTA_LANDO;
     document.getElementById('lnQuedanTxt').textContent = p.quedan > 0 ? `Quedan ${p.quedan} de ${p.stock}` : '¡Agotado!';

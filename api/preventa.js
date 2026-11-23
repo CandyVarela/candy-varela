@@ -6,10 +6,11 @@
 const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
 const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
-const STOCK = 12;
-// Latas reservadas/pagadas en efectivo en el local (se descuentan del stock online).
-const EN_LOCAL = 1;
-const DISPONIBLE = STOCK - EN_LOCAL;
+const STOCK = 15;
+const DISPONIBLE = STOCK;
+// Ajuste manual del stock: cuando cambia "id", la próxima visita fija cuántas quedan.
+// Después las reservas online siguen descontando normalmente desde ese número.
+const AJUSTE = { id: '2026-11-23-quedan8', quedan: 8 };
 const K = 'preventa:lando';
 
 async function redis(...cmd) {
@@ -33,6 +34,12 @@ const esAdmin = (b) =>
   limpio(b.usuario).toLowerCase() === limpio(process.env.ADMIN_USER).toLowerCase() &&
   limpio(b.password) === limpio(process.env.ADMIN_PASSWORD);
 
+async function sincronizar() {
+  if ((await redis('GET', `${K}:ajuste`)) === AJUSTE.id) return;
+  await redis('SET', `${K}:vendidas`, Math.max(0, DISPONIBLE - AJUSTE.quedan));
+  await redis('SET', `${K}:ajuste`, AJUSTE.id);
+}
+
 async function quedan() {
   const v = parseInt((await redis('GET', `${K}:vendidas`)) || '0', 10);
   return Math.max(0, DISPONIBLE - v);
@@ -45,6 +52,7 @@ export default async function handler(req, res) {
   const ip = String(req.headers['x-forwarded-for'] || 'x').split(',')[0].trim();
 
   try {
+    await sincronizar();
     switch (b.action) {
       case 'estado':
         return res.json({ ok: true, stock: STOCK, quedan: await quedan() });
